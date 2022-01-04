@@ -4,7 +4,7 @@ export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode/Arbeids
 export { default as CalendarGrid } from './calendar-grid/CalendarGrid';
 export { default as TidEnkeltdager, DagMedTid } from './dager-med-tid/TidEnkeltdager';
 export { default as TidFasteDager } from './dager-med-tid/TidFasteDager';
-export { default as FormattedTimeText } from './formatted-time-text/FormattedTimeText';
+export { default as DurationText } from './duration-text/DurationText';
 export { default as OmsorgstilbudEnkeltdagDialog } from './omsorgstilbud-enkeltdag/OmsorgstilbudEnkeltdagDialog';
 export { default as omsorgstilbudEnkeltdagFormMessages } from './omsorgstilbud-enkeltdag/omsorgstilbudEnkeltdagFormMessages';
 export { default as SøknadsperioderMånedListe } from './søknadsperioder-måned-liste/SøknadsperioderMånedListe';

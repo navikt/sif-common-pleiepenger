@@ -1,6 +1,6 @@
 import React from 'react';
 import { Undertekst } from 'nav-frontend-typografi';
-import FormattedTimeText from '../formatted-time-text/FormattedTimeText';
+import DurationText from '../duration-text/DurationText';
 import { TidRenderer } from './TidsbrukKalender';
 import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
@@ -33,7 +33,7 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
 
     const renderTid = (duration: Duration) =>
-        tidRenderer ? tidRenderer({ tid: duration, dato, prosent }) : <FormattedTimeText duration={duration} />;
+        tidRenderer ? tidRenderer({ tid: duration, dato, prosent }) : <DurationText duration={duration} />;
 
     return (
         <>

@@ -3,7 +3,7 @@ import { FormattedNumber, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { Duration, durationToDecimalDuration, ensureDuration } from '@navikt/sif-common-utils';
 
-const FormattedTimeText = ({
+const DurationText = ({
     duration,
     fullText,
     hideEmptyValues = false,
@@ -70,4 +70,4 @@ const FormattedTimeText = ({
     );
 };
 
-export default FormattedTimeText;
+export default DurationText;

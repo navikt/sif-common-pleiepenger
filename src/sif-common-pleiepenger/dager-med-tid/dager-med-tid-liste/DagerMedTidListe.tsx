@@ -4,7 +4,7 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { Element, Undertittel } from 'nav-frontend-typografi';
-import FormattedTimeText from '../../formatted-time-text/FormattedTimeText';
+import DurationText from '../../duration-text/DurationText';
 import { DagMedTid } from '../TidEnkeltdager';
 import './dagerMedTidListe.less';
 
@@ -48,7 +48,7 @@ export const DagerMedTidListe = ({ dagerMedTid: dagerMedTid, viseUke, visMåned 
                                                     {dayjs(dag.dato).format('dddd DD.MM.YYYY')}:
                                                 </span>
                                                 <span className={bem.element('dag__tid')}>
-                                                    <FormattedTimeText
+                                                    <DurationText
                                                         duration={{ hours: timer, minutes: minutter }}
                                                         fullText={true}
                                                     />

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Duration } from '@navikt/sif-common-utils/lib';
-import FormattedTimeText from '../formatted-time-text/FormattedTimeText';
+import DurationText from '../duration-text/DurationText';
 import './tidArbeidEnkeltdag.less';
 
 interface Props {
@@ -14,7 +14,7 @@ const TidArbeidEnkeltdag: React.FunctionComponent<Props> = ({ prosent, tid }) =>
             <span className="tidArbeidEnkeltdag">
                 <span className={'tidArbeidEnkeltdag__prosent'}>{prosent} %</span>
                 <span className="tidArbeidEnkeltdag__timer">
-                    (<FormattedTimeText duration={tid} />)
+                    (<DurationText duration={tid} />)
                 </span>
             </span>
         );
@@ -22,7 +22,7 @@ const TidArbeidEnkeltdag: React.FunctionComponent<Props> = ({ prosent, tid }) =>
     if (tid.hours === '0' && tid.minutes === '0') {
         return <></>;
     }
-    return <FormattedTimeText duration={tid} />;
+    return <DurationText duration={tid} />;
 };
 
 export default TidArbeidEnkeltdag;
