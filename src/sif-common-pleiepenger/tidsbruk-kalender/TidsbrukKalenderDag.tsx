@@ -4,7 +4,7 @@ import FormattedTimeText from '../formatted-time-text/FormattedTimeText';
 import { TidRenderer } from './TidsbrukKalender';
 import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import './TidsbrukKalenderDag.less';
+import './tidsbrukKalenderDag.less';
 
 export type TidsbrukKalenderDagFooterRenderer = (dato: Date) => JSX.Element | undefined;
 
