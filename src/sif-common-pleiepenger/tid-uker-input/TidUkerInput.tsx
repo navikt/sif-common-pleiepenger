@@ -3,6 +3,7 @@ import { useMediaQuery } from 'react-responsive';
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik';
+import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils/lib';
 import { TidPerDagValidator } from '../types';
 import TidUkeInput from './TidUkeInput';
 import { Ukeinfo } from './types';
@@ -13,6 +14,8 @@ interface Props {
     fieldName: string;
     periode: DateRange;
     brukPanel?: boolean;
+    opprinneligTid?: DateDurationMap;
+    utilgjengeligeDatoer?: Date[];
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
     tidPerDagValidator?: TidPerDagValidator;
 }
@@ -23,29 +26,37 @@ export const TidUkerInput: React.FunctionComponent<Props> = ({
     fieldName,
     periode,
     brukPanel,
+    opprinneligTid,
+    utilgjengeligeDatoer,
     ukeTittelRenderer,
     tidPerDagValidator,
 }) => {
     const isNarrow = useMediaQuery({ maxWidth: 400 });
     const isWide = useMediaQuery({ minWidth: 1050 });
+
     const datoer = getDagInfoForPeriode(periode);
-    const uker = getUkerFraDager(datoer);
+    const uker = getUkerFraDager(datoer).filter(
+        (uke) => uke.dager.filter((dag) => isDateInDates(dag.dato, utilgjengeligeDatoer)).length !== uke.dager.length
+    );
 
     return (
         <div className={bem.classNames(bem.block, bem.modifier('inlineForm'))}>
-            {uker.map((week) => {
+            {uker.map((uke) => {
                 const content = (
                     <TidUkeInput
                         ukeTittelRenderer={ukeTittelRenderer}
                         getFieldName={(dag) => getTidKalenderFieldName(fieldName, dag)}
-                        ukeinfo={week}
+                        ukeinfo={uke}
+                        opprinneligTid={opprinneligTid}
+                        utilgjengeligeDatoer={utilgjengeligeDatoer}
                         isNarrow={isNarrow}
                         isWide={isWide}
+                        visSomListe={true}
                         tidPerDagValidator={tidPerDagValidator}
                     />
                 );
                 return (
-                    <div key={week.ukenummer} className={bem.element('ukeWrapper')}>
+                    <div key={uke.ukenummer} className={bem.element('ukeWrapper')}>
                         {brukPanel ? <ResponsivePanel>{content}</ResponsivePanel> : content}
                     </div>
                 );
