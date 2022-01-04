@@ -10,7 +10,7 @@ const getEmptyElements = (num: number): JSX.Element[] | undefined => {
         : Array.from({ length: num }).map((_, index) => React.createElement('span', { key: index }));
 };
 
-export const getDagInfo = (date: Date): Daginfo => {
+const getDagInfo = (date: Date): Daginfo => {
     const dayjsDato = dayjs(date);
     return {
         isoDate: dateToISOString(dayjsDato.toDate()),
@@ -25,7 +25,7 @@ export const getDagInfo = (date: Date): Daginfo => {
     };
 };
 
-export const getDagInfoForPeriode = ({ from, to }: DateRange): Daginfo[] => {
+const getDagInfoForPeriode = ({ from, to }: DateRange): Daginfo[] => {
     const dager: Daginfo[] = [];
     let dayjsDato = dayjs(from);
     while (dayjsDato.isSameOrBefore(to, 'day')) {
@@ -38,7 +38,7 @@ export const getDagInfoForPeriode = ({ from, to }: DateRange): Daginfo[] => {
     return dager;
 };
 
-export const getUkerFraDager = (dager: Daginfo[]): Ukeinfo[] => {
+const getUkerFraDager = (dager: Daginfo[]): Ukeinfo[] => {
     const ukerOgDager = groupBy(dager, (dag) => dag.årOgUke);
     const uker = Object.keys(ukerOgDager).map((key): Ukeinfo => {
         const dagerIUke = ukerOgDager[key];
@@ -47,9 +47,9 @@ export const getUkerFraDager = (dager: Daginfo[]): Ukeinfo[] => {
     return uker;
 };
 
-export const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
+const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
 
-export const getForegåendeDagerIUke = (dag: Daginfo): Daginfo[] => {
+const getForegåendeDagerIUke = (dag: Daginfo): Daginfo[] => {
     const dager = getEmptyElements(dag.ukedag - 1);
     if (dager && dager.length > 0) {
         const firstDayOfWeek = dayjs(dag.dato).subtract(dag.ukedag - 1, 'days');
@@ -59,4 +59,12 @@ export const getForegåendeDagerIUke = (dag: Daginfo): Daginfo[] => {
         });
     }
     return [];
+};
+
+export const tidUkerInputUtils = {
+    getDagInfo,
+    getDagInfoForPeriode,
+    getTidKalenderFieldName,
+    getForegåendeDagerIUke,
+    getUkerFraDager,
 };

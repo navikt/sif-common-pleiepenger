@@ -14,57 +14,55 @@ interface Props {
 const TidUkedagerInput = ({ name, validator }: Props) => {
     const intl = useIntl();
     return (
-        <>
-            <Box margin="l">
-                <div className="tidUkedagerInput">
-                    <FormikTimeInput
-                        label={intlHelper(intl, 'Mandager')}
-                        name={`${name}.mandag`}
-                        timeInputLayout={{
-                            direction: 'vertical',
-                            compact: true,
-                        }}
-                        validate={validator ? validator(intlHelper(intl, 'mandag')) : undefined}
-                    />
-                    <FormikTimeInput
-                        label={intlHelper(intl, 'Tirsdager')}
-                        name={`${name}.tirsdag`}
-                        timeInputLayout={{
-                            direction: 'vertical',
-                            compact: true,
-                        }}
-                        validate={validator ? validator(intlHelper(intl, 'tirsdag')) : undefined}
-                    />
-                    <FormikTimeInput
-                        label={intlHelper(intl, 'Onsdager')}
-                        name={`${name}.onsdag`}
-                        timeInputLayout={{
-                            direction: 'vertical',
-                            compact: true,
-                        }}
-                        validate={validator ? validator(intlHelper(intl, 'onsdag')) : undefined}
-                    />
-                    <FormikTimeInput
-                        label={intlHelper(intl, 'Torsdager')}
-                        name={`${name}.torsdag`}
-                        timeInputLayout={{
-                            direction: 'vertical',
-                            compact: true,
-                        }}
-                        validate={validator ? validator(intlHelper(intl, 'torsdag')) : undefined}
-                    />
-                    <FormikTimeInput
-                        label={intlHelper(intl, 'Fredager')}
-                        name={`${name}.fredag`}
-                        timeInputLayout={{
-                            direction: 'vertical',
-                            compact: true,
-                        }}
-                        validate={validator ? validator(intlHelper(intl, 'mandag')) : undefined}
-                    />
-                </div>
-            </Box>
-        </>
+        <Box margin="l">
+            <div className="tidUkedagerInput">
+                <FormikTimeInput
+                    label={intlHelper(intl, 'Mandager')}
+                    name={`${name}.mandag`}
+                    timeInputLayout={{
+                        direction: 'vertical',
+                        compact: true,
+                    }}
+                    validate={validator ? validator(intlHelper(intl, 'mandag')) : undefined}
+                />
+                <FormikTimeInput
+                    label={intlHelper(intl, 'Tirsdager')}
+                    name={`${name}.tirsdag`}
+                    timeInputLayout={{
+                        direction: 'vertical',
+                        compact: true,
+                    }}
+                    validate={validator ? validator(intlHelper(intl, 'tirsdag')) : undefined}
+                />
+                <FormikTimeInput
+                    label={intlHelper(intl, 'Onsdager')}
+                    name={`${name}.onsdag`}
+                    timeInputLayout={{
+                        direction: 'vertical',
+                        compact: true,
+                    }}
+                    validate={validator ? validator(intlHelper(intl, 'onsdag')) : undefined}
+                />
+                <FormikTimeInput
+                    label={intlHelper(intl, 'Torsdager')}
+                    name={`${name}.torsdag`}
+                    timeInputLayout={{
+                        direction: 'vertical',
+                        compact: true,
+                    }}
+                    validate={validator ? validator(intlHelper(intl, 'torsdag')) : undefined}
+                />
+                <FormikTimeInput
+                    label={intlHelper(intl, 'Fredager')}
+                    name={`${name}.fredag`}
+                    timeInputLayout={{
+                        direction: 'vertical',
+                        compact: true,
+                    }}
+                    validate={validator ? validator(intlHelper(intl, 'mandag')) : undefined}
+                />
+            </div>
+        </Box>
     );
 };
 

@@ -5,8 +5,8 @@ import { FormikTimeInput } from '@navikt/sif-common-formik';
 import { Undertittel } from 'nav-frontend-typografi';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils';
 import { Daginfo, Ukeinfo } from './types';
-import { getForegåendeDagerIUke } from './utils';
 import { TidPerDagValidator } from '..';
+import { tidUkerInputUtils } from './utils';
 
 type DagLabelRenderer = (dag: Daginfo) => React.ReactNode;
 
@@ -63,7 +63,7 @@ const TidUkeInput: React.FunctionComponent<Props> = ({
             )}
 
             <div className={bem.element('uke__ukedager', isWide && visSomListe !== true ? 'grid' : 'liste')}>
-                {getForegåendeDagerIUke(dager[0]).map((dag) => (
+                {tidUkerInputUtils.getForegåendeDagerIUke(dager[0]).map((dag) => (
                     <div className={bem.element('dag', 'utenforPeriode')} key={dag.isoDate} aria-hidden={true}>
                         {renderDagLabel(dag, dagLabelRenderer)}
                         <div className={bem.element('dag__utenforPeriodeIkon')}>-</div>

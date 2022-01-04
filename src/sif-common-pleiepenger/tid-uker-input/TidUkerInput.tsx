@@ -6,9 +6,11 @@ import { DateRange } from '@navikt/sif-common-formik';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils/lib';
 import { TidPerDagValidator } from '../types';
 import TidUkeInput from './TidUkeInput';
-import { Ukeinfo } from './types';
-import { getDagInfoForPeriode, getTidKalenderFieldName, getUkerFraDager } from './utils';
+import { Daginfo, Ukeinfo } from './types';
+import { tidUkerInputUtils } from './utils';
 import './tidUkerInput.less';
+
+const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
 
 interface Props {
     fieldName: string;
@@ -34,10 +36,13 @@ export const TidUkerInput: React.FunctionComponent<Props> = ({
     const isNarrow = useMediaQuery({ maxWidth: 400 });
     const isWide = useMediaQuery({ minWidth: 1050 });
 
-    const datoer = getDagInfoForPeriode(periode);
-    const uker = getUkerFraDager(datoer).filter(
-        (uke) => uke.dager.filter((dag) => isDateInDates(dag.dato, utilgjengeligeDatoer)).length !== uke.dager.length
-    );
+    const dager = tidUkerInputUtils.getDagInfoForPeriode(periode);
+    const uker = tidUkerInputUtils
+        .getUkerFraDager(dager)
+        .filter(
+            (uke) =>
+                uke.dager.filter((dag) => isDateInDates(dag.dato, utilgjengeligeDatoer)).length !== uke.dager.length
+        );
 
     return (
         <div className={bem.classNames(bem.block, bem.modifier('inlineForm'))}>
