@@ -22,7 +22,6 @@
         "url": "https://github.com/navikt/sif-common-pleiepenger/issues"
     },
     "homepage": "https://navikt.github.io/sif-common-pleiepenger",
-    "dependencies": {},
     "devDependencies": {
         "@navikt/sif-common-core": "^10.0.4",
         "@navikt/sif-common-formik": "^21.0.2",
@@ -36,6 +35,8 @@
         "@types/node": "^17.0.2",
         "@types/react": "^17.0.37",
         "@types/react-dom": "^17.0.11",
+        "@types/react-responsive": "^8.0.5",
+        "copyfiles": "^2.4.1",
         "dayjs": "^1.10.7",
         "eslint": "^8.5.0",
         "eslint-config-prettier": "^8.3.0",
@@ -73,9 +74,10 @@
         "test": "react-scripts test",
         "test-c": "jest  --coverage --config ./jest/jest.config.js --watch",
         "eject": "react-scripts eject",
-        "build-lib": "npm-run-all clean-lib compile-lib-script",
+        "build-lib": "npm-run-all clean-lib compile-lib-script copy-files-to-lib",
         "clean-lib": "rimraf ./lib",
         "compile-lib-script": "tsc -p tsconfig-build-lib.json",
+        "copy-files-to-lib": "copyfiles -u 2 \"src/sif-common-pleiepenger/**/*.less\" lib/ && copyfiles -u 2 \"src/sif-common-pleiepenger/**/assets/**/*\" lib/ && copyfiles -u 2 \"src/sif-common-pleiepenger/**/*.json\" lib/",
         "snyk-protect": "snyk protect",
         "prepare": "npm run snyk-protect"
     },
