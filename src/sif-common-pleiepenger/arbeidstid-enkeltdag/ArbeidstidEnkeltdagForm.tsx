@@ -5,7 +5,6 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik/lib';
-import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
@@ -23,7 +22,7 @@ import minMax from 'dayjs/plugin/minMax';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import { ArbeidsforholdType } from '../types';
-import { getDagerMedNyArbeidstid } from './arbeidstidEnkeltdagUtils';
+import { getDagerMedNyArbeidstid, getGjentagelseEnkeltdagFraFormValues } from './arbeidstidEnkeltdagUtils';
 import { getArbeidstidEnkeltdagFormTidValidator } from './arbeidstidEnkeltdagValidation';
 
 dayjs.extend(minMax);
@@ -62,7 +61,7 @@ export enum GjentagelseType {
     heleMåneden = 'heleMåneden',
 }
 
-interface FormValues {
+export interface ArbeidstidEnkeltdagFormValues {
     [FormFields.tid]: InputTime;
     [FormFields.skalGjentas]: boolean;
     [FormFields.gjentagelse]: GjentagelseType;
@@ -70,7 +69,7 @@ interface FormValues {
     [FormFields.stopDato]: InputDateString;
 }
 
-const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
+const FormComponents = getTypedFormComponents<FormFields, ArbeidstidEnkeltdagFormValues, ValidationError>();
 
 const bem = bemUtils('arbeidstidEnkeltdagEdit');
 
@@ -92,17 +91,15 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
 }) => {
     const intl = useIntl();
 
-    const onValidSubmit = (values: Partial<FormValues>) => {
+    const onValidSubmit = (values: Partial<ArbeidstidEnkeltdagFormValues>) => {
         if (values.tid) {
-            const gjentagelse: GjentagelseEnkeltdag | undefined =
-                values.gjentagelse && values.skalGjentas === true && values.stopDato
-                    ? {
-                          gjentagelsetype: values.gjentagelse,
-                          tom: datepickerUtils.getDateFromDateString(values.stopDato),
-                      }
-                    : undefined;
             onSubmit({
-                dagerMedTid: getDagerMedNyArbeidstid(periode, dato, values.tid, gjentagelse),
+                dagerMedTid: getDagerMedNyArbeidstid(
+                    periode,
+                    dato,
+                    values.tid,
+                    getGjentagelseEnkeltdagFraFormValues(values)
+                ),
             });
         }
     };

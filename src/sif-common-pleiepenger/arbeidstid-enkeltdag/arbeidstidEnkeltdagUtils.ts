@@ -1,17 +1,18 @@
+import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import {
+    DateDurationMap,
     DateRange,
     dateToISODate,
+    Duration,
     getDatesInDateRange,
     getMonthDateRange,
     getWeekDateRange,
     isDateWeekDay,
     ISODate,
     nthItemFilter,
-    DateDurationMap,
-    Duration,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { GjentagelseEnkeltdag, GjentagelseType } from './ArbeidstidEnkeltdagForm';
+import { ArbeidstidEnkeltdagFormValues, GjentagelseEnkeltdag, GjentagelseType } from './ArbeidstidEnkeltdagForm';
 
 const getDagerMedInterval = (interval: number, periode: DateRange) => {
     const ukedag = dayjs(periode.from).isoWeekday();
@@ -59,4 +60,17 @@ export const getDagerMedNyArbeidstid = (
     });
     datoerMedTid[dateToISODate(dato)] = { ...varighet };
     return datoerMedTid;
+};
+
+export const getGjentagelseEnkeltdagFraFormValues = (
+    values: Partial<ArbeidstidEnkeltdagFormValues>
+): GjentagelseEnkeltdag | undefined => {
+    const gjentagelse: GjentagelseEnkeltdag | undefined =
+        values.gjentagelse && values.skalGjentas === true
+            ? {
+                  gjentagelsetype: values.gjentagelse,
+                  tom: values.stopDato ? datepickerUtils.getDateFromDateString(values.stopDato) : undefined,
+              }
+            : undefined;
+    return gjentagelse;
 };
