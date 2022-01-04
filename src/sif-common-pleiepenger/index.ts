@@ -2,7 +2,7 @@ export { default as ArbeidstidEnkeltdagDialog } from './arbeidstid-enkeltdag/Arb
 export { default as arbeidstidEnkeltdagMessage } from './arbeidstid-enkeltdag/arbeidstidEnkeltdagMessage';
 export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode/ArbeidstidPeriodeDialog';
 export { default as CalendarGrid } from './calendar-grid/CalendarGrid';
-export { default as TidEnkeltdager, DagMedTid } from './dager-med-tid/TidEnkeltdager';
+export { default as TidEnkeltdager } from './dager-med-tid/TidEnkeltdager';
 export { default as TidFasteDager } from './dager-med-tid/TidFasteDager';
 export { default as DurationText } from './duration-text/DurationText';
 export { default as OmsorgstilbudEnkeltdagDialog } from './omsorgstilbud-enkeltdag/OmsorgstilbudEnkeltdagDialog';

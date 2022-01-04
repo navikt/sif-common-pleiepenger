@@ -1,20 +1,16 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import { Duration, ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
+import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import groupBy from 'lodash.groupby';
 import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
+import { DagMedTid } from '../types';
 import DagerMedTidListe from './dager-med-tid-liste/DagerMedTidListe';
 
 interface ISODagMedTid {
     dato: ISODate;
     tid: ISODuration;
-}
-
-export interface DagMedTid {
-    dato: Date;
-    tid: Duration;
 }
 
 interface Props {

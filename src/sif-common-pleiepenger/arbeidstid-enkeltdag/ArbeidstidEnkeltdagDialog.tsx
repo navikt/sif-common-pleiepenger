@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateRange, InputTime } from '@navikt/sif-common-formik/lib';
+import { DateRange, Duration } from '@navikt/sif-common-utils';
 import { dateFormatter } from '@navikt/sif-common-utils/lib/dateFormatter';
 import Modal from 'nav-frontend-modal';
 import { ArbeidsforholdType } from '../types';
@@ -9,7 +9,8 @@ import './arbeidstidEnkeltdag.less';
 interface Props {
     isOpen?: boolean;
     dato: Date;
-    tid?: Partial<InputTime>;
+    tid?: Partial<Duration>;
+    tidOpprinnelig?: Duration;
     arbeidsstedNavn: string;
     periode: DateRange;
     arbeidsforholdType: ArbeidsforholdType;
@@ -21,6 +22,7 @@ const ArbeidstidEnkeltdagDialog: React.FunctionComponent<Props> = ({
     isOpen = false,
     dato,
     tid,
+    tidOpprinnelig,
     arbeidsstedNavn,
     arbeidsforholdType,
     periode,
@@ -44,6 +46,7 @@ const ArbeidstidEnkeltdagDialog: React.FunctionComponent<Props> = ({
                     periode={periode}
                     dato={dato}
                     tid={tid}
+                    tidOpprinnelig={tidOpprinnelig}
                     arbeidsstedNavn={arbeidsstedNavn}
                     arbeidsforholdType={arbeidsforholdType}
                     onCancel={onCancel}

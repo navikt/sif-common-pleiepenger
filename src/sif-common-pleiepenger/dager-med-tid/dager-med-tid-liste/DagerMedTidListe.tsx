@@ -4,8 +4,8 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import { Element, Undertittel } from 'nav-frontend-typografi';
+import { DagMedTid } from '../..';
 import DurationText from '../../duration-text/DurationText';
-import { DagMedTid } from '../TidEnkeltdager';
 import './dagerMedTidListe.less';
 
 interface Props {

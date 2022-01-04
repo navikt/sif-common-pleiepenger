@@ -12,6 +12,7 @@ import {
     DateDurationMap,
     dateFormatter,
     Duration,
+    durationsAreEqual,
     ensureDuration,
     getMonthDateRange,
     getNumberOfDaysInDateRange,
@@ -21,6 +22,7 @@ import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
+import { DurationText } from '../';
 import { ArbeidsforholdType } from '../types';
 import { getDagerMedNyArbeidstid, getGjentagelseEnkeltdagFraFormValues } from './arbeidstidEnkeltdagUtils';
 import { getArbeidstidEnkeltdagFormTidValidator } from './arbeidstidEnkeltdagValidation';
@@ -30,6 +32,7 @@ dayjs.extend(minMax);
 interface Props {
     dato: Date;
     tid?: Partial<Duration>;
+    tidOpprinnelig?: Duration;
     arbeidsstedNavn: string;
     arbeidsforholdType: ArbeidsforholdType;
     periode: DateRange;
@@ -83,6 +86,7 @@ const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): D
 const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
     dato,
     tid,
+    tidOpprinnelig,
     arbeidsstedNavn,
     arbeidsforholdType,
     periode,
@@ -105,6 +109,7 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
     };
 
     const erHistorisk = dayjs(dato).isBefore(dateToday);
+    const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
     const dagNavn = dayjs(dato).format('dddd');
     const valgtDatoTxt = dateFormatter.dayFullShortDate(dato);
 
@@ -182,6 +187,11 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
                                     validate={getArbeidstidEnkeltdagFormTidValidator}
                                     timeInputLayout={{ justifyContent: 'left', compact: false, direction: 'vertical' }}
                                 />
+                                {tidOpprinnelig && erEndret && (
+                                    <p>
+                                        Endret fra <DurationText duration={tidOpprinnelig} fullText={true} />
+                                    </p>
+                                )}
                                 {skalViseValgetGjelderFlereDager && (
                                     <FormBlock margin="l">
                                         <FormComponents.Checkbox

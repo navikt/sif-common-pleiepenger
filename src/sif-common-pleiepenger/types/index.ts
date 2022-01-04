@@ -25,3 +25,8 @@ export type ArbeidIPeriodeIntlValues = {
     iPerioden: string;
     iPeriodenKort: string;
 };
+
+export interface DagMedTid {
+    dato: Date;
+    tid: Duration;
+}
