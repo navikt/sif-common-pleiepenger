@@ -9,6 +9,7 @@ export { default as OmsorgstilbudEnkeltdagDialog } from './omsorgstilbud-enkeltd
 export { default as omsorgstilbudEnkeltdagFormMessages } from './omsorgstilbud-enkeltdag/omsorgstilbudEnkeltdagFormMessages';
 export { default as SøknadsperioderMånedListe } from './søknadsperioder-måned-liste/SøknadsperioderMånedListe';
 export { default as TidKalenderForm } from './tid-kalender-form/TidKalenderForm';
+export { default as TidUkerInput } from './tid-uker-input/TidUkerInput';
 export { default as TidUkedagerInput } from './tid-ukedager-input/TidUkedagerInput';
 export { default as TidsbrukKalender, TidRenderer } from './tidsbruk-kalender/TidsbrukKalender';
 export { default as TimerOgMinutter, formatTimerOgMinutter } from './timer-og-minutter/TimerOgMinutter';
