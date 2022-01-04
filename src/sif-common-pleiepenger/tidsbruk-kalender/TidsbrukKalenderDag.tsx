@@ -3,6 +3,8 @@ import { Undertekst } from 'nav-frontend-typografi';
 import FormattedTimeText from '../formatted-time-text/FormattedTimeText';
 import { TidRenderer } from './TidsbrukKalender';
 import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
+import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
+import './TidsbrukKalenderDag.less';
 
 export type TidsbrukKalenderDagFooterRenderer = (dato: Date) => JSX.Element | undefined;
 
@@ -16,6 +18,8 @@ interface Props {
     tidRenderer?: TidRenderer;
     footerRenderer?: TidsbrukKalenderDagFooterRenderer;
 }
+
+const bem = bemUtils('tidsbrukKalenderDag');
 
 const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
     dato,
@@ -37,13 +41,13 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
                 <>
                     {erEndret ? (
                         <>
-                            <span className="tidsbrukTidDag">{renderTid(ensureDuration(tid))}</span>
+                            <span className={bem.block}>{renderTid(ensureDuration(tid))}</span>
                             {visEndringsinformasjon && (
                                 <>
                                     {tidOpprinnelig ? (
-                                        <div className={'tidsbruk__opprinneligTid'}>
+                                        <div className={bem.element('opprinneligTidWrapper')}>
                                             (
-                                            <Undertekst tag="span" style={{ textDecoration: 'line-through' }}>
+                                            <Undertekst tag="span" className={bem.element('opprinneligTid')}>
                                                 <span className="sr-only">Endret fra: </span>
                                                 {renderTid(tidOpprinnelig)}
                                             </Undertekst>
@@ -56,7 +60,7 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
                             )}
                         </>
                     ) : (
-                        <span className="tidsbrukTidDag">
+                        <span className={bem.block}>
                             {renderTid(tid)} <span className="sr-only">(uendret)</span>
                         </span>
                     )}
