@@ -14,7 +14,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import TidUkedagerInput from '../tid-ukedager-input/TidUkedagerInput';
 import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
 import { getRedusertArbeidstidPerUkeInfo } from '../utils';
-import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from '../validation';
+import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from './arbeidstidFormValidation';
 
 interface Props {
     arbeidsstedNavn: string;
@@ -96,6 +96,14 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                         const to = datepickerUtils.getDateFromDateString(tom);
                         const periode = from && to ? { from, to } : undefined;
                         const visKnapper = periode !== undefined && tidFasteDagerEllerProsent !== undefined;
+                        const validator = getDateRangeValidator({
+                            required: true,
+                            onlyWeekdays: true,
+                            toDate: to,
+                            fromDate: from,
+                            min: rammePeriode.from,
+                            max: to || rammePeriode.to,
+                        });
                         return (
                             <FormComponents.Form
                                 onCancel={onCancel}
@@ -117,8 +125,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                                 },
                                                 minDate: rammePeriode.from,
                                                 maxDate: to || rammePeriode.to,
-                                                validate: getDateRangeValidator({ required: true, onlyWeekdays: true })
-                                                    .validateFromDate,
+                                                validate: validator.validateFromDate,
                                             }}
                                             toDatepickerProps={{
                                                 label: intlHelper(intl, 'arbeidstidPeriodeForm.tilOgMed.label'),
@@ -130,7 +137,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                                 dayPickerProps: {
                                                     initialMonth: from || rammePeriode.from,
                                                 },
-                                                validate: getDateRangeValidator({ required: true }).validateToDate,
+                                                validate: validator.validateToDate,
                                             }}
                                         />
                                     </FormBlock>

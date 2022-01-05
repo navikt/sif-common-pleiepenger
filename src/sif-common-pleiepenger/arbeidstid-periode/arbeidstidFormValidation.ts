@@ -1,7 +1,7 @@
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik/lib';
 import { getNumberValidator } from '@navikt/sif-common-formik/lib/validation';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
-import { DurationWeekdays, summarizeDurationWeekDays } from '@navikt/sif-common-utils/lib';
+import { DurationWeekdays, summarizeDurationInDurationWeekdays } from '@navikt/sif-common-utils/lib';
 import { ArbeidIPeriodeIntlValues } from '../types';
 
 export const getArbeidstidFastProsentValidator =
@@ -35,7 +35,7 @@ export const validateFasteArbeidstimerIUke = (
     intlValues: ArbeidIPeriodeIntlValues
 ): ValidationResult<ValidationError> => {
     let error;
-    const timer = fasteDager ? summarizeDurationWeekDays(fasteDager) : 0;
+    const timer = fasteDager ? summarizeDurationInDurationWeekdays(fasteDager) : 0;
     if (timer === 0) {
         error = 'arbeidIPeriode.fasteDager.ingenTidRegistrert';
     }

@@ -24,7 +24,7 @@ const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
             contentLabel={`${dialogTitle} ${dateFormatter.fullWithDayName(formProps.dato)}`}
             onRequestClose={formProps.onCancel}
             shouldCloseOnOverlayClick={false}
-            className="arbeidstidEnkeltdagDialog">
+            className="tidEnkeltdagDialog">
             <TidEnkeltdagForm {...formProps} />
         </Modal>
     ) : null;
