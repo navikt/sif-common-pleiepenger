@@ -148,7 +148,7 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
     ): JSX.Element => (
         <>
             <FormattedMessage id={`arbeidstidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
-            <div className="m-comment">
+            <div style={{ fontSize: '0.9rem' }}>
                 <FormattedMessage
                     id="arbeidstidEnkeltdagForm.gjentagelse.periode"
                     values={{
@@ -189,7 +189,8 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
                                 />
                                 {tidOpprinnelig && erEndret && (
                                     <p>
-                                        Endret fra <DurationText duration={tidOpprinnelig} fullText={true} />
+                                        <FormattedMessage id="arbeidstidEnkeltdagForm.endretFra" />{' '}
+                                        <DurationText duration={tidOpprinnelig} fullText={true} />
                                     </p>
                                 )}
                                 {skalViseValgetGjelderFlereDager && (
@@ -247,42 +248,40 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
                                         </FormBlock>
                                         {(gjentagelse === GjentagelseType.hverUke ||
                                             gjentagelse === GjentagelseType.hverAndreUke) && (
-                                            <>
-                                                <div style={{ marginLeft: '1.5rem' }}>
-                                                    <FormBlock margin="m">
-                                                        <FormComponents.Checkbox
+                                            <div style={{ marginLeft: '1.5rem' }}>
+                                                <FormBlock margin="m">
+                                                    <FormComponents.Checkbox
+                                                        label={intlHelper(
+                                                            intl,
+                                                            'arbeidstidEnkeltdagForm.stoppGjentagelse.label'
+                                                        )}
+                                                        name={FormFields.stoppGjentagelse}
+                                                    />
+                                                </FormBlock>
+                                                {stoppGjentagelse && (
+                                                    <FormBlock margin="l">
+                                                        <FormComponents.DatePicker
                                                             label={intlHelper(
                                                                 intl,
-                                                                'arbeidstidEnkeltdagForm.stoppGjentagelse.label'
+                                                                'arbeidstidEnkeltdagForm.stopDato.label'
                                                             )}
-                                                            name={FormFields.stoppGjentagelse}
+                                                            minDate={dato}
+                                                            maxDate={periode.to}
+                                                            validate={getDateValidator({
+                                                                min: dato,
+                                                                max: periode.to,
+                                                                required: true,
+                                                            })}
+                                                            disableWeekend={true}
+                                                            fullScreenOnMobile={true}
+                                                            dayPickerProps={{
+                                                                initialMonth: dato,
+                                                            }}
+                                                            name={FormFields.stopDato}
                                                         />
                                                     </FormBlock>
-                                                    {stoppGjentagelse && (
-                                                        <FormBlock margin="l">
-                                                            <FormComponents.DatePicker
-                                                                label={intlHelper(
-                                                                    intl,
-                                                                    'arbeidstidEnkeltdagForm.stopDato.label'
-                                                                )}
-                                                                minDate={dato}
-                                                                maxDate={periode.to}
-                                                                validate={getDateValidator({
-                                                                    min: dato,
-                                                                    max: periode.to,
-                                                                    required: true,
-                                                                })}
-                                                                disableWeekend={true}
-                                                                fullScreenOnMobile={true}
-                                                                dayPickerProps={{
-                                                                    initialMonth: dato,
-                                                                }}
-                                                                name={FormFields.stopDato}
-                                                            />
-                                                        </FormBlock>
-                                                    )}
-                                                </div>
-                                            </>
+                                                )}
+                                            </div>
                                         )}
                                     </div>
                                 )}

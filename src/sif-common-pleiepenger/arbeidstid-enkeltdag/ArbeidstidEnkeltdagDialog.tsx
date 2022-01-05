@@ -1,10 +1,12 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { DateRange, Duration } from '@navikt/sif-common-utils';
 import { dateFormatter } from '@navikt/sif-common-utils/lib/dateFormatter';
 import Modal from 'nav-frontend-modal';
 import { ArbeidsforholdType } from '../types';
 import ArbeidstidEnkeltdagForm, { ArbeidstidEnkeltdagEndring } from './ArbeidstidEnkeltdagForm';
 import './arbeidstidEnkeltdag.less';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 
 interface Props {
     isOpen?: boolean;
@@ -29,31 +31,32 @@ const ArbeidstidEnkeltdagDialog: React.FunctionComponent<Props> = ({
     onSubmit,
     onCancel,
 }) => {
+    const intl = useIntl();
     if (!isOpen) {
         return null;
     }
-    const contentLabel = `Arbeidstid ${dateFormatter.fullWithDayName(dato)}`;
+    const contentLabel = intlHelper(intl, 'arbeidstidEnkeltdagDialog.contentTitle', {
+        dato: dateFormatter.fullWithDayName(dato),
+    });
 
     return isOpen ? (
-        <>
-            <Modal
-                isOpen={isOpen}
-                contentLabel={contentLabel}
-                onRequestClose={onCancel}
-                shouldCloseOnOverlayClick={false}
-                className="arbeidstidEnkeltdagDialog">
-                <ArbeidstidEnkeltdagForm
-                    periode={periode}
-                    dato={dato}
-                    tid={tid}
-                    tidOpprinnelig={tidOpprinnelig}
-                    arbeidsstedNavn={arbeidsstedNavn}
-                    arbeidsforholdType={arbeidsforholdType}
-                    onCancel={onCancel}
-                    onSubmit={onSubmit}
-                />
-            </Modal>
-        </>
+        <Modal
+            isOpen={isOpen}
+            contentLabel={contentLabel}
+            onRequestClose={onCancel}
+            shouldCloseOnOverlayClick={false}
+            className="arbeidstidEnkeltdagDialog">
+            <ArbeidstidEnkeltdagForm
+                periode={periode}
+                dato={dato}
+                tid={tid}
+                tidOpprinnelig={tidOpprinnelig}
+                arbeidsstedNavn={arbeidsstedNavn}
+                arbeidsforholdType={arbeidsforholdType}
+                onCancel={onCancel}
+                onSubmit={onSubmit}
+            />
+        </Modal>
     ) : null;
 };
 

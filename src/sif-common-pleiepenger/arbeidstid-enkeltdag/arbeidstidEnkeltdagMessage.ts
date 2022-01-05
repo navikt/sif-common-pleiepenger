@@ -1,11 +1,13 @@
 const arbeidstidEnkeltdagFormMessages = {
     nb: {
+        'arbeidstidEnkeltdagDialog.contentTitle': 'Arbeidstid {dato}',
         'arbeidstidEnkeltdagForm.tid.spm': 'Hvor mye {skalEllerHarJobbet} {hvor} {når}',
         'arbeidstidEnkeltdagForm.som.ANSATT': 'hos {navn}',
         'arbeidstidEnkeltdagForm.som.FRILANSER': 'som frilanser',
         'arbeidstidEnkeltdagForm.som.SELVSTENDIG': 'som selvstendig næringsdrivende',
         'arbeidstidEnkeltdagForm.skalJobbe': 'skal du jobbe',
         'arbeidstidEnkeltdagForm.jobbet': 'jobbet du',
+        'arbeidstidEnkeltdagForm.endretFra': 'Endret fra',
         'arbeidstidEnkeltdagForm.gjelderFlereDager.label': 'Gjelder flere dager',
         'arbeidstidEnkeltdagForm.gjentagelse.helUke': 'Alle hverdager i uke {ukeNavn}.',
         'arbeidstidEnkeltdagForm.gjentagelse.delAvUke': 'Hverdager i uke {ukeNavn}.',
