@@ -1,6 +1,6 @@
 export { default as ArbeidstidEnkeltdagDialog } from './arbeidstid-enkeltdag/ArbeidstidEnkeltdagDialog';
 export { TidEnkeltdagFormValues, GjentagelseType, GjentagelseEnkeltdag } from './tid-enkeltdag-dialog/TidEnkeltdagForm';
-export { default as arbeidstidEnkeltdagMessage } from './arbeidstid-enkeltdag/arbeidstidEnkeltdagMessage';
+export { default as arbeidstidEnkeltdagMessage } from './arbeidstid-enkeltdag/arbeidstidEnkeltdagMessages';
 export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode/ArbeidstidPeriodeDialog';
 export { default as CalendarGrid } from './calendar-grid/CalendarGrid';
 export { default as TidEnkeltdager } from './dager-med-tid/TidEnkeltdager';
