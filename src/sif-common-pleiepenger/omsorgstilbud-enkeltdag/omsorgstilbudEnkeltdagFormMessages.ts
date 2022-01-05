@@ -1,5 +1,8 @@
 const omsorgstilbudEnkeltdagFormMessages = {
     nb: {
+        'omsorgstilbudEnkeltdagForm.tittel': 'Tid i omsorgstilbud {dato}',
+        'omsorgstilbudEnkeltdagForm.tid.spm': 'Hvor mye skal barnet være i omsorgstilbud {dato}?',
+        'omsorgstilbudEnkeltdagForm.tid.spm.historisk': 'Hvor mye var barnet i omsorgstilbud {dato}?',
         'omsorgstilbudEnkeltdagForm.validation.tid.hoursAreInvalid': 'Antall timer er ikke et gyldig tall.',
         'omsorgstilbudEnkeltdagForm.validation.tid.minutesAreInvalid': 'Antall minutter er ikke et gyldig tall.',
         'omsorgstilbudEnkeltdagForm.validation.tid.tooManyHours': 'Antall timer er for høyt. Maks antall timer er 7.',

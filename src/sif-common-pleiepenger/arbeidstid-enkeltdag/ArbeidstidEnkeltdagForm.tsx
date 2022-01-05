@@ -74,7 +74,7 @@ export interface ArbeidstidEnkeltdagFormValues {
 
 const FormComponents = getTypedFormComponents<FormFields, ArbeidstidEnkeltdagFormValues, ValidationError>();
 
-const bem = bemUtils('arbeidstidEnkeltdagEdit');
+const bem = bemUtils('arbeidstidEnkeltdagForm');
 
 const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): DateRange => {
     return {
@@ -205,7 +205,7 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
                                     <div style={{ paddingLeft: '1.5rem' }}>
                                         <FormBlock margin="m">
                                             <FormComponents.RadioGroup
-                                                className="compactRadios"
+                                                className={bem.element('gjentagelseOptions')}
                                                 name={FormFields.gjentagelse}
                                                 validate={getRequiredFieldValidator()}
                                                 radios={[

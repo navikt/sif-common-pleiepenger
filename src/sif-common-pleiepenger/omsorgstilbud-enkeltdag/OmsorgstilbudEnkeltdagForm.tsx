@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
@@ -11,6 +11,7 @@ import dayjs from 'dayjs';
 import { Undertittel } from 'nav-frontend-typografi';
 import { dateFormatter } from '@navikt/sif-common-utils';
 import { ensureDuration, Duration } from '@navikt/sif-common-utils';
+import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 interface Props {
     dato: Date;
     tid?: Partial<Duration>;
@@ -42,7 +43,7 @@ const OmsorgstilbudEnkeltdagForm: React.FunctionComponent<Props> = ({ dato, tid,
     return (
         <div>
             <Undertittel tag="h1" className={bem.element('tittel')}>
-                Tid i omsorgstilbud {dateFormatter.full(dato)}
+                <FormattedMessage id="omsorgstilbudEnkeltdagForm.tittel" values={{ dato: dateFormatter.full(dato) }} />
             </Undertittel>
             <FormBlock margin="l">
                 <FormComponents.FormikWrapper
@@ -64,9 +65,15 @@ const OmsorgstilbudEnkeltdagForm: React.FunctionComponent<Props> = ({ dato, tid,
                                 cancelButtonLabel="Avbryt">
                                 <FormComponents.TimeInput
                                     name={FormFields.tid}
-                                    label={`Hvor mye ${
-                                        erHistorisk ? 'var barnet' : 'skal barnet være'
-                                    } i omsorgstilbud ${dateFormatter.extended(dato)}?`}
+                                    label={intlHelper(
+                                        intl,
+                                        erHistorisk
+                                            ? 'omsorgstilbudEnkeltdagForm.tid.spm.historisk'
+                                            : 'omsorgstilbudEnkeltdagForm.tid.spm',
+                                        {
+                                            dato: dateFormatter.extended(dato),
+                                        }
+                                    )}
                                     validate={getTimeValidator({ max: { hours: 7, minutes: 30 } })}
                                     timeInputLayout={{ justifyContent: 'left', compact: false, direction: 'vertical' }}
                                 />

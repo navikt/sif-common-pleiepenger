@@ -50,7 +50,7 @@ const initialFormValues: Partial<FormValues> = {};
 
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
-const bem = bemUtils('arbeidstidEnkeltdagEdit');
+const bem = bemUtils('arbeidstidEnkeltdagForm');
 
 const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
     arbeidsstedNavn,

@@ -77,13 +77,6 @@ const ArbeidstidMånedInfo: React.FunctionComponent<Props> = ({
         setEditDate({ dato, tid });
     };
 
-    // const perioder = getPerioderMedLikTidIDatoTidMap(dager);
-    // const erDagDelAvPerioder = (dato: Date): number => {
-    //     return perioder.findIndex((p) => {
-    //         return p.datoer.some((d) => d === dateToISOString(dato));
-    //     });
-    // };
-
     return (
         <Ekspanderbartpanel
             renderContentWhenClosed={false}
@@ -101,21 +94,6 @@ const ArbeidstidMånedInfo: React.FunctionComponent<Props> = ({
                 utilgjengeligeDatoer={utilgjengeligeDatoer}
                 skjulTommeDagerIListe={true}
                 visEndringsinformasjon={false}
-                // footerRenderer={(dato) => {
-                //     if (1 + 1 === 2) {
-                //         // test på rendering av periode
-                //         const periodeIndex = erDagDelAvPerioder(dato);
-                //         return periodeIndex >= 0 ? (
-                //             <div
-                //                 className={`kalenderPeriodeDag kalenderPeriodeDag--${
-                //                     periodeIndex % 2 === 0 ? 'odd' : 'even'
-                //                 }`}>
-                //                 <span className="kalenderPeriodeDag__info">dato</span>
-                //             </div>
-                //         ) : undefined;
-                //     }
-                //     return undefined;
-                // }}
                 tidRenderer={({ tid, prosent }) => <TidArbeidEnkeltdag tid={tid} prosent={prosent} />}
                 onDateClick={onEnkeltdagChange ? handleKalenderDatoClick : undefined}
             />
