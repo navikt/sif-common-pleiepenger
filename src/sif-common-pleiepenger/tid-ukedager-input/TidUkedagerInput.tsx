@@ -5,6 +5,7 @@ import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { FormikTimeInput } from '@navikt/sif-common-formik/lib';
 import { ValidationError, ValidationFunction } from '@navikt/sif-common-formik/lib/validation/types';
 import './tidUkedagerInput.less';
+import { Weekday } from '@navikt/sif-common-utils/lib';
 
 interface Props {
     name: string;
@@ -18,7 +19,7 @@ const TidUkedagerInput = ({ name, validator }: Props) => {
             <div className="tidUkedagerInput">
                 <FormikTimeInput
                     label={intlHelper(intl, 'Mandager')}
-                    name={`${name}.mandag`}
+                    name={`${name}.${Weekday.monday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
@@ -27,7 +28,7 @@ const TidUkedagerInput = ({ name, validator }: Props) => {
                 />
                 <FormikTimeInput
                     label={intlHelper(intl, 'Tirsdager')}
-                    name={`${name}.tirsdag`}
+                    name={`${name}.${Weekday.tuesday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
@@ -36,7 +37,7 @@ const TidUkedagerInput = ({ name, validator }: Props) => {
                 />
                 <FormikTimeInput
                     label={intlHelper(intl, 'Onsdager')}
-                    name={`${name}.onsdag`}
+                    name={`${name}.${Weekday.wednesday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
@@ -45,7 +46,7 @@ const TidUkedagerInput = ({ name, validator }: Props) => {
                 />
                 <FormikTimeInput
                     label={intlHelper(intl, 'Torsdager')}
-                    name={`${name}.torsdag`}
+                    name={`${name}.${Weekday.thursday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
@@ -54,7 +55,7 @@ const TidUkedagerInput = ({ name, validator }: Props) => {
                 />
                 <FormikTimeInput
                     label={intlHelper(intl, 'Fredager')}
-                    name={`${name}.fredag`}
+                    name={`${name}.${Weekday.friday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
