@@ -19,6 +19,7 @@ interface Props {
     månedTittelHeadingLevel?: number;
     periode: DateRange;
     åpentEkspanderbartPanel?: boolean;
+    kanEndrePeriode?: boolean;
     onEnkeltdagChange?: (evt: TidEnkeltdagEndring) => void;
     onRequestEdit: (tid: DateDurationMap) => void;
 }
@@ -32,6 +33,7 @@ const OmsorgstilbudMånedInfo: React.FunctionComponent<Props> = ({
     addLabel,
     editLabel,
     åpentEkspanderbartPanel,
+    kanEndrePeriode,
     onRequestEdit,
     onEnkeltdagChange,
 }) => {
@@ -103,12 +105,13 @@ const OmsorgstilbudMånedInfo: React.FunctionComponent<Props> = ({
                         : undefined
                 }
             />
-            <FormBlock margin="l">
-                <Knapp htmlType="button" mini={true} onClick={() => onRequestEdit(tidOmsorgstilbud)}>
-                    {dagerMedRegistrertOmsorgstilbud.length === 0 ? addLabel : editLabel}
-                </Knapp>
-            </FormBlock>
-
+            {kanEndrePeriode && (
+                <FormBlock margin="l">
+                    <Knapp htmlType="button" mini={true} onClick={() => onRequestEdit(tidOmsorgstilbud)}>
+                        {dagerMedRegistrertOmsorgstilbud.length === 0 ? addLabel : editLabel}
+                    </Knapp>
+                </FormBlock>
+            )}
             {editDate && onEnkeltdagChange && (
                 <OmsorgstilbudEnkeltdagDialog
                     isOpen={editDate !== undefined}
