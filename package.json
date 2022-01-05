@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-pleiepenger",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "private": false,
     "main": "lib/index.js",
     "types": "lib/index.d.js",
