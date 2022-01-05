@@ -1,4 +1,9 @@
 export { default as ArbeidstidEnkeltdagDialog } from './arbeidstid-enkeltdag/ArbeidstidEnkeltdagDialog';
+export {
+    ArbeidstidEnkeltdagFormValues,
+    GjentagelseType,
+    GjentagelseEnkeltdag,
+} from './arbeidstid-enkeltdag/ArbeidstidEnkeltdagForm';
 export { default as arbeidstidEnkeltdagMessage } from './arbeidstid-enkeltdag/arbeidstidEnkeltdagMessage';
 export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode/ArbeidstidPeriodeDialog';
 export { default as CalendarGrid } from './calendar-grid/CalendarGrid';
