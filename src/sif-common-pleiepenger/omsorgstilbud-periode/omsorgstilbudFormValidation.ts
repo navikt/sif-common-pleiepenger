@@ -6,7 +6,7 @@ export const getOmsorgstilbudFastDagValidator =
     (dag: string) =>
     (time: Duration): ValidationResult<ValidationError> => {
         const error = time
-            ? getTimeValidator({ max: { hours: 24, minutes: 0 }, min: { hours: 0, minutes: 0 } })(time)
+            ? getTimeValidator({ max: { hours: 7, minutes: 30 }, min: { hours: 0, minutes: 0 } })(time)
             : undefined;
         if (error) {
             return {
