@@ -1,11 +1,11 @@
 import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { GjentagelseType } from '../ArbeidstidEnkeltdagForm';
-import { getDagerMedNyArbeidstid } from '../arbeidstidEnkeltdagUtils';
+import { GjentagelseType } from '../TidEnkeltdagForm';
+import { getDagerMedNyTid } from '../tidEnkeltdagUtils';
 
-describe('arbeidstidEnkeltdagUtils', () => {
-    describe('getDagerMedNyArbeidstid', () => {
+describe('tidEnkeltdagUtils', () => {
+    describe('getDagerMedNyTid', () => {
         it('velger velger to dager når gjentagelse er to faste dager innenfor en periode på to uker', () => {
-            const result = getDagerMedNyArbeidstid(
+            const result = getDagerMedNyTid(
                 ISODateRangeToDateRange('2022-01-13/2022-01-20'),
                 ISODateToDate('2022-01-13'),
                 { hours: '5', minutes: '0' },

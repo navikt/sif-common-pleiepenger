@@ -1,63 +1,46 @@
-import React from 'react';
 import { useIntl } from 'react-intl';
-import { DateRange, Duration } from '@navikt/sif-common-utils';
-import { dateFormatter } from '@navikt/sif-common-utils/lib/dateFormatter';
-import Modal from 'nav-frontend-modal';
-import { ArbeidsforholdType } from '../types';
-import ArbeidstidEnkeltdagForm, { ArbeidstidEnkeltdagEndring } from './ArbeidstidEnkeltdagForm';
-import './arbeidstidEnkeltdag.less';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
+import React from 'react';
+import TidEnkeltdagDialog, { TidEnkeltdagDialogProps } from '../tid-enkeltdag-dialog/TidEnkeltdagDialog';
+import { ArbeidsforholdType } from '../types';
+import dayjs from 'dayjs';
+import { dateFormatter, dateToday } from '@navikt/sif-common-utils/lib';
+import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 
-interface Props {
-    isOpen?: boolean;
-    dato: Date;
-    tid?: Partial<Duration>;
-    tidOpprinnelig?: Duration;
+interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps'> {
     arbeidsstedNavn: string;
-    periode: DateRange;
     arbeidsforholdType: ArbeidsforholdType;
-    onSubmit: (evt: ArbeidstidEnkeltdagEndring) => void;
-    onCancel: () => void;
+    formProps: Omit<TidEnkeltdagFormProps, 'hvorMyeSpørsmålRenderer' | 'maksTid'>;
 }
 
 const ArbeidstidEnkeltdagDialog: React.FunctionComponent<Props> = ({
-    isOpen = false,
-    dato,
-    tid,
-    tidOpprinnelig,
-    arbeidsstedNavn,
+    isOpen,
     arbeidsforholdType,
-    periode,
-    onSubmit,
-    onCancel,
-}) => {
+    arbeidsstedNavn,
+    formProps,
+}: Props) => {
     const intl = useIntl();
-    if (!isOpen) {
-        return null;
-    }
-    const contentLabel = intlHelper(intl, 'arbeidstidEnkeltdagDialog.contentTitle', {
-        dato: dateFormatter.fullWithDayName(dato),
-    });
-
-    return isOpen ? (
-        <Modal
+    const hvorMyeSpørsmålRenderer = (dato: Date): string => {
+        const erHistorisk = dayjs(dato).isBefore(dateToday, 'day');
+        const intlValues = {
+            skalEllerHarJobbet: intlHelper(
+                intl,
+                erHistorisk ? 'arbeidstidEnkeltdagForm.jobbet' : 'arbeidstidEnkeltdagForm.skalJobbe'
+            ),
+            hvor: intlHelper(intl, `arbeidstidEnkeltdagForm.som.${arbeidsforholdType}`, { navn: arbeidsstedNavn }),
+            når: dateFormatter.fullWithDayName(dato),
+        };
+        return intlHelper(intl, 'arbeidstidEnkeltdagForm.tid.spm', intlValues);
+    };
+    return (
+        <TidEnkeltdagDialog
             isOpen={isOpen}
-            contentLabel={contentLabel}
-            onRequestClose={onCancel}
-            shouldCloseOnOverlayClick={false}
-            className="arbeidstidEnkeltdagDialog">
-            <ArbeidstidEnkeltdagForm
-                periode={periode}
-                dato={dato}
-                tid={tid}
-                tidOpprinnelig={tidOpprinnelig}
-                arbeidsstedNavn={arbeidsstedNavn}
-                arbeidsforholdType={arbeidsforholdType}
-                onCancel={onCancel}
-                onSubmit={onSubmit}
-            />
-        </Modal>
-    ) : null;
+            dialogTitle={intlHelper(intl, 'arbeidstidEnkeltdagDialog.contentTitle', {
+                dato: dateFormatter.full(formProps.dato),
+            })}
+            formProps={{ ...formProps, hvorMyeSpørsmålRenderer, maksTid: { hours: 24, minutes: 0 } }}
+        />
+    );
 };
 
 export default ArbeidstidEnkeltdagDialog;

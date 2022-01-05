@@ -7,7 +7,7 @@ import dayjs from 'dayjs';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import ArbeidstidEnkeltdagDialog from '../arbeidstid-enkeltdag/ArbeidstidEnkeltdagDialog';
-import { ArbeidstidEnkeltdagEndring } from '../arbeidstid-enkeltdag/ArbeidstidEnkeltdagForm';
+import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 import TidsbrukKalender from '../tidsbruk-kalender/TidsbrukKalender';
 import { ArbeidsforholdType } from '../types';
 import TidArbeidEnkeltdag from './TidArbeidEnkeltdag';
@@ -21,7 +21,7 @@ interface Props {
     månedTittelHeadingLevel?: number;
     periode: DateRange;
     åpentEkspanderbartPanel?: boolean;
-    onEnkeltdagChange?: (evt: ArbeidstidEnkeltdagEndring) => void;
+    onEnkeltdagChange?: (evt: TidEnkeltdagEndring) => void;
     onRequestEdit?: (tid: DateDurationMap) => void;
 }
 
@@ -100,17 +100,19 @@ const ArbeidstidMånedInfo: React.FunctionComponent<Props> = ({
             {editDate && onEnkeltdagChange && (
                 <ArbeidstidEnkeltdagDialog
                     isOpen={editDate !== undefined}
-                    dato={editDate.dato}
-                    tid={editDate.tid}
-                    periode={periode}
-                    onSubmit={(evt) => {
-                        setEditDate(undefined);
-                        setTimeout(() => {
-                            /** TimeOut pga komponent unmountes */
-                            onEnkeltdagChange(evt);
-                        });
+                    formProps={{
+                        dato: editDate.dato,
+                        tid: editDate.tid,
+                        periode,
+                        onSubmit: (evt) => {
+                            setEditDate(undefined);
+                            setTimeout(() => {
+                                /** TimeOut pga komponent unmountes */
+                                onEnkeltdagChange(evt);
+                            });
+                        },
+                        onCancel: () => setEditDate(undefined),
                     }}
-                    onCancel={() => setEditDate(undefined)}
                     arbeidsstedNavn={arbeidsstedNavn}
                     arbeidsforholdType={arbeidsforholdType}
                 />

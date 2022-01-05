@@ -2,7 +2,7 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
+// import { dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik/lib';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
@@ -17,26 +17,27 @@ import {
     getMonthDateRange,
     getNumberOfDaysInDateRange,
     getWeekDateRange,
+    NumberDuration,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import { DurationText } from '../';
-import { ArbeidsforholdType } from '../types';
-import { getDagerMedNyArbeidstid, getGjentagelseEnkeltdagFraFormValues } from './arbeidstidEnkeltdagUtils';
-import { getArbeidstidEnkeltdagFormTidValidator } from './arbeidstidEnkeltdagValidation';
+import { getDagerMedNyTid, getGjentagelseEnkeltdagFraFormValues } from './tidEnkeltdagUtils';
+import { getTidEnkeltdagFormTidValidator } from './tidEnkeltdagValidation';
 
 dayjs.extend(minMax);
 
-interface Props {
+export interface TidEnkeltdagFormProps {
+    periode: DateRange;
     dato: Date;
     tid?: Partial<Duration>;
     tidOpprinnelig?: Duration;
-    arbeidsstedNavn: string;
-    arbeidsforholdType: ArbeidsforholdType;
-    periode: DateRange;
-    onSubmit: (dagerMedTid: ArbeidstidEnkeltdagEndring) => void;
+    maksTid: NumberDuration;
+    minTid?: NumberDuration;
+    hvorMyeSpørsmålRenderer: (date: Date) => string;
+    onSubmit: (dagerMedTid: TidEnkeltdagEndring) => void;
     onCancel: () => void;
 }
 
@@ -45,7 +46,7 @@ export interface GjentagelseEnkeltdag {
     tom?: Date;
 }
 
-export interface ArbeidstidEnkeltdagEndring {
+export interface TidEnkeltdagEndring {
     dagerMedTid: DateDurationMap;
 }
 
@@ -64,7 +65,7 @@ export enum GjentagelseType {
     heleMåneden = 'heleMåneden',
 }
 
-export interface ArbeidstidEnkeltdagFormValues {
+export interface TidEnkeltdagFormValues {
     [FormFields.tid]: InputTime;
     [FormFields.skalGjentas]: boolean;
     [FormFields.gjentagelse]: GjentagelseType;
@@ -72,9 +73,9 @@ export interface ArbeidstidEnkeltdagFormValues {
     [FormFields.stopDato]: InputDateString;
 }
 
-const FormComponents = getTypedFormComponents<FormFields, ArbeidstidEnkeltdagFormValues, ValidationError>();
+const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues, ValidationError>();
 
-const bem = bemUtils('arbeidstidEnkeltdagForm');
+const bem = bemUtils('tidEnkeltdagForm');
 
 const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): DateRange => {
     return {
@@ -83,32 +84,28 @@ const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): D
     };
 };
 
-const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
+const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     dato,
     tid,
     tidOpprinnelig,
-    arbeidsstedNavn,
-    arbeidsforholdType,
     periode,
+    maksTid,
+    minTid = { hours: 0, minutes: 0 },
+    hvorMyeSpørsmålRenderer,
     onSubmit,
     onCancel,
 }) => {
     const intl = useIntl();
 
-    const onValidSubmit = (values: Partial<ArbeidstidEnkeltdagFormValues>) => {
+    const onValidSubmit = (values: Partial<TidEnkeltdagFormValues>) => {
         if (values.tid) {
             onSubmit({
-                dagerMedTid: getDagerMedNyArbeidstid(
-                    periode,
-                    dato,
-                    values.tid,
-                    getGjentagelseEnkeltdagFraFormValues(values)
-                ),
+                dagerMedTid: getDagerMedNyTid(periode, dato, values.tid, getGjentagelseEnkeltdagFraFormValues(values)),
             });
         }
     };
 
-    const erHistorisk = dayjs(dato).isBefore(dateToday);
+    // const erHistorisk = dayjs(dato).isBefore(dateToday);
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
     const dagNavn = dayjs(dato).format('dddd');
     const valgtDatoTxt = dateFormatter.dayFullShortDate(dato);
@@ -132,14 +129,14 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
 
     const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(periode) > 2;
 
-    const intlValues = {
-        skalEllerHarJobbet: intlHelper(
-            intl,
-            erHistorisk ? 'arbeidstidEnkeltdagForm.jobbet' : 'arbeidstidEnkeltdagForm.skalJobbe'
-        ),
-        hvor: intlHelper(intl, `arbeidstidEnkeltdagForm.som.${arbeidsforholdType}`, { navn: arbeidsstedNavn }),
-        når: dateFormatter.fullWithDayName(dato),
-    };
+    // const intlValues = {
+    //     skalEllerHarJobbet: intlHelper(
+    //         intl,
+    //         erHistorisk ? 'arbeidstidEnkeltdagForm.jobbet' : 'arbeidstidEnkeltdagForm.skalJobbe'
+    //     ),
+    //     hvor: intlHelper(intl, `arbeidstidEnkeltdagForm.som.${arbeidsforholdType}`, { navn: arbeidsstedNavn }),
+    //     når: dateFormatter.fullWithDayName(dato),
+    // };
 
     const renderGjentagelseRadioLabel = (
         key: string,
@@ -147,10 +144,10 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
         values?: any
     ): JSX.Element => (
         <>
-            <FormattedMessage id={`arbeidstidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
+            <FormattedMessage id={`tidEnkeltdagForm.gjentagelse.${key}`} values={{ ...values, ...periode }} />
             <div style={{ fontSize: '0.9rem' }}>
                 <FormattedMessage
-                    id="arbeidstidEnkeltdagForm.gjentagelse.periode"
+                    id="tidEnkeltdagForm.gjentagelse.periode"
                     values={{
                         ...values,
                         ...periode,
@@ -176,27 +173,27 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
                         return (
                             <FormComponents.Form
                                 onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidstidEnkeltdagForm.validation')}
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'tidEnkeltdagForm.validation')}
                                 includeValidationSummary={false}
                                 includeButtons={true}
                                 submitButtonLabel="Lagre"
                                 cancelButtonLabel="Avbryt">
                                 <FormComponents.TimeInput
                                     name={FormFields.tid}
-                                    label={intlHelper(intl, 'arbeidstidEnkeltdagForm.tid.spm', intlValues)}
-                                    validate={getArbeidstidEnkeltdagFormTidValidator}
+                                    label={hvorMyeSpørsmålRenderer(dato)}
+                                    validate={getTidEnkeltdagFormTidValidator(maksTid, minTid)}
                                     timeInputLayout={{ justifyContent: 'left', compact: false, direction: 'vertical' }}
                                 />
                                 {tidOpprinnelig && erEndret && (
                                     <p>
-                                        <FormattedMessage id="arbeidstidEnkeltdagForm.endretFra" />{' '}
+                                        <FormattedMessage id="tidEnkeltdagForm.endretFra" />{' '}
                                         <DurationText duration={tidOpprinnelig} fullText={true} />
                                     </p>
                                 )}
                                 {skalViseValgetGjelderFlereDager && (
                                     <FormBlock margin="l">
                                         <FormComponents.Checkbox
-                                            label={intlHelper(intl, 'arbeidstidEnkeltdagForm.gjelderFlereDager.label')}
+                                            label={intlHelper(intl, 'tidEnkeltdagForm.gjelderFlereDager.label')}
                                             name={FormFields.skalGjentas}
                                         />
                                     </FormBlock>
@@ -253,7 +250,7 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
                                                     <FormComponents.Checkbox
                                                         label={intlHelper(
                                                             intl,
-                                                            'arbeidstidEnkeltdagForm.stoppGjentagelse.label'
+                                                            'tidEnkeltdagForm.stoppGjentagelse.label'
                                                         )}
                                                         name={FormFields.stoppGjentagelse}
                                                     />
@@ -261,10 +258,7 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
                                                 {stoppGjentagelse && (
                                                     <FormBlock margin="l">
                                                         <FormComponents.DatePicker
-                                                            label={intlHelper(
-                                                                intl,
-                                                                'arbeidstidEnkeltdagForm.stopDato.label'
-                                                            )}
+                                                            label={intlHelper(intl, 'tidEnkeltdagForm.stopDato.label')}
                                                             minDate={dato}
                                                             maxDate={periode.to}
                                                             validate={getDateValidator({
@@ -294,4 +288,4 @@ const ArbeidstidEnkeltdagForm: React.FunctionComponent<Props> = ({
     );
 };
 
-export default ArbeidstidEnkeltdagForm;
+export default TidEnkeltdagForm;

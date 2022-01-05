@@ -12,7 +12,7 @@ import {
     nthItemFilter,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { ArbeidstidEnkeltdagFormValues, GjentagelseEnkeltdag, GjentagelseType } from './ArbeidstidEnkeltdagForm';
+import { TidEnkeltdagFormValues, GjentagelseEnkeltdag, GjentagelseType } from './TidEnkeltdagForm';
 
 const getDagerMedInterval = (interval: number, periode: DateRange) => {
     const ukedag = dayjs(periode.from).isoWeekday();
@@ -47,7 +47,7 @@ const getGjentagendeDager = (endringsperiode: DateRange, dato: Date, gjentagelse
     return [dateToISODate(dato)];
 };
 
-export const getDagerMedNyArbeidstid = (
+export const getDagerMedNyTid = (
     endringsperiode: DateRange,
     dato: Date,
     varighet: Duration,
@@ -63,7 +63,7 @@ export const getDagerMedNyArbeidstid = (
 };
 
 export const getGjentagelseEnkeltdagFraFormValues = (
-    values: Partial<ArbeidstidEnkeltdagFormValues>
+    values: Partial<TidEnkeltdagFormValues>
 ): GjentagelseEnkeltdag | undefined => {
     const gjentagelse: GjentagelseEnkeltdag | undefined =
         values.gjentagelse && values.skalGjentas === true
