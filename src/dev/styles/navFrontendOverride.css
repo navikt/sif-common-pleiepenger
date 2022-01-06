@@ -1,0 +1,12 @@
+.hodefot .btn-login,
+.hodefot .btn-logout {
+  min-height: auto;
+}
+.panel {
+  background-color: #f1f2f2;
+  padding: 2rem;
+}
+.panel--border {
+  background-color: transparent;
+}
+/*# sourceMappingURL=navFrontendOverride.css.map */

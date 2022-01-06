@@ -1,0 +1,40 @@
+.box--s {
+  margin-top: 0.25rem;
+}
+.box--m {
+  margin-top: 0.5rem;
+}
+.box--l {
+  margin-top: 1rem;
+}
+.box--xl {
+  margin-top: 2rem;
+}
+.box--xxl {
+  margin-top: 3rem;
+}
+.box--xxxl {
+  margin-top: 4rem;
+}
+.box--bottom-s {
+  padding-bottom: 0.25rem;
+}
+.box--bottom-m {
+  padding-bottom: 0.5rem;
+}
+.box--bottom-l {
+  padding-bottom: 1rem;
+}
+.box--bottom-xl {
+  padding-bottom: 2rem;
+}
+.box--bottom-xxl {
+  padding-bottom: 3rem;
+}
+.box--bottom-xxxl {
+  padding-bottom: 4rem;
+}
+.box--textAlignCenter {
+  text-align: center;
+}
+/*# sourceMappingURL=box.css.map */
