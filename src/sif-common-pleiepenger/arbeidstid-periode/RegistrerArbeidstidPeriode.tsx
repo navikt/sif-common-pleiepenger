@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 import { Knapp } from 'nav-frontend-knapper';

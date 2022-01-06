@@ -1,7 +1,9 @@
 import { IntlShape } from 'react-intl';
+import { prettifyDate, prettifyDateFull } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { getNumberFromNumberInputValue, InputTime } from '@navikt/sif-common-formik/lib';
 import {
     DateDurationMap,
+    DateRange,
     dateToISODate,
     decimalDurationToDuration,
     Duration,
@@ -15,6 +17,7 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import { ArbeidstidPeriodeData } from '../';
 import { formatTimerOgMinutter } from '../timer-og-minutter/TimerOgMinutter';
+import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../types';
 import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
 
 dayjs.extend(isoWeek);
@@ -98,4 +101,58 @@ export const getDagerMedTidFraArbeidstidPeriodeData = (
         }
     });
     return dagerMedTid;
+};
+
+export const getArbeidstidIPeriodeIntlValues = (
+    intl: IntlShape,
+    info: {
+        erHistorisk: boolean;
+        periode: DateRange;
+        arbeidsforhold:
+            | {
+                  type: ArbeidsforholdType.ANSATT;
+                  arbeidsstedNavn: string;
+                  jobberNormaltTimer: string | number;
+              }
+            | {
+                  type: ArbeidsforholdType.FRILANSER | ArbeidsforholdType.SELVSTENDIG;
+                  jobberNormaltTimer: string | number;
+              };
+    }
+): ArbeidIPeriodeIntlValues => {
+    const txt = getArbeidIPeriodeMessages(intl.locale);
+
+    const getTimerTekst = (): string => {
+        const txt = getArbeidIPeriodeMessages(intl.locale);
+        const timer =
+            typeof info.arbeidsforhold.jobberNormaltTimer === 'number'
+                ? info.arbeidsforhold.jobberNormaltTimer
+                : getNumberFromNumberInputValue(info.arbeidsforhold.jobberNormaltTimer);
+        return timer !== undefined ? txt.timer(timer) : txt.timer_ikkeTall(info.arbeidsforhold.jobberNormaltTimer);
+    };
+
+    const getHvorTekst = () => {
+        switch (info.arbeidsforhold.type) {
+            case ArbeidsforholdType.ANSATT:
+                return txt.arbeidIPeriodeIntlValues_somAnsatt(info.arbeidsforhold.arbeidsstedNavn);
+            case ArbeidsforholdType.FRILANSER:
+                return txt.arbeidIPeriodeIntlValues_somFrilanser;
+            case ArbeidsforholdType.SELVSTENDIG:
+                return txt.arbeidIPeriodeIntlValues_somSN;
+        }
+    };
+
+    return {
+        skalEllerHarJobbet: info.erHistorisk
+            ? txt.arbeidIPeriodeIntlValues_harJobbet
+            : txt.arbeidIPeriodeIntlValues_skalJobbe,
+        hvor: getHvorTekst(),
+        timer: getTimerTekst(),
+        fra: prettifyDateFull(info.periode.from),
+        til: prettifyDateFull(info.periode.to),
+        iPerioden: txt.arbeidIPeriodeIntlValues_iPerioden(
+            prettifyDate(info.periode.from),
+            prettifyDate(info.periode.to)
+        ),
+    };
 };

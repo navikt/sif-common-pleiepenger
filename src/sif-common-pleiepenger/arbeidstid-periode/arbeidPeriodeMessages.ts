@@ -1,4 +1,5 @@
 import { ComponentMessages, Locale } from '../i18n';
+import { pluralize } from '../utils';
 
 interface Messages {
     arbeidstidPeriodeDialogContentLabel: string;
@@ -13,6 +14,14 @@ interface Messages {
     form_tidFasteDagerEllerProsent_timer: string;
     form_prosent_label: (skalEllerHarJobbet: string) => string;
     form_tidFasteDager_label: (skalEllerHarJobbet: string) => string;
+    arbeidIPeriodeIntlValues_skalJobbe: string;
+    arbeidIPeriodeIntlValues_harJobbet: string;
+    arbeidIPeriodeIntlValues_somAnsatt: (arbeidstedNavn: string) => string;
+    arbeidIPeriodeIntlValues_somFrilanser: string;
+    arbeidIPeriodeIntlValues_somSN: string;
+    arbeidIPeriodeIntlValues_iPerioden: (fra: string, til: string) => string;
+    timer: (timer: number) => string;
+    timer_ikkeTall: (timer: any) => string;
 }
 
 const arbeidIPeriodeMessages_NB: Messages = {
@@ -30,6 +39,14 @@ const arbeidIPeriodeMessages_NB: Messages = {
     form_prosent_label: (skalEllerHarJobbet) =>
         `Hvor mange prosent av din normale arbeidstid ${skalEllerHarJobbet} du?`,
     form_tidFasteDager_label: (skalEllerHarJobbet) => `Oppgi hvor mye du ${skalEllerHarJobbet}:`,
+    arbeidIPeriodeIntlValues_harJobbet: 'har jobbet',
+    arbeidIPeriodeIntlValues_skalJobbe: 'skal jobbe',
+    arbeidIPeriodeIntlValues_somAnsatt: (arbeidstedNavn) => `hos ${arbeidstedNavn}`,
+    arbeidIPeriodeIntlValues_somFrilanser: 'som frilanser',
+    arbeidIPeriodeIntlValues_somSN: 'som selvstendig næringsdrivende',
+    arbeidIPeriodeIntlValues_iPerioden: (fra: string, til: string) => `i perioden ${fra} til ${til}`,
+    timer: (timer) => `${timer} ${pluralize(timer, 'time', 'timer')}`,
+    timer_ikkeTall: (timer) => `${timer} timer`,
 };
 
 export const arbeidIPeriodeMessages: ComponentMessages<Messages> = {

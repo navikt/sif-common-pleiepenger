@@ -1,5 +1,5 @@
 import React from 'react';
-import ArbeidstidPeriode from '../examples/arbeidstid-periode/ArbeidstidPeriode';
+import ArbeidstidPeriodeEksempel from '../examples/arbeidstid-periode/ArbeidstidPeriodeEksempel';
 import Intro from '../Intro';
 
 export interface RouteConfig {
@@ -17,7 +17,7 @@ export const routes: RouteConfig[] = [
     {
         path: 'Arbeidstid_periode',
         title: 'Arbeidstid periode',
-        renderContent: () => <ArbeidstidPeriode />,
+        renderContent: () => <ArbeidstidPeriodeEksempel />,
     },
 ];
 
