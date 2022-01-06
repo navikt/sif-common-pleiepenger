@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-pleiepenger",
-    "version": "0.0.23",
+    "version": "0.0.24-beta.0",
     "private": false,
     "main": "lib/index.js",
     "types": "lib/index.d.js",
@@ -24,7 +24,7 @@
     "homepage": "https://navikt.github.io/sif-common-pleiepenger",
     "devDependencies": {
         "@navikt/sif-common-core": "^10.0.4",
-        "@navikt/sif-common-formik": "^21.0.2",
+        "@navikt/sif-common-formik": "^21.0.3",
         "@navikt/sif-common-utils": "^1.0.0",
         "@testing-library/jest-dom": "^5.16.1",
         "@testing-library/react": "^12.1.2",
@@ -51,6 +51,7 @@
         "prettier": "^2.5.1",
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
+        "react-intl": "^5.24.1",
         "react-responsive": "^8.2.0",
         "react-scripts": "5.0.0",
         "snyk": "^1.817.0",
@@ -59,13 +60,14 @@
         "web-vitals": "^2.1.2"
     },
     "peerDependencies": {
-        "@navikt/sif-common-formik": "^21.0.2",
+        "@navikt/sif-common-formik": "^21.0.3",
         "@navikt/sif-common-utils": "^1.0.0",
         "dayjs": "^1.10.7",
         "lodash.groupby": "^4.6.0",
         "lodash.uniq": "^4.5.0",
         "nav-frontend-ekspanderbartpanel": "^4.0.3",
         "nav-frontend-ekspanderbartpanel-style": "^2.0.1",
+        "react-intl": "^5.24.1",
         "react-responsive": "^8.2.0"
     },
     "scripts": {

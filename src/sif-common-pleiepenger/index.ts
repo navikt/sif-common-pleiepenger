@@ -17,5 +17,5 @@ export { default as TidUkedagerInput } from './tid-ukedager-input/TidUkedagerInp
 export { default as TidsbrukKalender, TidRenderer } from './tidsbruk-kalender/TidsbrukKalender';
 export { default as TimerOgMinutter, formatTimerOgMinutter } from './timer-og-minutter/TimerOgMinutter';
 export * from './types';
-export * from './utils';
+export * from './arbeidstid-periode/arbeidstidPeriodeFormUtils';
 export * from './arbeidstid-periode/arbeidstidFormValidation';

@@ -1,4 +1,4 @@
-import { getRedusertArbeidstidSomISODuration } from '..';
+import { getRedusertArbeidstidSomISODuration } from '../arbeidstidPeriodeFormUtils';
 
 describe('getRedusertArbeidstidSomISODuration', () => {
     it('beregner riktig ved 20%', () => {

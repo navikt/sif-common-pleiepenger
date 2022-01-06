@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
@@ -13,8 +13,9 @@ import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import TidUkedagerInput from '../tid-ukedager-input/TidUkedagerInput';
 import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
-import { getRedusertArbeidstidPerUkeInfo } from '../utils';
+import { getRedusertArbeidstidPerUkeInfo } from './arbeidstidPeriodeFormUtils';
 import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from './arbeidstidFormValidation';
+import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
 
 interface Props {
     arbeidsstedNavn: string;
@@ -61,6 +62,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
     onCancel,
 }) => {
     const intl = useIntl();
+    const txt = getArbeidIPeriodeMessages(intl.locale);
 
     const onValidSubmit = (values: Partial<FormValues>) => {
         const fom = datepickerUtils.getDateFromDateString(values.fom);
@@ -85,7 +87,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
     return (
         <div>
             <Undertittel tag="h1" className={bem.element('tittel')}>
-                <FormattedMessage id="arbeidstidPeriodeForm.tittel" values={{ arbeidsstedNavn }} />
+                {txt.arbeidstidPeriodeForm_tittel(arbeidsstedNavn)}
             </Undertittel>
             <FormBlock margin="xl">
                 <FormComponents.FormikWrapper
@@ -204,9 +206,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                 )}
                                 {visKnapper === false && (
                                     <FormBlock>
-                                        <UnansweredQuestionsInfo>
-                                            <FormattedMessage id="ubesvarteSpørsmålInfo" />
-                                        </UnansweredQuestionsInfo>
+                                        <UnansweredQuestionsInfo />
                                     </FormBlock>
                                 )}
                             </FormComponents.Form>

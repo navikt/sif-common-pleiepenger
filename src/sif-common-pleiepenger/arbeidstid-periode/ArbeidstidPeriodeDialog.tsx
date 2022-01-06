@@ -7,6 +7,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
 import ArbeidstidPeriodeForm from './ArbeidstidPeriodeForm';
 import './arbeidstidPeriode.less';
+import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
 
 interface Props {
     isOpen: boolean;
@@ -27,11 +28,11 @@ const ArbeidstidPeriodeDialog: React.FunctionComponent<Props> = ({
     onSubmit,
     onCancel,
 }) => {
-    const intl = useIntl();
+    const txt = getArbeidIPeriodeMessages(useIntl().locale);
     return isOpen ? (
         <Modal
             isOpen={isOpen}
-            contentLabel={intlHelper(intl, 'arbeidstidPeriodeDialog.contentLabel')}
+            contentLabel={txt.arbeidstidPeriodeDialogContentLabel}
             onRequestClose={onCancel}
             shouldCloseOnOverlayClick={false}
             className="arbeidstidPeriodeDialog">
