@@ -1,5 +1,6 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
+import { sifCommonPleiepengerMessages } from '../../../sif-common-pleiepenger/i18n';
 import { MessageFileFormat } from '../../utils/devIntlUtils';
 import { appMessages } from './messages';
 
@@ -10,6 +11,7 @@ export interface IntlProviderProps {
 
 const allMessages: MessageFileFormat = {
     nb: {
+        ...sifCommonPleiepengerMessages.nb,
         ...appMessages.nb,
     },
     nn: {

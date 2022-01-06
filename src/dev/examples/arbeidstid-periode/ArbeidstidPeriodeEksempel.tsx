@@ -19,7 +19,7 @@ const initialValues: FormValues = {
 const ArbeidstidPeriodeEksempel = () => {
     const intl = useIntl();
 
-    const periode: DateRange = { from: ISODateToDate('2021-01-01'), to: ISODateToDate('2021-01-31') };
+    const periode: DateRange = { from: ISODateToDate('2021-12-01'), to: ISODateToDate('2022-01-05') };
     const jobberNormaltTimer = 30;
     const arbeidsstedNavn = 'NAV';
 

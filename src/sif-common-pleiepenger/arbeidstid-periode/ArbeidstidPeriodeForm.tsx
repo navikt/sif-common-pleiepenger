@@ -15,6 +15,7 @@ import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
 import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
 import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from './arbeidstidFormValidation';
 import { getRedusertArbeidstidPerUkeInfo } from './arbeidstidPeriodeUtils';
+import { getArbeidstimerFastDagValidator } from '..';
 
 interface Props {
     arbeidsstedNavn: string;
@@ -49,6 +50,7 @@ interface FormValues {
 const initialFormValues: Partial<FormValues> = {};
 
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
+const validationIntlKey = 'arbeidstidPeriodeForm.validation';
 
 const bem = bemUtils('arbeidstidEnkeltdagForm');
 
@@ -95,18 +97,11 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                     renderForm={({ values: { fom, tom, tidFasteDagerEllerProsent, tidFasteDager, prosent } }) => {
                         const from = datepickerUtils.getDateFromDateString(fom);
                         const to = datepickerUtils.getDateFromDateString(tom);
-                        const validator = getDateRangeValidator({
-                            required: true,
-                            onlyWeekdays: true,
-                            toDate: to,
-                            fromDate: from,
-                            min: rammePeriode.from,
-                            max: to || rammePeriode.to,
-                        });
+
                         return (
                             <FormComponents.Form
                                 onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidstidPeriode')}
+                                formErrorHandler={getIntlFormErrorHandler(intl, validationIntlKey)}
                                 includeValidationSummary={true}
                                 includeButtons={true}
                                 submitButtonLabel={txt.form_submitButtonLabel}
@@ -119,24 +114,40 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                                 name: FormFields.fom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
+                                                fullscreenOverlay: true,
                                                 dayPickerProps: {
                                                     initialMonth: rammePeriode.from,
                                                 },
                                                 minDate: rammePeriode.from,
                                                 maxDate: to || rammePeriode.to,
-                                                validate: validator.validateFromDate,
+                                                validate: getDateRangeValidator({
+                                                    required: true,
+                                                    onlyWeekdays: true,
+                                                    toDate: to,
+                                                    fromDate: from,
+                                                    min: rammePeriode.from,
+                                                    max: to || rammePeriode.to,
+                                                }).validateFromDate,
                                             }}
                                             toDatepickerProps={{
                                                 label: txt.form_tilOgMed_label,
                                                 name: FormFields.tom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
+                                                fullscreenOverlay: true,
                                                 minDate: from || rammePeriode.from,
                                                 maxDate: rammePeriode.to,
                                                 dayPickerProps: {
                                                     initialMonth: from || rammePeriode.from,
                                                 },
-                                                validate: validator.validateToDate,
+                                                validate: getDateRangeValidator({
+                                                    required: true,
+                                                    onlyWeekdays: true,
+                                                    toDate: to,
+                                                    fromDate: from,
+                                                    min: from || rammePeriode.from,
+                                                    max: rammePeriode.to,
+                                                }).validateToDate,
                                             }}
                                         />
                                     </FormBlock>
@@ -157,7 +168,16 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                                 value: TidFasteDagerEllerProsent.tidFasteDager,
                                             },
                                         ]}
-                                        validate={getRequiredFieldValidator()}
+                                        validate={(value) => {
+                                            const error = getRequiredFieldValidator()(value);
+                                            if (error) {
+                                                return {
+                                                    key: error,
+                                                    values: intlValues,
+                                                };
+                                            }
+                                            return undefined;
+                                        }}
                                     />
                                 </FormBlock>
 
@@ -168,10 +188,18 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                             bredde="XS"
                                             maxLength={4}
                                             label={txt.form_prosent_label(intlValues.skalEllerHarJobbet)}
-                                            validate={getArbeidstidFastProsentValidator(intlValues, {
-                                                min: 0,
-                                                max: 100,
-                                            })}
+                                            validate={(value) => {
+                                                const error = getArbeidstidFastProsentValidator({
+                                                    min: 0,
+                                                    max: 100,
+                                                })(value);
+                                                return error
+                                                    ? {
+                                                          key: error.key,
+                                                          values: { ...intlValues, ...error.values },
+                                                      }
+                                                    : undefined;
+                                            }}
                                             suffix={getRedusertArbeidstidPerUkeInfo(intl, jobberNormaltTimer, prosent)}
                                             suffixStyle="text"
                                         />
@@ -181,9 +209,23 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                     <FormBlock>
                                         <FormComponents.InputGroup
                                             legend={txt.form_tidFasteDager_label(intlValues.skalEllerHarJobbet)}
-                                            validate={() => validateFasteArbeidstimerIUke(tidFasteDager, intlValues)}
+                                            validate={() => {
+                                                const error = validateFasteArbeidstimerIUke(tidFasteDager);
+                                                return error
+                                                    ? {
+                                                          key: error.key,
+                                                          values: intlValues,
+                                                      }
+                                                    : undefined;
+                                            }}
                                             name={'fasteDager_gruppe' as any}>
-                                            <TidUkedagerInput name={FormFields.tidFasteDager} />
+                                            <TidUkedagerInput
+                                                name={FormFields.tidFasteDager}
+                                                validation={{
+                                                    validationIntlKey: `${validationIntlKey}.fastdag.tid`,
+                                                    validator: getArbeidstimerFastDagValidator,
+                                                }}
+                                            />
                                         </FormComponents.InputGroup>
                                     </FormBlock>
                                 )}

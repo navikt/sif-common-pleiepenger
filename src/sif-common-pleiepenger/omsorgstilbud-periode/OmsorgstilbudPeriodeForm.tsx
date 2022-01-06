@@ -32,6 +32,8 @@ enum FormFields {
     'tidFasteDager' = 'tidFasteDager',
 }
 
+const validationIntlKey = 'omsorgstilbudPeriodeForm.validation';
+
 interface FormValues {
     [FormFields.fom]: InputDateString;
     [FormFields.tom]: InputDateString;
@@ -85,7 +87,7 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                         return (
                             <FormComponents.Form
                                 onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler(intl, 'omsorgstilbudPeriodeForm.validation')}
+                                formErrorHandler={getIntlFormErrorHandler(intl, validationIntlKey)}
                                 includeValidationSummary={true}
                                 submitButtonLabel={intlHelper(intl, 'omsorgstilbudPeriodeForm.submitButtonLabel')}
                                 cancelButtonLabel={intlHelper(intl, 'omsorgstilbudPeriodeForm.cancelButtonLabel')}>
@@ -132,7 +134,10 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                                         name={'fasteDager_gruppe' as any}>
                                         <TidUkedagerInput
                                             name={FormFields.tidFasteDager}
-                                            validator={getOmsorgstilbudFastDagValidator}
+                                            validation={{
+                                                validator: getOmsorgstilbudFastDagValidator,
+                                                validationIntlKey: `${validationIntlKey}.fastdag.tid`,
+                                            }}
                                         />
                                     </FormComponents.InputGroup>
                                 </FormBlock>

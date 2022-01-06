@@ -1,52 +1,62 @@
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik/lib';
 import { getNumberValidator } from '@navikt/sif-common-formik/lib/validation';
-import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
-import { DurationWeekdays, summarizeDurationInDurationWeekdays } from '@navikt/sif-common-utils/lib';
-import { ArbeidIPeriodeIntlValues } from '../types';
+import getTimeValidator from '@navikt/sif-common-formik/lib/validation/getTimeValidator';
+import { IntlErrorObject } from '@navikt/sif-common-formik/lib/validation/types';
+import {
+    Duration,
+    durationToDecimalDuration,
+    DurationWeekdays,
+    summarizeDurationInDurationWeekdays,
+} from '@navikt/sif-common-utils/lib';
 
 export const getArbeidstidFastProsentValidator =
-    (intlValues: ArbeidIPeriodeIntlValues, minMax?: { min: number; max: number }) => (value: any) => {
+    (minMax?: { min: number; max: number }) =>
+    (value: any): IntlErrorObject | undefined => {
         const minMaxOptions = minMax || {
             min: 1,
             max: 100,
         };
-
-        const intlKey = 'validation.arbeidstimerFast.prosent';
         if (getNumberFromNumberInputValue(value) === 0) {
-            return {
-                key: `${intlKey}.måSvareNeiPåJobbIPerioden`,
-                values: { ...intlValues },
-                keepKeyUnaltered: true,
-            };
+            return { key: 'måSvareNeiPåJobbIPerioden' };
         }
         const error = getNumberValidator({ required: true, ...minMaxOptions })(value);
+        return error
+            ? {
+                  key: error,
+                  values: { ...minMaxOptions },
+              }
+            : undefined;
+    };
+
+export const validateFasteArbeidstimerIUke = (
+    fasteDager: DurationWeekdays | undefined
+): IntlErrorObject | undefined => {
+    const timer = fasteDager ? durationToDecimalDuration(summarizeDurationInDurationWeekdays(fasteDager)) : 0;
+    if (timer === 0) {
+        return {
+            key: `ingenTidRegistrert`,
+        };
+    }
+    if (timer > 37.5) {
+        return {
+            key: `forMangeTimer`,
+        };
+    }
+    return undefined;
+};
+
+export const getArbeidstimerFastDagValidator =
+    (dag: string, errorsIntlKey?: string) =>
+    (time: Duration): IntlErrorObject | undefined => {
+        const error = time
+            ? getTimeValidator({ max: { hours: 24, minutes: 0 }, min: { hours: 0, minutes: 0 } })(time)
+            : undefined;
         if (error) {
             return {
-                key: `${intlKey}.${error}`,
-                values: { ...intlValues, ...minMaxOptions },
+                key: errorsIntlKey ? `${errorsIntlKey}.${error}` : error,
+                values: { dag },
                 keepKeyUnaltered: true,
             };
         }
         return undefined;
     };
-
-export const validateFasteArbeidstimerIUke = (
-    fasteDager: DurationWeekdays | undefined,
-    intlValues: ArbeidIPeriodeIntlValues
-): ValidationResult<ValidationError> => {
-    let error;
-    const timer = fasteDager ? summarizeDurationInDurationWeekdays(fasteDager) : 0;
-    if (timer === 0) {
-        error = 'arbeidIPeriode.fasteDager.ingenTidRegistrert';
-    }
-    if (timer > 37.5) {
-        error = 'arbeidIPeriode.fasteDager.forMangeTimer';
-    }
-    return error
-        ? {
-              key: `validation.${error}`,
-              values: intlValues,
-              keepKeyUnaltered: true,
-          }
-        : undefined;
-};

@@ -1,66 +1,69 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { FormikTimeInput } from '@navikt/sif-common-formik/lib';
 import { ValidationError, ValidationFunction } from '@navikt/sif-common-formik/lib/validation/types';
-import './tidUkedagerInput.less';
 import { Weekday } from '@navikt/sif-common-utils/lib';
+import { gettidUkerdagerInputMessages } from './tidUkerdagerInputMessages';
+import './tidUkedagerInput.less';
 
 interface Props {
     name: string;
-    validator?: (dagnavn: string) => ValidationFunction<ValidationError>;
+    validation?: {
+        validator: (dagnavn: string, errorsIntlKey?: string) => ValidationFunction<ValidationError>;
+        validationIntlKey?: string;
+    };
 }
 
-const TidUkedagerInput = ({ name, validator }: Props) => {
-    const intl = useIntl();
+const TidUkedagerInput = ({ name, validation }: Props) => {
+    const txt = gettidUkerdagerInputMessages(useIntl().locale);
     return (
         <Box margin="l">
             <div className="tidUkedagerInput">
                 <FormikTimeInput
-                    label={intlHelper(intl, 'Mandager')}
+                    label={txt.Mandager}
                     name={`${name}.${Weekday.monday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validator ? validator(intlHelper(intl, 'mandag')) : undefined}
+                    validate={validation ? validation.validator(txt.mandag, validation.validationIntlKey) : undefined}
                 />
                 <FormikTimeInput
-                    label={intlHelper(intl, 'Tirsdager')}
+                    label={txt.Tirsdager}
                     name={`${name}.${Weekday.tuesday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validator ? validator(intlHelper(intl, 'tirsdag')) : undefined}
+                    validate={validation ? validation.validator(txt.tirsdag, validation.validationIntlKey) : undefined}
                 />
                 <FormikTimeInput
-                    label={intlHelper(intl, 'Onsdager')}
+                    label={txt.Onsdager}
                     name={`${name}.${Weekday.wednesday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validator ? validator(intlHelper(intl, 'onsdag')) : undefined}
+                    validate={validation ? validation.validator(txt.onsdag, validation.validationIntlKey) : undefined}
                 />
                 <FormikTimeInput
-                    label={intlHelper(intl, 'Torsdager')}
+                    label={txt.Torsdager}
                     name={`${name}.${Weekday.thursday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validator ? validator(intlHelper(intl, 'torsdag')) : undefined}
+                    validate={validation ? validation.validator(txt.torsdag, validation.validationIntlKey) : undefined}
                 />
                 <FormikTimeInput
-                    label={intlHelper(intl, 'Fredager')}
+                    label={txt.Fredager}
                     name={`${name}.${Weekday.friday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validator ? validator(intlHelper(intl, 'mandag')) : undefined}
+                    validate={validation ? validation.validator(txt.mandag, validation.validationIntlKey) : undefined}
                 />
             </div>
         </Box>
