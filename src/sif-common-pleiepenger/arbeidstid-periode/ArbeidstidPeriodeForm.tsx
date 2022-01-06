@@ -14,7 +14,7 @@ import TidUkedagerInput from '../tid-ukedager-input/TidUkedagerInput';
 import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
 import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
 import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from './arbeidstidFormValidation';
-import { getRedusertArbeidstidPerUkeInfo } from './arbeidstidPeriodeFormUtils';
+import { getRedusertArbeidstidPerUkeInfo } from './arbeidstidPeriodeUtils';
 
 interface Props {
     arbeidsstedNavn: string;

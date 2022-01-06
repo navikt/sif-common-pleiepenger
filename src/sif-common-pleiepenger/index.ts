@@ -19,5 +19,5 @@ export { default as TidsbrukKalender } from './tidsbruk-kalender/TidsbrukKalende
 export { default as TimerOgMinutter, formatTimerOgMinutter } from './timer-og-minutter/TimerOgMinutter';
 export type { TidRenderer } from './tidsbruk-kalender/TidsbrukKalender';
 export * from './types';
-export * from './arbeidstid-periode/arbeidstidPeriodeFormUtils';
+export * from './arbeidstid-periode/arbeidstidPeriodeUtils';
 export * from './arbeidstid-periode/arbeidstidFormValidation';

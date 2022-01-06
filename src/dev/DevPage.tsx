@@ -13,7 +13,7 @@ const DevPage = () => {
                     <NAVLogo />
                 </span>
                 <span className="header__title">
-                    <Systemtittel tag="h1">sif-common-formik</Systemtittel>
+                    <Systemtittel tag="h1">sif-common-pleiepenger</Systemtittel>
                 </span>
             </header>
             <div className="contentWrapper">

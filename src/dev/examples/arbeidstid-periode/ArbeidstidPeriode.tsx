@@ -11,16 +11,15 @@ const initialValues: FormValues = {
 const ArbeidstidPeriode = () => {
     return (
         <>
-            <PageIntro title="@navikt/sif-common-formik">
-                <h2>Arbeidstid periode</h2>
+            <PageIntro title="@navikt/sif-common-pleiepenger">
+                <h2>ArbeidstidPeriodeDialog</h2>
             </PageIntro>
-
             <TypedFormikWrapper<FormValues>
                 initialValues={initialValues}
                 onSubmit={(values) => {
                     console.log('FormikWrapperSubmit', values);
                 }}
-                renderForm={() => <Panel>whoa</Panel>}
+                renderForm={() => <Panel></Panel>}
             />
         </>
     );
