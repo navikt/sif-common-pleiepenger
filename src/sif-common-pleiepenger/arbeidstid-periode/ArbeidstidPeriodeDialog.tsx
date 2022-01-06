@@ -1,13 +1,12 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import Modal from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
+import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
 import ArbeidstidPeriodeForm from './ArbeidstidPeriodeForm';
 import './arbeidstidPeriode.less';
-import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
 
 interface Props {
     isOpen: boolean;
