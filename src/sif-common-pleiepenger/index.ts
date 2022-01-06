@@ -1,5 +1,6 @@
 export { default as ArbeidstidEnkeltdagDialog } from './arbeidstid-enkeltdag/ArbeidstidEnkeltdagDialog';
-export { TidEnkeltdagFormValues, GjentagelseType, GjentagelseEnkeltdag } from './tid-enkeltdag-dialog/TidEnkeltdagForm';
+export { GjentagelseType } from './tid-enkeltdag-dialog/TidEnkeltdagForm';
+export type { TidEnkeltdagFormValues, GjentagelseEnkeltdag } from './tid-enkeltdag-dialog/TidEnkeltdagForm';
 export { default as arbeidstidEnkeltdagMessage } from './arbeidstid-enkeltdag/arbeidstidEnkeltdagMessages';
 export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode/ArbeidstidPeriodeDialog';
 export { default as CalendarGrid } from './calendar-grid/CalendarGrid';
@@ -14,8 +15,9 @@ export { default as SøknadsperioderMånedListe } from './søknadsperioder-måne
 export { default as TidKalenderForm } from './tid-kalender-form/TidKalenderForm';
 export { default as TidUkerInput } from './tid-uker-input/TidUkerInput';
 export { default as TidUkedagerInput } from './tid-ukedager-input/TidUkedagerInput';
-export { default as TidsbrukKalender, TidRenderer } from './tidsbruk-kalender/TidsbrukKalender';
+export { default as TidsbrukKalender } from './tidsbruk-kalender/TidsbrukKalender';
 export { default as TimerOgMinutter, formatTimerOgMinutter } from './timer-og-minutter/TimerOgMinutter';
+export type { TidRenderer } from './tidsbruk-kalender/TidsbrukKalender';
 export * from './types';
 export * from './arbeidstid-periode/arbeidstidPeriodeFormUtils';
 export * from './arbeidstid-periode/arbeidstidFormValidation';
