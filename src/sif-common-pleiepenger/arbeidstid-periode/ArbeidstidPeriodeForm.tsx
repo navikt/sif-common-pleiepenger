@@ -2,8 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { DateRange, getTypedFormComponents, UnansweredQuestionsInfo } from '@navikt/sif-common-formik/lib';
+import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
@@ -13,9 +12,9 @@ import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import TidUkedagerInput from '../tid-ukedager-input/TidUkedagerInput';
 import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
-import { getRedusertArbeidstidPerUkeInfo } from './arbeidstidPeriodeFormUtils';
-import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from './arbeidstidFormValidation';
 import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
+import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from './arbeidstidFormValidation';
+import { getRedusertArbeidstidPerUkeInfo } from './arbeidstidPeriodeFormUtils';
 
 interface Props {
     arbeidsstedNavn: string;
@@ -87,7 +86,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
     return (
         <div>
             <Undertittel tag="h1" className={bem.element('tittel')}>
-                {txt.arbeidstidPeriodeForm_tittel(arbeidsstedNavn)}
+                {txt.form_tittel(arbeidsstedNavn)}
             </Undertittel>
             <FormBlock margin="xl">
                 <FormComponents.FormikWrapper
@@ -96,8 +95,6 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                     renderForm={({ values: { fom, tom, tidFasteDagerEllerProsent, tidFasteDager, prosent } }) => {
                         const from = datepickerUtils.getDateFromDateString(fom);
                         const to = datepickerUtils.getDateFromDateString(tom);
-                        const periode = from && to ? { from, to } : undefined;
-                        const visKnapper = periode !== undefined && tidFasteDagerEllerProsent !== undefined;
                         const validator = getDateRangeValidator({
                             required: true,
                             onlyWeekdays: true,
@@ -111,14 +108,14 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                 onCancel={onCancel}
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidstidPeriode')}
                                 includeValidationSummary={true}
-                                includeButtons={visKnapper}
-                                submitButtonLabel={intlHelper(intl, 'arbeidstidPeriodeForm.submitButtonLabel')}
-                                cancelButtonLabel={intlHelper(intl, 'arbeidstidPeriodeForm.cancelButtonLabel')}>
+                                includeButtons={true}
+                                submitButtonLabel={txt.form_submitButtonLabel}
+                                cancelButtonLabel={txt.form_cancelButtonLabel}>
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
                                         <FormComponents.DateIntervalPicker
                                             fromDatepickerProps={{
-                                                label: intlHelper(intl, 'arbeidstidPeriodeForm.fraOgMed.label'),
+                                                label: txt.form_fraOgMed_label,
                                                 name: FormFields.fom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
@@ -130,7 +127,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                                 validate: validator.validateFromDate,
                                             }}
                                             toDatepickerProps={{
-                                                label: intlHelper(intl, 'arbeidstidPeriodeForm.tilOgMed.label'),
+                                                label: txt.form_tilOgMed_label,
                                                 name: FormFields.tom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
@@ -148,25 +145,15 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                 <FormBlock>
                                     <FormComponents.RadioPanelGroup
                                         name={FormFields.tidFasteDagerEllerProsent}
-                                        legend={intlHelper(
-                                            intl,
-                                            'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label',
-                                            intlValues
-                                        )}
+                                        legend={txt.form_tidFasteDagerEllerProsent_label(intlValues.skalEllerHarJobbet)}
                                         useTwoColumns={true}
                                         radios={[
                                             {
-                                                label: intlHelper(
-                                                    intl,
-                                                    'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.prosent'
-                                                ),
+                                                label: txt.form_tidFasteDagerEllerProsent_prosent,
                                                 value: TidFasteDagerEllerProsent.prosent,
                                             },
                                             {
-                                                label: intlHelper(
-                                                    intl,
-                                                    'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.timer'
-                                                ),
+                                                label: txt.form_tidFasteDagerEllerProsent_timer,
                                                 value: TidFasteDagerEllerProsent.tidFasteDager,
                                             },
                                         ]}
@@ -180,7 +167,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                             name={FormFields.prosent}
                                             bredde="XS"
                                             maxLength={4}
-                                            label={intlHelper(intl, 'arbeidstidPeriodeForm.prosent.label', intlValues)}
+                                            label={txt.form_prosent_label(intlValues.skalEllerHarJobbet)}
                                             validate={getArbeidstidFastProsentValidator(intlValues, {
                                                 min: 0,
                                                 max: 100,
@@ -193,20 +180,11 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                 {tidFasteDagerEllerProsent === TidFasteDagerEllerProsent.tidFasteDager && (
                                     <FormBlock>
                                         <FormComponents.InputGroup
-                                            legend={intlHelper(
-                                                intl,
-                                                'arbeidstidPeriodeForm.tidFasteDager.label',
-                                                intlValues
-                                            )}
+                                            legend={txt.form_tidFasteDager_label(intlValues.skalEllerHarJobbet)}
                                             validate={() => validateFasteArbeidstimerIUke(tidFasteDager, intlValues)}
                                             name={'fasteDager_gruppe' as any}>
                                             <TidUkedagerInput name={FormFields.tidFasteDager} />
                                         </FormComponents.InputGroup>
-                                    </FormBlock>
-                                )}
-                                {visKnapper === false && (
-                                    <FormBlock>
-                                        <UnansweredQuestionsInfo />
                                     </FormBlock>
                                 )}
                             </FormComponents.Form>
