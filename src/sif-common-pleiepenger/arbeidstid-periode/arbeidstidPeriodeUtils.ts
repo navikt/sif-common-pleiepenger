@@ -112,11 +112,11 @@ export const getArbeidstidIPeriodeIntlValues = (
             | {
                   type: ArbeidsforholdType.ANSATT;
                   arbeidsstedNavn: string;
-                  jobberNormaltTimer: string | number;
+                  jobberNormaltTimer: string | number | undefined;
               }
             | {
                   type: ArbeidsforholdType.FRILANSER | ArbeidsforholdType.SELVSTENDIG;
-                  jobberNormaltTimer: string | number;
+                  jobberNormaltTimer: string | number | undefined;
               };
     }
 ): ArbeidIPeriodeIntlValues => {
