@@ -4,8 +4,8 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { FormikTimeInput } from '@navikt/sif-common-formik/lib';
 import { ValidationError, ValidationFunction } from '@navikt/sif-common-formik/lib/validation/types';
 import { Weekday } from '@navikt/sif-common-utils/lib';
-import { gettidUkerdagerInputMessages } from './tidUkerdagerInputMessages';
-import './tidUkedagerInput.less';
+import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
+import './tidFasteUkedagerInput.less';
 
 interface Props {
     name: string;
@@ -15,8 +15,8 @@ interface Props {
     };
 }
 
-const TidUkedagerInput = ({ name, validation }: Props) => {
-    const txt = gettidUkerdagerInputMessages(useIntl().locale);
+const TidFasteUkedagerInput = ({ name, validation }: Props) => {
+    const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
     return (
         <Box margin="l">
             <div className="tidUkedagerInput">
@@ -70,4 +70,4 @@ const TidUkedagerInput = ({ name, validation }: Props) => {
     );
 };
 
-export default TidUkedagerInput;
+export default TidFasteUkedagerInput;

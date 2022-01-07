@@ -10,7 +10,7 @@ import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types'
 import { DurationWeekdays } from '@navikt/sif-common-utils/lib';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
-import { TidUkedagerInput } from '../';
+import { TidFasteUkedagerInput } from '../';
 import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudIUke } from './omsorgstilbudFormValidation';
 
 interface Props {
@@ -132,7 +132,7 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                                         )}
                                         validate={() => validateOmsorgstilbudIUke(tidFasteDager)}
                                         name={'fasteDager_gruppe' as any}>
-                                        <TidUkedagerInput
+                                        <TidFasteUkedagerInput
                                             name={FormFields.tidFasteDager}
                                             validation={{
                                                 validator: getOmsorgstilbudFastDagValidator,

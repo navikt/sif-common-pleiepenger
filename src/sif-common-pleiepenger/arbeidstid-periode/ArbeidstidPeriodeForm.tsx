@@ -5,17 +5,16 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
-import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import { isIntlErrorObject, ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { DurationWeekdays } from '@navikt/sif-common-utils';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
-import TidUkedagerInput from '../tid-ukedager-input/TidUkedagerInput';
+import { getArbeidstimerFastDagValidator } from '../';
+import TidFasteUkedagerInput from '../tid-faste-ukedager-input/TidFasteUkedagerInput';
 import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
 import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
 import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from './arbeidstidFormValidation';
 import { getRedusertArbeidstidPerUkeInfo } from './arbeidstidPeriodeUtils';
-import { getArbeidstimerFastDagValidator } from '..';
 
 interface Props {
     arbeidsstedNavn: string;
@@ -101,7 +100,12 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                         return (
                             <FormComponents.Form
                                 onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler(intl, validationIntlKey)}
+                                formErrorHandler={{
+                                    fieldErrorHandler: (error, fieldName) =>
+                                        isIntlErrorObject(error)
+                                            ? `${fieldName}.${error.key}`
+                                            : `${fieldName}.${error}`,
+                                }}
                                 includeValidationSummary={true}
                                 includeButtons={true}
                                 submitButtonLabel={txt.form_submitButtonLabel}
@@ -219,7 +223,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                                     : undefined;
                                             }}
                                             name={'fasteDager_gruppe' as any}>
-                                            <TidUkedagerInput
+                                            <TidFasteUkedagerInput
                                                 name={FormFields.tidFasteDager}
                                                 validation={{
                                                     validationIntlKey: `${validationIntlKey}.fastdag.tid`,
@@ -236,6 +240,12 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
             </FormBlock>
         </div>
     );
+};
+
+export const ArbeidstidValideringFormMessages = {
+    nb: {
+        '': '',
+    },
 };
 
 export default ArbeidstidPeriodeForm;

@@ -30,7 +30,7 @@ export const tidUkerdagerInputMessages: ComponentMessages<Messages> = {
     [Locale.nb]: nb,
 };
 
-export const gettidUkerdagerInputMessages = (locale: string): Messages => {
+export const getTidFasteUkerdagerInputMessages = (locale: string): Messages => {
     switch (locale) {
         case 'nn':
             return tidUkerdagerInputMessages.nn;
