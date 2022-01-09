@@ -2,8 +2,8 @@ export { default as ArbeidstidEnkeltdagDialog } from './arbeidstid-enkeltdag/Arb
 export { GjentagelseType } from './tid-enkeltdag-dialog/TidEnkeltdagForm';
 export type { TidEnkeltdagFormValues, GjentagelseEnkeltdag } from './tid-enkeltdag-dialog/TidEnkeltdagForm';
 export { default as arbeidstidEnkeltdagMessage } from './arbeidstid-enkeltdag/arbeidstidEnkeltdagMessages';
-export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode/ArbeidstidPeriodeDialog';
-export { default as RegistrerArbeidstidPeriode } from './arbeidstid-periode/RegistrerArbeidstidPeriode';
+export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode/arbeidstid-periode-dialog/ArbeidstidPeriodeDialog';
+export { default as ArbeidstidPeriode } from './arbeidstid-periode/ArbeidstidPeriode';
 export { default as CalendarGrid } from './calendar-grid/CalendarGrid';
 export { default as TidEnkeltdager } from './dager-med-tid/TidEnkeltdager';
 export { default as TidFasteDager } from './dager-med-tid/TidFasteDager';
@@ -14,11 +14,11 @@ export { default as OmsorgstilbudMånedInfo } from './omsorgstilbud-periode/Omso
 export { default as RegistrerOmsorgstilbudPeriodeKnapp } from './omsorgstilbud-periode/RegistrerOmsorgstilbudPeriodeKnapp';
 export { default as SøknadsperioderMånedListe } from './søknadsperioder-måned-liste/SøknadsperioderMånedListe';
 export { default as TidKalenderForm } from './tid-kalender-form/TidKalenderForm';
-export { default as TidUkerInput } from './tid-uker-input/TidUkerInput';
+export { default as TidUkerInput } from './tid-kalender-form/tid-uker-input/TidUkerInput';
 export { default as TidFasteUkedagerInput } from './tid-faste-ukedager-input/TidFasteUkedagerInput';
 export { default as TidsbrukKalender } from './tidsbruk-kalender/TidsbrukKalender';
 export { default as TimerOgMinutter, formatTimerOgMinutter } from './timer-og-minutter/TimerOgMinutter';
 export type { TidRenderer } from './tidsbruk-kalender/TidsbrukKalender';
 export * from './types';
 export * from './arbeidstid-periode/arbeidstidPeriodeUtils';
-export * from './arbeidstid-periode/arbeidstidFormValidation';
+export * from './arbeidstid-periode/arbeidstid-periode-form/arbeidstidPeriodeFormValidation';

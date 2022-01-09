@@ -18,7 +18,7 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import { ArbeidstidPeriodeData } from '../';
 import { formatTimerOgMinutter } from '../timer-og-minutter/TimerOgMinutter';
 import { ArbeidIPeriodeIntlValues, ArbeidsforholdType } from '../types';
-import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
+import { getArbeidstidPeriodeIntl } from './arbeidstidPeriodeMessages';
 
 dayjs.extend(isoWeek);
 
@@ -46,7 +46,7 @@ export const getRedusertArbeidstidPerUkeInfo = (
     jobberNormaltTimerPerUke: string | number | undefined,
     skalJobbeProsent: string | undefined
 ): string => {
-    const txt = getArbeidIPeriodeMessages(intl.locale);
+    const arbIntl = getArbeidstidPeriodeIntl(intl);
     const redusertArbeidstid = getRedusertArbeidstidPerUke(jobberNormaltTimerPerUke, skalJobbeProsent);
     if (redusertArbeidstid) {
         const timerNormalt = formatTimerOgMinutter(intl, decimalDurationToDuration(redusertArbeidstid.normalTimer));
@@ -54,7 +54,7 @@ export const getRedusertArbeidstidPerUkeInfo = (
             hours: `${redusertArbeidstid.varighet.hours}` || '',
             minutes: `${redusertArbeidstid.varighet.minutes}`,
         });
-        return txt.redusertArbeidstidPerUke(timerNormalt, timerRedusert);
+        return arbIntl.intlText('arbeidstidPeriode_redusertArbeidstidPerUke', { timerNormalt, timerRedusert });
     }
     return '';
 };
@@ -120,39 +120,45 @@ export const getArbeidstidIPeriodeIntlValues = (
               };
     }
 ): ArbeidIPeriodeIntlValues => {
-    const txt = getArbeidIPeriodeMessages(intl.locale);
-
+    const arbIntl = getArbeidstidPeriodeIntl(intl);
     const getTimerTekst = (): string => {
-        const txt = getArbeidIPeriodeMessages(intl.locale);
         const timer =
             typeof info.arbeidsforhold.jobberNormaltTimer === 'number'
                 ? info.arbeidsforhold.jobberNormaltTimer
                 : getNumberFromNumberInputValue(info.arbeidsforhold.jobberNormaltTimer);
-        return timer !== undefined ? txt.timer(timer) : txt.timer_ikkeTall(info.arbeidsforhold.jobberNormaltTimer);
+        return timer !== undefined
+            ? arbIntl.intlText('arbeidstidPeriode_timer', { timer })
+            : arbIntl.intlText('arbeidstidPeriode_timer_ikkeTall', {
+                  jobberNormaltTimer: info.arbeidsforhold.jobberNormaltTimer,
+              });
     };
 
     const getHvorTekst = () => {
+        console.log(info.arbeidsforhold);
+
         switch (info.arbeidsforhold.type) {
             case ArbeidsforholdType.ANSATT:
-                return txt.arbeidIPeriodeIntlValues_somAnsatt(info.arbeidsforhold.arbeidsstedNavn);
+                return arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_somAnsatt', {
+                    arbeidsstedNavn: info.arbeidsforhold.arbeidsstedNavn,
+                });
             case ArbeidsforholdType.FRILANSER:
-                return txt.arbeidIPeriodeIntlValues_somFrilanser;
+                return arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_somFrilanser');
             case ArbeidsforholdType.SELVSTENDIG:
-                return txt.arbeidIPeriodeIntlValues_somSN;
+                return arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_somSN');
         }
     };
 
     return {
         skalEllerHarJobbet: info.erHistorisk
-            ? txt.arbeidIPeriodeIntlValues_harJobbet
-            : txt.arbeidIPeriodeIntlValues_skalJobbe,
+            ? arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_harJobbet')
+            : arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_skalJobbe'),
         hvor: getHvorTekst(),
         timer: getTimerTekst(),
         fra: prettifyDateFull(info.periode.from),
         til: prettifyDateFull(info.periode.to),
-        iPerioden: txt.arbeidIPeriodeIntlValues_iPerioden(
-            prettifyDate(info.periode.from),
-            prettifyDate(info.periode.to)
-        ),
+        iPerioden: arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_iPerioden', {
+            fra: prettifyDate(info.periode.from),
+            til: prettifyDate(info.periode.to),
+        }),
     };
 };

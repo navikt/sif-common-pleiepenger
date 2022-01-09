@@ -6,7 +6,7 @@ import { FormValues } from './types';
 import {
     ArbeidsforholdType,
     getArbeidstidIPeriodeIntlValues,
-    RegistrerArbeidstidPeriode,
+    ArbeidstidPeriode,
 } from '../../../sif-common-pleiepenger';
 import { useIntl } from 'react-intl';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
@@ -29,9 +29,11 @@ const ArbeidstidPeriodeEksempel = () => {
         arbeidsforhold: {
             jobberNormaltTimer,
             type: ArbeidsforholdType.ANSATT,
-            arbeidsstedNavn,
+            arbeidsstedNavn: arbeidsstedNavn,
         },
     });
+    console.log(intlValues);
+
     return (
         <>
             <PageIntro title="@navikt/sif-common-pleiepenger">
@@ -44,7 +46,7 @@ const ArbeidstidPeriodeEksempel = () => {
                 }}
                 renderForm={() => (
                     <Panel>
-                        <RegistrerArbeidstidPeriode
+                        <ArbeidstidPeriode
                             registrerKnappLabel="Legg til arbeid i periode"
                             jobberNormaltTimer={jobberNormaltTimer}
                             periode={periode}

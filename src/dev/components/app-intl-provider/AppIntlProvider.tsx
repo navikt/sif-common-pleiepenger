@@ -1,5 +1,6 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
+import { arbeidstidPeriodeMessages } from '../../../sif-common-pleiepenger/arbeidstid-periode/arbeidstidPeriodeMessages';
 import { sifCommonPleiepengerMessages } from '../../../sif-common-pleiepenger/i18n';
 import { MessageFileFormat } from '../../utils/devIntlUtils';
 import { appMessages } from './messages';
@@ -12,6 +13,7 @@ export interface IntlProviderProps {
 const allMessages: MessageFileFormat = {
     nb: {
         ...sifCommonPleiepengerMessages.nb,
+        ...arbeidstidPeriodeMessages.nb,
         ...appMessages.nb,
     },
     nn: {

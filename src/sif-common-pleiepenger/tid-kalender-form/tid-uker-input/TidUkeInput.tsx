@@ -5,7 +5,7 @@ import { FormikTimeInput } from '@navikt/sif-common-formik';
 import { Undertittel } from 'nav-frontend-typografi';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils';
 import { Daginfo, Ukeinfo } from './types';
-import { TidPerDagValidator } from '..';
+import { TidPerDagValidator } from '../..';
 import { tidUkerInputUtils } from './utils';
 
 type DagLabelRenderer = (dag: Daginfo) => React.ReactNode;

@@ -3,10 +3,10 @@ import { useIntl } from 'react-intl';
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import Modal from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../types';
-import { getArbeidIPeriodeMessages } from './arbeidPeriodeMessages';
-import ArbeidstidPeriodeForm from './ArbeidstidPeriodeForm';
-import './arbeidstidPeriode.less';
+import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData } from '../../types';
+import ArbeidstidPeriodeForm from '../arbeidstid-periode-form/ArbeidstidPeriodeForm';
+import { getArbeidstidPeriodeIntl } from '../arbeidstidPeriodeMessages';
+import './arbeidstidPeriodeDialog.less';
 
 interface Props {
     isOpen: boolean;
@@ -27,11 +27,11 @@ const ArbeidstidPeriodeDialog: React.FunctionComponent<Props> = ({
     onSubmit,
     onCancel,
 }) => {
-    const txt = getArbeidIPeriodeMessages(useIntl().locale);
+    const { intlText } = getArbeidstidPeriodeIntl(useIntl());
     return isOpen ? (
         <Modal
             isOpen={isOpen}
-            contentLabel={txt.arbeidstidPeriodeDialogContentLabel}
+            contentLabel={intlText('arbeidstidPeriodeDialogContentLabel')}
             onRequestClose={onCancel}
             shouldCloseOnOverlayClick={false}
             className="arbeidstidPeriodeDialog">
@@ -40,7 +40,7 @@ const ArbeidstidPeriodeDialog: React.FunctionComponent<Props> = ({
                     jobberNormaltTimer={jobberNormaltTimer}
                     intlValues={intlValues}
                     arbeidsstedNavn={arbeidsstedNavn}
-                    rammePeriode={periode}
+                    periode={periode}
                     onCancel={onCancel}
                     onSubmit={onSubmit}
                 />

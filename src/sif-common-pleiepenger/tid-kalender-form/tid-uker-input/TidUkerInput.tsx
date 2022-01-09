@@ -4,7 +4,7 @@ import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-p
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils/lib';
-import { TidPerDagValidator } from '../types';
+import { TidPerDagValidator } from '../../types';
 import TidUkeInput from './TidUkeInput';
 import { Daginfo, Ukeinfo } from './types';
 import { tidUkerInputUtils } from './utils';

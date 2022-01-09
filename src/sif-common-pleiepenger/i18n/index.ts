@@ -1,4 +1,4 @@
-import arbeidstidPeriodeFormMessages from '../arbeidstid-periode/arbeidIPeriodeFormValidationMessages';
+import { arbeidstidPeriodeMessages } from '../arbeidstid-periode/arbeidstidPeriodeMessages';
 import { timerOgMinutterMessages } from '../timer-og-minutter/timerOgMinutterMessages';
 
 export type ComponentMessages<Messages> = Record<string, Messages>;
@@ -10,7 +10,7 @@ export enum Locale {
 
 export const sifCommonPleiepengerMessages = {
     nb: {
-        ...arbeidstidPeriodeFormMessages.nb,
+        ...arbeidstidPeriodeMessages.nb,
         ...timerOgMinutterMessages.nb,
     },
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import { DateDurationMap } from '@navikt/sif-common-utils';
 import { Knapp } from 'nav-frontend-knapper';
-import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData, ArbeidstidPeriodeDialog } from '../';
+import { ArbeidIPeriodeIntlValues, ArbeidstidPeriodeData, ArbeidstidPeriodeDialog } from '..';
 import { getDagerMedTidFraArbeidstidPeriodeData } from './arbeidstidPeriodeUtils';
 
 interface Props {
@@ -14,7 +14,7 @@ interface Props {
     onPeriodeChange: (tid: DateDurationMap, formData: ArbeidstidPeriodeData) => void;
 }
 
-const RegistrerArbeidstidPeriode: React.FunctionComponent<Props> = ({
+const ArbeidstidPeriode: React.FunctionComponent<Props> = ({
     registrerKnappLabel,
     intlValues,
     arbeidsstedNavn,
@@ -49,4 +49,4 @@ const RegistrerArbeidstidPeriode: React.FunctionComponent<Props> = ({
     );
 };
 
-export default RegistrerArbeidstidPeriode;
+export default ArbeidstidPeriode;
