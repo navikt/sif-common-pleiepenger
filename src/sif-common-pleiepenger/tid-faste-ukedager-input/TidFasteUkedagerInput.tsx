@@ -19,7 +19,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
     return (
         <Box margin="l">
-            <div className="tidUkedagerInput">
+            <div className="tidFasteUkedagerInput">
                 <FormikTimeInput
                     label={txt.Mandager}
                     name={`${name}.${Weekday.monday}`}

@@ -134,8 +134,6 @@ export const getArbeidstidIPeriodeIntlValues = (
     };
 
     const getHvorTekst = () => {
-        console.log(info.arbeidsforhold);
-
         switch (info.arbeidsforhold.type) {
             case ArbeidsforholdType.ANSATT:
                 return arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_somAnsatt', {

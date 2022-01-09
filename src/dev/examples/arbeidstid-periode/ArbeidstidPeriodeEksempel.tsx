@@ -32,7 +32,6 @@ const ArbeidstidPeriodeEksempel = () => {
             arbeidsstedNavn: arbeidsstedNavn,
         },
     });
-    console.log(intlValues);
 
     return (
         <>
