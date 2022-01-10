@@ -1,5 +1,5 @@
-import { typedIntlHelper } from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { IntlShape } from 'react-intl';
+import { typedIntlHelper } from '@navikt/sif-common-core/lib/utils/intlUtils';
 
 const arbeidstidPeriodeFormFormMessages = {
     nb: {
@@ -48,18 +48,24 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.validation.fasteDager.gruppe.ingenTidRegistrert':
             'Du må oppgi hvor mange timer du {skalEllerHarJobbet} i uken {hvor} {iPerioden}.',
 
-        'arbeidstidPeriodeForm.validation.fastdag.tid.timeHasNoValue': 'Du må fylle ut timer og minutter for {dag}.',
-        'arbeidstidPeriodeForm.validation.fastdag.tid.hoursAreInvalid': 'Antall timer på {dag} er ikke et gyldig tall.',
-        'arbeidstidPeriodeForm.validation.fastdag.tid.minutesAreInvalid':
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.timeHasNoValue':
+            'Du må fylle ut timer og minutter for {dag}.',
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.hoursAreInvalid':
+            'Antall timer på {dag} er ikke et gyldig tall.',
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.minutesAreInvalid':
             'Antall minutter på {dag} er ikke et gyldig tall.',
-        'arbeidstidPeriodeForm.validation.fastdag.tid.tooManyHours':
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.tooManyHours':
             'Antall timer på {dag} kan ikke overstige 24 timer.',
-        'arbeidstidPeriodeForm.validation.fastdag.tid.tooManyMinutes':
-            'Antall minutter på {dag} kan ikke overstige 59 minutter.',
-        'arbeidstidPeriodeForm.validation.fastdag.tid.durationIsTooLong':
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.tooManyMinutes':
+            'Antall minutter på {dag}  kan ikke overstige 59 minutter.',
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.durationIsTooLong':
             'Antall timer og minutter registrert {dag} er for høyt. Tiden kan ikke overstige 24 timer hver ukedag.',
-        'arbeidstidPeriodeForm.validation.fastdag.tid.durationIsTooShort':
-            'Antall timer og minutter {dato} {hvor} kan ikke være mindre enn 0 timer og 0 minutter.',
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.durationIsTooShort':
+            'Antall timer og minutter {dag}  kan ikke være mindre enn 0 timer og 0 minutter.',
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.minutesAreNegative':
+            'Antall timer og minutter {dag}  kan ikke være mindre enn 0 timer og 0 minutter.',
+        'arbeidstidPeriodeForm.validation.tidFasteDager.tid.hoursAreNegative':
+            'Antall timer og minutter {dag}  kan ikke være mindre enn 0 timer og 0 minutter.',
     },
 };
 

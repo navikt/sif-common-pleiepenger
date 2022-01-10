@@ -154,9 +154,15 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                                         name={FormFields['tidFasteDager.gruppe']}>
                                         <TidFasteUkedagerInput
                                             name={FormFields.tidFasteDager}
-                                            validation={{
-                                                validator: getOmsorgstilbudFastDagValidator,
-                                                validationIntlKey: `omsorgstilbudPeriodeForm.validation.tidFasteDager.tid`,
+                                            validateDag={(dag, value) => {
+                                                const error = getOmsorgstilbudFastDagValidator()(value);
+                                                return error
+                                                    ? {
+                                                          key: `omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.${error}`,
+                                                          keepKeyUnaltered: true,
+                                                          values: { ...intlValues, dag },
+                                                      }
+                                                    : undefined;
                                             }}
                                         />
                                     </FormComponents.InputGroup>

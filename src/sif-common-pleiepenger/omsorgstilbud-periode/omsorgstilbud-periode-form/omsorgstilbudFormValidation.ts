@@ -1,22 +1,9 @@
 import getTimeValidator from '@navikt/sif-common-formik/lib/validation/getTimeValidator';
-import { IntlErrorObject, ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
-import { Duration, DurationWeekdays, summarizeDurationInDurationWeekdays } from '@navikt/sif-common-utils/lib';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
+import { DurationWeekdays, summarizeDurationInDurationWeekdays } from '@navikt/sif-common-utils/lib';
 
-export const getOmsorgstilbudFastDagValidator =
-    (dag: string, errorsIntlKey?: string) =>
-    (time: Duration): IntlErrorObject | undefined => {
-        const error = time
-            ? getTimeValidator({ max: { hours: 7, minutes: 30 }, min: { hours: 0, minutes: 0 } })(time)
-            : undefined;
-        if (error) {
-            return {
-                key: errorsIntlKey ? `${errorsIntlKey}.${error}` : error,
-                values: { dag },
-                keepKeyUnaltered: true,
-            };
-        }
-        return undefined;
-    };
+export const getOmsorgstilbudFastDagValidator = () =>
+    getTimeValidator({ max: { hours: 7, minutes: 30 }, min: { hours: 0, minutes: 0 } });
 
 export const validateOmsorgstilbudFasteDager = (
     fasteDager: DurationWeekdays | undefined

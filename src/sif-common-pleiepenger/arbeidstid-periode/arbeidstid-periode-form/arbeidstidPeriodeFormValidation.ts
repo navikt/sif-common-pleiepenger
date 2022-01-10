@@ -3,7 +3,6 @@ import { getNumberValidator } from '@navikt/sif-common-formik/lib/validation';
 import getTimeValidator from '@navikt/sif-common-formik/lib/validation/getTimeValidator';
 import { IntlErrorObject } from '@navikt/sif-common-formik/lib/validation/types';
 import {
-    Duration,
     durationToDecimalDuration,
     DurationWeekdays,
     summarizeDurationInDurationWeekdays,
@@ -45,18 +44,8 @@ export const validateFasteArbeidstimerIUke = (
     return undefined;
 };
 
-export const getArbeidstimerFastDagValidator =
-    (dag: string, errorsIntlKey?: string) =>
-    (time: Duration): IntlErrorObject | undefined => {
-        const error = time
-            ? getTimeValidator({ max: { hours: 24, minutes: 0 }, min: { hours: 0, minutes: 0 } })(time)
-            : undefined;
-        if (error) {
-            return {
-                key: errorsIntlKey ? `${errorsIntlKey}.${error}` : error,
-                values: { dag },
-                keepKeyUnaltered: true,
-            };
-        }
-        return undefined;
-    };
+export const getArbeidstimerFastDagValidator = () =>
+    getTimeValidator({
+        max: { hours: 24, minutes: 0 },
+        min: { hours: 0, minutes: 0 },
+    });

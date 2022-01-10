@@ -2,20 +2,17 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import { FormikTimeInput } from '@navikt/sif-common-formik/lib';
-import { ValidationError, ValidationFunction } from '@navikt/sif-common-formik/lib/validation/types';
+import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
 import { Weekday } from '@navikt/sif-common-utils/lib';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 import './tidFasteUkedagerInput.less';
 
 interface Props {
     name: string;
-    validation?: {
-        validator: (dagnavn: string, errorsIntlKey?: string) => ValidationFunction<ValidationError>;
-        validationIntlKey?: string;
-    };
+    validateDag?: (dagNavn: string, value: any) => ValidationResult<ValidationError>;
 }
 
-const TidFasteUkedagerInput = ({ name, validation }: Props) => {
+const TidFasteUkedagerInput = ({ name, validateDag }: Props) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
     return (
         <Box margin="l">
@@ -27,7 +24,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validation ? validation.validator(txt.mandag, validation.validationIntlKey) : undefined}
+                    validate={validateDag ? (value) => validateDag(txt.mandag, value) : undefined}
                 />
                 <FormikTimeInput
                     label={txt.Tirsdager}
@@ -36,7 +33,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validation ? validation.validator(txt.tirsdag, validation.validationIntlKey) : undefined}
+                    validate={validateDag ? (value) => validateDag(txt.tirsdag, value) : undefined}
                 />
                 <FormikTimeInput
                     label={txt.Onsdager}
@@ -45,7 +42,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validation ? validation.validator(txt.onsdag, validation.validationIntlKey) : undefined}
+                    validate={validateDag ? (value) => validateDag(txt.onsdag, value) : undefined}
                 />
                 <FormikTimeInput
                     label={txt.Torsdager}
@@ -54,7 +51,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validation ? validation.validator(txt.torsdag, validation.validationIntlKey) : undefined}
+                    validate={validateDag ? (value) => validateDag(txt.torsdag, value) : undefined}
                 />
                 <FormikTimeInput
                     label={txt.Fredager}
@@ -63,7 +60,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validation ? validation.validator(txt.mandag, validation.validationIntlKey) : undefined}
+                    validate={validateDag ? (value) => validateDag(txt.mandag, value) : undefined}
                 />
             </div>
         </Box>
