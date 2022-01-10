@@ -5,7 +5,7 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
-import { getIntlFormErrorHandler_underscoreKeys } from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
+import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { DurationWeekdays } from '@navikt/sif-common-utils';
 import { InputDateString } from 'nav-datovelger/lib/types';
@@ -86,7 +86,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
     return (
         <div>
             <Undertittel tag="h1" className={bem.element('tittel')}>
-                {arbIntl.intlText('arbeidstidPeriodeForm_tittel', { arbeidsstedNavn })}
+                {arbIntl.intlText('arbeidstidPeriodeForm.tittel', { arbeidsstedNavn })}
             </Undertittel>
             <FormBlock margin="xl">
                 <FormComponents.FormikWrapper
@@ -99,19 +99,16 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                         return (
                             <FormComponents.Form
                                 onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler_underscoreKeys(
-                                    intl,
-                                    'arbeidstidPeriodeForm_validation'
-                                )}
+                                formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidstidPeriodeForm.validation')}
                                 includeValidationSummary={true}
                                 includeButtons={true}
-                                submitButtonLabel={arbIntl.intlText('arbeidstidPeriodeForm_submitButtonLabel')}
-                                cancelButtonLabel={arbIntl.intlText('arbeidstidPeriodeForm_cancelButtonLabel')}>
+                                submitButtonLabel={arbIntl.intlText('arbeidstidPeriodeForm.submitButtonLabel')}
+                                cancelButtonLabel={arbIntl.intlText('arbeidstidPeriodeForm.cancelButtonLabel')}>
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
                                         <FormComponents.DateIntervalPicker
                                             fromDatepickerProps={{
-                                                label: arbIntl.intlText('arbeidstidPeriodeForm_fraOgMed_label'),
+                                                label: arbIntl.intlText('arbeidstidPeriodeForm.fraOgMed.label'),
                                                 name: FormFields.fom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
@@ -131,7 +128,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                                 }).validateFromDate,
                                             }}
                                             toDatepickerProps={{
-                                                label: arbIntl.intlText('arbeidstidPeriodeForm_tilOgMed_label'),
+                                                label: arbIntl.intlText('arbeidstidPeriodeForm.tilOgMed.label'),
                                                 name: FormFields.tom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
@@ -158,20 +155,20 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                     <FormComponents.RadioPanelGroup
                                         name={FormFields.tidFasteDagerEllerProsent}
                                         legend={arbIntl.intlText(
-                                            'arbeidstidPeriodeForm_tidFasteDagerEllerProsent_label',
+                                            'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label',
                                             intlValues
                                         )}
                                         useTwoColumns={true}
                                         radios={[
                                             {
                                                 label: arbIntl.intlText(
-                                                    'arbeidstidPeriodeForm_tidFasteDagerEllerProsent_prosent'
+                                                    'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.prosent'
                                                 ),
                                                 value: TidFasteDagerEllerProsent.prosent,
                                             },
                                             {
                                                 label: arbIntl.intlText(
-                                                    'arbeidstidPeriodeForm_tidFasteDagerEllerProsent_timer'
+                                                    'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.timer'
                                                 ),
                                                 value: TidFasteDagerEllerProsent.tidFasteDager,
                                             },
@@ -195,7 +192,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                             name={FormFields.prosent}
                                             bredde="XS"
                                             maxLength={4}
-                                            label={arbIntl.intlText('arbeidstidPeriodeForm_prosent_label', intlValues)}
+                                            label={arbIntl.intlText('arbeidstidPeriodeForm.prosent.label', intlValues)}
                                             validate={(value) => {
                                                 const error = getArbeidstidFastProsentValidator({
                                                     min: 0,
@@ -217,7 +214,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                     <FormBlock>
                                         <FormComponents.InputGroup
                                             legend={arbIntl.intlText(
-                                                'arbeidstidPeriodeForm_tidFasteDager_label',
+                                                'arbeidstidPeriodeForm.tidFasteDager.label',
                                                 intlValues
                                             )}
                                             validate={() => {
@@ -233,7 +230,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                             <TidFasteUkedagerInput
                                                 name={FormFields.tidFasteDager}
                                                 validation={{
-                                                    validationIntlKey: `arbeidstidPeriodeForm_validation_fastdag_tid`,
+                                                    validationIntlKey: `arbeidstidPeriodeForm.validation_fastdag_tid`,
                                                     validator: getArbeidstimerFastDagValidator,
                                                 }}
                                             />

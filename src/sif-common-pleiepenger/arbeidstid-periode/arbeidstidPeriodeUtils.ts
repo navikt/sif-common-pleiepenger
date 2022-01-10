@@ -54,7 +54,7 @@ export const getRedusertArbeidstidPerUkeInfo = (
             hours: `${redusertArbeidstid.varighet.hours}` || '',
             minutes: `${redusertArbeidstid.varighet.minutes}`,
         });
-        return arbIntl.intlText('arbeidstidPeriode_redusertArbeidstidPerUke', { timerNormalt, timerRedusert });
+        return arbIntl.intlText('arbeidstidPeriode.redusertArbeidstidPerUke', { timerNormalt, timerRedusert });
     }
     return '';
 };
@@ -127,8 +127,8 @@ export const getArbeidstidIPeriodeIntlValues = (
                 ? info.arbeidsforhold.jobberNormaltTimer
                 : getNumberFromNumberInputValue(info.arbeidsforhold.jobberNormaltTimer);
         return timer !== undefined
-            ? arbIntl.intlText('arbeidstidPeriode_timer', { timer })
-            : arbIntl.intlText('arbeidstidPeriode_timer_ikkeTall', {
+            ? arbIntl.intlText('arbeidstidPeriode.timer', { timer })
+            : arbIntl.intlText('arbeidstidPeriode.timer.ikkeTall', {
                   jobberNormaltTimer: info.arbeidsforhold.jobberNormaltTimer,
               });
     };
@@ -136,25 +136,25 @@ export const getArbeidstidIPeriodeIntlValues = (
     const getHvorTekst = () => {
         switch (info.arbeidsforhold.type) {
             case ArbeidsforholdType.ANSATT:
-                return arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_somAnsatt', {
+                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somAnsatt', {
                     arbeidsstedNavn: info.arbeidsforhold.arbeidsstedNavn,
                 });
             case ArbeidsforholdType.FRILANSER:
-                return arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_somFrilanser');
+                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somFrilanser');
             case ArbeidsforholdType.SELVSTENDIG:
-                return arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_somSN');
+                return arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.somSN');
         }
     };
 
     return {
         skalEllerHarJobbet: info.erHistorisk
-            ? arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_harJobbet')
-            : arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_skalJobbe'),
+            ? arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.harJobbet')
+            : arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
         hvor: getHvorTekst(),
         timer: getTimerTekst(),
         fra: prettifyDateFull(info.periode.from),
         til: prettifyDateFull(info.periode.to),
-        iPerioden: arbIntl.intlText('arbeidstidPeriode_arbeidIPeriodeIntlValues_iPerioden', {
+        iPerioden: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.iPerioden', {
             fra: prettifyDate(info.periode.from),
             til: prettifyDate(info.periode.to),
         }),

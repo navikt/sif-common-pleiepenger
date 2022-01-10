@@ -31,7 +31,7 @@ const ArbeidstidPeriodeDialog: React.FunctionComponent<Props> = ({
     return isOpen ? (
         <Modal
             isOpen={isOpen}
-            contentLabel={intlText('arbeidstidPeriodeDialogContentLabel')}
+            contentLabel={intlText('arbeidstidPeriodeDialog.contentLabel')}
             onRequestClose={onCancel}
             shouldCloseOnOverlayClick={false}
             className="arbeidstidPeriodeDialog">
