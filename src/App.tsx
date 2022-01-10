@@ -1,21 +1,21 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import '@formatjs/intl-pluralrules/locale-data/en';
+import '@formatjs/intl-pluralrules/locale-data/nb';
+import '@formatjs/intl-pluralrules/locale-data/nn';
+import '@formatjs/intl-pluralrules/polyfill';
+import { Normaltekst } from 'nav-frontend-typografi';
+import AppIntlProvider from './dev/components/app-intl-provider/AppIntlProvider';
+import DevPage from './dev/DevPage';
+import './dev/styles/globalStyles.less';
 
-function App() {
+const App: React.FC = () => {
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <Normaltekst tag="div">
+            <AppIntlProvider locale={'nb'}>
+                <DevPage />
+            </AppIntlProvider>
+        </Normaltekst>
     );
-}
+};
 
 export default App;

@@ -23,7 +23,6 @@ export type ArbeidIPeriodeIntlValues = {
     fra: string;
     til: string;
     iPerioden: string;
-    iPeriodenKort: string;
 };
 
 export interface DagMedTid {

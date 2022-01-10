@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik/lib';
-import { durationIsZero, DateDurationMap, getDurationsInDateRange } from '@navikt/sif-common-utils';
+import { DateDurationMap, durationIsZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Knapp } from 'nav-frontend-knapper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { DurationText, OmsorgstilbudEnkeltdagDialog, TidsbrukKalender } from '../';
 import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
-import { DurationText, OmsorgstilbudEnkeltdagDialog, TidsbrukKalender } from '..';
 
 interface Props {
     måned: DateRange;
