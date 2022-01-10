@@ -14,7 +14,7 @@ import weekOfYear from 'dayjs/plugin/weekOfYear';
 import Knapp from 'nav-frontend-knapper';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { getValidDurations, ISODate, DateDurationMap } from '@navikt/sif-common-utils';
-import TidUkerInput from '../tid-uker-input/TidUkerInput';
+import TidUkerInput from './tid-uker-input/TidUkerInput';
 import { TidPerDagValidator } from '../types';
 
 dayjs.extend(isoWeek);
