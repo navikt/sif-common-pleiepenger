@@ -11,12 +11,14 @@ import {
 import { useIntl } from 'react-intl';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { DateRange } from '../../utils/dateUtils';
+import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
+import { arbeidstidPeriodeMessages } from '../../../sif-common-pleiepenger/arbeidstid-periode/arbeidstidPeriodeMessages';
 
 const initialValues: FormValues = {
     tid: {},
 };
 
-const ArbeidstidPeriodeEksempel = () => {
+const ArbeidstidPeriodeDoc = () => {
     const intl = useIntl();
 
     const periode: DateRange = { from: ISODateToDate('2021-12-01'), to: ISODateToDate('2022-01-05') };
@@ -58,8 +60,9 @@ const ArbeidstidPeriodeEksempel = () => {
                     </Panel>
                 )}
             />
+            <MessagesPreview title="Alle tekster" messages={arbeidstidPeriodeMessages} showExplanation={false} />
         </>
     );
 };
 
-export default ArbeidstidPeriodeEksempel;
+export default ArbeidstidPeriodeDoc;

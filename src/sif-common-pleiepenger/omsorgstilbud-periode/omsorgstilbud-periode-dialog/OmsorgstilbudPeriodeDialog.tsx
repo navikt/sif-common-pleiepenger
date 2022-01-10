@@ -22,7 +22,7 @@ const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ periode, gjelderFortid, i
     return isOpen ? (
         <Modal
             isOpen={isOpen}
-            contentLabel={intlHelper(intl, 'omsorgstilbudPeriodeDialog_contentLabel')}
+            contentLabel={intlHelper(intl, 'omsorgstilbudPeriodeDialog.contentLabel')}
             onRequestClose={onCancel}
             shouldCloseOnOverlayClick={false}
             className="omsorgstilbudPeriodeDialog">

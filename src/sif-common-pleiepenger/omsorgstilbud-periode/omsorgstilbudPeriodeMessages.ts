@@ -39,20 +39,23 @@ const omsorgstilbudPeriodeFormValidationMessages = {
             'Til-datoen kan ikke være etter perioden du har søkt for.',
         'omsorgstilbudPeriodeForm.validation.tom.dateIsNotWeekday':
             'Til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-        'omsorgstilbudPeriodeForm.validation.fasteDager.gruppe.ingenTidRegistrert':
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.gruppe.ingenTidRegistrert':
             'Du må oppgi hvor mange timer barnet {skalEllerHarVært} i omsorgstilbud.',
-        'omsorgstilbudPeriodeForm.validation.fastdag.tid.timeHasNoValue': 'Du må fylle ut timer og minutter for {dag}.',
-        'omsorgstilbudPeriodeForm.validation.fastdag.tid.hoursAreInvalid':
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.gruppe.forMangeTimer':
+            'Du kan ikke oppgi mer enn 37 timer og 30 minutter for en uke.',
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.timeHasNoValue':
+            'Du må fylle ut timer og minutter for {dag}.',
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.hoursAreInvalid':
             'Antall timer på {dag} er ikke et gyldig tall.',
-        'omsorgstilbudPeriodeForm.validation.fastdag.tid.minutesAreInvalid':
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.minutesAreInvalid':
             'Antall minutter på {dag} er ikke et gyldig tall.',
-        'omsorgstilbudPeriodeForm.validation.fastdag.tid.tooManyHours':
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.tooManyHours':
             'Antall timer på {dag} kan ikke overstige 24 timer.',
-        'omsorgstilbudPeriodeForm.validation.fastdag.tid.tooManyMinutes':
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.tooManyMinutes':
             'Antall minutter på {dag} kan ikke overstige 59 minutter.',
-        'omsorgstilbudPeriodeForm.validation.fastdag.tid.durationIsTooLong':
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.durationIsTooLong':
             'Antall timer og minutter registrert {dag} er for høyt. Tiden kan ikke overstige 24 timer hver ukedag.',
-        'omsorgstilbudPeriodeForm.validation.fastdag.tid.durationIsTooShort':
+        'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.durationIsTooShort':
             'Antall timer og minutter {dato} {hvor} kan ikke være mindre enn 0 timer og 0 minutter.',
     },
 };

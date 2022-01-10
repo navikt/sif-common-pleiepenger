@@ -226,11 +226,11 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                                       }
                                                     : undefined;
                                             }}
-                                            name={'fasteDager_gruppe' as any}>
+                                            name={'fasteDager.gruppe' as any}>
                                             <TidFasteUkedagerInput
                                                 name={FormFields.tidFasteDager}
                                                 validation={{
-                                                    validationIntlKey: `arbeidstidPeriodeForm.validation_fastdag_tid`,
+                                                    validationIntlKey: `arbeidstidPeriodeForm.validation.fastdag.tid`,
                                                     validator: getArbeidstimerFastDagValidator,
                                                 }}
                                             />

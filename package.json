@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-pleiepenger",
-    "version": "0.0.24-beta.11",
+    "version": "0.0.24-beta.12",
     "private": false,
     "main": "lib/index.js",
     "types": "lib/index.d.js",
@@ -62,6 +62,7 @@
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.28.0",
+        "flat": "^5.0.2",
         "jest": "^27.4.7",
         "jest-css-modules": "^2.1.0",
         "lodash.groupby": "^4.6.0",

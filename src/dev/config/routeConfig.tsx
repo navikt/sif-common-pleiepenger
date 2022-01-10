@@ -1,6 +1,6 @@
 import React from 'react';
-import ArbeidstidPeriodeEksempel from '../examples/arbeidstid-periode/ArbeidstidPeriodeEksempel';
-import OmsorgstilbudPeriodeExample from '../examples/omsorgstilbud-periode/OmsorgstilbudPeriodeExample';
+import ArbeidstidPeriodeDoc from '../docs/arbeidstid-periode/ArbeidstidPeriodeDoc';
+import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
 import Intro from '../Intro';
 
 export interface RouteConfig {
@@ -18,12 +18,12 @@ export const routes: RouteConfig[] = [
     {
         path: 'arbeidstid-periode',
         title: 'Arbeidstid periode',
-        renderContent: () => <ArbeidstidPeriodeEksempel />,
+        renderContent: () => <ArbeidstidPeriodeDoc />,
     },
     {
         path: 'omsorgstilbud-periode',
         title: 'Omsorgstilbud periode',
-        renderContent: () => <OmsorgstilbudPeriodeExample />,
+        renderContent: () => <OmsorgstilbudPeriodeDoc />,
     },
 ];
 
