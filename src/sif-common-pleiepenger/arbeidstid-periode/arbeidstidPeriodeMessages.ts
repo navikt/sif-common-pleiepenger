@@ -43,7 +43,7 @@ const arbeidstidPeriodeFormFormMessages = {
             'Antall prosent du {skalEllerHarJobbet} {hvor} kan ikke være mindre enn {min}.',
         arbeidstidPeriodeForm_validation_prosent_numberIsTooLarge:
             'Antall prosent du {skalEllerHarJobbet} {hvor} kan ikke være mer enn {max}.',
-        arbeidstidPeriodeForm_validation_fasteDager_gruppe_ngenTidRegistrert:
+        arbeidstidPeriodeForm_validation_fasteDager_gruppe_ingenTidRegistrert:
             'Du må oppgi hvor mange timer du {skalEllerHarJobbet} i uken {hvor} {iPerioden}.',
 
         arbeidstidPeriodeForm_validation_fastdag_tid_timeHasNoValue: 'Du må fylle ut timer og minutter for {dag}.',

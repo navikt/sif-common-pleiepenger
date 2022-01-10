@@ -1,17 +1,17 @@
 import React from 'react';
-import { FormattedMessage, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik/lib';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator } from '@navikt/sif-common-formik/lib/validation';
-import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
+import { getIntlFormErrorHandler_underscoreKeys } from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { DurationWeekdays } from '@navikt/sif-common-utils/lib';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
-import { TidFasteUkedagerInput } from '../';
-import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudIUke } from './omsorgstilbudFormValidation';
+import { TidFasteUkedagerInput } from '../..';
+import { getOmsorgstilbudPeriodeIntl } from '../omsorgstilbudPeriodeMessages';
+import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudFasteDager } from './omsorgstilbudFormValidation';
 
 interface Props {
     rammePeriode: DateRange;
@@ -32,7 +32,7 @@ enum FormFields {
     'tidFasteDager' = 'tidFasteDager',
 }
 
-const validationIntlKey = 'omsorgstilbudPeriodeForm.validation';
+const validationIntlKey = 'omsorgstilbudPeriodeForm_validation';
 
 interface FormValues {
     [FormFields.fom]: InputDateString;
@@ -46,6 +46,13 @@ const FormComponents = getTypedFormComponents<FormFields, FormValues, Validation
 
 const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid, onSubmit, onCancel }) => {
     const intl = useIntl();
+    const { intlText } = getOmsorgstilbudPeriodeIntl(intl);
+
+    const intlValues = {
+        skalEllerHarVært: gjelderFortid
+            ? intlText('omsorgstilbudPeriode_part_harVært')
+            : intlText('omsorgstilbudPeriode_part_skalVære'),
+    };
 
     const onValidSubmit = (values: Partial<FormValues>) => {
         const fom = datepickerUtils.getDateFromDateString(values.fom);
@@ -64,9 +71,7 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
 
     return (
         <div>
-            <Undertittel tag="h1">
-                <FormattedMessage id="omsorgstilbudPeriodeForm.tittel" />
-            </Undertittel>
+            <Undertittel tag="h1">{intlText('omsorgstilbudPeriodeForm_tittel')}</Undertittel>
             <FormBlock margin="xl">
                 <FormComponents.FormikWrapper
                     initialValues={initialFormValues}
@@ -75,27 +80,18 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                         const from = datepickerUtils.getDateFromDateString(fom);
                         const to = datepickerUtils.getDateFromDateString(tom);
 
-                        const validator = getDateRangeValidator({
-                            required: true,
-                            onlyWeekdays: true,
-                            toDate: to,
-                            fromDate: from,
-                            min: rammePeriode.from,
-                            max: to || rammePeriode.to,
-                        });
-
                         return (
                             <FormComponents.Form
                                 onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler(intl, validationIntlKey)}
+                                formErrorHandler={getIntlFormErrorHandler_underscoreKeys(intl, validationIntlKey)}
                                 includeValidationSummary={true}
-                                submitButtonLabel={intlHelper(intl, 'omsorgstilbudPeriodeForm.submitButtonLabel')}
-                                cancelButtonLabel={intlHelper(intl, 'omsorgstilbudPeriodeForm.cancelButtonLabel')}>
+                                submitButtonLabel={intlText('omsorgstilbudPeriodeForm_submitButtonLabel')}
+                                cancelButtonLabel={intlText('omsorgstilbudPeriodeForm_cancelButtonLabel')}>
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
                                         <FormComponents.DateIntervalPicker
                                             fromDatepickerProps={{
-                                                label: intlHelper(intl, 'omsorgstilbudPeriodeForm.fraOgMed.label'),
+                                                label: intlText('omsorgstilbudPeriodeForm_fraOgMed_label'),
                                                 name: FormFields.fom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
@@ -104,10 +100,17 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                                                 },
                                                 minDate: rammePeriode.from,
                                                 maxDate: to || rammePeriode.to,
-                                                validate: validator.validateFromDate,
+                                                validate: getDateRangeValidator({
+                                                    required: true,
+                                                    onlyWeekdays: true,
+                                                    toDate: to,
+                                                    fromDate: from,
+                                                    min: rammePeriode.from,
+                                                    max: to || rammePeriode.to,
+                                                }).validateFromDate,
                                             }}
                                             toDatepickerProps={{
-                                                label: intlHelper(intl, 'omsorgstilbudPeriodeForm.tilOgMed.label'),
+                                                label: intlText('omsorgstilbudPeriodeForm_tilOgMed_label'),
                                                 name: FormFields.tom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
@@ -116,7 +119,14 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                                                 dayPickerProps: {
                                                     initialMonth: from || rammePeriode.from,
                                                 },
-                                                validate: validator.validateToDate,
+                                                validate: getDateRangeValidator({
+                                                    required: true,
+                                                    onlyWeekdays: true,
+                                                    toDate: to,
+                                                    fromDate: from,
+                                                    min: from || rammePeriode.from,
+                                                    max: rammePeriode.to,
+                                                }).validateToDate,
                                             }}
                                         />
                                     </FormBlock>
@@ -124,19 +134,26 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
 
                                 <FormBlock>
                                     <FormComponents.InputGroup
-                                        legend={intlHelper(
-                                            intl,
-                                            `omsorgstilbudPeriodeForm.tidFasteDager.${
-                                                gjelderFortid ? 'historisk' : 'planlagt'
-                                            }.label`
+                                        legend={intlText(
+                                            gjelderFortid
+                                                ? 'omsorgstilbudPeriodeForm_tidFasteDager_historisk_label'
+                                                : 'omsorgstilbudPeriodeForm_tidFasteDager_planlagt_label'
                                         )}
-                                        validate={() => validateOmsorgstilbudIUke(tidFasteDager)}
+                                        validate={() => {
+                                            const error = validateOmsorgstilbudFasteDager(tidFasteDager);
+                                            return error
+                                                ? {
+                                                      key: `${error}`,
+                                                      values: intlValues,
+                                                  }
+                                                : undefined;
+                                        }}
                                         name={'fasteDager_gruppe' as any}>
                                         <TidFasteUkedagerInput
                                             name={FormFields.tidFasteDager}
                                             validation={{
                                                 validator: getOmsorgstilbudFastDagValidator,
-                                                validationIntlKey: `${validationIntlKey}.fastdag.tid`,
+                                                validationIntlKey: `${validationIntlKey}_fastdag_tid`,
                                             }}
                                         />
                                     </FormComponents.InputGroup>

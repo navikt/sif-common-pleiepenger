@@ -22,7 +22,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
             <div className="tidFasteUkedagerInput">
                 <FormikTimeInput
                     label={txt.Mandager}
-                    name={`${name}.${Weekday.monday}`}
+                    name={`${name}_${Weekday.monday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
@@ -31,7 +31,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                 />
                 <FormikTimeInput
                     label={txt.Tirsdager}
-                    name={`${name}.${Weekday.tuesday}`}
+                    name={`${name}_${Weekday.tuesday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
@@ -40,7 +40,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                 />
                 <FormikTimeInput
                     label={txt.Onsdager}
-                    name={`${name}.${Weekday.wednesday}`}
+                    name={`${name}_${Weekday.wednesday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
@@ -49,7 +49,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                 />
                 <FormikTimeInput
                     label={txt.Torsdager}
-                    name={`${name}.${Weekday.thursday}`}
+                    name={`${name}_${Weekday.thursday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,
@@ -58,7 +58,7 @@ const TidFasteUkedagerInput = ({ name, validation }: Props) => {
                 />
                 <FormikTimeInput
                     label={txt.Fredager}
-                    name={`${name}.${Weekday.friday}`}
+                    name={`${name}_${Weekday.friday}`}
                     timeInputLayout={{
                         direction: 'vertical',
                         compact: true,

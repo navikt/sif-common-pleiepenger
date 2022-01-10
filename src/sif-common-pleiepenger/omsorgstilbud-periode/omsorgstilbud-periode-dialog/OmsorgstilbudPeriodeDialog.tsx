@@ -4,8 +4,10 @@ import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import Modal from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
-import OmsorgstilbudPeriodeForm, { OmsorgstilbudPeriodeData } from './OmsorgstilbudPeriodeForm';
-import './omsorgstilbudPeriode.less';
+import OmsorgstilbudPeriodeForm, {
+    OmsorgstilbudPeriodeData,
+} from '../omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
+import './omsorgstilbudPeriodeDialog.less';
 
 interface Props {
     isOpen: boolean;
@@ -20,7 +22,7 @@ const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ periode, gjelderFortid, i
     return isOpen ? (
         <Modal
             isOpen={isOpen}
-            contentLabel={intlHelper(intl, 'omsorgstilbudPeriodeDialog.contentLabel')}
+            contentLabel={intlHelper(intl, 'omsorgstilbudPeriodeDialog_contentLabel')}
             onRequestClose={onCancel}
             shouldCloseOnOverlayClick={false}
             className="omsorgstilbudPeriodeDialog">

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { DateRange, InputTime } from '@navikt/sif-common-formik/lib';
 import {
     DateDurationMap,
@@ -10,12 +9,13 @@ import {
 } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { Knapp } from 'nav-frontend-knapper';
-import OmsorgstilbudPeriodeDialog from './OmsorgstilbudPeriodeDialog';
-import { OmsorgstilbudPeriodeData } from './OmsorgstilbudPeriodeForm';
+import OmsorgstilbudPeriodeDialog from './omsorgstilbud-periode-dialog/OmsorgstilbudPeriodeDialog';
+import { OmsorgstilbudPeriodeData } from './omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 
 interface Props {
     periode: DateRange;
     gjelderFortid: boolean;
+    registrerKnappLabel: string;
     onPeriodeChange: (tid: DateDurationMap) => void;
 }
 
@@ -32,7 +32,7 @@ const oppdaterDagerIPeriode = ({ fom, tom, tidFasteDager }: OmsorgstilbudPeriode
     return dagerSomSkalEndres;
 };
 
-const RegistrerOmsorgstilbudPeriodeKnapp: React.FC<Props> = ({ periode, gjelderFortid, onPeriodeChange }) => {
+const OmsorgstilbudPeriode: React.FC<Props> = ({ periode, gjelderFortid, registrerKnappLabel, onPeriodeChange }) => {
     const [visPeriode, setVisPeriode] = useState(false);
 
     const handleFormSubmit = (data: OmsorgstilbudPeriodeData) => {
@@ -45,7 +45,7 @@ const RegistrerOmsorgstilbudPeriodeKnapp: React.FC<Props> = ({ periode, gjelderF
     return (
         <>
             <Knapp htmlType="button" onClick={() => setVisPeriode(true)} mini={true}>
-                <FormattedMessage id="omsorgstilbudPeriodeDialog.contentLabel" />
+                {registrerKnappLabel}
             </Knapp>
             <OmsorgstilbudPeriodeDialog
                 periode={periode}
@@ -58,4 +58,4 @@ const RegistrerOmsorgstilbudPeriodeKnapp: React.FC<Props> = ({ periode, gjelderF
     );
 };
 
-export default RegistrerOmsorgstilbudPeriodeKnapp;
+export default OmsorgstilbudPeriode;

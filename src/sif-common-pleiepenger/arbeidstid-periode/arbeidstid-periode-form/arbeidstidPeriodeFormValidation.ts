@@ -53,7 +53,7 @@ export const getArbeidstimerFastDagValidator =
             : undefined;
         if (error) {
             return {
-                key: errorsIntlKey ? `${errorsIntlKey}.${error}` : error,
+                key: errorsIntlKey ? `${errorsIntlKey}_${error}` : error,
                 values: { dag },
                 keepKeyUnaltered: true,
             };

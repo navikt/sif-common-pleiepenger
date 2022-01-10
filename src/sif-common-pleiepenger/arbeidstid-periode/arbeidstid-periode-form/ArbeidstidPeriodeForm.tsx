@@ -49,7 +49,6 @@ interface FormValues {
 
 const initialFormValues: Partial<FormValues> = {};
 const bem = bemUtils('arbeidstidEnkeltdagForm');
-const validationIntlKey = 'arbeidstidPeriodeForm_validation';
 
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
@@ -100,7 +99,10 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                         return (
                             <FormComponents.Form
                                 onCancel={onCancel}
-                                formErrorHandler={getIntlFormErrorHandler_underscoreKeys(intl, validationIntlKey)}
+                                formErrorHandler={getIntlFormErrorHandler_underscoreKeys(
+                                    intl,
+                                    'arbeidstidPeriodeForm_validation'
+                                )}
                                 includeValidationSummary={true}
                                 includeButtons={true}
                                 submitButtonLabel={arbIntl.intlText('arbeidstidPeriodeForm_submitButtonLabel')}
@@ -231,7 +233,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<Props> = ({
                                             <TidFasteUkedagerInput
                                                 name={FormFields.tidFasteDager}
                                                 validation={{
-                                                    validationIntlKey: `${validationIntlKey}.fastdag.tid`,
+                                                    validationIntlKey: `arbeidstidPeriodeForm_validation_fastdag_tid`,
                                                     validator: getArbeidstimerFastDagValidator,
                                                 }}
                                             />

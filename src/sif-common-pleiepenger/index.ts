@@ -11,7 +11,7 @@ export { default as DurationText } from './duration-text/DurationText';
 export { default as OmsorgstilbudEnkeltdagDialog } from './omsorgstilbud-enkeltdag/OmsorgstilbudEnkeltdagDialog';
 export { default as omsorgstilbudEnkeltdagFormMessages } from './omsorgstilbud-enkeltdag/omsorgstilbudEnkeltdagFormMessages';
 export { default as OmsorgstilbudMånedInfo } from './omsorgstilbud-periode/OmsorgstilbudMånedInfo';
-export { default as RegistrerOmsorgstilbudPeriodeKnapp } from './omsorgstilbud-periode/RegistrerOmsorgstilbudPeriodeKnapp';
+export { default as OmsorgstilbudPeriode } from './omsorgstilbud-periode/OmsorgstilbudPeriode';
 export { default as SøknadsperioderMånedListe } from './søknadsperioder-måned-liste/SøknadsperioderMånedListe';
 export { default as TidKalenderForm } from './tid-kalender-form/TidKalenderForm';
 export { default as TidUkerInput } from './tid-kalender-form/tid-uker-input/TidUkerInput';
