@@ -1,4 +1,4 @@
-import { ComponentMessages, Locale } from '../i18n';
+import { ComponentMessages } from '../i18n';
 
 interface Messages {
     Mandager: string;
@@ -27,7 +27,7 @@ const nb: Messages = {
 };
 
 export const tidUkerdagerInputMessages: ComponentMessages<Messages> = {
-    [Locale.nb]: nb,
+    nb: nb,
 };
 
 export const getTidFasteUkerdagerInputMessages = (locale: string): Messages => {

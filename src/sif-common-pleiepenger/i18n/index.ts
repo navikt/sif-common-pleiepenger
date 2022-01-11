@@ -7,10 +7,10 @@ import { timerOgMinutterMessages } from '../timer-og-minutter/timerOgMinutterMes
 
 export type ComponentMessages<Messages> = Record<string, Messages>;
 
-export enum Locale {
-    nb = 'nb',
-    nn = 'nn',
-}
+// export enum Locale {
+//     nb = 'nb',
+//     nn = 'nn',
+// }
 
 export const sifCommonPleiepengerMessages = {
     nb: {
