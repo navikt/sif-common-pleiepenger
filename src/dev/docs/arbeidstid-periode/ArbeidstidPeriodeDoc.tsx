@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
-import { FormikCheckbox, TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
+import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
 import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
@@ -32,8 +31,6 @@ const initialValues: FormValues = {
 
 const ArbeidstidPeriodeDoc = () => {
     const intl = useIntl();
-
-    const [spørOmBrukerSkalJobbeIPerioden, setSpørOmBrukerSkalJobbeIPerioden] = useState<boolean>(false);
 
     const periode: DateRange = { from: ISODateToDate('2021-12-01'), to: ISODateToDate('2022-01-05') };
     const jobberNormaltTimer = 30;
@@ -78,25 +75,12 @@ const ArbeidstidPeriodeDoc = () => {
                                 jobberNormaltTimer,
                                 periode,
                                 arbeidsstedNavn,
-                                spørOmBrukerSkalJobbeIPerioden,
                                 intlValues,
                                 onCancel: () => setVisPeriode(false),
                                 onSubmit: handleFormSubmit,
                             }}
                             isOpen={visPeriode}
                         />
-
-                        <Box margin="l">
-                            <FormikCheckbox
-                                name="spørOmBrukerSkalJobbeIPerioden"
-                                label="Skal spørre om en arbeider i perioden"
-                                checked={spørOmBrukerSkalJobbeIPerioden}
-                                useFastField={false}
-                                afterOnChange={(checked) => {
-                                    setSpørOmBrukerSkalJobbeIPerioden(checked);
-                                }}
-                            />
-                        </Box>
                     </Panel>
                 )}
             />

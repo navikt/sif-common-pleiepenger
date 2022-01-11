@@ -9,7 +9,6 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.fraOgMed.label': 'Fra og med',
         'arbeidstidPeriodeForm.tilOgMed.label': 'Til og med',
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': `Hvordan vil du oppgi hvor mye {skalEllerHarJobbet}?`,
-        'arbeidstidPeriodeForm.skalJobbeIPerioden.label': `Skal eller har du jobbet i perioden?`,
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.prosent': 'I prosent',
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.timer': 'I timer',
         'arbeidstidPeriodeForm.prosent.label': `Hvor mange prosent av din normale arbeidstid {skalEllerHarJobbet} du?`,
