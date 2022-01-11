@@ -4,10 +4,12 @@ import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { FormikCheckbox, TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
 import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import {
     ArbeidsforholdType,
-    ArbeidstidPeriode,
+    ArbeidstidPeriodeData,
+    ArbeidstidPeriodeDialog,
     getArbeidstidIPeriodeIntlValues,
 } from '../../../sif-common-pleiepenger';
 import { arbeidstidPeriodeMessages } from '../../../sif-common-pleiepenger/arbeidstid-periode/arbeidstidPeriodeMessages';
@@ -47,6 +49,15 @@ const ArbeidstidPeriodeDoc = () => {
         },
     });
 
+    const [visPeriode, setVisPeriode] = useState(false);
+
+    const handleFormSubmit = (data: ArbeidstidPeriodeData) => {
+        setVisPeriode(false);
+        setTimeout(() => {
+            console.log(data);
+        });
+    };
+
     return (
         <>
             <PageIntro title="@navikt/sif-common-pleiepenger">
@@ -59,19 +70,22 @@ const ArbeidstidPeriodeDoc = () => {
                 }}
                 renderForm={() => (
                     <Panel>
-                        <ArbeidstidPeriode
-                            registrerKnappLabel="Legg til arbeid i periode"
+                        <Knapp htmlType="button" onClick={() => setVisPeriode(true)} mini={true}>
+                            Registrer arbeid for en periode
+                        </Knapp>
+                        <ArbeidstidPeriodeDialog
                             formProps={{
                                 jobberNormaltTimer,
                                 periode,
                                 arbeidsstedNavn,
                                 spørOmBrukerSkalJobbeIPerioden,
                                 intlValues,
+                                onCancel: () => setVisPeriode(false),
+                                onSubmit: handleFormSubmit,
                             }}
-                            onPeriodeChange={(data) => {
-                                console.log(data);
-                            }}
+                            isOpen={visPeriode}
                         />
+
                         <Box margin="l">
                             <FormikCheckbox
                                 name="spørOmBrukerSkalJobbeIPerioden"

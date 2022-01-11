@@ -3,7 +3,6 @@ export { GjentagelseType } from './tid-enkeltdag-dialog/TidEnkeltdagForm';
 export type { TidEnkeltdagFormValues, GjentagelseEnkeltdag } from './tid-enkeltdag-dialog/TidEnkeltdagForm';
 export { default as arbeidstidEnkeltdagMessage } from './arbeidstid-enkeltdag/arbeidstidEnkeltdagMessages';
 export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode/arbeidstid-periode-dialog/ArbeidstidPeriodeDialog';
-export { default as ArbeidstidPeriode } from './arbeidstid-periode/ArbeidstidPeriode';
 export { default as CalendarGrid } from './calendar-grid/CalendarGrid';
 export { default as TidEnkeltdager } from './dager-med-tid/TidEnkeltdager';
 export { default as TidFasteDager } from './dager-med-tid/TidFasteDager';
