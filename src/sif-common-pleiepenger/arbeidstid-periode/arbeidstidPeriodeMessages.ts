@@ -9,6 +9,7 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.fraOgMed.label': 'Fra og med',
         'arbeidstidPeriodeForm.tilOgMed.label': 'Til og med',
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': `Hvordan vil du oppgi hvor mye {skalEllerHarJobbet}?`,
+        'arbeidstidPeriodeForm.skalJobbeIPerioden.label': `Skal eller har du jobbet i perioden?`,
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.prosent': 'I prosent',
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.timer': 'I timer',
         'arbeidstidPeriodeForm.prosent.label': `Hvor mange prosent av din normale arbeidstid {skalEllerHarJobbet} du?`,
@@ -94,16 +95,3 @@ export const arbeidstidPeriodeMessages = {
 type ArbeidstidPeriodeMessagesType = keyof typeof arbeidstidPeriodeMessages.nb;
 
 export const getArbeidstidPeriodeIntl = (intl: IntlShape) => typedIntlHelper<ArbeidstidPeriodeMessagesType>(intl);
-
-// export const getTypedIntlHelper =
-//     <T extends string>() =>
-//     ('intl': IntlShape, 'id': T, 'values?': Record<string, string>) => {
-//         return intl.formatMessage({ id }, values);
-//     };
-
-// export const useArbeidPeriodeTexts = () => {
-//     const intl = useIntl();
-//     return typedIntlHelper<ArbeidstidPeriodeMessagesType>(intl);
-// };
-
-// export const arbeidPeriodeTexts = getTypedIntlHelper<ArbeidstidPeriodeMessagesType>();
