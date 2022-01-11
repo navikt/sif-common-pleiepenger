@@ -1,38 +1,29 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
-import { DateRange } from '@navikt/sif-common-formik/lib';
 import Modal from 'nav-frontend-modal';
 import { Normaltekst } from 'nav-frontend-typografi';
 import OmsorgstilbudPeriodeForm, {
-    OmsorgstilbudPeriodeData,
+    OmsorgstilbudPeriodeFormProps,
 } from '../omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 import './omsorgstilbudPeriodeDialog.less';
 
 interface Props {
     isOpen: boolean;
-    periode: DateRange;
-    gjelderFortid: boolean;
-    onSubmit: (omsorgstilbudPeriode: OmsorgstilbudPeriodeData) => void;
-    onCancel: () => void;
+    formProps: Pick<OmsorgstilbudPeriodeFormProps, 'gjelderFortid' | 'periode' | 'onCancel' | 'onSubmit'>;
 }
 
-const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ periode, gjelderFortid, isOpen, onSubmit, onCancel }) => {
+const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ formProps, isOpen }) => {
     const intl = useIntl();
     return isOpen ? (
         <Modal
             isOpen={isOpen}
             contentLabel={intlHelper(intl, 'omsorgstilbudPeriodeDialog.contentLabel')}
-            onRequestClose={onCancel}
+            onRequestClose={formProps.onCancel}
             shouldCloseOnOverlayClick={false}
             className="omsorgstilbudPeriodeDialog">
             <Normaltekst tag="div">
-                <OmsorgstilbudPeriodeForm
-                    rammePeriode={periode}
-                    gjelderFortid={gjelderFortid}
-                    onCancel={onCancel}
-                    onSubmit={onSubmit}
-                />
+                <OmsorgstilbudPeriodeForm {...formProps} />
             </Normaltekst>
         </Modal>
     ) : null;

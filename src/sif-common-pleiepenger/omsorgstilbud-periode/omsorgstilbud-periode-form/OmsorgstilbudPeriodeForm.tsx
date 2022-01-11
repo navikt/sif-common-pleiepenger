@@ -17,8 +17,8 @@ import { TidFasteUkedagerInput } from '../..';
 import { getOmsorgstilbudPeriodeIntl } from '../omsorgstilbudPeriodeMessages';
 import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudFasteDager } from './omsorgstilbudFormValidation';
 
-interface Props {
-    rammePeriode: DateRange;
+export interface OmsorgstilbudPeriodeFormProps {
+    periode: DateRange;
     gjelderFortid: boolean;
     onSubmit: (data: OmsorgstilbudPeriodeData) => void;
     onCancel: () => void;
@@ -47,7 +47,12 @@ const initialFormValues: Partial<FormValues> = {};
 
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
-const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid, onSubmit, onCancel }) => {
+const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({
+    periode,
+    gjelderFortid,
+    onSubmit,
+    onCancel,
+}) => {
     const intl = useIntl();
     const { intlText } = getOmsorgstilbudPeriodeIntl(intl);
 
@@ -99,17 +104,17 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
                                                 dayPickerProps: {
-                                                    initialMonth: rammePeriode.from,
+                                                    initialMonth: periode.from,
                                                 },
-                                                minDate: rammePeriode.from,
-                                                maxDate: to || rammePeriode.to,
+                                                minDate: periode.from,
+                                                maxDate: to || periode.to,
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: true,
                                                     toDate: to,
                                                     fromDate: from,
-                                                    min: rammePeriode.from,
-                                                    max: to || rammePeriode.to,
+                                                    min: periode.from,
+                                                    max: to || periode.to,
                                                 }).validateFromDate,
                                             }}
                                             toDatepickerProps={{
@@ -117,18 +122,18 @@ const OmsorgstilbudPeriodeForm: React.FC<Props> = ({ rammePeriode, gjelderFortid
                                                 name: FormFields.tom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
-                                                minDate: from || rammePeriode.from,
-                                                maxDate: rammePeriode.to,
+                                                minDate: from || periode.from,
+                                                maxDate: periode.to,
                                                 dayPickerProps: {
-                                                    initialMonth: from || rammePeriode.from,
+                                                    initialMonth: from || periode.from,
                                                 },
                                                 validate: getDateRangeValidator({
                                                     required: true,
                                                     onlyWeekdays: true,
                                                     toDate: to,
                                                     fromDate: from,
-                                                    min: from || rammePeriode.from,
-                                                    max: rammePeriode.to,
+                                                    min: from || periode.from,
+                                                    max: periode.to,
                                                 }).validateToDate,
                                             }}
                                         />

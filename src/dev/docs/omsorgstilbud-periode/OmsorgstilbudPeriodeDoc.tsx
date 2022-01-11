@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
+import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
 import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import flat from 'flat';
+import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
-import { OmsorgstilbudPeriode } from '../../../sif-common-pleiepenger';
+import { OmsorgstilbudPeriodeDialog } from '../../../sif-common-pleiepenger';
+import {
+    OmsorgstilbudPeriodeData,
+    OmsorgstilbudPeriodeFormErrors,
+} from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
+import { omsorgstibudPeriodeMessages } from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbudPeriodeMessages';
 import PageIntro from '../../components/page-intro/PageIntro';
+import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
 import { DateRange } from '../../utils/dateUtils';
 import { FormValues } from './types';
-import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
-import { omsorgstibudPeriodeMessages } from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbudPeriodeMessages';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
-import flat from 'flat';
-import { OmsorgstilbudPeriodeFormErrors } from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
 
 const initialValues: FormValues = {
     tid: {},
@@ -19,6 +23,16 @@ const initialValues: FormValues = {
 
 const OmsorgstilbudPeriodeDoc = () => {
     const periode: DateRange = { from: ISODateToDate('2021-12-01'), to: ISODateToDate('2022-01-05') };
+
+    const [visDialog, setVisDialog] = useState(false);
+
+    const handleFormSubmit = (data: OmsorgstilbudPeriodeData) => {
+        setVisDialog(false);
+        setTimeout(() => {
+            console.log(data);
+        });
+    };
+
     return (
         <>
             <PageIntro title="@navikt/sif-common-pleiepenger">
@@ -31,12 +45,17 @@ const OmsorgstilbudPeriodeDoc = () => {
                 }}
                 renderForm={() => (
                     <Panel>
-                        <OmsorgstilbudPeriode
-                            registrerKnappLabel="Registrer tid i omsorgstilbud"
-                            periode={periode}
-                            gjelderFortid={true}
-                            onPeriodeChange={(data) => {
-                                console.log(data);
+                        <Knapp htmlType="button" onClick={() => setVisDialog(true)} mini={true}>
+                            Registrer arbeid for en periode
+                        </Knapp>
+
+                        <OmsorgstilbudPeriodeDialog
+                            isOpen={visDialog}
+                            formProps={{
+                                periode,
+                                gjelderFortid: true,
+                                onCancel: () => setVisDialog(false),
+                                onSubmit: handleFormSubmit,
                             }}
                         />
                     </Panel>
