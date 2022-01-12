@@ -1,6 +1,7 @@
 import React from 'react';
 import ArbeidstidPeriodeDoc from '../docs/arbeidstid-periode/ArbeidstidPeriodeDoc';
 import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
+import TidEnkeltdagDialogDoc from '../docs/tid-enkeltdag/TidEnkeltdagDialogDoc';
 import Intro from '../Intro';
 
 export interface RouteConfig {
@@ -24,6 +25,11 @@ export const routes: RouteConfig[] = [
         path: 'omsorgstilbud-periode',
         title: 'Omsorgstilbud periode',
         renderContent: () => <OmsorgstilbudPeriodeDoc />,
+    },
+    {
+        path: 'tid-enkeltdag',
+        title: 'Tid enkeltdag',
+        renderContent: () => <TidEnkeltdagDialogDoc />,
     },
 ];
 

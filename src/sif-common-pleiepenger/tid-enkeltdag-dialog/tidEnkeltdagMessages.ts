@@ -25,10 +25,12 @@ const tidEnkeltdagFormMessages = {
         'tidEnkeltdagForm.validation.tid.hoursAreNegative': 'Antall timer kan ikke være et negativt tall.',
         'tidEnkeltdagForm.validation.tid.minutesAreInvalid': 'Antall minutter er ikke et gyldig tall.',
         'tidEnkeltdagForm.validation.tid.minutesAreNegative': 'Antall minutter kan ikke være et negativt tall.',
-        'tidEnkeltdagForm.validation.tid.tooManyHours': 'Antall timer kan ikke overstige {maksTimer} timer.',
-        'tidEnkeltdagForm.validation.tid.tooManyMinutes': 'Antall minutter kan ikke overstige {maksMinutter} minutter.',
+        'tidEnkeltdagForm.validation.tid.tooManyHours':
+            'Antall timer og minutter kan ikke overstige {maksTimer} timer og {maksMinutter} minutter.',
+        'tidEnkeltdagForm.validation.tid.tooManyMinutes':
+            'Antall timer og minutter kan ikke overstige {maksTimer} timer og {maksMinutter} minutter.',
         'tidEnkeltdagForm.validation.tid.durationIsTooLong':
-            'Antall timer og minutter registrert er for høyt. Tiden kan ikke overstige {maksTimer} timer og {maksMinutter} minutter.',
+            'Antall timer og minutter kan ikke overstige {maksTimer} timer og {maksMinutter} minutter.',
         'tidEnkeltdagForm.validation.tid.durationIsTooShort':
             'Antall timer og minutter kan ikke være mindre enn {minTimer} timer og {minMinutter} minutter.',
     },

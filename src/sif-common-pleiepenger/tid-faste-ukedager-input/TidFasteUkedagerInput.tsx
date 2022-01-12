@@ -60,7 +60,7 @@ const TidFasteUkedagerInput = ({ name, validateDag }: Props) => {
                         direction: 'vertical',
                         compact: true,
                     }}
-                    validate={validateDag ? (value) => validateDag(txt.mandag, value) : undefined}
+                    validate={validateDag ? (value) => validateDag(txt.fredag, value) : undefined}
                 />
             </div>
         </Box>

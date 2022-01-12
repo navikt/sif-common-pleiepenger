@@ -1,22 +1,12 @@
 import React, { useState } from 'react';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
-import flat from 'flat';
+import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
-import { OmsorgstilbudPeriodeDialog } from '../../../sif-common-pleiepenger';
-import {
-    OmsorgstilbudPeriodeData,
-    OmsorgstilbudPeriodeFormErrors,
-} from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
-import { omsorgstibudPeriodeMessages } from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbudPeriodeMessages';
 import PageIntro from '../../components/page-intro/PageIntro';
-import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
 import { DateRange } from '../../utils/dateUtils';
-
-import { DateDurationMap } from '@navikt/sif-common-utils/lib';
+import TidEnkeltdagDialog from '../../../sif-common-pleiepenger/tid-enkeltdag-dialog/TidEnkeltdagDialog';
+import { TidEnkeltdagEndring } from '../../../sif-common-pleiepenger/tid-enkeltdag-dialog/TidEnkeltdagForm';
 
 export enum FormFields {
     'tid' = 'tid',
@@ -32,22 +22,22 @@ const initialValues: FormValues = {
     tid: {},
 };
 
-const OmsorgstilbudPeriodeDoc = () => {
+const TidEnkeltdagDialogDoc = () => {
     const periode: DateRange = { from: ISODateToDate('2021-12-01'), to: ISODateToDate('2022-01-05') };
 
     const [visDialog, setVisDialog] = useState(false);
 
-    const handleFormSubmit = (data: OmsorgstilbudPeriodeData) => {
+    const handleFormSubmit = (dagerMedTid: TidEnkeltdagEndring) => {
         setVisDialog(false);
         setTimeout(() => {
-            console.log(data);
+            console.log(dagerMedTid);
         });
     };
 
     return (
         <>
             <PageIntro title="@navikt/sif-common-pleiepenger">
-                <h2>OmsorgstilbudPeriode eksempel</h2>
+                <h2>Tid enkeltdag eksempel</h2>
             </PageIntro>
             <TypedFormikWrapper<FormValues>
                 initialValues={initialValues}
@@ -57,14 +47,17 @@ const OmsorgstilbudPeriodeDoc = () => {
                 renderForm={() => (
                     <Panel>
                         <Knapp htmlType="button" onClick={() => setVisDialog(true)} mini={true}>
-                            Registrer arbeid for en periode
+                            Registrer arbeid for en dag
                         </Knapp>
 
-                        <OmsorgstilbudPeriodeDialog
+                        <TidEnkeltdagDialog
                             isOpen={visDialog}
+                            dialogTitle="Tid enkeltdag"
                             formProps={{
                                 periode,
-                                gjelderFortid: true,
+                                dato: periode.from,
+                                maksTid: { hours: 7, minutes: 30 },
+                                hvorMyeSpørsmålRenderer: () => 'Hvor mye tid',
                                 onCancel: () => setVisDialog(false),
                                 onSubmit: handleFormSubmit,
                             }}
@@ -72,16 +65,16 @@ const OmsorgstilbudPeriodeDoc = () => {
                     </Panel>
                 )}
             />
-            <Box margin="xxl" padBottom="l">
+            {/* <Box margin="xxl" padBottom="l">
                 <FormValidationErrorMessages
                     validationErrorIntlKeys={flat(OmsorgstilbudPeriodeFormErrors)}
                     intlMessages={omsorgstibudPeriodeMessages}
                 />
             </Box>
 
-            <MessagesPreview title="Alle tekster" messages={omsorgstibudPeriodeMessages} showExplanation={false} />
+            <MessagesPreview title="Alle tekster" messages={omsorgstibudPeriodeMessages} showExplanation={false} /> */}
         </>
     );
 };
 
-export default OmsorgstilbudPeriodeDoc;
+export default TidEnkeltdagDialogDoc;

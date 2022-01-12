@@ -6,7 +6,7 @@ import { NumberDuration } from '@navikt/sif-common-utils/lib';
 export const getTidEnkeltdagFormTidValidator =
     (maksTid: NumberDuration, minTid: NumberDuration = { hours: 0, minutes: 0 }) =>
     (time: InputTime): ValidationResult<ValidationError> => {
-        const error = time ? getTimeValidator({ required: true, max: maksTid, min: minTid })(time) : undefined;
+        const error = getTimeValidator({ required: true, max: maksTid, min: minTid })(time);
         if (error) {
             return {
                 key: `tidEnkeltdagForm.validation.tid.${error}`,
