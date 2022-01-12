@@ -50,11 +50,11 @@ const omsorgstilbudPeriodeFormValidationMessages = {
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.minutesAreInvalid':
             'Antall minutter på {dag} er ikke et gyldig tall.',
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.tooManyHours':
-            'Antall timer på {dag} kan ikke overstige 24 timer.',
+            'Antall timer på {dag} kan ikke overstige 7 timer og 30 minutter.',
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.tooManyMinutes':
             'Antall minutter på {dag} kan ikke overstige 59 minutter.',
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.durationIsTooLong':
-            'Antall timer og minutter registrert {dag} er for høyt. Tiden kan ikke overstige 24 timer hver ukedag.',
+            'Antall timer og minutter registrert {dag} er for høyt. Tiden kan ikke overstige 7 timer og 30 minutter hver ukedag.',
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.durationIsTooShort':
             'Antall timer og minutter {dato} {hvor} kan ikke være mindre enn 0 timer og 0 minutter.',
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.minutesAreNegative':
