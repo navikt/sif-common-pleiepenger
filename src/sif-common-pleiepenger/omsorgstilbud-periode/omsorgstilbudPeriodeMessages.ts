@@ -68,6 +68,10 @@ export const omsorgstibudPeriodeMessages = {
     nb: {
         ...omsorgstilbudPeriodeFormMessages.nb,
         ...omsorgstilbudPeriodeFormValidationMessages.nb,
+        'omsorgstilbudMånedInfo.ukeOgÅr': 'Omsorgstilbud {ukeOgÅr}',
+        'omsorgstilbudMånedInfo.dagerRegistrert.dager':
+            '{dager, plural, one {# dag} other {# dager}} med omsorgstilbud registrert.',
+        'omsorgstilbudMånedInfo.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud registrert.',
         'omsorgstilbudPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
         'omsorgstilbudPeriode.part.skalVære': 'skal være',
         'omsorgstilbudPeriode.part.harVært': 'har vært',

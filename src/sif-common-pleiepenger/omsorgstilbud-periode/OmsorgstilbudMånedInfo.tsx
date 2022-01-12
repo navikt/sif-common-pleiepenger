@@ -53,15 +53,15 @@ const OmsorgstilbudMånedInfo: React.FunctionComponent<Props> = ({
                 <>
                     <Element tag={`h${månedTittelHeadingLevel}`}>
                         <FormattedMessage
-                            id="omsorgstilbud.ukeOgÅr"
+                            id="omsorgstilbudMånedInfo.ukeOgÅr"
                             values={{ ukeOgÅr: dayjs(måned.from).format('MMMM YYYY') }}
                         />{' '}
                         <Normaltekst tag="div">
                             {dagerMedRegistrertOmsorgstilbud.length === 0 ? (
-                                <FormattedMessage id="omsorgstilbud.ingenDagerRegistrert" />
+                                <FormattedMessage id="omsorgstilbudMånedInfo.dagerRegistrert.ingenDager" />
                             ) : (
                                 <FormattedMessage
-                                    id="omsorgstilbud.iPeriodePanel.info"
+                                    id="omsorgstilbudMånedInfo.dagerRegistrert.dager"
                                     values={{ dager: dagerMedRegistrertOmsorgstilbud.length }}
                                 />
                             )}
