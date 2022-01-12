@@ -47,6 +47,8 @@ const arbeidstidPeriodeFormFormMessages = {
             'Antall prosent du {skalEllerHarJobbet} {hvor} kan ikke være mer enn {max}.',
         'arbeidstidPeriodeForm.validation.fasteDager.gruppe.ingenTidRegistrert':
             'Du må oppgi hvor mange timer du {skalEllerHarJobbet} i uken {hvor} {iPerioden}.',
+        'arbeidstidPeriodeForm.validation.fasteDager.gruppe.forMangeTimer':
+            'Du kan ikke oppgi mer enn 24 timer for én dag.',
 
         'arbeidstidPeriodeForm.validation.tidFasteDager.tid.timeHasNoValue':
             'Du må fylle ut timer og minutter for {dag}.',

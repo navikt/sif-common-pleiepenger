@@ -9,7 +9,7 @@ const omsorgstilbudPeriodeFormMessages = {
         'omsorgstilbudPeriodeForm.fraOgMed.label': 'Fra og med',
         'omsorgstilbudPeriodeForm.tilOgMed.label': 'Til og med',
         'omsorgstilbudPeriodeForm.tidFasteDager.historisk.label':
-            'Legg inn hvor mange timer barnet har vært i et fast og regelmessig omsorgstilbud per dag i uken i perioden',
+            'Legg inn hvor mange timer barnet var i et fast og regelmessig omsorgstilbud per dag i uken i perioden',
         'omsorgstilbudPeriodeForm.tidFasteDager.planlagt.label':
             'Legg inn hvor mange timer barnet skal være i et fast og regelmessig omsorgstilbud per dag i uken i perioden',
     },
@@ -74,7 +74,7 @@ export const omsorgstibudPeriodeMessages = {
         'omsorgstilbudMånedInfo.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud registrert.',
         'omsorgstilbudPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
         'omsorgstilbudPeriode.part.skalVære': 'skal være',
-        'omsorgstilbudPeriode.part.harVært': 'har vært',
+        'omsorgstilbudPeriode.part.harVært': 'var',
     },
 };
 

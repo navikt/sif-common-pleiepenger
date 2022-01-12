@@ -36,7 +36,7 @@ export const validateFasteArbeidstimerIUke = (
             key: `ingenTidRegistrert`,
         };
     }
-    if (timer > 37.5) {
+    if (timer > 24 * 5) {
         return {
             key: `forMangeTimer`,
         };
