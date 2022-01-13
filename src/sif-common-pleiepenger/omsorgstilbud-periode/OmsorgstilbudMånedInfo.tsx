@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
-import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik/lib';
 import { DateDurationMap, durationIsZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { Knapp } from 'nav-frontend-knapper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { DurationText, OmsorgstilbudEnkeltdagDialog, TidsbrukKalender } from '../';
 import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
@@ -13,15 +11,11 @@ import { TidEnkeltdagEndring } from '../tid-enkeltdag-dialog/TidEnkeltdagForm';
 interface Props {
     måned: DateRange;
     tidOmsorgstilbud: DateDurationMap;
-    editLabel: string;
-    addLabel: string;
     utilgjengeligeDatoer?: Date[];
     månedTittelHeadingLevel?: number;
     periode: DateRange;
     åpentEkspanderbartPanel?: boolean;
-    kanEndrePeriode?: boolean;
     onEnkeltdagChange?: (evt: TidEnkeltdagEndring) => void;
-    onRequestEdit: (tid: DateDurationMap) => void;
 }
 
 const OmsorgstilbudMånedInfo: React.FunctionComponent<Props> = ({
@@ -30,11 +24,7 @@ const OmsorgstilbudMånedInfo: React.FunctionComponent<Props> = ({
     utilgjengeligeDatoer,
     månedTittelHeadingLevel = 2,
     periode,
-    addLabel,
-    editLabel,
     åpentEkspanderbartPanel,
-    kanEndrePeriode,
-    onRequestEdit,
     onEnkeltdagChange,
 }) => {
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
@@ -105,13 +95,6 @@ const OmsorgstilbudMånedInfo: React.FunctionComponent<Props> = ({
                         : undefined
                 }
             />
-            {kanEndrePeriode && (
-                <FormBlock margin="l">
-                    <Knapp htmlType="button" mini={true} onClick={() => onRequestEdit(tidOmsorgstilbud)}>
-                        {dagerMedRegistrertOmsorgstilbud.length === 0 ? addLabel : editLabel}
-                    </Knapp>
-                </FormBlock>
-            )}
             {editDate && onEnkeltdagChange && (
                 <OmsorgstilbudEnkeltdagDialog
                     isOpen={editDate !== undefined}
