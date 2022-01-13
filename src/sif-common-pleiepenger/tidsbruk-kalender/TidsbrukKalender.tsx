@@ -88,7 +88,7 @@ const TidsbrukKalender: React.FunctionComponent<Props> = ({
                         tid={dag.tid ? ensureDuration(dag.tid) : undefined}
                         prosent={dag.prosent}
                         tidRenderer={tidRenderer}
-                        tidOpprinnelig={dag.tidOpprinnelig}
+                        tidOpprinnelig={dag.tidOpprinnelig || { hours: '0', minutes: '0' }}
                         visEndringsinformasjon={visEndringsinformasjon}
                         footerRenderer={footerRenderer}
                     />
