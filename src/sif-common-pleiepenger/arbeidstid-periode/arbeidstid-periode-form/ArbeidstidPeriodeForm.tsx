@@ -20,8 +20,9 @@ import { getArbeidstidFastProsentValidator, validateFasteArbeidstimerIUke } from
 export interface ArbeidstidPeriodeFormProps {
     arbeidsstedNavn: string;
     periode: DateRange;
-    jobberNormaltTimer: number;
     intlValues: ArbeidIPeriodeIntlValues;
+    /** Brukes kun i søknad hvor bruker har oppgitt jobberNormaltTimer for hele tilgjengelige periode */
+    jobberNormaltTimer?: number;
     onSubmit: (data: ArbeidstidPeriodeData) => void;
     onCancel: () => void;
 }
@@ -204,7 +205,11 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                       }
                                                     : undefined;
                                             }}
-                                            suffix={getRedusertArbeidstidPerUkeInfo(intl, jobberNormaltTimer, prosent)}
+                                            suffix={
+                                                jobberNormaltTimer !== undefined
+                                                    ? getRedusertArbeidstidPerUkeInfo(intl, jobberNormaltTimer, prosent)
+                                                    : undefined
+                                            }
                                             suffixStyle="text"
                                         />
                                     </FormBlock>
