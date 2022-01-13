@@ -28,6 +28,7 @@ interface Props {
     onDateClick?: (date: Date) => void;
     tomUkeContentRenderer?: () => React.ReactNode;
     tidRenderer?: TidRenderer;
+    opprinneligTidRenderer?: TidRenderer;
     footerRenderer?: TidsbrukKalenderDagFooterRenderer;
 }
 
@@ -41,6 +42,7 @@ const TidsbrukKalender: React.FunctionComponent<Props> = ({
     visEndringsinformasjon,
     onDateClick,
     tidRenderer,
+    opprinneligTidRenderer,
     tomUkeContentRenderer,
     footerRenderer,
 }) => {
@@ -88,6 +90,7 @@ const TidsbrukKalender: React.FunctionComponent<Props> = ({
                         tid={dag.tid ? ensureDuration(dag.tid) : undefined}
                         prosent={dag.prosent}
                         tidRenderer={tidRenderer}
+                        opprinneligTidRenderer={opprinneligTidRenderer}
                         tidOpprinnelig={dag.tidOpprinnelig || { hours: '0', minutes: '0' }}
                         visEndringsinformasjon={visEndringsinformasjon}
                         footerRenderer={footerRenderer}

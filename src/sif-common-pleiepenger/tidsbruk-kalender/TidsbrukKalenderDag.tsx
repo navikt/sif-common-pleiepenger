@@ -16,6 +16,7 @@ interface Props {
     visEndringsinformasjon?: boolean;
     erUtilgjengelig?: boolean;
     tidRenderer?: TidRenderer;
+    opprinneligTidRenderer?: TidRenderer;
     footerRenderer?: TidsbrukKalenderDagFooterRenderer;
 }
 
@@ -28,12 +29,20 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
     tidOpprinnelig,
     visEndringsinformasjon,
     tidRenderer,
+    opprinneligTidRenderer,
     footerRenderer,
 }) => {
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
 
     const renderTid = (duration: Duration) =>
         tidRenderer ? tidRenderer({ tid: duration, dato, prosent }) : <DurationText duration={duration} />;
+
+    const renderOpprinneligTid = (duration: Duration) =>
+        opprinneligTidRenderer ? (
+            opprinneligTidRenderer({ tid: duration, dato, prosent })
+        ) : (
+            <DurationText duration={duration} />
+        );
 
     return (
         <>
@@ -49,7 +58,7 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
                                             (
                                             <Undertekst tag="span" className={bem.element('opprinneligTid')}>
                                                 <span className="sr-only">Endret fra: </span>
-                                                {renderTid(tidOpprinnelig)}
+                                                {renderOpprinneligTid(tidOpprinnelig)}
                                             </Undertekst>
                                             )
                                         </div>
