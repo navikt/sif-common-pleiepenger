@@ -2,7 +2,6 @@ import React from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-// import { dateToday } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents, InputTime } from '@navikt/sif-common-formik/lib';
 import { getDateValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
@@ -14,6 +13,7 @@ import {
     Duration,
     durationsAreEqual,
     ensureDuration,
+    getLastWeekdayOnOrBeforeDate,
     getMonthDateRange,
     getNumberOfDaysInDateRange,
     getWeekDateRange,
@@ -24,7 +24,12 @@ import minMax from 'dayjs/plugin/minMax';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import { DurationText } from '../';
-import { getDagerMedNyTid, getGjentagelseEnkeltdagFraFormValues } from './tidEnkeltdagUtils';
+import {
+    getDagerMedNyTid,
+    getDateRangeWithinDateRange,
+    getGjentagelseEnkeltdagFraFormValues,
+    trimDateRangeToWeekdays,
+} from './tidEnkeltdagUtils';
 import { getTidEnkeltdagFormTidValidator } from './tidEnkeltdagValidation';
 
 dayjs.extend(minMax);
@@ -77,13 +82,6 @@ const FormComponents = getTypedFormComponents<FormFields, TidEnkeltdagFormValues
 
 const bem = bemUtils('tidEnkeltdagForm');
 
-const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): DateRange => {
-    return {
-        from: dayjs.max(dayjs(range.from), dayjs(limitRange.from)).toDate(),
-        to: dayjs.min(dayjs(range.to), dayjs(limitRange.to)).toDate(),
-    };
-};
-
 const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     dato,
     tid,
@@ -105,14 +103,17 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
         }
     };
 
-    // const erHistorisk = dayjs(dato).isBefore(dateToday);
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
     const dagNavn = dayjs(dato).format('dddd');
     const valgtDatoTxt = dateFormatter.dayFullShortDate(dato);
 
-    const ukePeriode: DateRange = getDateRangeWithinDateRange(getWeekDateRange(dato, true), periode);
+    const ukePeriode: DateRange = trimDateRangeToWeekdays(
+        getDateRangeWithinDateRange(getWeekDateRange(dato, true), periode)
+    );
     const ukeErHel = dayjs(ukePeriode.from).isoWeekday() === 1 && dayjs(ukePeriode.to).isoWeekday() === 5;
-    const månedPeriode: DateRange = getDateRangeWithinDateRange(getMonthDateRange(dato, true), periode);
+    const månedPeriode: DateRange = trimDateRangeToWeekdays(
+        getDateRangeWithinDateRange(getMonthDateRange(dato, true), periode)
+    );
     const månedErHel =
         dayjs(periode.from).isBefore(månedPeriode.from, 'month') && dayjs(periode.to).isAfter(månedPeriode.to, 'month');
 
@@ -125,18 +126,9 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     const ukeNavn = `${dayjs(dato).isoWeek()}`;
     const månedNavn = dayjs(dato).format('MMMM YYYY');
 
-    const sluttDatoTxt = dateFormatter.dayFullShortDate(periode.to);
+    const sluttDatoTxt = dateFormatter.dayFullShortDate(getLastWeekdayOnOrBeforeDate(periode.to));
 
     const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(periode) > 2;
-
-    // const intlValues = {
-    //     skalEllerHarJobbet: intlHelper(
-    //         intl,
-    //         erHistorisk ? 'arbeidstidEnkeltdagForm.jobbet' : 'arbeidstidEnkeltdagForm.skalJobbe'
-    //     ),
-    //     hvor: intlHelper(intl, `arbeidstidEnkeltdagForm.som.${arbeidsforholdType}`, { navn: arbeidsstedNavn }),
-    //     når: dateFormatter.fullWithDayName(dato),
-    // };
 
     const renderGjentagelseRadioLabel = (
         key: string,

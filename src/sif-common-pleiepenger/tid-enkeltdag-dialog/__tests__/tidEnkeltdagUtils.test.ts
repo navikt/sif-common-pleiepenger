@@ -1,6 +1,7 @@
-import { ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateRange } from '@navikt/sif-common-formik/lib';
+import { dateRangeToISODateRange, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { GjentagelseType } from '../TidEnkeltdagForm';
-import { getDagerMedNyTid } from '../tidEnkeltdagUtils';
+import { getDagerMedNyTid, getDateRangeWithinDateRange, trimDateRangeToWeekdays } from '../tidEnkeltdagUtils';
 
 describe('tidEnkeltdagUtils', () => {
     describe('getDagerMedNyTid', () => {
@@ -16,6 +17,30 @@ describe('tidEnkeltdagUtils', () => {
             expect(result['2022-01-13'].minutes).toEqual('0');
             expect(result['2022-01-20'].hours).toEqual('5');
             expect(result['2022-01-20'].minutes).toEqual('0');
+        });
+    });
+    describe('getDateRangeWithinDateRange', () => {
+        const limitRange: DateRange = ISODateRangeToDateRange('2022-05-02/2022-05-08');
+        it('get correct range when dateRange exeeds limitRange', () => {
+            const result = getDateRangeWithinDateRange(ISODateRangeToDateRange('2022-05-01/2022-05-09'), limitRange);
+            expect(dateRangeToISODateRange(result)).toEqual('2022-05-02/2022-05-08');
+        });
+    });
+    describe('trimDateRangeToWeekdays', () => {
+        const mondayToSunday: DateRange = ISODateRangeToDateRange('2022-05-02/2022-05-08');
+        const sundayToMonday: DateRange = ISODateRangeToDateRange('2022-05-08/2022-05-09');
+        const sundayToSunday: DateRange = ISODateRangeToDateRange('2022-05-01/2022-05-08');
+        it('trims start of date range correctly', () => {
+            const result = trimDateRangeToWeekdays(sundayToMonday);
+            expect(dateRangeToISODateRange(result)).toEqual('2022-05-09/2022-05-09');
+        });
+        it('trims end of date range correctly', () => {
+            const result = trimDateRangeToWeekdays(mondayToSunday);
+            expect(dateRangeToISODateRange(result)).toEqual('2022-05-02/2022-05-06');
+        });
+        it('trims start and end of date range correctly', () => {
+            const result = trimDateRangeToWeekdays(sundayToSunday);
+            expect(dateRangeToISODateRange(result)).toEqual('2022-05-02/2022-05-06');
         });
     });
 });

@@ -23,7 +23,7 @@ const initialValues: FormValues = {
 };
 
 const TidEnkeltdagDialogDoc = () => {
-    const periode: DateRange = { from: ISODateToDate('2021-12-01'), to: ISODateToDate('2022-01-05') };
+    const periode: DateRange = { from: ISODateToDate('2022-01-03'), to: ISODateToDate('2022-01-30') };
 
     const [visDialog, setVisDialog] = useState(false);
 

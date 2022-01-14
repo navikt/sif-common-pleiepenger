@@ -5,6 +5,8 @@ import {
     dateToISODate,
     Duration,
     getDatesInDateRange,
+    getFirstWeekdayOnOrAfterDate,
+    getLastWeekdayOnOrBeforeDate,
     getMonthDateRange,
     getWeekDateRange,
     isDateWeekDay,
@@ -73,4 +75,17 @@ export const getGjentagelseEnkeltdagFraFormValues = (
               }
             : undefined;
     return gjentagelse;
+};
+
+export const getDateRangeWithinDateRange = (range: DateRange, limitRange: DateRange): DateRange => {
+    return {
+        from: dayjs.max(dayjs(range.from), dayjs(limitRange.from)).toDate(),
+        to: dayjs.min(dayjs(range.to), dayjs(limitRange.to)).toDate(),
+    };
+};
+export const trimDateRangeToWeekdays = (range: DateRange): DateRange => {
+    return {
+        from: getFirstWeekdayOnOrAfterDate(range.from),
+        to: getLastWeekdayOnOrBeforeDate(range.to),
+    };
 };
