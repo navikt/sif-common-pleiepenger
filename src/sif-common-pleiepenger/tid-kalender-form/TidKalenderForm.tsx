@@ -13,7 +13,7 @@ import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import Knapp from 'nav-frontend-knapper';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { getValidDurations, ISODate, DateDurationMap } from '@navikt/sif-common-utils';
+import { getValidDurations, ISODate, DateDurationMap, ensureDuration } from '@navikt/sif-common-utils';
 import TidUkerInput from './tid-uker-input/TidUkerInput';
 import { TidPerDagValidator } from '../types';
 
@@ -51,7 +51,7 @@ const TidKalenderForm = ({ periode, tid, tittel, intro, tidPerDagValidator, onSu
     const onFormikSubmit = ({ tid = {} }: Partial<FormValues>) => {
         const data: DateDurationMap = {};
         Object.keys(tid).forEach((key) => {
-            data[key] = tid[key];
+            data[key] = ensureDuration(tid[key]);
         });
         onSubmit(getValidDurations(data));
     };
