@@ -1,24 +1,9 @@
 import React, { useState } from 'react';
-import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
-import { DateDurationMap, DateRange, ISODateRangeToDateRange, isValidDuration } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import ArbeidstidMånedInfo from '../../../sif-common-pleiepenger/arbeidstid-måned-info/ArbeidstidMånedInfo';
 import PageIntro from '../../components/page-intro/PageIntro';
 import { ArbeidsforholdType } from '../../../sif-common-pleiepenger';
 import { TidEnkeltdagEndring } from '../../../sif-common-pleiepenger/tid-enkeltdag-dialog/TidEnkeltdagForm';
-
-export enum FormFields {
-    'tid' = 'tid',
-}
-
-export interface CompletedFormValues {
-    [FormFields.tid]: DateDurationMap;
-}
-
-export type FormValues = Partial<CompletedFormValues>;
-
-const initialValues: FormValues = {
-    tid: {},
-};
 
 const ArbeidstidMånedInfoDoc = () => {
     const måned: DateRange = ISODateRangeToDateRange('2021-01-01/2021-01-31');
