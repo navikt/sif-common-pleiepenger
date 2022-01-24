@@ -38,15 +38,18 @@ const ArbeidstidMånedTittel = ({
     return (
         <Element tag={`h${headingLevel}`}>
             <span className="m-caps">
-                {intlHelper(intl, 'arbeidstid.ukeOgÅr', {
+                {intlHelper(intl, 'arbeidstidMånedInfo.ukeOgÅr', {
                     ukeOgÅr: dayjs(måned.from).format('MMMM YYYY'),
                 })}
             </span>
             <Normaltekst tag="div">
                 {antallDagerMedTid === 0 ? (
-                    <FormattedMessage id="arbeidstid.iPeriodePanel.info.ingenDager" />
+                    <FormattedMessage id="arbeidstidMånedInfo.iPeriodePanel.info.ingenDager" />
                 ) : (
-                    <FormattedMessage id="arbeidstid.iPeriodePanel.info" values={{ dager: antallDagerMedTid }} />
+                    <FormattedMessage
+                        id="arbeidstidMånedInfo.iPeriodePanel.info"
+                        values={{ dager: antallDagerMedTid }}
+                    />
                 )}
             </Normaltekst>
         </Element>

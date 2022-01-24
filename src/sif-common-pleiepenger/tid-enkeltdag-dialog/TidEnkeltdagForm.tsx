@@ -151,7 +151,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
 
     return (
         <div>
-            <Undertittel tag="h1" className={bem.element('tittel')}>
+            <Undertittel tag="h1" className="dialogFormTitle">
                 <span className="m-caps">{dagNavn}</span> {dateFormatter.full(dato)}
             </Undertittel>
             <FormBlock margin="l">

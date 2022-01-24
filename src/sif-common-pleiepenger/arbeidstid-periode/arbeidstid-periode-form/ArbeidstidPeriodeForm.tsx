@@ -1,7 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
-import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik';
 import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-datepicker/datepickerUtils';
 import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
@@ -49,7 +48,6 @@ interface FormValues {
 }
 
 const initialFormValues: Partial<FormValues> = {};
-const bem = bemUtils('arbeidstidEnkeltdagForm');
 
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
@@ -86,7 +84,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
 
     return (
         <div>
-            <Undertittel tag="h1" className={bem.element('tittel')}>
+            <Undertittel tag="h1" className="dialogFormTitle">
                 {arbIntl.intlText('arbeidstidPeriodeForm.tittel', { arbeidsstedNavn })}
             </Undertittel>
             <FormBlock margin="xl">

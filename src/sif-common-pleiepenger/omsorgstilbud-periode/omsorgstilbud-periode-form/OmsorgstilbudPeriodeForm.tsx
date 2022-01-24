@@ -79,7 +79,9 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({
 
     return (
         <div>
-            <Undertittel tag="h1">{intlText('omsorgstilbudPeriodeForm.tittel')}</Undertittel>
+            <Undertittel tag="h1" className="dialogFormTitle">
+                {intlText('omsorgstilbudPeriodeForm.tittel')}
+            </Undertittel>
             <FormBlock margin="xl">
                 <FormComponents.FormikWrapper
                     initialValues={initialFormValues}

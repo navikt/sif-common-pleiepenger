@@ -21,3 +21,4 @@ export type { TidRenderer } from './tidsbruk-kalender/TidsbrukKalender';
 export * from './types';
 export * from './arbeidstid-periode/arbeidstidPeriodeUtils';
 export * from './arbeidstid-periode/arbeidstid-periode-form/arbeidstidPeriodeFormValidation';
+import './styles/styles.less';

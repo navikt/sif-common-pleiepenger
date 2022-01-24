@@ -1,5 +1,6 @@
 import { omsorgstilbudEnkeltdagFormMessages } from '..';
 import arbeidstidEnkeltdagFormMessages from '../arbeidstid-enkeltdag/arbeidstidEnkeltdagMessages';
+import arbeidstidMånedInfoMessages from '../arbeidstid-måned-info/arbeidstidMånedInfoMessages';
 import { arbeidstidPeriodeMessages } from '../arbeidstid-periode/arbeidstidPeriodeMessages';
 import { calendarGridMessages } from '../calendar-grid/calendarGridMessages';
 import { omsorgstibudPeriodeMessages } from '../omsorgstilbud-periode/omsorgstilbudPeriodeMessages';
@@ -17,5 +18,6 @@ export const sifCommonPleiepengerMessages = {
         ...tidEnkeltdagFormMessages.nb,
         ...arbeidstidEnkeltdagFormMessages.nb,
         ...calendarGridMessages.nb,
+        ...arbeidstidMånedInfoMessages.nb,
     },
 };
