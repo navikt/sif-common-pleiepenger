@@ -19,9 +19,6 @@ const TidArbeidEnkeltdag: React.FunctionComponent<Props> = ({ prosent, tid }) =>
             </span>
         );
     }
-    if (tid.hours === '0' && tid.minutes === '0') {
-        return <></>;
-    }
     return <DurationText duration={tid} />;
 };
 

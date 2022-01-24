@@ -19,11 +19,11 @@ const TidsbrukKalenderDoc = () => {
                 <TidsbrukKalender
                     dager={{
                         '2021-01-01': {
-                            hours: '2',
+                            hours: '0',
                             minutes: '0',
                         },
                         '2021-01-04': {
-                            hours: '2',
+                            hours: '0',
                             minutes: '0',
                         },
                         '2021-01-05': {
