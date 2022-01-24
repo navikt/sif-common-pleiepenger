@@ -133,7 +133,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
                 aria-hidden={true}
                 className={bem.element('weekNum', areAllDaysInWeekDisabledOrOutsideMonth ? 'empty' : undefined)}>
                 <span className={bem.element('weekNum_label')} role="presentation" aria-hidden={true}>
-                    <FormattedMessage id="Uke" /> {` `}
+                    <FormattedMessage id="calendarGrid.Uke" /> {` `}
                 </span>
                 <span>
                     <span className="sr-only">Uke </span>
@@ -156,22 +156,22 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
                 bem.modifier(renderAsList ? 'list' : 'grid')
             )}>
             <span aria-hidden={true} className={bem.element('dayHeader', 'week')}>
-                <FormattedMessage id="Uke" />
+                <FormattedMessage id="calendarGrid.Uke" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="Mandag" />
+                <FormattedMessage id="calendarGrid.Mandag" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="Tirsdag" />
+                <FormattedMessage id="calendarGrid.Tirsdag" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="Onsdag" />
+                <FormattedMessage id="calendarGrid.Onsdag" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="Torsdag" />
+                <FormattedMessage id="calendarGrid.Torsdag" />
             </span>
             <span aria-hidden={true} className={bem.element('dayHeader')}>
-                <FormattedMessage id="Fredag" />
+                <FormattedMessage id="calendarGrid.Fredag" />
             </span>
             {weeks.map(renderWeek)}
         </div>

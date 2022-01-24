@@ -2,7 +2,7 @@ import React from 'react';
 import { Undertekst } from 'nav-frontend-typografi';
 import DurationText from '../duration-text/DurationText';
 import { TidRenderer } from './TidsbrukKalender';
-import { Duration, durationsAreEqual, ensureDuration } from '@navikt/sif-common-utils';
+import { Duration, durationsAreEqual } from '@navikt/sif-common-utils';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import './tidsbrukKalenderDag.less';
 
@@ -50,17 +50,15 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
                 <>
                     {erEndret ? (
                         <>
-                            <span className={bem.block}>{renderTid(ensureDuration(tid))}</span>
+                            <span className={bem.block}>{renderTid(tid)}</span>
                             {visEndringsinformasjon && (
                                 <>
                                     {tidOpprinnelig ? (
                                         <div className={bem.element('opprinneligTidWrapper')}>
-                                            (
                                             <Undertekst tag="span" className={bem.element('opprinneligTid')}>
-                                                <span className="sr-only">Endret fra: </span>
-                                                {renderOpprinneligTid(tidOpprinnelig)}
+                                                (<span className="sr-only">Endret fra: </span>
+                                                {renderOpprinneligTid(tidOpprinnelig)})
                                             </Undertekst>
-                                            )
                                         </div>
                                     ) : (
                                         <Undertekst>(lagt til)</Undertekst>

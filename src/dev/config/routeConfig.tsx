@@ -1,5 +1,6 @@
 import React from 'react';
 import ArbeidstidPeriodeDoc from '../docs/arbeidstid-periode/ArbeidstidPeriodeDoc';
+import TidsbrukKalenderDoc from '../docs/tidsbruk-kalender/TidsbrukKalenderDoc';
 import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
 import TidEnkeltdagDialogDoc from '../docs/tid-enkeltdag/TidEnkeltdagDialogDoc';
 import Intro from '../Intro';
@@ -30,6 +31,11 @@ export const routes: RouteConfig[] = [
         path: 'tid-enkeltdag',
         title: 'Tid enkeltdag',
         renderContent: () => <TidEnkeltdagDialogDoc />,
+    },
+    {
+        path: 'tidsbruk-kalender',
+        title: 'TidsbrukKalender',
+        renderContent: () => <TidsbrukKalenderDoc />,
     },
 ];
 

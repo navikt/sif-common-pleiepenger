@@ -1,4 +1,3 @@
-import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik/lib';
 import { getNumberValidator } from '@navikt/sif-common-formik/lib/validation';
 import getTimeValidator from '@navikt/sif-common-formik/lib/validation/getTimeValidator';
 import { IntlErrorObject } from '@navikt/sif-common-formik/lib/validation/types';
@@ -12,12 +11,9 @@ export const getArbeidstidFastProsentValidator =
     (minMax?: { min: number; max: number }) =>
     (value: any): IntlErrorObject | undefined => {
         const minMaxOptions = minMax || {
-            min: 1,
+            min: 0,
             max: 100,
         };
-        if (getNumberFromNumberInputValue(value) === 0) {
-            return { key: 'måSvareNeiPåJobbIPerioden' };
-        }
         const error = getNumberValidator({ required: true, ...minMaxOptions })(value);
         return error
             ? {

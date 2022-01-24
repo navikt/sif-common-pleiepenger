@@ -35,8 +35,6 @@ const arbeidstidPeriodeFormFormMessages = {
             'Til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
         'arbeidstidPeriodeForm.validation.tidFasteDagerEllerProsent.noValue':
             'Du må velge hvordan du ønsker å oppgi hvor mye du {skalEllerHarJobbet}',
-        'arbeidstidPeriodeForm.validation.prosent.måSvareNeiPåJobbIPerioden':
-            'Du må velge hvordan du ønsker å oppgi hvor mye du {skalEllerHarJobbet}',
         'arbeidstidPeriodeForm.validation.prosent.numberHasNoValue':
             'Du må oppgi hvor mange prosent du {skalEllerHarJobbet} {hvor}.',
         'arbeidstidPeriodeForm.validation.prosent.numberHasInvalidFormat':
