@@ -35,9 +35,7 @@ const ArbeidstidEnkeltdagDialog: React.FunctionComponent<Props> = ({
     return (
         <TidEnkeltdagDialog
             isOpen={isOpen}
-            dialogTitle={intlHelper(intl, 'arbeidstidEnkeltdagDialog.contentTitle', {
-                dato: dateFormatter.full(formProps.dato),
-            })}
+            dialogTitle={intlHelper(intl, 'arbeidstidEnkeltdagDialog.contentTitle')}
             formProps={{ ...formProps, hvorMyeSpørsmålRenderer, maksTid: { hours: 24, minutes: 0 } }}
         />
     );

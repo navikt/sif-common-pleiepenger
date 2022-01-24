@@ -1,6 +1,6 @@
 const arbeidstidEnkeltdagFormMessages = {
     nb: {
-        'arbeidstidEnkeltdagDialog.contentTitle': 'Arbeidstid {dato}',
+        'arbeidstidEnkeltdagDialog.contentTitle': 'Arbeidstid',
         'arbeidstidEnkeltdagForm.tid.spm': 'Hvor mye {skalEllerHarJobbet} {hvor} {når}',
         'arbeidstidEnkeltdagForm.som.ANSATT': 'hos {navn}',
         'arbeidstidEnkeltdagForm.som.FRILANSER': 'som frilanser',

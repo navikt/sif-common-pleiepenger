@@ -4,6 +4,7 @@ import TidsbrukKalenderDoc from '../docs/tidsbruk-kalender/TidsbrukKalenderDoc';
 import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
 import TidEnkeltdagDialogDoc from '../docs/tid-enkeltdag/TidEnkeltdagDialogDoc';
 import Intro from '../Intro';
+import ArbeidstidMånedInfoDoc from '../docs/arbeidstid-måned-info/ArbeidstidMånedInfoDoc';
 
 export interface RouteConfig {
     path: string;
@@ -31,6 +32,11 @@ export const routes: RouteConfig[] = [
         path: 'tid-enkeltdag',
         title: 'Tid enkeltdag',
         renderContent: () => <TidEnkeltdagDialogDoc />,
+    },
+    {
+        path: 'arbeidstid-måned-info',
+        title: 'Arbeidstid i en måned',
+        renderContent: () => <ArbeidstidMånedInfoDoc />,
     },
     {
         path: 'tidsbruk-kalender',
