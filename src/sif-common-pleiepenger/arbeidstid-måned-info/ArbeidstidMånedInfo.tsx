@@ -93,7 +93,7 @@ const ArbeidstidMånedInfo: React.FunctionComponent<Props> = ({
                 dager={dager}
                 utilgjengeligeDatoer={utilgjengeligeDatoer}
                 skjulTommeDagerIListe={true}
-                visEndringsinformasjon={false}
+                visOpprinneligTid={false}
                 tidRenderer={({ tid, prosent }) => <TidArbeidEnkeltdag tid={tid} prosent={prosent} />}
                 onDateClick={onEnkeltdagChange ? handleKalenderDatoClick : undefined}
             />

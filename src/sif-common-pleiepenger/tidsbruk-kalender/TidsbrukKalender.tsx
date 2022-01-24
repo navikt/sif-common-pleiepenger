@@ -24,7 +24,7 @@ interface Props {
     utilgjengeligeDatoer?: Date[];
     utilgjengeligDagInfo?: string;
     skjulTommeDagerIListe?: boolean;
-    visEndringsinformasjon?: boolean;
+    visOpprinneligTid?: boolean;
     onDateClick?: (date: Date) => void;
     tomUkeContentRenderer?: () => React.ReactNode;
     tidRenderer?: TidRenderer;
@@ -39,7 +39,7 @@ const TidsbrukKalender: React.FunctionComponent<Props> = ({
     utilgjengeligeDatoer,
     utilgjengeligDagInfo,
     skjulTommeDagerIListe,
-    visEndringsinformasjon,
+    visOpprinneligTid,
     onDateClick,
     tidRenderer,
     opprinneligTidRenderer,
@@ -92,7 +92,7 @@ const TidsbrukKalender: React.FunctionComponent<Props> = ({
                         tidRenderer={tidRenderer}
                         opprinneligTidRenderer={opprinneligTidRenderer}
                         tidOpprinnelig={dag.tidOpprinnelig || { hours: '0', minutes: '0' }}
-                        visEndringsinformasjon={visEndringsinformasjon}
+                        visOpprinneligTid={visOpprinneligTid}
                         footerRenderer={footerRenderer}
                     />
                 ) : (

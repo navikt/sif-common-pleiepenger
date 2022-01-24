@@ -13,7 +13,7 @@ interface Props {
     tid?: Duration;
     prosent?: number;
     tidOpprinnelig?: Duration;
-    visEndringsinformasjon?: boolean;
+    visOpprinneligTid?: boolean;
     erUtilgjengelig?: boolean;
     tidRenderer?: TidRenderer;
     opprinneligTidRenderer?: TidRenderer;
@@ -27,7 +27,7 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
     prosent,
     tid,
     tidOpprinnelig,
-    visEndringsinformasjon,
+    visOpprinneligTid,
     tidRenderer,
     opprinneligTidRenderer,
     footerRenderer,
@@ -51,7 +51,7 @@ const TidsbrukKalenderDag: React.FunctionComponent<Props> = ({
                     {erEndret ? (
                         <>
                             <span className={bem.block}>{renderTid(ensureDuration(tid))}</span>
-                            {visEndringsinformasjon && (
+                            {visOpprinneligTid && (
                                 <>
                                     {tidOpprinnelig ? (
                                         <div className={bem.element('opprinneligTidWrapper')}>

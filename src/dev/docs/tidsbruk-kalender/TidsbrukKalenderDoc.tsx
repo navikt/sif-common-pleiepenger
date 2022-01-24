@@ -57,7 +57,7 @@ const TidsbrukKalenderDoc = () => {
                     tomUkeContentRenderer={() => <>Ingen dager tilgjengelig denne uken</>}
                     periode={måned}
                     skjulTommeDagerIListe={true}
-                    visEndringsinformasjon={true}
+                    visOpprinneligTid={true}
                     tidRenderer={({ tid, prosent }) => <TidArbeidEnkeltdag tid={tid} prosent={prosent} />}
                     opprinneligTidRenderer={({ tid, prosent }) => <TidArbeidEnkeltdag tid={tid} prosent={prosent} />}
                     onDateClick={(date: Date) => {

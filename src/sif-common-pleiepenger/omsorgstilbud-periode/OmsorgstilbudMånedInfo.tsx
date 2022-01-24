@@ -64,7 +64,7 @@ const OmsorgstilbudMånedInfo: React.FunctionComponent<Props> = ({
                 dager={dager}
                 utilgjengeligeDatoer={utilgjengeligeDatoer}
                 skjulTommeDagerIListe={true}
-                visEndringsinformasjon={false}
+                visOpprinneligTid={false}
                 tidRenderer={({ tid, prosent }) => {
                     if (prosent !== undefined && prosent > 0) {
                         return (
