@@ -123,7 +123,7 @@ export const getArbeidstidIPeriodeIntlValues = (
         return timer !== undefined
             ? arbIntl.intlText('arbeidstidPeriode.timer', { timer })
             : arbIntl.intlText('arbeidstidPeriode.timer.ikkeTall', {
-                  jobberNormaltTimer: info.arbeidsforhold.jobberNormaltTimer,
+                  timer: info.arbeidsforhold.jobberNormaltTimer || '-',
               });
     };
 
