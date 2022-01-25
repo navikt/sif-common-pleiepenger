@@ -104,6 +104,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({
                                                 label: intlText('omsorgstilbudPeriodeForm.fraOgMed.label'),
                                                 name: FormFields.fom,
                                                 disableWeekend: true,
+                                                fullscreenOverlay: true,
                                                 fullScreenOnMobile: true,
                                                 dayPickerProps: {
                                                     initialMonth: periode.from,
@@ -124,6 +125,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({
                                                 name: FormFields.tom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
+                                                fullscreenOverlay: true,
                                                 minDate: from || periode.from,
                                                 maxDate: periode.to,
                                                 dayPickerProps: {

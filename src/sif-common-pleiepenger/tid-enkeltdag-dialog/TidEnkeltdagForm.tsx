@@ -260,6 +260,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
                                                             })}
                                                             disableWeekend={true}
                                                             fullScreenOnMobile={true}
+                                                            fullscreenOverlay={true}
                                                             dayPickerProps={{
                                                                 initialMonth: dato,
                                                             }}
