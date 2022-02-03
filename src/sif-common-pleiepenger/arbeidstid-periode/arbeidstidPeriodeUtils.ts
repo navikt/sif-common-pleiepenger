@@ -100,7 +100,6 @@ export const getRedusertArbeidstidSomDuration = (
 export const getArbeidstidIPeriodeIntlValues = (
     intl: IntlShape,
     info: {
-        erHistorisk: boolean;
         periode: DateRange;
         arbeidsforhold:
             | {
@@ -141,9 +140,7 @@ export const getArbeidstidIPeriodeIntlValues = (
     };
 
     return {
-        skalEllerHarJobbet: info.erHistorisk
-            ? arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.harJobbet')
-            : arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
+        skalEllerHarJobbet: arbIntl.intlText('arbeidstidPeriode.arbeidIPeriodeIntlValues.skalJobbe'),
         hvor: getHvorTekst(),
         timer: getTimerTekst(),
         fra: prettifyDateFull(info.periode.from),

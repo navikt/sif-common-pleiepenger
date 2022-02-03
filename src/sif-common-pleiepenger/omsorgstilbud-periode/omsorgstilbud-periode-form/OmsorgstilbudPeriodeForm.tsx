@@ -19,7 +19,6 @@ import { getOmsorgstilbudFastDagValidator, validateOmsorgstilbudFasteDager } fro
 
 export interface OmsorgstilbudPeriodeFormProps {
     periode: DateRange;
-    gjelderFortid: boolean;
     onSubmit: (data: OmsorgstilbudPeriodeData) => void;
     onCancel: () => void;
 }
@@ -47,19 +46,12 @@ const initialFormValues: Partial<FormValues> = {};
 
 const FormComponents = getTypedFormComponents<FormFields, FormValues, ValidationError>();
 
-const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({
-    periode,
-    gjelderFortid,
-    onSubmit,
-    onCancel,
-}) => {
+const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ periode, onSubmit, onCancel }) => {
     const intl = useIntl();
     const { intlText } = getOmsorgstilbudPeriodeIntl(intl);
 
     const intlValues = {
-        skalEllerHarVært: gjelderFortid
-            ? intlText('omsorgstilbudPeriode.part.harVært')
-            : intlText('omsorgstilbudPeriode.part.skalVære'),
+        skalEllerHarVært: intlText('omsorgstilbudPeriode.part.skalVære'),
     };
 
     const onValidSubmit = (values: Partial<FormValues>) => {
@@ -146,11 +138,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({
 
                                 <FormBlock>
                                     <FormComponents.InputGroup
-                                        legend={intlText(
-                                            gjelderFortid
-                                                ? 'omsorgstilbudPeriodeForm.tidFasteDager.historisk.label'
-                                                : 'omsorgstilbudPeriodeForm.tidFasteDager.planlagt.label'
-                                        )}
+                                        legend={intlText('omsorgstilbudPeriodeForm.tidFasteDager.label')}
                                         validate={() => {
                                             const error = validateOmsorgstilbudFasteDager(tidFasteDager);
                                             return error

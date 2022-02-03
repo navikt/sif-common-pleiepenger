@@ -37,7 +37,6 @@ const ArbeidstidPeriodeDoc = () => {
     const arbeidsstedNavn = 'NAV';
 
     const intlValues = getArbeidstidIPeriodeIntlValues(intl, {
-        erHistorisk: true,
         periode,
         arbeidsforhold: {
             jobberNormaltTimer,
