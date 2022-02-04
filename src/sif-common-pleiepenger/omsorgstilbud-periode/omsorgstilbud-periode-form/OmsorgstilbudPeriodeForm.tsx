@@ -50,10 +50,6 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
     const intl = useIntl();
     const { intlText } = getOmsorgstilbudPeriodeIntl(intl);
 
-    const intlValues = {
-        skalEllerHarVært: intlText('omsorgstilbudPeriode.part.skalVære'),
-    };
-
     const onValidSubmit = (values: Partial<FormValues>) => {
         const fom = datepickerUtils.getDateFromDateString(values.fom);
         const tom = datepickerUtils.getDateFromDateString(values.tom);
@@ -144,7 +140,6 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                             return error
                                                 ? {
                                                       key: `${error}`,
-                                                      values: intlValues,
                                                   }
                                                 : undefined;
                                         }}
@@ -157,7 +152,7 @@ const OmsorgstilbudPeriodeForm: React.FC<OmsorgstilbudPeriodeFormProps> = ({ per
                                                     ? {
                                                           key: `omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.${error}`,
                                                           keepKeyUnaltered: true,
-                                                          values: { ...intlValues, dag },
+                                                          values: { dag },
                                                       }
                                                     : undefined;
                                             }}

@@ -8,11 +8,11 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.cancelButtonLabel': 'Avbryt',
         'arbeidstidPeriodeForm.fraOgMed.label': 'Fra og med',
         'arbeidstidPeriodeForm.tilOgMed.label': 'Til og med',
-        'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': `Hvordan vil du oppgi hvor mye {skalEllerHarJobbet}?`,
+        'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': `Hvordan vil du oppgi hvor mye du jobber i perioden?`,
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.prosent': 'I prosent',
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.timer': 'I timer',
-        'arbeidstidPeriodeForm.prosent.label': `Hvor mange prosent av din normale arbeidstid {skalEllerHarJobbet} du?`,
-        'arbeidstidPeriodeForm.tidFasteDager.label': `Oppgi hvor mye du {skalEllerHarJobbet}:`,
+        'arbeidstidPeriodeForm.prosent.label': `Hvor mange prosent av din normale arbeidstid jobber du i perioden?`,
+        'arbeidstidPeriodeForm.tidFasteDager.label': `Fyll ut hvor mye du jobber i uken i perioden:`,
         'arbeidstidPeriodeForm.validation.fom.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
         'arbeidstidPeriodeForm.validation.fom.dateHasInvalidFormat':
             'Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
@@ -34,17 +34,17 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.validation.tom.dateIsNotWeekday':
             'Til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
         'arbeidstidPeriodeForm.validation.tidFasteDagerEllerProsent.noValue':
-            'Du må velge hvordan du ønsker å oppgi hvor mye du {skalEllerHarJobbet}',
+            'Du må velge hvordan du ønsker å oppgi hvor mye du jobber',
         'arbeidstidPeriodeForm.validation.prosent.numberHasNoValue':
-            'Du må oppgi hvor mange prosent du {skalEllerHarJobbet} {hvor}.',
+            'Du må oppgi hvor mange prosent du jobber i perioden.',
         'arbeidstidPeriodeForm.validation.prosent.numberHasInvalidFormat':
-            'Antall prosent du {skalEllerHarJobbet} {hvor} kan kun bestå av tall.',
+            'Antall prosent du jobber kan kun bestå av tall.',
         'arbeidstidPeriodeForm.validation.prosent.numberIsTooSmall':
-            'Antall prosent du {skalEllerHarJobbet} {hvor} kan ikke være mindre enn {min}.',
+            'Antall prosent du jobber kan ikke være mindre enn {min}.',
         'arbeidstidPeriodeForm.validation.prosent.numberIsTooLarge':
-            'Antall prosent du {skalEllerHarJobbet} {hvor} kan ikke være mer enn {max}.',
+            'Antall prosent du jobber kan ikke være mer enn {max}.',
         'arbeidstidPeriodeForm.validation.fasteDager.gruppe.ingenTidRegistrert':
-            'Du må oppgi hvor mange timer du {skalEllerHarJobbet} i uken {hvor} {iPerioden}.',
+            'Du må oppgi hvor mange timer du jobber i uken.',
         'arbeidstidPeriodeForm.validation.fasteDager.gruppe.forMangeTimer':
             'Du kan ikke oppgi mer enn 24 timer for én dag.',
 
