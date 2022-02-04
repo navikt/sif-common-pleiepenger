@@ -3,15 +3,12 @@ import { typedIntlHelper } from '@navikt/sif-common-core/lib/utils/intlUtils';
 
 const omsorgstilbudPeriodeFormMessages = {
     nb: {
-        'omsorgstilbudPeriodeForm.tittel': 'Oppgi periode i omsorgstilbud',
+        'omsorgstilbudPeriodeForm.tittel': 'Oppgi periode med omsorgstilbud',
         'omsorgstilbudPeriodeForm.submitButtonLabel': 'Ok',
         'omsorgstilbudPeriodeForm.cancelButtonLabel': 'Avbryt',
         'omsorgstilbudPeriodeForm.fraOgMed.label': 'Fra og med',
         'omsorgstilbudPeriodeForm.tilOgMed.label': 'Til og med',
-        'omsorgstilbudPeriodeForm.tidFasteDager.historisk.label':
-            'Legg inn hvor mange timer barnet var i et fast og regelmessig omsorgstilbud per dag i uken i perioden',
-        'omsorgstilbudPeriodeForm.tidFasteDager.planlagt.label':
-            'Legg inn hvor mange timer barnet skal være i et fast og regelmessig omsorgstilbud per dag i uken i perioden',
+        'omsorgstilbudPeriodeForm.tidFasteDager.label': 'Fyll ut tiden i omsorgstilbudet som er fast og regelmessig',
     },
 };
 
@@ -40,7 +37,7 @@ const omsorgstilbudPeriodeFormValidationMessages = {
         'omsorgstilbudPeriodeForm.validation.tom.dateIsNotWeekday':
             'Til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.gruppe.ingenTidRegistrert':
-            'Du må oppgi hvor mange timer barnet {skalEllerHarVært} i omsorgstilbud.',
+            'Du må oppgi hvor mye barnet er i et omsorgstilbud.',
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.gruppe.forMangeTimer':
             'Du kan ikke oppgi mer enn 37 timer og 30 minutter for en uke.',
         'omsorgstilbudPeriodeForm.validation.tidFasteDager.tid.timeHasNoValue':
@@ -74,7 +71,6 @@ export const omsorgstibudPeriodeMessages = {
         'omsorgstilbudMånedInfo.dagerRegistrert.ingenDager': 'Ingen dager med omsorgstilbud registrert.',
         'omsorgstilbudPeriodeDialog.contentLabel': 'Registrer tid i omsorgstilbud',
         'omsorgstilbudPeriode.part.skalVære': 'skal være',
-        'omsorgstilbudPeriode.part.harVært': 'var',
     },
 };
 

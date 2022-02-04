@@ -10,7 +10,7 @@ import './omsorgstilbudPeriodeDialog.less';
 
 interface Props {
     isOpen: boolean;
-    formProps: Pick<OmsorgstilbudPeriodeFormProps, 'gjelderFortid' | 'periode' | 'onCancel' | 'onSubmit'>;
+    formProps: Pick<OmsorgstilbudPeriodeFormProps, 'periode' | 'onCancel' | 'onSubmit'>;
 }
 
 const OmsorgstilbudPeriodeDialog: React.FC<Props> = ({ formProps, isOpen }) => {

@@ -91,7 +91,10 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                 <FormComponents.FormikWrapper
                     initialValues={initialFormValues}
                     onSubmit={onValidSubmit}
-                    renderForm={({ values: { fom, tom, tidFasteDagerEllerProsent, tidFasteDager, prosent } }) => {
+                    renderForm={({
+                        values: { fom, tom, tidFasteDagerEllerProsent, tidFasteDager, prosent },
+                        validateForm,
+                    }) => {
                         const from = datepickerUtils.getDateFromDateString(fom);
                         const to = datepickerUtils.getDateFromDateString(tom);
                         return (
@@ -157,6 +160,8 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                             intlValues
                                         )}
                                         useTwoColumns={true}
+                                        /** Usikker på hvorfor valideringen feiler her, men delay fikser det midlertidig */
+                                        afterOnChange={() => setTimeout(validateForm, 10)}
                                         radios={[
                                             {
                                                 label: arbIntl.intlText(

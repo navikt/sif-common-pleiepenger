@@ -64,7 +64,6 @@ const OmsorgstilbudPeriodeDoc = () => {
                             isOpen={visDialog}
                             formProps={{
                                 periode,
-                                gjelderFortid: true,
                                 onCancel: () => setVisDialog(false),
                                 onSubmit: handleFormSubmit,
                             }}
