@@ -58,8 +58,8 @@ const TidEnkeltdagDialogDoc = () => {
                                 dato: periode.from,
                                 maksTid: { hours: 7, minutes: 30 },
                                 tidOpprinnelig: {
-                                    hours: '2',
-                                    minutes: '5',
+                                    hours: '1',
+                                    minutes: '30',
                                 },
                                 hvorMyeSpørsmålRenderer: () => 'Hvor mye tid',
                                 onCancel: () => setVisDialog(false),

@@ -8,10 +8,6 @@ import { timerOgMinutterMessages } from '../../../sif-common-pleiepenger/timer-o
 import { MessageFileFormat } from '../../utils/devIntlUtils';
 import { appMessages } from './messages';
 
-import '@formatjs/intl-pluralrules/polyfill';
-import '@formatjs/intl-pluralrules/locale-data/nb';
-import '@formatjs/intl-pluralrules/locale-data/nn';
-
 export interface IntlProviderProps {
     locale: string;
     onError?: (error: any) => void;

@@ -1,21 +1,12 @@
-import { render, RenderOptions } from '@testing-library/react';
+import { MatcherFunction, render, RenderOptions } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 import Modal from 'react-modal';
-import '@formatjs/intl-pluralrules/locale-data/en';
-import '@formatjs/intl-pluralrules/locale-data/nb';
-import '@formatjs/intl-pluralrules/locale-data/nn';
-import '@formatjs/intl-pluralrules/polyfill';
 import IntlPolyfill from 'intl';
 import AppIntlProvider from '../dev/components/app-intl-provider/AppIntlProvider';
-
-// const modalRoot = document.createElement('div');
-// modalRoot.setAttribute('id', 'modal-root');
-// document.body.appendChild(modalRoot);
 
 Modal.setAppElement(document.createElement('div'));
 
 const setupTests = () => {
-    global.Intl = IntlPolyfill;
     if (global.Intl) {
         Intl.NumberFormat = IntlPolyfill.NumberFormat;
         Intl.DateTimeFormat = IntlPolyfill.DateTimeFormat;
@@ -35,3 +26,14 @@ const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>
 
 export * from '@testing-library/react';
 export { customRender as render };
+
+type Query = (f: MatcherFunction) => HTMLElement;
+
+export const withMarkup =
+    (query: Query) =>
+    (text: string): HTMLElement =>
+        query((content: string, node: any) => {
+            const hasText = (node: HTMLElement) => node.textContent === text;
+            const childrenDontHaveText = Array.from(node.children).every((child) => !hasText(child as HTMLElement));
+            return hasText(node) && childrenDontHaveText;
+        });

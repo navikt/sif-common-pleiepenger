@@ -2,7 +2,7 @@ import { fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import { Duration, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import userEvent from '@testing-library/user-event';
-import { render } from '../../test-utils/TestUtils';
+import { render, withMarkup } from '../../test-utils/TestUtils';
 import TidEnkeltdagForm from './TidEnkeltdagForm';
 
 describe('<TidEnkeltdagDialog>', () => {
@@ -38,6 +38,11 @@ describe('<TidEnkeltdagDialog>', () => {
         const minutter = screen.getByLabelText('Minutter');
         expect(timer).toHaveValue('1');
         expect(minutter).toHaveValue('30');
+    });
+    it('rendrer dialog med opprinneligTid tid', async () => {
+        const screen = renderDialog({ tidOpprinnelig: { hours: '1', minutes: '30' } });
+        const textWithMarkup = withMarkup(screen.getByText);
+        expect(textWithMarkup('Endret fra 1 time 30 minutter')).toBeDefined();
     });
     it('Viser feilmelding ved ugyldig input', async () => {
         const screen = renderDialog();

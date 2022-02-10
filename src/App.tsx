@@ -1,8 +1,4 @@
 import React from 'react';
-import '@formatjs/intl-pluralrules/locale-data/en';
-import '@formatjs/intl-pluralrules/locale-data/nb';
-import '@formatjs/intl-pluralrules/locale-data/nn';
-import '@formatjs/intl-pluralrules/polyfill';
 import { Normaltekst } from 'nav-frontend-typografi';
 import AppIntlProvider from './dev/components/app-intl-provider/AppIntlProvider';
 import DevPage from './dev/DevPage';
