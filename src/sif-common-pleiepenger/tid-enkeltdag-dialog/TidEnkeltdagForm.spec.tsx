@@ -5,10 +5,6 @@ import userEvent from '@testing-library/user-event';
 import { render } from '../../test-utils/TestUtils';
 import TidEnkeltdagForm from './TidEnkeltdagForm';
 
-const modalRoot = document.createElement('div');
-modalRoot.setAttribute('id', 'modal-root');
-document.body.appendChild(modalRoot);
-
 describe('<TidEnkeltdagDialog>', () => {
     const handleCancel = jest.fn();
     const handleSubmit = jest.fn();
