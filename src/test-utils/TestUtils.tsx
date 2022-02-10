@@ -8,6 +8,10 @@ import '@formatjs/intl-pluralrules/polyfill';
 import IntlPolyfill from 'intl';
 import AppIntlProvider from '../dev/components/app-intl-provider/AppIntlProvider';
 
+// const modalRoot = document.createElement('div');
+// modalRoot.setAttribute('id', 'modal-root');
+// document.body.appendChild(modalRoot);
+
 Modal.setAppElement(document.createElement('div'));
 
 const setupTests = () => {
