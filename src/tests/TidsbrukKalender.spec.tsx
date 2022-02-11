@@ -1,8 +1,8 @@
 import React from 'react';
 import { DateRange, getDatesInMonthOutsideDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { render } from '../../test-utils/TestUtils';
-import { TidsbrukKalender } from '..';
-import TidArbeidEnkeltdag from '../arbeidstid-måned-info/TidArbeidEnkeltdag';
+import { render } from './TestUtils';
+import { TidsbrukKalender } from '../sif-common-pleiepenger';
+import TidArbeidEnkeltdag from '../sif-common-pleiepenger/arbeidstid-måned-info/TidArbeidEnkeltdag';
 
 const måned: DateRange = {
     from: ISODateToDate('2022-02-01'),
