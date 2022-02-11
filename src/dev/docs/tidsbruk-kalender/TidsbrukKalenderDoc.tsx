@@ -1,15 +1,18 @@
-import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateRange, getDatesInMonthOutsideDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import React from 'react';
 import { TidsbrukKalender } from '../../../sif-common-pleiepenger';
 import TidArbeidEnkeltdag from '../../../sif-common-pleiepenger/arbeidstid-måned-info/TidArbeidEnkeltdag';
 import PageIntro from '../../components/page-intro/PageIntro';
 
 const måned: DateRange = {
-    from: ISODateToDate('2021-01-01'),
-    to: ISODateToDate('2020-01-31'),
+    from: ISODateToDate('2022-02-01'),
+    to: ISODateToDate('2022-02-28'),
 };
 
-// const datesInMonth = getDatesInMonth(måned.from);
+const periode: DateRange = {
+    from: ISODateToDate('2022-02-09'),
+    to: ISODateToDate('2022-02-11'),
+};
 
 const TidsbrukKalenderDoc = () => {
     return (
@@ -45,15 +48,7 @@ const TidsbrukKalenderDoc = () => {
                             minutes: '30',
                         },
                     }}
-                    utilgjengeligeDatoer={[
-                        ISODateToDate('2021-01-06'),
-                        ISODateToDate('2021-01-07'),
-                        ISODateToDate('2021-01-11'),
-                        ISODateToDate('2021-01-12'),
-                        ISODateToDate('2021-01-13'),
-                        ISODateToDate('2021-01-14'),
-                        ISODateToDate('2021-01-15'),
-                    ]}
+                    utilgjengeligeDatoer={getDatesInMonthOutsideDateRange(måned.from, periode)}
                     tomUkeContentRenderer={() => <>Ingen dager tilgjengelig denne uken</>}
                     periode={måned}
                     skjulTommeDagerIListe={true}

@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
-import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
-import PageIntro from '../../components/page-intro/PageIntro';
-import { DateRange } from '../../utils/dateUtils';
 import TidEnkeltdagDialog from '../../../sif-common-pleiepenger/tid-enkeltdag-dialog/TidEnkeltdagDialog';
 import { TidEnkeltdagEndring } from '../../../sif-common-pleiepenger/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import PageIntro from '../../components/page-intro/PageIntro';
 
 export enum FormFields {
     'tid' = 'tid',

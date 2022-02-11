@@ -4,12 +4,20 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik/lib';
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
+import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
-import { dateFormatter, getDatesInDateRange, getDatesInMonth, isDateInDates } from '@navikt/sif-common-utils/';
+import {
+    dateFormatter,
+    dateToISODate,
+    getDatesInDateRange,
+    getDatesInMonth,
+    isDateInDates,
+} from '@navikt/sif-common-utils/';
 import CalendarGridDate from './CalendarGridDate';
 import './calendarGrid.less';
 
 dayjs.extend(isSameOrBefore);
+dayjs.extend(utc);
 
 interface WeekToRender {
     weekNumber: number;
@@ -74,7 +82,8 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
     dateRendererFull = dateFormatter.dayDateAndMonth,
     allDaysInWeekDisabledContentRenderer,
 }) => {
-    const weeks = getWeeks(getDatesInMonth(month.from, true), month.from);
+    const weekdatesInMonth = getDatesInMonth(month.from, true);
+    const weeks = getWeeks(weekdatesInMonth, month.from);
 
     const renderDate = (date: Date) => {
         const dateKey = date.toDateString();
@@ -82,7 +91,6 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
         const renderAsButton = onDateClick !== undefined && dateIsDisabled === false;
 
         const ComponentToUse = renderAsButton ? 'button' : 'div';
-
         return dayjs(date).isSame(month.from, 'month') === false ? (
             <div key={dateKey} aria-hidden={true} className={bem.classNames(bem.element('day', 'outsideMonth'))} />
         ) : (
@@ -98,6 +106,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
                           type: 'button',
                       }
                     : {})}
+                data-testid={`calendar-grid-date-${dateToISODate(date)}`}
                 title={dateIsDisabled ? disabledDateInfo : undefined}
                 aria-hidden={dateIsDisabled}
                 className={bem.classNames(
@@ -130,6 +139,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
         return [
             <div
                 key={week.weekNumber}
+                data-testid={`calendar-grid-week-number-${week.weekNumber}`}
                 aria-hidden={true}
                 className={bem.element('weekNum', areAllDaysInWeekDisabledOrOutsideMonth ? 'empty' : undefined)}>
                 <span className={bem.element('weekNum_label')} role="presentation" aria-hidden={true}>

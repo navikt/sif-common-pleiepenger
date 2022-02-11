@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
-import { ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import flat from 'flat';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
@@ -14,7 +14,6 @@ import {
 import { omsorgstibudPeriodeMessages } from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbudPeriodeMessages';
 import PageIntro from '../../components/page-intro/PageIntro';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
-import { DateRange } from '../../utils/dateUtils';
 
 import { DateDurationMap } from '@navikt/sif-common-utils/lib';
 

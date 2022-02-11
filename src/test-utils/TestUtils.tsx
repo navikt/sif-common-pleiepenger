@@ -17,7 +17,7 @@ const setupTests = () => {
 
 setupTests();
 
-const Providers = ({ children }) => {
+const Providers = ({ children }: any) => {
     return <AppIntlProvider locale={'nb'}>{children}</AppIntlProvider>;
 };
 

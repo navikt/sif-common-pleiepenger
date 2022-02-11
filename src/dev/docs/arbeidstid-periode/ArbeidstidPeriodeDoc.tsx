@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
-import { DateDurationMap, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import {
@@ -13,7 +13,6 @@ import {
 } from '../../../sif-common-pleiepenger';
 import { arbeidstidPeriodeMessages } from '../../../sif-common-pleiepenger/arbeidstid-periode/arbeidstidPeriodeMessages';
 import PageIntro from '../../components/page-intro/PageIntro';
-import { DateRange } from '../../utils/dateUtils';
 
 enum FormFields {
     'tid' = 'tid',
