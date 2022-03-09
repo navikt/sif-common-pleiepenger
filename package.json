@@ -89,15 +89,15 @@
         "web-vitals": "^2.1.4"
     },
     "peerDependencies": {
-        "@navikt/sif-common-formik": "^22.0.2",
-        "@navikt/sif-common-utils": "^3.0.3",
-        "dayjs": "^1.10.7",
-        "lodash.groupby": "^4.6.0",
-        "lodash.uniq": "^4.5.0",
-        "nav-frontend-ekspanderbartpanel": "^4.0.3",
-        "nav-frontend-ekspanderbartpanel-style": "^2.0.1",
-        "react-intl": "^5.24.1",
-        "react-responsive": "^8.2.0"
+        "@navikt/sif-common-formik": "^22.x",
+        "@navikt/sif-common-utils": "^3.x",
+        "dayjs": "^1.x",
+        "lodash.groupby": "^4.x",
+        "lodash.uniq": "^4.x",
+        "nav-frontend-ekspanderbartpanel": "^4.x",
+        "nav-frontend-ekspanderbartpanel-style": "^2.x",
+        "react-intl": "^5.x",
+        "react-responsive": "^8.x"
     },
     "browserslist": {
         "production": [
