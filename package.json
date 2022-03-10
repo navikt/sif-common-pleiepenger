@@ -55,7 +55,7 @@
         "@types/react-responsive": "^8.0.5",
         "@typescript-eslint/eslint-plugin": "5.11.0",
         "@typescript-eslint/parser": "5.11.0",
-        "axios": "^0.25.0",
+        "axios": "^0.26.1",
         "copyfiles": "^2.4.1",
         "craco-less": "1.17.1",
         "dayjs": "^1.10.7",
