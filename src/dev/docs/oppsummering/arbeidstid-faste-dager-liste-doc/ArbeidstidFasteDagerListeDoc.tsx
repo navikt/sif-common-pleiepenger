@@ -9,7 +9,7 @@ const ArbeidstidFasteDagerListeDoc = () => (
         <Undertittel>Arbeidstid faste dager</Undertittel>
         <Box margin="l">
             <ArbeidstidFasteDagerListe
-                inkluderNormaltimer={true}
+                visNormaltid={true}
                 fasteDager={{
                     mandag: {
                         faktiskTimer: 'PT0H0M',

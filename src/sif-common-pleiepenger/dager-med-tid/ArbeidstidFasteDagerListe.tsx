@@ -7,7 +7,7 @@ import { ArbeidstimerApiData, ArbeidstimerFasteDagerApiData } from '../types';
 
 interface Props {
     fasteDager?: ArbeidstimerFasteDagerApiData;
-    inkluderNormaltimer?: boolean;
+    visNormaltid?: boolean;
 }
 
 const formatTime = (intl: IntlShape, time: Partial<Time>): string => {
@@ -16,7 +16,7 @@ const formatTime = (intl: IntlShape, time: Partial<Time>): string => {
     return intlHelper(intl, 'timerOgMinutter', { timer, minutter });
 };
 
-const ArbeidstidFasteDagerListe: React.FunctionComponent<Props> = ({ fasteDager, inkluderNormaltimer }) => {
+const ArbeidstidFasteDagerListe: React.FunctionComponent<Props> = ({ fasteDager, visNormaltid }) => {
     const intl = useIntl();
 
     if (fasteDager) {
@@ -33,7 +33,7 @@ const ArbeidstidFasteDagerListe: React.FunctionComponent<Props> = ({ fasteDager,
                                 {`${intlHelper(intl, `dagerMedTid.${ukedag}er`)}: ${
                                     durationFaktiskTimer ? formatTime(intl, durationFaktiskTimer) : 0
                                 }`}
-                                {inkluderNormaltimer && durationNormalTimer && (
+                                {visNormaltid && durationNormalTimer && (
                                     <>
                                         .
                                         <br />

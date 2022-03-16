@@ -13,7 +13,7 @@ interface Props {
     visNormaltid?: boolean;
 }
 
-const ArbeidstidEnkeltdagerListe: React.FunctionComponent<Props> = ({ dager }) => {
+const ArbeidstidEnkeltdagerListe: React.FunctionComponent<Props> = ({ dager, visNormaltid }) => {
     const arbeidsdager: DagMedTid[] = [];
     dager.forEach((dag) => {
         const dato = ISODateToDate(dag.dato);
@@ -45,7 +45,7 @@ const ArbeidstidEnkeltdagerListe: React.FunctionComponent<Props> = ({ dager }) =
                                     {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
                                 </span>
                             }>
-                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} visNormaltid={true} />
+                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} visNormaltid={visNormaltid} />
                         </EkspanderbartPanel>
                     </Box>
                 );
