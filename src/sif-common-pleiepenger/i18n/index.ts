@@ -3,6 +3,7 @@ import arbeidstidEnkeltdagFormMessages from '../arbeidstid-enkeltdag/arbeidstidE
 import arbeidstidMånedInfoMessages from '../arbeidstid-måned-info/arbeidstidMånedInfoMessages';
 import { arbeidstidPeriodeMessages } from '../arbeidstid-periode/arbeidstidPeriodeMessages';
 import { calendarGridMessages } from '../calendar-grid/calendarGridMessages';
+import { dagerMedTidMessages } from '../dager-med-tid/dagerMedTidMessages';
 import { omsorgstibudPeriodeMessages } from '../omsorgstilbud-periode/omsorgstilbudPeriodeMessages';
 import tidEnkeltdagFormMessages from '../tid-enkeltdag-dialog/tidEnkeltdagMessages';
 import { timerOgMinutterMessages } from '../timer-og-minutter/timerOgMinutterMessages';
@@ -19,5 +20,6 @@ export const sifCommonPleiepengerMessages = {
         ...arbeidstidEnkeltdagFormMessages.nb,
         ...calendarGridMessages.nb,
         ...arbeidstidMånedInfoMessages.nb,
+        ...dagerMedTidMessages.nb,
     },
 };

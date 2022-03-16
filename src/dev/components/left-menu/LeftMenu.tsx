@@ -10,6 +10,7 @@ const LeftMenu = () => {
     const {
         location: { pathname },
     } = useHistory();
+    console.log(pathname);
     return (
         <div className="leftMenu">
             {routes.map((route) => (

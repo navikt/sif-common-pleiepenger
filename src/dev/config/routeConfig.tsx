@@ -5,6 +5,8 @@ import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/Omsorgstilbud
 import TidEnkeltdagDialogDoc from '../docs/tid-enkeltdag/TidEnkeltdagDialogDoc';
 import Intro from '../Intro';
 import ArbeidstidMånedInfoDoc from '../docs/arbeidstid-måned-info/ArbeidstidMånedInfoDoc';
+import ArbeidstidEnkeltdagerDoc from '../docs/arbeidstid-enkeltdager/ArbeidstidEnkeltdagerDoc';
+import OppsummeringDoc from '../docs/oppsummering/OppsummeringDoc';
 
 export interface RouteConfig {
     path: string;
@@ -14,34 +16,44 @@ export interface RouteConfig {
 
 export const routes: RouteConfig[] = [
     {
-        path: 'frontpage',
+        path: '/frontpage',
         title: 'Forside',
         renderContent: () => <Intro />,
     },
     {
-        path: 'arbeidstid-periode',
+        path: '/arbeidstid-periode',
         title: 'Arbeidstid periode',
         renderContent: () => <ArbeidstidPeriodeDoc />,
     },
     {
-        path: 'omsorgstilbud-periode',
+        path: '/omsorgstilbud-periode',
         title: 'Omsorgstilbud periode',
         renderContent: () => <OmsorgstilbudPeriodeDoc />,
     },
     {
-        path: 'tid-enkeltdag',
+        path: '/tid-enkeltdag',
         title: 'Tid enkeltdag',
         renderContent: () => <TidEnkeltdagDialogDoc />,
     },
     {
-        path: 'arbeidstid-måned-info',
+        path: '/arbeidstid-måned-info',
         title: 'Arbeidstid i en måned',
         renderContent: () => <ArbeidstidMånedInfoDoc />,
     },
     {
-        path: 'tidsbruk-kalender',
+        path: '/tidsbruk-kalender',
         title: 'TidsbrukKalender',
         renderContent: () => <TidsbrukKalenderDoc />,
+    },
+    {
+        path: '/arbeidstid-enkeltdager',
+        title: 'ArbeidstidEnkeltdager',
+        renderContent: () => <ArbeidstidEnkeltdagerDoc />,
+    },
+    {
+        path: '/oppsummering',
+        title: 'Oppsummering',
+        renderContent: () => <OppsummeringDoc />,
     },
 ];
 
@@ -50,5 +62,5 @@ export const getRouteConfig = (pathname: string): RouteConfig | undefined => {
 };
 
 export const isActiveRoute = (path: string, pathname: string): boolean => {
-    return pathname.indexOf(path) >= 0;
+    return pathname.indexOf(path) === 0;
 };

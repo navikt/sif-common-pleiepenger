@@ -1,22 +1,21 @@
 import React from 'react';
-import { useMediaQuery } from 'react-responsive';
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik';
-import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils/lib';
+import { isDateInDates } from '@navikt/sif-common-utils/lib';
+import { tidUkerInputUtils } from '../../tid-kalender-form/tid-uker-input/tidUkerUtils';
 import { TidPerDagValidator } from '../../types';
-import TidUkeInput from './TidUkeInput';
 import { Daginfo, Ukeinfo } from '../../types/tidUkerTypes';
-import { tidUkerInputUtils } from './tidUkerUtils';
-import './tidUkerInput.less';
+import ArbeidstidUkeInput from './ArbeidstidUkeInput';
+import './arbeidstidUkerInput.less';
 
 const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
 
 interface Props {
     fieldName: string;
+    fieldNameNormaltid: string;
     periode: DateRange;
     brukPanel?: boolean;
-    opprinneligTid?: DateDurationMap;
     utilgjengeligeDatoer?: Date[];
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
     tidPerDagValidator?: TidPerDagValidator;
@@ -24,17 +23,17 @@ interface Props {
 
 const bem = bemUtils('tidUkerInput');
 
-export const TidUkerInput: React.FunctionComponent<Props> = ({
+export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
     fieldName,
+    fieldNameNormaltid,
     periode,
     brukPanel,
-    opprinneligTid,
     utilgjengeligeDatoer,
     ukeTittelRenderer,
     tidPerDagValidator,
 }) => {
-    const isNarrow = useMediaQuery({ maxWidth: 400 });
-    const isWide = useMediaQuery({ minWidth: 1050 });
+    // const isNarrow = useMediaQuery({ maxWidth: 400 });
+    // const isWide = useMediaQuery({ minWidth: 1050 });
 
     const dager = tidUkerInputUtils.getDagInfoForPeriode(periode);
     const uker = tidUkerInputUtils
@@ -48,15 +47,12 @@ export const TidUkerInput: React.FunctionComponent<Props> = ({
         <div className={bem.classNames(bem.block, bem.modifier('inlineForm'))}>
             {uker.map((uke) => {
                 const content = (
-                    <TidUkeInput
+                    <ArbeidstidUkeInput
                         ukeTittelRenderer={ukeTittelRenderer}
                         getFieldName={(dag) => getTidKalenderFieldName(fieldName, dag)}
+                        getFieldNameNormaltid={(dag) => getTidKalenderFieldName(fieldNameNormaltid, dag)}
                         ukeinfo={uke}
-                        opprinneligTid={opprinneligTid}
                         utilgjengeligeDatoer={utilgjengeligeDatoer}
-                        isNarrow={isNarrow}
-                        isWide={isWide}
-                        visSomListe={true}
                         tidPerDagValidator={tidPerDagValidator}
                     />
                 );
@@ -70,4 +66,4 @@ export const TidUkerInput: React.FunctionComponent<Props> = ({
     );
 };
 
-export default TidUkerInput;
+export default ArbeidstidUkerInput;

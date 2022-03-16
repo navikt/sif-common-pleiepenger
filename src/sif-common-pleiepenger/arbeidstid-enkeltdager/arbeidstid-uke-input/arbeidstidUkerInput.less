@@ -1,0 +1,109 @@
+.arbeidstidUkerInput {
+    legend {
+        .typo-element {
+            font-weight: normal;
+        }
+    }
+    &__ukeWrapper {
+        @media (min-width: 1050px) {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+            padding-bottom: 1rem;
+            &:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+            &:not(:first-child) {
+                padding-top: 1rem;
+            }
+        }
+        @media (max-width: 1050px) {
+            border-bottom: none;
+            padding-bottom: none;
+            &:not(:first-child) {
+                padding-top: 1rem;
+            }
+        }
+    }
+    .formikTimeInput--horizontal {
+        flex-wrap: wrap;
+    }
+    &__dag-inputs {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr 1fr;
+        .skjemaelement {
+            margin-bottom: 0 !important;
+        }
+        .skjemagruppe__legend {
+            margin: 0 !important;
+        }
+        &--header {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    &__dagnavn {
+        &--header {
+            padding-top: 0;
+        }
+        padding-top: 1rem;
+        &::first-letter {
+            text-transform: capitalize;
+        }
+    }
+    &__dag {
+        &:nth-child(2n + 1) {
+            background-color: #f7f7f7;
+        }
+        &:last-child {
+            border-bottom: 1px solid #a0a0a0;
+        }
+        background-color: white;
+        border-top: 1px solid #a0a0a0;
+        padding: 0.25rem 0.5rem 0.5rem 0.5rem;
+
+        &--utenforPeriode {
+            visibility: hidden;
+        }
+
+        // @media (max-width: 1050px) {
+        //     padding: 0.25rem 0;
+        //     margin-bottom: 0.5rem;
+        //     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+        // }
+
+        // @media (min-width: 1051px) {
+        //     &__label {
+        //         &__dagnavn {
+        //             display: block;
+        //             font-size: 0.8rem;
+        //         }
+        //     }
+        // }
+        // &__label {
+        //     text-transform: capitalize;
+        //     font-weight: normal;
+        //     &__dagnavn:after {
+        //         content: ' ';
+        //     }
+        // }
+        &__utenforPeriodeTekst {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+        }
+        &__utenforPeriodeIkon {
+            text-align: center;
+            padding-top: 1rem;
+            width: 4rem;
+            line-height: 1rem;
+            font-size: 2rem;
+        }
+        .arbeidstidUkerInput__uke__ukedager--liste &--utenforPeriode {
+            display: none;
+        }
+    }
+
+    .skjemaelement__feilmelding {
+        margin-bottom: 1rem;
+    }
+}

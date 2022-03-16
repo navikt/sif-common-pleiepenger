@@ -12,13 +12,14 @@ interface Props {
     dagerMedTid: DagMedTid[];
     visMåned?: boolean;
     viseUke?: boolean;
+    visNormaltid?: boolean;
 }
 
 const sortDays = (d1: DagMedTid, d2: DagMedTid): number => (dayjs(d1.dato).isSameOrBefore(d2.dato, 'day') ? -1 : 1);
 
 const bem = bemUtils('dagerMedTidListe');
 
-export const DagerMedTidListe = ({ dagerMedTid: dagerMedTid, viseUke, visMåned }: Props) => {
+export const DagerMedTidListe = ({ dagerMedTid, viseUke, visMåned, visNormaltid }: Props) => {
     const weeksWithDays = groupBy(dagerMedTid, (dag) => `${dag.dato.getFullYear()}-${dayjs(dag.dato).isoWeek()}`);
     return (
         <div className={bem.block}>
@@ -52,6 +53,12 @@ export const DagerMedTidListe = ({ dagerMedTid: dagerMedTid, viseUke, visMåned 
                                                         duration={{ hours: timer, minutes: minutter }}
                                                         fullText={true}
                                                     />
+                                                    {visNormaltid && dag.normaltid && (
+                                                        <>
+                                                            . Normalt{' '}
+                                                            <DurationText duration={dag.normaltid} fullText={true} />.
+                                                        </>
+                                                    )}
                                                 </span>
                                             </div>
                                         </li>

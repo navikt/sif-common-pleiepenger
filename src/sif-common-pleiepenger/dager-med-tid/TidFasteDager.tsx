@@ -26,12 +26,12 @@ const TidFasteDager: React.FunctionComponent<Props> = ({ fasteDager }) => {
     const intl = useIntl();
 
     if (fasteDager) {
-        const days = Object.keys(fasteDager).filter((day) => (fasteDager as any)[day] !== undefined);
+        const days = Object.keys(fasteDager).filter((day) => fasteDager[day] !== undefined);
         if (days.length > 0) {
             return (
                 <ul style={{ marginTop: 0 }}>
                     {days.map((day, idx) => {
-                        const time = ISODurationToDuration((fasteDager as any)[day]);
+                        const time = ISODurationToDuration(fasteDager[day]);
                         return (
                             <li key={idx} style={{ marginBottom: '.25rem' }}>
                                 {`${intlHelper(intl, `${day}er.caps`)}: ${time ? formatTime(intl, time) : 0}`}

@@ -1,5 +1,5 @@
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { Duration, DurationWeekdays } from '@navikt/sif-common-utils/lib';
+import { Duration, DurationWeekdays, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
 
 export enum ArbeidsforholdType {
     ANSATT = 'ANSATT',
@@ -28,4 +28,23 @@ export type ArbeidIPeriodeIntlValues = {
 export interface DagMedTid {
     dato: Date;
     tid: Duration;
+    normaltid?: Duration;
+}
+
+export interface ArbeidstimerApiData {
+    normalTimer: ISODuration;
+    faktiskTimer: ISODuration;
+}
+
+export interface ArbeidstimerFasteDagerApiData {
+    mandag?: ArbeidstimerApiData;
+    tirsdag?: ArbeidstimerApiData;
+    onsdag?: ArbeidstimerApiData;
+    torsdag?: ArbeidstimerApiData;
+    fredag?: ArbeidstimerApiData;
+}
+
+export interface ArbeidstidEnkeltdagApiData {
+    dato: ISODate;
+    arbeidstimer: ArbeidstimerApiData;
 }

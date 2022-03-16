@@ -1,29 +1,26 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import { ISODate, ISODateToDate, ISODuration, ISODurationToDuration } from '@navikt/sif-common-utils';
+import { ISODateToDate, ISODurationToDuration } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import groupBy from 'lodash.groupby';
 import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
-import { DagMedTid } from '../types';
+import { ArbeidstidEnkeltdagApiData, DagMedTid } from '../types';
 import DagerMedTidListe from './dager-med-tid-liste/DagerMedTidListe';
 
-interface ISODagMedTid {
-    dato: ISODate;
-    tid: ISODuration;
-}
-
 interface Props {
-    dager: ISODagMedTid[];
+    dager: ArbeidstidEnkeltdagApiData[];
+    visNormaltid?: boolean;
 }
 
-const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
-    const days: DagMedTid[] = [];
+const ArbeidstidEnkeltdagerListe: React.FunctionComponent<Props> = ({ dager }) => {
+    const arbeidsdager: DagMedTid[] = [];
     dager.forEach((dag) => {
         const dato = ISODateToDate(dag.dato);
-        const tid = ISODurationToDuration(dag.tid);
-        if (dato && tid) {
-            days.push({ dato, tid });
+        const tid = ISODurationToDuration(dag.arbeidstimer.faktiskTimer);
+        const normaltid = ISODurationToDuration(dag.arbeidstimer.normalTimer);
+        if (dato !== undefined && tid !== undefined) {
+            arbeidsdager.push({ dato, tid, normaltid });
         }
     });
 
@@ -32,7 +29,7 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
         return ingenDagerRegistrertMelding;
     }
 
-    const months = groupBy(days, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
+    const months = groupBy(arbeidsdager, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
     return (
         <div>
             {Object.keys(months).map((key) => {
@@ -48,7 +45,7 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
                                     {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
                                 </span>
                             }>
-                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} />
+                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} visNormaltid={true} />
                         </EkspanderbartPanel>
                     </Box>
                 );
@@ -57,4 +54,4 @@ const TidEnkeltdager: React.FunctionComponent<Props> = ({ dager }) => {
     );
 };
 
-export default TidEnkeltdager;
+export default ArbeidstidEnkeltdagerListe;

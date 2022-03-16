@@ -3,7 +3,6 @@ import { FormattedMessage, useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import Knapperad from '@navikt/sif-common-core/lib/components/knapperad/Knapperad';
-import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
 import { DateRange } from '@navikt/sif-common-core/lib/utils/dateUtils';
 import { getTypedFormComponents, InputTime } from '@navikt/sif-common-formik/lib';
 import getFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
@@ -90,14 +89,12 @@ const TidKalenderForm = ({ periode, tid, tittel, intro, tidPerDagValidator, onSu
                             }>
                             <Systemtittel tag="h1">{tittel}</Systemtittel>
                             {intro ? <Box margin="l">{intro}</Box> : undefined}
-                            <ResponsivePanel>
-                                <TidUkerInput
-                                    fieldName={FormField.tid}
-                                    periode={periode}
-                                    brukPanel={false}
-                                    tidPerDagValidator={tidPerDagValidator}
-                                />
-                            </ResponsivePanel>
+                            <TidUkerInput
+                                fieldName={FormField.tid}
+                                periode={periode}
+                                brukPanel={false}
+                                tidPerDagValidator={tidPerDagValidator}
+                            />
                         </Form.Form>
                     );
                 }}
