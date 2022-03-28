@@ -59,7 +59,7 @@
         "copyfiles": "^2.4.1",
         "craco-less": "1.17.1",
         "dayjs": "^1.10.7",
-        "eslint": "^7.32.0",
+        "eslint": "^8.12.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-jsx-a11y": "^6.5.1",
         "eslint-plugin-prettier": "^4.0.0",
