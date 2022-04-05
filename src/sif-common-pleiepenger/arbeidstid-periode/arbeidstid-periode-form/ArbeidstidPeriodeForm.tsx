@@ -6,7 +6,7 @@ import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-dat
 import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { DurationWeekdays } from '@navikt/sif-common-utils';
+import { DurationWeekdays, Weekday } from '@navikt/sif-common-utils';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import { getArbeidstimerFastDagValidator } from '../..';
@@ -236,6 +236,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                             name={'fasteDager.gruppe' as any}>
                                             <TidFasteUkedagerInput
                                                 name={FormFields.tidFasteDager}
+                                                disabledDays={[Weekday.monday, Weekday.thursday]}
                                                 validateDag={(dag, value) => {
                                                     const error = getArbeidstimerFastDagValidator()(value);
                                                     return error

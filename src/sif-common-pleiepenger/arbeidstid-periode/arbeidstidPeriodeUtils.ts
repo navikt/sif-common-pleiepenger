@@ -1,6 +1,6 @@
 import { IntlShape } from 'react-intl';
 import { prettifyDate, prettifyDateFull } from '@navikt/sif-common-core/lib/utils/dateUtils';
-import { getNumberFromNumberInputValue, InputTime } from '@navikt/sif-common-formik/lib';
+import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik/lib';
 import {
     DateRange,
     decimalDurationToDuration,
@@ -63,7 +63,7 @@ export const getRedusertArbeidstidSomISODuration = (
 export const getRedusertArbeidstidSomDuration = (
     jobberNormaltTimerPerDagNumber: number,
     skalJobbeProsent: number
-): InputTime => {
+): Duration => {
     const redusertTidPerDag = (jobberNormaltTimerPerDagNumber / 100) * skalJobbeProsent;
     return decimalDurationToDuration(redusertTidPerDag);
 };

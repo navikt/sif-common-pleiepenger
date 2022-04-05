@@ -9,59 +9,40 @@ import './tidFasteUkedagerInput.less';
 
 interface Props {
     name: string;
+    disabledDays?: Weekday[];
+    hideDisabledDays?: boolean;
     validateDag?: (dagNavn: string, value: any) => ValidationResult<ValidationError>;
 }
 
-const TidFasteUkedagerInput = ({ name, validateDag }: Props) => {
+const isWeekdayDisabled = (disabledDays: Weekday[] | undefined, dag: Weekday): boolean =>
+    disabledDays ? disabledDays.some((d) => d === dag) : false;
+
+const TidFasteUkedagerInput = ({ name, validateDag, disabledDays, hideDisabledDays }: Props) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
+
+    const renderWeekdayTimeInput = (weekday: Weekday, weekdayLabel: string, validationDayName: string) => {
+        const disabled = isWeekdayDisabled(disabledDays, weekday);
+        return disabled && hideDisabledDays ? null : (
+            <FormikTimeInput
+                label={weekdayLabel}
+                name={`${name}.${weekday}`}
+                disabled={disabled}
+                timeInputLayout={{
+                    direction: 'vertical',
+                    compact: true,
+                }}
+                validate={validateDag ? (value) => validateDag(validationDayName, value) : undefined}
+            />
+        );
+    };
     return (
         <Box margin="l">
             <div className="tidFasteUkedagerInput">
-                <FormikTimeInput
-                    label={txt.Mandager}
-                    name={`${name}.${Weekday.monday}`}
-                    timeInputLayout={{
-                        direction: 'vertical',
-                        compact: true,
-                    }}
-                    validate={validateDag ? (value) => validateDag(txt.mandag, value) : undefined}
-                />
-                <FormikTimeInput
-                    label={txt.Tirsdager}
-                    name={`${name}.${Weekday.tuesday}`}
-                    timeInputLayout={{
-                        direction: 'vertical',
-                        compact: true,
-                    }}
-                    validate={validateDag ? (value) => validateDag(txt.tirsdag, value) : undefined}
-                />
-                <FormikTimeInput
-                    label={txt.Onsdager}
-                    name={`${name}.${Weekday.wednesday}`}
-                    timeInputLayout={{
-                        direction: 'vertical',
-                        compact: true,
-                    }}
-                    validate={validateDag ? (value) => validateDag(txt.onsdag, value) : undefined}
-                />
-                <FormikTimeInput
-                    label={txt.Torsdager}
-                    name={`${name}.${Weekday.thursday}`}
-                    timeInputLayout={{
-                        direction: 'vertical',
-                        compact: true,
-                    }}
-                    validate={validateDag ? (value) => validateDag(txt.torsdag, value) : undefined}
-                />
-                <FormikTimeInput
-                    label={txt.Fredager}
-                    name={`${name}.${Weekday.friday}`}
-                    timeInputLayout={{
-                        direction: 'vertical',
-                        compact: true,
-                    }}
-                    validate={validateDag ? (value) => validateDag(txt.fredag, value) : undefined}
-                />
+                {renderWeekdayTimeInput(Weekday.monday, txt.Mandager, txt.mandag)}
+                {renderWeekdayTimeInput(Weekday.tuesday, txt.Tirsdager, txt.tirsdag)}
+                {renderWeekdayTimeInput(Weekday.wednesday, txt.Onsdager, txt.onsdag)}
+                {renderWeekdayTimeInput(Weekday.thursday, txt.Torsdager, txt.torsdag)}
+                {renderWeekdayTimeInput(Weekday.friday, txt.Fredager, txt.fredag)}
             </div>
         </Box>
     );
