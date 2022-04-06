@@ -4,10 +4,7 @@ import { FormikInputGroup, FormikTimeInput } from '@navikt/sif-common-formik';
 import { dateFormatter, isDateInDates, isDateInWeekdays, Weekday } from '@navikt/sif-common-utils';
 import { Ingress } from 'nav-frontend-typografi';
 import { TidPerDagValidator } from '../..';
-import { tidUkerInputUtils } from '../../tid-kalender-form/tid-uker-input/tidUkerUtils';
 import { Daginfo, Ukeinfo } from '../../types/tidUkerTypes';
-
-type DagLabelRenderer = (dag: Daginfo) => React.ReactNode;
 
 interface Props {
     getFieldName: (dag: Daginfo) => string;
@@ -26,7 +23,6 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     utilgjengeligeDatoer,
     utilgjengeligeUkedager,
     getFieldName,
-    dagLabelRenderer,
     tidPerDagValidator,
     ukeTittelRenderer,
 }) => {
@@ -49,12 +45,6 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                         Jobber i perioden
                     </div>
                 </div>
-                {tidUkerInputUtils.getForegåendeDagerIUke(dager[0]).map((dag) => (
-                    <div className={bem.element('dag', 'utenforPeriode')} key={dag.isoDate} aria-hidden={true}>
-                        {renderDagLabel(dag, dagLabelRenderer)}
-                        <div className={bem.element('dag__utenforPeriodeIkon')}>-</div>
-                    </div>
-                ))}
                 {dager.map((dag) => {
                     const erUtilgjengeligDato = isDateInDates(dag.dato, utilgjengeligeDatoer);
                     const erUtilgjengeligUkedag = utilgjengeligeUkedager
@@ -93,21 +83,6 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                 })}
             </div>
         </div>
-    );
-};
-
-const renderDagLabel = (dag: Daginfo, customRenderer?: DagLabelRenderer): JSX.Element => {
-    return (
-        <span className={bem.element('dag__label')}>
-            {customRenderer ? (
-                customRenderer(dag)
-            ) : (
-                <>
-                    <span className={bem.element('dag__label__dagnavn')}>{dag.labelDag}</span>
-                    <span className={bem.element('dag__label__dato')}>{dag.labelDato}</span>
-                </>
-            )}
-        </span>
     );
 };
 
