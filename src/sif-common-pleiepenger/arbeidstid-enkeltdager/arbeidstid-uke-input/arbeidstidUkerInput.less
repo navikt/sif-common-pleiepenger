@@ -6,8 +6,6 @@
     }
     &__ukeWrapper {
         @media (min-width: 1050px) {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.15);
-            padding-bottom: 1rem;
             &:last-child {
                 border-bottom: none;
                 padding-bottom: 0;
@@ -28,8 +26,9 @@
         flex-wrap: wrap;
     }
     &__dag-inputs {
-        display: grid;
-        grid-template-columns: 1.2fr 1fr 1fr;
+        display: flex;
+        flex-wrap: wrap;
+
         .skjemaelement {
             margin-bottom: 0 !important;
         }
@@ -43,13 +42,19 @@
     }
 
     &__dagnavn {
+        min-width: 10rem;
         &--header {
             padding-top: 0;
+            padding-bottom: 0;
         }
         padding-top: 1rem;
+        padding-bottom: 0.5rem;
         &::first-letter {
             text-transform: capitalize;
         }
+    }
+    &__arbeidstidPeriode {
+        min-width: 10rem;
     }
     &__dag {
         &:nth-child(2n + 1) {

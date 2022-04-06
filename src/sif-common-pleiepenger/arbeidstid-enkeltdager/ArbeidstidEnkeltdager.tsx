@@ -1,5 +1,5 @@
 import { DateRange } from '@navikt/sif-common-formik/lib';
-import { InputDateDurationMap } from '@navikt/sif-common-utils/lib';
+import { InputDateDurationMap, Weekday } from '@navikt/sif-common-utils/lib';
 import React from 'react';
 import ArbeidstidUkerInput from './arbeidstid-uke-input/ArbeidstidUkerInput';
 
@@ -12,7 +12,11 @@ interface Props {
 const ArbeidstidEnkeltdager: React.FunctionComponent<Props> = ({ periode }) => {
     return (
         <>
-            <ArbeidstidUkerInput periode={periode} fieldName="arbeidstid" fieldNameNormaltid="normalarbeidstid" />
+            <ArbeidstidUkerInput
+                periode={periode}
+                fieldName="arbeidstid"
+                utilgjengeligeUkedager={[Weekday.friday, Weekday.monday]}
+            />
         </>
     );
 };

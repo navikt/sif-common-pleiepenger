@@ -2,7 +2,7 @@ import React from 'react';
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik';
-import { isDateInDates } from '@navikt/sif-common-utils/lib';
+import { isDateInDates, Weekday } from '@navikt/sif-common-utils/lib';
 import { tidUkerInputUtils } from '../../tid-kalender-form/tid-uker-input/tidUkerUtils';
 import { TidPerDagValidator } from '../../types';
 import { Daginfo, Ukeinfo } from '../../types/tidUkerTypes';
@@ -13,28 +13,25 @@ const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${
 
 interface Props {
     fieldName: string;
-    fieldNameNormaltid: string;
     periode: DateRange;
     brukPanel?: boolean;
     utilgjengeligeDatoer?: Date[];
+    utilgjengeligeUkedager?: Weekday[];
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
     tidPerDagValidator?: TidPerDagValidator;
 }
 
-const bem = bemUtils('tidUkerInput');
+const bem = bemUtils('arbeidstidUkerInput');
 
 export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
     fieldName,
-    fieldNameNormaltid,
     periode,
     brukPanel,
     utilgjengeligeDatoer,
+    utilgjengeligeUkedager,
     ukeTittelRenderer,
     tidPerDagValidator,
 }) => {
-    // const isNarrow = useMediaQuery({ maxWidth: 400 });
-    // const isWide = useMediaQuery({ minWidth: 1050 });
-
     const dager = tidUkerInputUtils.getDagInfoForPeriode(periode);
     const uker = tidUkerInputUtils
         .getUkerFraDager(dager)
@@ -50,9 +47,9 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
                     <ArbeidstidUkeInput
                         ukeTittelRenderer={ukeTittelRenderer}
                         getFieldName={(dag) => getTidKalenderFieldName(fieldName, dag)}
-                        getFieldNameNormaltid={(dag) => getTidKalenderFieldName(fieldNameNormaltid, dag)}
                         ukeinfo={uke}
                         utilgjengeligeDatoer={utilgjengeligeDatoer}
+                        utilgjengeligeUkedager={utilgjengeligeUkedager}
                         tidPerDagValidator={tidPerDagValidator}
                     />
                 );
