@@ -3,10 +3,10 @@ import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-p
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik';
 import { isDateInDates, Weekday } from '@navikt/sif-common-utils/lib';
-import { tidUkerInputUtils } from '../../tid-kalender-form/tid-uker-input/tidUkerUtils';
-import { TidPerDagValidator } from '../../types';
-import { Daginfo, Ukeinfo } from '../../types/tidUkerTypes';
-import ArbeidstidUkeInput from './ArbeidstidUkeInput';
+import { tidUkerInputUtils } from '../tid-kalender-form/tid-uker-input/tidUkerUtils';
+import { TidPerDagValidator } from '../types';
+import { Daginfo, Ukeinfo } from '../types/tidUkerTypes';
+import ArbeidstidUkeInput, { ArbeidstidUkeTekster } from './ArbeidstidUkeInput';
 import './arbeidstidUkerInput.less';
 
 const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
@@ -17,6 +17,7 @@ interface Props {
     brukPanel?: boolean;
     utilgjengeligeDatoer?: Date[];
     utilgjengeligeUkedager?: Weekday[];
+    tekster: ArbeidstidUkeTekster;
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
     tidPerDagValidator?: TidPerDagValidator;
 }

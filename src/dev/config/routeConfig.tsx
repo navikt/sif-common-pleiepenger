@@ -1,12 +1,12 @@
 import React from 'react';
-import ArbeidstidPeriodeDoc from '../docs/arbeidstid-periode/ArbeidstidPeriodeDoc';
-import TidsbrukKalenderDoc from '../docs/tidsbruk-kalender/TidsbrukKalenderDoc';
-import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
-import TidEnkeltdagDialogDoc from '../docs/tid-enkeltdag/TidEnkeltdagDialogDoc';
-import Intro from '../Intro';
 import ArbeidstidMånedInfoDoc from '../docs/arbeidstid-måned-info/ArbeidstidMånedInfoDoc';
-import ArbeidstidEnkeltdagerDoc from '../docs/arbeidstid-enkeltdager/ArbeidstidEnkeltdagerDoc';
+import ArbeidstidPeriodeDoc from '../docs/arbeidstid-periode/ArbeidstidPeriodeDoc';
+import ArbeidstidUkerInputDoc from '../docs/arbeidstid-uker-input/ArbeidstidUkerInputDoc';
+import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
 import OppsummeringDoc from '../docs/oppsummering/OppsummeringDoc';
+import TidEnkeltdagDialogDoc from '../docs/tid-enkeltdag/TidEnkeltdagDialogDoc';
+import TidsbrukKalenderDoc from '../docs/tidsbruk-kalender/TidsbrukKalenderDoc';
+import Intro from '../Intro';
 
 export interface RouteConfig {
     path: string;
@@ -46,9 +46,9 @@ export const routes: RouteConfig[] = [
         renderContent: () => <TidsbrukKalenderDoc />,
     },
     {
-        path: '/arbeidstid-enkeltdager',
-        title: 'ArbeidstidEnkeltdager',
-        renderContent: () => <ArbeidstidEnkeltdagerDoc />,
+        path: '/arbeidstid-uker-input',
+        title: 'ArbeidstidUkerInput',
+        renderContent: () => <ArbeidstidUkerInputDoc />,
     },
     {
         path: '/oppsummering',

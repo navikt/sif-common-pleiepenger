@@ -2,7 +2,7 @@ import React from 'react';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
 import { InputDateDurationMap, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
 import Panel from 'nav-frontend-paneler';
-import ArbeidstidEnkeltdager from '../../../sif-common-pleiepenger/arbeidstid-enkeltdager/ArbeidstidEnkeltdager';
+import ArbeidstidUkerInput from '../../../sif-common-pleiepenger/arbeidstid-uker-input/ArbeidstidUkerInput';
 import PageIntro from '../../components/page-intro/PageIntro';
 
 interface FormValues {
@@ -15,28 +15,29 @@ const initialValues: FormValues = {
     normalarbeidstid: {},
 };
 
-const ArbeidstidEnkeltdagerDoc: React.FunctionComponent = () => {
+const ArbeidstidUkerInputDoc: React.FunctionComponent = () => {
     const periode = ISODateRangeToDateRange('2022-01-01/2022-02-15');
     return (
         <>
             <PageIntro title="@navikt/sif-common-pleiepenger">
-                <h2>Arbeidstid enkeltdager</h2>
+                <h2>ArbeidstidUkerInput</h2>
             </PageIntro>
             <TypedFormikWrapper<FormValues>
                 initialValues={initialValues}
                 onSubmit={(values) => {
                     console.log('FormikWrapperSubmit', values);
                 }}
-                renderForm={(props) => {
-                    const {
-                        values: { arbeidstid, normalarbeidstid },
-                    } = props;
+                renderForm={() => {
                     return (
                         <Panel>
-                            <ArbeidstidEnkeltdager
+                            <ArbeidstidUkerInput
                                 periode={periode}
-                                arbeidstid={arbeidstid}
-                                normalarbeidstid={normalarbeidstid}
+                                fieldName="arbeidstid"
+                                tekster={{
+                                    dag: 'Dag',
+                                    jobber: 'Jobber',
+                                    ariaLabelTidInput: (dato) => `Hvor mye jobber du ${dato}`,
+                                }}
                             />
                         </Panel>
                     );
@@ -46,4 +47,4 @@ const ArbeidstidEnkeltdagerDoc: React.FunctionComponent = () => {
     );
 };
 
-export default ArbeidstidEnkeltdagerDoc;
+export default ArbeidstidUkerInputDoc;

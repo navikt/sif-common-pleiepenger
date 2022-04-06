@@ -3,19 +3,20 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { FormikInputGroup, FormikTimeInput } from '@navikt/sif-common-formik';
 import { dateFormatter, isDateInDates, isDateInWeekdays, Weekday } from '@navikt/sif-common-utils';
 import { Ingress } from 'nav-frontend-typografi';
-import { TidPerDagValidator } from '../..';
-import { Daginfo, Ukeinfo } from '../../types/tidUkerTypes';
+import { TidPerDagValidator } from '..';
+import { Daginfo, Ukeinfo } from '../types/tidUkerTypes';
 
+export interface ArbeidstidUkeTekster {
+    dag: React.ReactNode;
+    jobber: React.ReactNode;
+    ariaLabelTidInput: (dato: string) => React.ReactNode;
+}
 interface Props {
     getFieldName: (dag: Daginfo) => string;
     ukeinfo: Ukeinfo;
     utilgjengeligeDatoer?: Date[];
     utilgjengeligeUkedager?: Weekday[];
-    tekst: {
-        dag: React.ReactNode;
-        jobber: React.ReactNode;
-        ariaLabelTidInput: (dato: string) => React.ReactNode;
-    };
+    tekst: ArbeidstidUkeTekster;
     tidPerDagValidator?: TidPerDagValidator;
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
     dagLabelRenderer?: (dag: Daginfo) => React.ReactNode;
