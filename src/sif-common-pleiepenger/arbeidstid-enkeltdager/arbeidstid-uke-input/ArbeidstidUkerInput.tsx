@@ -51,6 +51,11 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
                         utilgjengeligeDatoer={utilgjengeligeDatoer}
                         utilgjengeligeUkedager={utilgjengeligeUkedager}
                         tidPerDagValidator={tidPerDagValidator}
+                        tekst={{
+                            dag: 'Dag',
+                            jobber: 'Jobber timer',
+                            ariaLabelTidInput: (dato) => `Hvor mye skal du jobbe ${dato}`,
+                        }}
                     />
                 );
                 return (

@@ -11,6 +11,11 @@ interface Props {
     ukeinfo: Ukeinfo;
     utilgjengeligeDatoer?: Date[];
     utilgjengeligeUkedager?: Weekday[];
+    tekst: {
+        dag: React.ReactNode;
+        jobber: React.ReactNode;
+        ariaLabelTidInput: (dato: string) => React.ReactNode;
+    };
     tidPerDagValidator?: TidPerDagValidator;
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
     dagLabelRenderer?: (dag: Daginfo) => React.ReactNode;
@@ -25,6 +30,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     getFieldName,
     tidPerDagValidator,
     ukeTittelRenderer,
+    tekst,
 }) => {
     const { dager } = ukeinfo;
 
@@ -40,9 +46,9 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
 
             <div className={bem.element('uke__ukedager')}>
                 <div className={bem.element('dag-inputs', 'header')}>
-                    <div className={bem.element('dagnavn', 'header')}>Dag</div>
+                    <div className={bem.element('dagnavn', 'header')}>{tekst.dag}</div>
                     <div className={bem.element('arbeidstidPeriode')} id="iPerioden">
-                        Jobber i perioden
+                        {tekst.jobber}
                     </div>
                 </div>
                 {dager.map((dag) => {
@@ -69,7 +75,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                         aria-describedby="iPerioden"
                                         name={getFieldName(dag)}
                                         label={
-                                            <span className={'sr-only'}>Hvor mye skal du jobbe {dayDateString}</span>
+                                            <span className={'sr-only'}>{tekst.ariaLabelTidInput(dayDateString)}</span>
                                         }
                                         timeInputLayout={{
                                             direction: 'horizontal',
