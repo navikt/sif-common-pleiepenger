@@ -237,6 +237,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                             <TidFasteUkedagerInput
                                                 name={FormFields.tidFasteDager}
                                                 disabledDays={[Weekday.monday, Weekday.thursday]}
+                                                hideDisabledDays={true}
                                                 validateDag={(dag, value) => {
                                                     const error = getArbeidstimerFastDagValidator()(value);
                                                     return error

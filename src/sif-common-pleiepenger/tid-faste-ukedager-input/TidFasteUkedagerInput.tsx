@@ -6,6 +6,7 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib
 import { Weekday } from '@navikt/sif-common-utils/lib';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 import './tidFasteUkedagerInput.less';
+import bemUtils from '../../dev/utils/bemUtils';
 
 interface Props {
     name: string;
@@ -13,6 +14,8 @@ interface Props {
     hideDisabledDays?: boolean;
     validateDag?: (dagNavn: string, value: any) => ValidationResult<ValidationError>;
 }
+
+const bem = bemUtils('tidFasteUkedagerInput');
 
 const isWeekdayDisabled = (disabledDays: Weekday[] | undefined, dag: Weekday): boolean =>
     disabledDays ? disabledDays.some((d) => d === dag) : false;
@@ -35,9 +38,10 @@ const TidFasteUkedagerInput = ({ name, validateDag, disabledDays, hideDisabledDa
             />
         );
     };
+    const hasHiddenDays = disabledDays !== undefined && disabledDays.length > 0 && hideDisabledDays;
     return (
         <Box margin="l">
-            <div className="tidFasteUkedagerInput">
+            <div className={bem.classNames(bem.block, bem.modifierConditional('withHiddenDays', hasHiddenDays))}>
                 {renderWeekdayTimeInput(Weekday.monday, txt.Mandager, txt.mandag)}
                 {renderWeekdayTimeInput(Weekday.tuesday, txt.Tirsdager, txt.tirsdag)}
                 {renderWeekdayTimeInput(Weekday.wednesday, txt.Onsdager, txt.onsdag)}
