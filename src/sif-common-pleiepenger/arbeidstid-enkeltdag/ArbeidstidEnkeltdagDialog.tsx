@@ -10,7 +10,7 @@ import { TidEnkeltdagFormProps } from '../tid-enkeltdag-dialog/TidEnkeltdagForm'
 interface Props extends Omit<TidEnkeltdagDialogProps, 'dialogTitle' | 'formProps'> {
     arbeidsstedNavn: string;
     arbeidsforholdType: ArbeidsforholdType;
-    formProps: Omit<TidEnkeltdagFormProps, 'hvorMyeSpørsmålRenderer' | 'maksTid'>;
+    formProps: Omit<TidEnkeltdagFormProps, 'hvorMyeSpørsmålRenderer'>;
 }
 
 const ArbeidstidEnkeltdagDialog: React.FunctionComponent<Props> = ({

@@ -13,7 +13,7 @@ export { default as OmsorgstilbudPeriodeDialog } from './omsorgstilbud-periode/o
 export { default as OmsorgstilbudMånedInfo } from './omsorgstilbud-periode/OmsorgstilbudMånedInfo';
 export { default as SøknadsperioderMånedListe } from './søknadsperioder-måned-liste/SøknadsperioderMånedListe';
 export { default as TidKalenderForm } from './tid-kalender-form/TidKalenderForm';
-export { default as TidUkerInput } from './tid-kalender-form/tid-uker-input/TidUkerInput';
+export { default as TidUkerInput } from './tid-uker-input/TidUkerInput';
 export { default as TidFasteUkedagerInput } from './tid-faste-ukedager-input/TidFasteUkedagerInput';
 export { default as TidsbrukKalender } from './tidsbruk-kalender/TidsbrukKalender';
 export { default as TimerOgMinutter, formatTimerOgMinutter } from './timer-og-minutter/TimerOgMinutter';

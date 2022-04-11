@@ -4,11 +4,11 @@ import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-p
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils/lib';
-import { TidPerDagValidator } from '../../types';
-import TidUkeInput from './TidUkeInput';
-import { Daginfo, Ukeinfo } from '../../types/tidUkerTypes';
+import { TidPerDagValidator } from '../types';
+import { Daginfo, Ukeinfo } from '../types/tidUkerTypes';
 import { tidUkerInputUtils } from './tidUkerUtils';
 import './tidUkerInput.less';
+import TidUkeInput from '../tid-uke-input/TidUkeInput';
 
 const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
 

@@ -4,9 +4,9 @@ import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { FormikTimeInput } from '@navikt/sif-common-formik';
 import { Undertittel } from 'nav-frontend-typografi';
 import { DateDurationMap, isDateInDates } from '@navikt/sif-common-utils';
-import { Daginfo, Ukeinfo } from '../../types/tidUkerTypes';
-import { TidPerDagValidator } from '../..';
-import { tidUkerInputUtils } from './tidUkerUtils';
+import { Daginfo, Ukeinfo } from '../types/tidUkerTypes';
+import { TidPerDagValidator } from '..';
+import { tidUkerInputUtils } from '../tid-uker-input/tidUkerUtils';
 
 type DagLabelRenderer = (dag: Daginfo) => React.ReactNode;
 

@@ -2,7 +2,7 @@ import { DateRange, dateToISOString } from '@navikt/sif-common-formik/lib';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import React from 'react';
-import { Daginfo, Ukeinfo } from '../../types/tidUkerTypes';
+import { Daginfo, Ukeinfo } from '../types/tidUkerTypes';
 
 const getEmptyElements = (num: number): JSX.Element[] | undefined => {
     return num === 0

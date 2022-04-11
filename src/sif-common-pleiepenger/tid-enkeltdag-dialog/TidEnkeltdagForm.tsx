@@ -39,7 +39,7 @@ export interface TidEnkeltdagFormProps {
     dato: Date;
     tid?: Partial<Duration>;
     tidOpprinnelig?: Duration;
-    maksTid: NumberDuration;
+    maksTid?: NumberDuration;
     minTid?: NumberDuration;
     hvorMyeSpørsmålRenderer: (date: Date) => string;
     onSubmit: (dagerMedTid: TidEnkeltdagEndring) => void;
@@ -87,7 +87,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     tid,
     tidOpprinnelig,
     periode,
-    maksTid,
+    maksTid = { hours: 24, minutes: 0 },
     minTid = { hours: 0, minutes: 0 },
     hvorMyeSpørsmålRenderer,
     onSubmit,

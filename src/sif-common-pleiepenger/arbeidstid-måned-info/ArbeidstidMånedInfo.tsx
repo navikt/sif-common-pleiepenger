@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { FormattedMessage, useIntl } from 'react-intl';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange, dateToISOString, InputTime } from '@navikt/sif-common-formik/lib';
-import { DateDurationMap, getDatesWithDurationLongerThanZero, getDurationsInDateRange } from '@navikt/sif-common-utils';
+import {
+    DateDurationMap,
+    DurationWeekdays,
+    getDatesWithDurationLongerThanZero,
+    getDurationsInDateRange,
+    getNumberDurationForWeekday,
+    getWeekdayFromDate,
+    removeDatesFromDateDurationMap,
+} from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
@@ -21,6 +29,7 @@ interface Props {
     månedTittelHeadingLevel?: number;
     periode: DateRange;
     åpentEkspanderbartPanel?: boolean;
+    arbeiderNormaltTimerFasteUkedager?: DurationWeekdays;
     onEnkeltdagChange?: (evt: TidEnkeltdagEndring) => void;
     onRequestEdit?: (tid: DateDurationMap) => void;
 }
@@ -65,12 +74,14 @@ const ArbeidstidMånedInfo: React.FunctionComponent<Props> = ({
     månedTittelHeadingLevel = 2,
     periode,
     åpentEkspanderbartPanel,
+    arbeiderNormaltTimerFasteUkedager,
     onEnkeltdagChange,
 }) => {
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
 
     const dager: DateDurationMap = getDurationsInDateRange(tidArbeidstid, måned);
     const dagerMedTid = getDatesWithDurationLongerThanZero(dager);
+    const weekday = editDate ? getWeekdayFromDate(editDate.dato) : undefined;
 
     const handleKalenderDatoClick = (dato: Date) => {
         const tid: Partial<InputTime> = dager[dateToISOString(dato)] || {
@@ -107,11 +118,18 @@ const ArbeidstidMånedInfo: React.FunctionComponent<Props> = ({
                         dato: editDate.dato,
                         tid: editDate.tid,
                         periode,
+                        maksTid:
+                            weekday && arbeiderNormaltTimerFasteUkedager
+                                ? getNumberDurationForWeekday(arbeiderNormaltTimerFasteUkedager, weekday)
+                                : undefined,
                         onSubmit: (evt) => {
                             setEditDate(undefined);
+                            const dagerMedTid = utilgjengeligeDatoer
+                                ? removeDatesFromDateDurationMap(evt.dagerMedTid, utilgjengeligeDatoer)
+                                : evt.dagerMedTid;
                             setTimeout(() => {
                                 /** TimeOut pga komponent unmountes */
-                                onEnkeltdagChange(evt);
+                                onEnkeltdagChange({ ...evt, dagerMedTid });
                             });
                         },
                         onCancel: () => setEditDate(undefined),

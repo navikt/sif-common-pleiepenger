@@ -1,10 +1,13 @@
 import React from 'react';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { FormikInputGroup, FormikTimeInput } from '@navikt/sif-common-formik';
-import { dateFormatter, isDateInDates, isDateInWeekdays, Weekday } from '@navikt/sif-common-utils';
-import { Ingress } from 'nav-frontend-typografi';
-import { TidPerDagValidator } from '..';
+import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
+import { dateFormatter, Duration, isDateInDates, isDateInWeekdays, Weekday } from '@navikt/sif-common-utils';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { Daginfo, Ukeinfo } from '../types/tidUkerTypes';
+import './arbeidstidUkeInput.less';
+
+export type ArbeidstidUkeInputEnkeltdagValidator = (dato: Date) => (value: Duration) => ValidationError | undefined;
 
 export interface ArbeidstidUkeTekster {
     dag: React.ReactNode;
@@ -12,39 +15,31 @@ export interface ArbeidstidUkeTekster {
     ariaLabelTidInput: (dato: string) => React.ReactNode;
 }
 interface Props {
-    getFieldName: (dag: Daginfo) => string;
     ukeinfo: Ukeinfo;
+    getFieldName: (dag: Daginfo) => string;
     utilgjengeligeDatoer?: Date[];
     utilgjengeligeUkedager?: Weekday[];
     tekst: ArbeidstidUkeTekster;
-    tidPerDagValidator?: TidPerDagValidator;
-    ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
-    dagLabelRenderer?: (dag: Daginfo) => React.ReactNode;
+    enkeltdagValidator?: ArbeidstidUkeInputEnkeltdagValidator;
 }
 
-const bem = bemUtils('arbeidstidUkerInput');
+const bem = bemUtils('arbeidstidUkeInput');
 
 const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     ukeinfo,
     utilgjengeligeDatoer,
     utilgjengeligeUkedager,
     getFieldName,
-    tidPerDagValidator,
-    ukeTittelRenderer,
+    enkeltdagValidator,
     tekst,
 }) => {
     const { dager } = ukeinfo;
 
     return (
-        <div className={bem.element('uke')}>
-            {ukeTittelRenderer ? (
-                ukeTittelRenderer(ukeinfo)
-            ) : (
-                <Ingress tag="h3" style={{ marginBottom: '.5rem', marginTop: '1rem' }}>
-                    {getUkeTittel(ukeinfo)}
-                </Ingress>
-            )}
-
+        <div className={bem.block}>
+            <Normaltekst tag="h3" className={bem.element('tittel')}>
+                {getUkeTittel(ukeinfo)}
+            </Normaltekst>
             <div className={bem.element('uke__ukedager')}>
                 <div className={bem.element('dag-inputs', 'header')}>
                     <div className={bem.element('dagnavn', 'header')}>{tekst.dag}</div>
@@ -81,7 +76,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                         timeInputLayout={{
                                             direction: 'horizontal',
                                         }}
-                                        validate={tidPerDagValidator ? tidPerDagValidator(dag.labelFull) : undefined}
+                                        validate={enkeltdagValidator ? enkeltdagValidator(dag.dato) : undefined}
                                     />
                                 </div>
                             </div>
