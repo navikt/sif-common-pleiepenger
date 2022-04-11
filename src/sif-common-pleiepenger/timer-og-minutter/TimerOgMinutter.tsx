@@ -22,7 +22,9 @@ interface Props {
 
 const TimerOgMinutter: React.FunctionComponent<Props> = ({ timer, minutter }) => {
     const intl = useIntl();
-    return <span>{intlHelper(intl, 'timerOgMinutter', { timer: timer || '0', minutter: minutter || '0' })}</span>;
+    const numTimer = parseInt(`${timer}`, 10);
+    const numMinutter = minutter ? parseInt(`${minutter}`, 10) : 0;
+    return <span>{formatTimerOgMinutter(intl, { hours: `${numTimer}`, minutes: `${numMinutter}` })}</span>;
 };
 
 export default TimerOgMinutter;

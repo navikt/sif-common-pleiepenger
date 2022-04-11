@@ -16,5 +16,14 @@
                 padding-top: 1rem;
             }
         }
+        margin-bottom: 1rem;
+        &--expandable {
+            margin-bottom: 0;
+            @media (min-width: 1050px) {
+                &:not(:first-child) {
+                    padding-top: 0.5rem;
+                }
+            }
+        }
     }
 }

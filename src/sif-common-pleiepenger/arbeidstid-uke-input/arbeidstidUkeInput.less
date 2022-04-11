@@ -1,7 +1,8 @@
 .arbeidstidUkeInput {
-    @wrapBreakpoint: 600px;
+    @wrapBreakpoint: 800px;
 
     &__tittel {
+        font-size: 1.25rem;
         margin-bottom: 0.5rem;
     }
     legend {
@@ -33,19 +34,31 @@
     }
 
     &__dagnavn {
-        min-width: 10rem;
+        min-width: 8rem;
         &--header {
             padding-top: 0;
             padding-bottom: 0;
         }
-        padding-top: 1rem;
+        padding-top: 0.65rem;
         padding-bottom: 0.5rem;
         &::first-letter {
             text-transform: capitalize;
         }
     }
     &__arbeidstidPeriode {
-        min-width: 10rem;
+        min-width: 8rem;
+        &--header {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+    }
+    &__fravær {
+        padding-top: 0.65rem;
+        padding-bottom: 0.5rem;
+        &--header {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
     }
     @media (max-width: @wrapBreakpoint) {
         &__dag-inputs {
@@ -53,6 +66,10 @@
         }
         &__arbeidstidPeriode,
         &__dagnavn {
+            width: 100%;
+            padding-top: 0;
+        }
+        &__fravær {
             width: 100%;
             padding-top: 0;
         }

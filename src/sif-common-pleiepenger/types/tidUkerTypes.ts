@@ -1,4 +1,4 @@
-import { ISODate } from '@navikt/sif-common-utils';
+import { ISODate, Weekday } from '@navikt/sif-common-utils';
 
 export interface Daginfo {
     isoDate: ISODate;
@@ -10,6 +10,7 @@ export interface Daginfo {
     labelDag: string;
     labelDato: string;
     labelFull: string;
+    weekday?: Weekday;
 }
 
 export interface Ukeinfo {

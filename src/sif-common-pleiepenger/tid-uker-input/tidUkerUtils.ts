@@ -1,4 +1,5 @@
 import { DateRange, dateToISOString } from '@navikt/sif-common-formik/lib';
+import { Weekday } from '@navikt/sif-common-utils/lib';
 import dayjs from 'dayjs';
 import { groupBy } from 'lodash';
 import React from 'react';
@@ -8,6 +9,23 @@ const getEmptyElements = (num: number): JSX.Element[] | undefined => {
     return num === 0
         ? undefined
         : Array.from({ length: num }).map((_, index) => React.createElement('span', { key: index }));
+};
+
+const getWeekdayFromISOWeekday = (isoWeekday: number) => {
+    switch (isoWeekday) {
+        case 1:
+            return Weekday.monday;
+        case 2:
+            return Weekday.tuesday;
+        case 3:
+            return Weekday.wednesday;
+        case 4:
+            return Weekday.thursday;
+        case 5:
+            return Weekday.friday;
+        default:
+            return undefined;
+    }
 };
 
 const getDagInfo = (date: Date): Daginfo => {
@@ -22,6 +40,7 @@ const getDagInfo = (date: Date): Daginfo => {
         labelDag: `${dayjsDato.format('dddd')}`,
         labelDato: `${dayjsDato.format('DD.MM.YYYY')}`,
         labelFull: `${dayjsDato.format('dddd')} ${dayjsDato.format('D. MMMM')}`,
+        weekday: getWeekdayFromISOWeekday(dayjsDato.isoWeekday()),
     };
 };
 
