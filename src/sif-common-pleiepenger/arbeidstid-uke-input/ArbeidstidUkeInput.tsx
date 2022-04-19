@@ -1,4 +1,6 @@
 import React from 'react';
+import { useIntl } from 'react-intl';
+import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { FormikInputGroup, FormikTimeInput } from '@navikt/sif-common-formik';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
@@ -14,11 +16,10 @@ import {
     Weekday,
 } from '@navikt/sif-common-utils';
 import { Normaltekst } from 'nav-frontend-typografi';
+import LabelInputInfoLayout from '../label-input-info-layout/LabelInputInfoLayout';
+import TimerOgMinutter, { formatTimerOgMinutter } from '../timer-og-minutter/TimerOgMinutter';
 import { Daginfo, Ukeinfo } from '../types/tidUkerTypes';
 import './arbeidstidUkeInput.less';
-import TimerOgMinutter, { formatTimerOgMinutter } from '../timer-og-minutter/TimerOgMinutter';
-import { useIntl } from 'react-intl';
-import Box from '@navikt/sif-common-core/lib/components/box/Box';
 
 export type ArbeidstidUkeInputEnkeltdagValidator = (dato: Date) => (value: Duration) => ValidationError | undefined;
 
@@ -67,6 +68,21 @@ const ArbeidOgFraværOppsummering = ({
     );
 };
 
+const renderFraværInfo = (fravær: Duration | undefined) => {
+    const heltFravær = fravær ? durationToDecimalDuration(fravær) === 0 : false;
+    if (fravær && !heltFravær) {
+        return (
+            <>
+                <TimerOgMinutter timer={fravær.hours} minutter={fravær.minutes} /> fravær
+            </>
+        );
+    }
+    if (fravær && heltFravær) {
+        return <>Helt fravær</>;
+    }
+    return undefined;
+};
+
 const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     ukeinfo,
     utilgjengeligeDatoer,
@@ -99,17 +115,6 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                 </Normaltekst>
             )}
             <div className={bem.element('uke__ukedager')}>
-                <div className={bem.element('dag-inputs', 'header')}>
-                    <div className={bem.element('dagnavn', 'header')}>{tekst.dag}</div>
-                    <div className={bem.element('arbeidstidPeriode', 'header')} id="iPerioden">
-                        {tekst.jobber}
-                    </div>
-                    {normalarbeidstidUkedager && (
-                        <div className={bem.element('fravær', 'header')} id="fravær">
-                            {tekst.fravær}
-                        </div>
-                    )}
-                </div>
                 {dager.map((dag) => {
                     const erUtilgjengeligDato = isDateInDates(dag.dato, utilgjengeligeDatoer);
                     const erUtilgjengeligUkedag = utilgjengeligeUkedager
@@ -129,7 +134,6 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                   durationToDecimalDuration(normalarbeidstid) - durationToDecimalDuration(value)
                               )
                             : normalarbeidstid;
-                    const heltFravær = fravær ? durationToDecimalDuration(fravær) === 0 : false;
 
                     return (
                         <FormikInputGroup
@@ -137,11 +141,10 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                             legend={<span className="sr-only">{dayDateString}</span>}
                             name={'arbeidstid'}
                             className={bem.element('dag', erUtilgjengeligDato ? 'utilgjengelig' : undefined)}>
-                            <div className={bem.element('dag-inputs')}>
-                                <div className={bem.element('dagnavn')} role="presentation" aria-hidden={true}>
-                                    {dayDateString}
-                                </div>
-                                <div className={bem.element('arbeidstidPeriode')}>
+                            <LabelInputInfoLayout
+                                narrowBreakpoint={860}
+                                label={dayDateString}
+                                input={
                                     <FormikTimeInput
                                         aria-describedby="iPerioden"
                                         name={getFieldName(dag)}
@@ -153,14 +156,9 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                         }}
                                         validate={enkeltdagValidator ? enkeltdagValidator(dag.dato) : undefined}
                                     />
-                                </div>
-                                {fravær && !heltFravær && (
-                                    <div className={bem.element('fravær')}>
-                                        <TimerOgMinutter timer={fravær.hours} minutter={fravær.minutes} /> fravær
-                                    </div>
-                                )}
-                                {fravær && heltFravær && <div className={bem.element('fravær')}>Helt fravær</div>}
-                            </div>
+                                }
+                                info={renderFraværInfo(fravær)}
+                            />
                         </FormikInputGroup>
                     );
                 })}
