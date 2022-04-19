@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import 'nav-frontend-lenker-style';
 import { isActiveRoute, routes } from '../../config/routeConfig';
-import bemUtils from '../../utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 
 const lenkeBem = bemUtils('lenke');
 

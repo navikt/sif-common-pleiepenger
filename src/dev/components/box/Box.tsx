@@ -1,5 +1,5 @@
 import React from 'react';
-import bemHelper from '../../utils/bemUtils';
+import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import './box.less';
 
 type BoxMargin = 's' | 'm' | 'l' | 'xl' | 'xxl' | 'xxxl' | 'none';
@@ -11,7 +11,7 @@ interface BoxProps {
     className?: string;
 }
 
-const bem = bemHelper('box');
+const bem = bemUtils('box');
 
 const Box: React.FunctionComponent<BoxProps> = ({ margin, padBottom, className, textAlignCenter, children }) => {
     const classNames = bem.classNames(

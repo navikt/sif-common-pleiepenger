@@ -143,7 +143,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                             className={bem.element('dag', erUtilgjengeligDato ? 'utilgjengelig' : undefined)}>
                             <LabelInputInfoLayout
                                 narrowBreakpoint={860}
-                                label={dayDateString}
+                                label={<div className={bem.element('dagnavn')}>{dayDateString}</div>}
                                 input={
                                     <FormikTimeInput
                                         aria-describedby="iPerioden"
