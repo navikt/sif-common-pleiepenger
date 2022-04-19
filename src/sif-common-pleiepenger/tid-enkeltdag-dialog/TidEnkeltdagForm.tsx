@@ -105,7 +105,7 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
 
     const erEndret = durationsAreEqual(tid, tidOpprinnelig) === false;
     const dagNavn = dayjs(dato).format('dddd');
-    const valgtDatoTxt = dateFormatter.dayFullShortDate(dato);
+    const valgtDatoTxt = dateFormatter.dayDateShortMonth(dato);
 
     const ukePeriode: DateRange = trimDateRangeToWeekdays(
         getDateRangeWithinDateRange(getWeekDateRange(dato, true), periode)
@@ -117,16 +117,16 @@ const TidEnkeltdagForm: React.FunctionComponent<TidEnkeltdagFormProps> = ({
     const månedErHel =
         dayjs(periode.from).isBefore(månedPeriode.from, 'month') && dayjs(periode.to).isAfter(månedPeriode.to, 'month');
 
-    const ukePeriodeStartTxt = dateFormatter.dayFullShortDate(ukePeriode.from);
-    const ukePeriodeSluttTxt = dateFormatter.dayFullShortDate(ukePeriode.to);
+    const ukePeriodeStartTxt = dateFormatter.dayDateShortMonth(ukePeriode.from);
+    const ukePeriodeSluttTxt = dateFormatter.dayDateShortMonth(ukePeriode.to);
 
-    const månedPeriodeStartTxt = dateFormatter.dayFullShortDate(månedPeriode.from);
-    const månedPeriodeSluttTxt = dateFormatter.dayFullShortDate(månedPeriode.to);
+    const månedPeriodeStartTxt = dateFormatter.dayDateShortMonth(månedPeriode.from);
+    const månedPeriodeSluttTxt = dateFormatter.dayDateShortMonth(månedPeriode.to);
 
     const ukeNavn = `${dayjs(dato).isoWeek()}`;
     const månedNavn = dayjs(dato).format('MMMM YYYY');
 
-    const sluttDatoTxt = dateFormatter.dayFullShortDate(getLastWeekdayOnOrBeforeDate(periode.to));
+    const sluttDatoTxt = dateFormatter.dayDateShortMonth(getLastWeekdayOnOrBeforeDate(periode.to));
 
     const skalViseValgetGjelderFlereDager = getNumberOfDaysInDateRange(periode) > 2;
 

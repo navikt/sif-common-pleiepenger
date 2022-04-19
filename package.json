@@ -39,8 +39,8 @@
     "devDependencies": {
         "@craco/craco": "^5.5.0",
         "@navikt/sif-common-core": "^11.1.0",
-        "@navikt/sif-common-formik": "^22.1.0",
-        "@navikt/sif-common-utils": "^3.3.0",
+        "@navikt/sif-common-formik": "^22.1.1",
+        "@navikt/sif-common-utils": "^3.4.0",
         "@testing-library/jest-dom": "^5.16.2",
         "@testing-library/react": "^12.1.4",
         "@testing-library/user-event": "^13.5.0",
@@ -90,7 +90,7 @@
     },
     "peerDependencies": {
         "@navikt/sif-common-formik": "22.x",
-        "@navikt/sif-common-utils": "^3.3.0",
+        "@navikt/sif-common-utils": "^3.4.0",
         "dayjs": "1.x",
         "lodash.groupby": "4.x",
         "lodash.uniq": "4.x",

@@ -79,7 +79,7 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
     onDateClick,
     dateContentRenderer,
     dateRendererShort = dateFormatter.compact,
-    dateRendererFull = dateFormatter.dayDateAndMonth,
+    dateRendererFull = dateFormatter.dayDateMonth,
     allDaysInWeekDisabledContentRenderer,
 }) => {
     const weekdatesInMonth = getDatesInMonth(month.from, true);

@@ -68,18 +68,26 @@ const ArbeidOgFraværOppsummering = ({
     );
 };
 
-const renderFraværInfo = (fravær: Duration | undefined) => {
+const renderFraværInfo = (fravær: Duration | undefined, arbeidstid: Duration | undefined) => {
     const heltFravær = fravær ? durationToDecimalDuration(fravær) === 0 : false;
-    if (fravær && !heltFravær) {
+    if (fravær) {
         return (
             <>
-                <TimerOgMinutter timer={fravær.hours} minutter={fravær.minutes} /> fravær
+                {arbeidstid && (
+                    <span className="sr-only">
+                        <TimerOgMinutter timer={arbeidstid.hours} minutter={arbeidstid.minutes} /> med jobb gir{' '}
+                    </span>
+                )}
+                {!heltFravær && (
+                    <>
+                        <TimerOgMinutter timer={fravær.hours} minutter={fravær.minutes} /> fravær
+                    </>
+                )}
+                {heltFravær && <>Fullt fravær</>}
             </>
         );
     }
-    if (fravær && heltFravær) {
-        return <>Helt fravær</>;
-    }
+
     return undefined;
 };
 
@@ -143,7 +151,11 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                             className={bem.element('dag', erUtilgjengeligDato ? 'utilgjengelig' : undefined)}>
                             <LabelInputInfoLayout
                                 narrowBreakpoint={860}
-                                label={<div className={bem.element('dagnavn')}>{dayDateString}</div>}
+                                label={
+                                    <div role="presentation" aria-hidden="true" className={bem.element('dagnavn')}>
+                                        {dayDateString}
+                                    </div>
+                                }
                                 input={
                                     <FormikTimeInput
                                         aria-describedby="iPerioden"
@@ -157,7 +169,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                         validate={enkeltdagValidator ? enkeltdagValidator(dag.dato) : undefined}
                                     />
                                 }
-                                info={renderFraværInfo(fravær)}
+                                info={renderFraværInfo(fravær, value)}
                             />
                         </FormikInputGroup>
                     );
@@ -175,7 +187,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     );
 };
 
-const inputDatoLabel = (date: Date): string => dateFormatter.dayDateAndMonth(date);
+const inputDatoLabel = (date: Date): string => dateFormatter.dayDateShortMonth(date);
 
 export const getUkeTittel = ({ ukenummer, år }: Ukeinfo): string => {
     return `Uke ${ukenummer}, ${år}`;

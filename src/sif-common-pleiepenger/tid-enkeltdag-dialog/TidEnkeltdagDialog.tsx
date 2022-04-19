@@ -21,7 +21,7 @@ const TidEnkeltdagDialog: React.FunctionComponent<TidEnkeltdagDialogProps> = ({
     return isOpen ? (
         <Modal
             isOpen={isOpen}
-            contentLabel={`${dialogTitle} ${dateFormatter.fullWithDayName(formProps.dato)}`}
+            contentLabel={`${dialogTitle} ${dateFormatter.dayDateMonthYear(formProps.dato)}`}
             onRequestClose={formProps.onCancel}
             shouldCloseOnOverlayClick={false}
             className="tidEnkeltdagDialog">

@@ -13,7 +13,7 @@ const bem = bemUtils('calendarGrid');
 const CalendarGridDate: React.FunctionComponent<Props> = ({
     date,
     dateRendererShort = dateFormatter.compact,
-    dateRendererFull = dateFormatter.dayDateAndMonth,
+    dateRendererFull = dateFormatter.dayDateMonth,
 }) => {
     const id = `${dateToISODate(date)}_date`;
 

@@ -28,7 +28,7 @@ const ArbeidstidEnkeltdagDialog: React.FunctionComponent<Props> = ({
                 erHistorisk ? 'arbeidstidEnkeltdagForm.jobbet' : 'arbeidstidEnkeltdagForm.skalJobbe'
             ),
             hvor: intlHelper(intl, `arbeidstidEnkeltdagForm.som.${arbeidsforholdType}`, { navn: arbeidsstedNavn }),
-            når: dateFormatter.fullWithDayName(dato),
+            når: dateFormatter.dayDateShortMonthYear(dato),
         };
         return intlHelper(intl, 'arbeidstidEnkeltdagForm.tid.spm', intlValues);
     };
