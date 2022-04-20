@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
-import { DateDurationMap, DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, DateRange, ISODateToDate, Weekday } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import {
@@ -73,6 +73,7 @@ const ArbeidstidPeriodeDoc = () => {
                                 jobberNormaltTimer,
                                 periode,
                                 arbeidsstedNavn,
+                                utilgjengeligeUkedager: [Weekday.monday],
                                 intlValues,
                                 onCancel: () => setVisPeriode(false),
                                 onSubmit: handleFormSubmit,

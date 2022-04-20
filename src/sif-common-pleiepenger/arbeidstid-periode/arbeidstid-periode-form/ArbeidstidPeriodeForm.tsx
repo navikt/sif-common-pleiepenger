@@ -6,7 +6,7 @@ import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-dat
 import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { DurationWeekdays, Weekday } from '@navikt/sif-common-utils';
+import { DurationWeekdays, getWeekdayDOW, Weekday } from '@navikt/sif-common-utils';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import { getArbeidstimerFastDagValidator } from '../..';
@@ -22,6 +22,7 @@ export interface ArbeidstidPeriodeFormProps {
     intlValues: ArbeidIPeriodeIntlValues;
     /** Brukes kun i søknad hvor bruker har oppgitt jobberNormaltTimer for hele tilgjengelige periode */
     jobberNormaltTimer?: number;
+    utilgjengeligeUkedager?: Weekday[];
     onSubmit: (data: ArbeidstidPeriodeData) => void;
     onCancel: () => void;
 }
@@ -56,6 +57,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
     periode,
     intlValues,
     jobberNormaltTimer,
+    utilgjengeligeUkedager,
     onSubmit,
     onCancel,
 }) => {
@@ -81,6 +83,8 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                     : undefined,
         });
     };
+
+    const disabledDaysOfWeek = utilgjengeligeUkedager ? utilgjengeligeUkedager.map((dag) => getWeekdayDOW(dag)) : [];
 
     return (
         <div>
@@ -116,6 +120,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 fullscreenOverlay: true,
                                                 dayPickerProps: {
                                                     initialMonth: periode.from,
+                                                    disabledDays: { daysOfWeek: disabledDaysOfWeek },
                                                 },
                                                 minDate: periode.from,
                                                 maxDate: to || periode.to,
@@ -138,6 +143,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 maxDate: periode.to,
                                                 dayPickerProps: {
                                                     initialMonth: from || periode.from,
+                                                    disabledDays: { daysOfWeek: disabledDaysOfWeek },
                                                 },
                                                 validate: getDateRangeValidator({
                                                     required: true,
