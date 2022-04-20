@@ -149,7 +149,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                         <FormikInputGroup
                             key={dag.isoDate}
                             legend={<span className="sr-only">{dayDateString}</span>}
-                            name={'arbeidstid'}
+                            name={`arbeidstid_${dag.isoDate}`}
                             className={bem.element('dag', erUtilgjengeligDato ? 'utilgjengelig' : undefined)}>
                             <LabelInputInfoLayout
                                 narrowBreakpoint={860}
