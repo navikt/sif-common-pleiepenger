@@ -24,6 +24,7 @@ interface Props {
     tekster: ArbeidstidUkeTekster;
     normalarbeidstidUkedager?: DurationWeekdays;
     useExpandablePanel?: boolean;
+    beregnFravær?: boolean;
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
     enkeltdagValidator?: ArbeidstidUkeInputEnkeltdagValidator;
 }
@@ -38,6 +39,7 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
     utilgjengeligeUkedager,
     normalarbeidstidUkedager,
     tekster,
+    beregnFravær,
     useExpandablePanel,
     enkeltdagValidator,
 }) => {
@@ -60,6 +62,7 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
                         minutes: dur?.minutes || '0',
                     };
                 }}
+                beregnFravær={beregnFravær}
                 visUkeTittel={visUkeTittel}
                 ukeinfo={uke}
                 utilgjengeligeDatoer={utilgjengeligeDatoer}

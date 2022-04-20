@@ -34,6 +34,7 @@ interface Props {
     visUkeTittel?: boolean;
     getFieldName: (dag: Daginfo) => string;
     getDagValue: (dag: Daginfo) => Duration | undefined;
+    beregnFravær?: boolean;
     utilgjengeligeDatoer?: Date[];
     utilgjengeligeUkedager?: Weekday[];
     tekst: ArbeidstidUkeTekster;
@@ -101,6 +102,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     getDagValue,
     enkeltdagValidator,
     tekst,
+    beregnFravær,
 }) => {
     const { dager } = ukeinfo;
 
@@ -137,7 +139,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
 
                     const value = getDagValue(dag);
                     const fravær =
-                        value && normalarbeidstid
+                        beregnFravær && value && normalarbeidstid
                             ? decimalDurationToDuration(
                                   durationToDecimalDuration(normalarbeidstid) - durationToDecimalDuration(value)
                               )
@@ -169,7 +171,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                         validate={enkeltdagValidator ? enkeltdagValidator(dag.dato) : undefined}
                                     />
                                 }
-                                info={renderFraværInfo(fravær, value)}
+                                info={beregnFravær ? renderFraværInfo(fravær, value) : undefined}
                             />
                         </FormikInputGroup>
                     );
