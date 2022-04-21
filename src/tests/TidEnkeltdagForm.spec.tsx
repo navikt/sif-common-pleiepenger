@@ -2,8 +2,8 @@ import { fireEvent, waitFor } from '@testing-library/react';
 import React from 'react';
 import { Duration, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import userEvent from '@testing-library/user-event';
+import TidEnkeltdagForm from '../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import { render, withMarkup } from './TestUtils';
-import TidEnkeltdagForm from '../sif-common-pleiepenger/tid-enkeltdag-dialog/TidEnkeltdagForm';
 
 describe('<TidEnkeltdagDialog>', () => {
     const handleCancel = jest.fn();

@@ -5,13 +5,9 @@ import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
 import { DateDurationMap, DateRange, ISODateToDate, Weekday } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
-import {
-    ArbeidsforholdType,
-    ArbeidstidPeriodeData,
-    ArbeidstidPeriodeDialog,
-    getArbeidstidIPeriodeIntlValues,
-} from '../../../sif-common-pleiepenger';
-import { arbeidstidPeriodeMessages } from '../../../sif-common-pleiepenger/arbeidstid-periode/arbeidstidPeriodeMessages';
+import { ArbeidsforholdType, ArbeidstidPeriodeData, ArbeidstidPeriodeDialog } from '../../../sif-common-pleiepenger';
+import { arbeidstidPeriodeMessages } from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-periode/i18n/arbeidstidPeriodeMessages';
+import { getArbeidstidIPeriodeIntlValues } from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-periode/utils/arbeidstidPeriodeIntlValuesUtils';
 import PageIntro from '../../components/page-intro/PageIntro';
 
 enum FormFields {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
-import ArbeidstidFasteDagerListe from '../../../../sif-common-pleiepenger/dager-med-tid/ArbeidstidFasteDagerListe';
+import ArbeidstidFasteDagerListe from '../../../../sif-common-pleiepenger/arbeidstid/arbeidstid-faste-dager-liste/ArbeidstidFasteDagerListe';
 import Box from '../../../components/box/Box';
 
 const ArbeidstidFasteDagerListeDoc = () => (

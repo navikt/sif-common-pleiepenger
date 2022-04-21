@@ -1,6 +1,9 @@
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import { Duration, DurationWeekdays, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
 
+export * from './Daginfo';
+export * from './Ukeinfo';
+
 export enum ArbeidsforholdType {
     ANSATT = 'ANSATT',
     FRILANSER = 'FRILANSER',

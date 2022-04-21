@@ -1,12 +1,12 @@
-import { omsorgstilbudEnkeltdagFormMessages } from '..';
-import arbeidstidEnkeltdagFormMessages from '../arbeidstid-enkeltdag/arbeidstidEnkeltdagMessages';
-import arbeidstidMånedInfoMessages from '../arbeidstid-måned-info/arbeidstidMånedInfoMessages';
-import { arbeidstidPeriodeMessages } from '../arbeidstid-periode/arbeidstidPeriodeMessages';
-import { calendarGridMessages } from '../calendar-grid/calendarGridMessages';
-import { dagerMedTidMessages } from '../dager-med-tid/dagerMedTidMessages';
-import { omsorgstibudPeriodeMessages } from '../omsorgstilbud-periode/omsorgstilbudPeriodeMessages';
-import tidEnkeltdagFormMessages from '../tid-enkeltdag-dialog/tidEnkeltdagMessages';
-import { timerOgMinutterMessages } from '../timer-og-minutter/timerOgMinutterMessages';
+import { calendarGridMessages } from '../common/calendar-grid/calendarGridMessages';
+import { dagerMedTidMessages } from '../common/dager-med-tid-liste/dagerMedTidMessages';
+import { timerOgMinutterMessages } from '../common/timer-og-minutter/timerOgMinutterMessages';
+import { omsorgstilbudEnkeltdagFormMessages } from '../';
+import arbeidstidEnkeltdagFormMessages from '../arbeidstid/arbeidstid-enkeltdag-dialog/arbeidstidEnkeltdagMessages';
+import arbeidstidMånedMessages from '../arbeidstid/arbeidstid-måned/i18n/arbeidstidMånedMessages';
+import { arbeidstidPeriodeMessages } from '../arbeidstid/arbeidstid-periode/i18n/arbeidstidPeriodeMessages';
+import { omsorgstibudPeriodeMessages } from '../omsorgstilbud/omsorgstilbud-periode/i18n/omsorgstilbudPeriodeMessages';
+import tidEnkeltdagFormMessages from '../tid/tid-enkeltdag-dialog/tidEnkeltdagMessages';
 
 export type ComponentMessages<Messages> = Record<string, Messages>;
 
@@ -19,7 +19,7 @@ export const sifCommonPleiepengerMessages = {
         ...tidEnkeltdagFormMessages.nb,
         ...arbeidstidEnkeltdagFormMessages.nb,
         ...calendarGridMessages.nb,
-        ...arbeidstidMånedInfoMessages.nb,
+        ...arbeidstidMånedMessages.nb,
         ...dagerMedTidMessages.nb,
     },
 };

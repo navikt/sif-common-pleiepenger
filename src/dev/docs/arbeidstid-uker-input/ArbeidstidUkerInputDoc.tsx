@@ -2,9 +2,9 @@ import React from 'react';
 import { FormikTimeInput, TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
 import { InputDateDurationMap, ISODateRangeToDateRange, Weekday } from '@navikt/sif-common-utils/lib';
 import Panel from 'nav-frontend-paneler';
-import ArbeidstidUkerInput from '../../../sif-common-pleiepenger/arbeidstid-uker-input/ArbeidstidUkerInput';
+import ArbeidstidUkerInput from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-uker-input/ArbeidstidUkerInput';
 import PageIntro from '../../components/page-intro/PageIntro';
-import LabelInputInfoLayout from '../../../sif-common-pleiepenger/label-input-info-layout/LabelInputInfoLayout';
+import LabelInputInfoLayout from '../../../sif-common-pleiepenger/common/label-input-info-layout/LabelInputInfoLayout';
 import { TimerOgMinutter } from '../../../sif-common-pleiepenger';
 
 interface FormValues {

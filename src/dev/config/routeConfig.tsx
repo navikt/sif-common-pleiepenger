@@ -1,5 +1,5 @@
 import React from 'react';
-import ArbeidstidMånedInfoDoc from '../docs/arbeidstid-måned-info/ArbeidstidMånedInfoDoc';
+import ArbeidstidMånedDoc from '../docs/arbeidstid-måned/ArbeidstidMånedDoc';
 import ArbeidstidPeriodeDoc from '../docs/arbeidstid-periode/ArbeidstidPeriodeDoc';
 import ArbeidstidUkerInputDoc from '../docs/arbeidstid-uker-input/ArbeidstidUkerInputDoc';
 import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
@@ -38,7 +38,7 @@ export const routes: RouteConfig[] = [
     {
         path: '/arbeidstid-måned-info',
         title: 'Arbeidstid i en måned',
-        renderContent: () => <ArbeidstidMånedInfoDoc />,
+        renderContent: () => <ArbeidstidMånedDoc />,
     },
     {
         path: '/tidsbruk-kalender',

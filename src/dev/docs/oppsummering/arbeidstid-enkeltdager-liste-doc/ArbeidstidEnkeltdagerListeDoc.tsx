@@ -1,7 +1,7 @@
 import React from 'react';
 import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
-import ArbeidstidEnkeltdagerListe from '../../../../sif-common-pleiepenger/dager-med-tid/ArbeidstidEnkeltdagerListe';
+import ArbeidstidEnkeltdagerListe from '../../../../sif-common-pleiepenger/arbeidstid/arbeidstid-enkeltdager-liste/ArbeidstidEnkeltdagerListe';
 import Box from '../../../components/box/Box';
 
 const ArbeidstidEnkeltdagerListeDoc = () => (

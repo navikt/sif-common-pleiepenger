@@ -1,8 +1,8 @@
 import React from 'react';
 import { DateRange, getDatesInMonthOutsideDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { render } from './TestUtils';
 import { TidsbrukKalender } from '../sif-common-pleiepenger';
-import TidArbeidEnkeltdag from '../sif-common-pleiepenger/arbeidstid-måned-info/TidArbeidEnkeltdag';
+import { render } from './TestUtils';
+import ArbeidstidEnkeltdagTekst from '../sif-common-pleiepenger/arbeidstid/arbeidstid-måned/components/arbeidstid-enkeltdag-tekst/ArbeidstidEnkeltdagTekst';
 
 const måned: DateRange = {
     from: ISODateToDate('2022-02-01'),
@@ -51,8 +51,8 @@ describe('<Tid>', () => {
                 periode={måned}
                 skjulTommeDagerIListe={true}
                 visOpprinneligTid={true}
-                tidRenderer={({ tid, prosent }) => <TidArbeidEnkeltdag tid={tid} prosent={prosent} />}
-                opprinneligTidRenderer={({ tid, prosent }) => <TidArbeidEnkeltdag tid={tid} prosent={prosent} />}
+                tidRenderer={({ tid, prosent }) => <ArbeidstidEnkeltdagTekst tid={tid} prosent={prosent} />}
+                opprinneligTidRenderer={({ tid, prosent }) => <ArbeidstidEnkeltdagTekst tid={tid} prosent={prosent} />}
                 onDateClick={(date: Date) => {
                     console.log(date);
                 }}
