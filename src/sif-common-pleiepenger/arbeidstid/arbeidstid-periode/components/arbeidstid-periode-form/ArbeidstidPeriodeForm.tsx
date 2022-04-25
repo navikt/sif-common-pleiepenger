@@ -87,7 +87,9 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
         });
     };
 
-    const disabledDaysOfWeek = utilgjengeligeUkedager ? utilgjengeligeUkedager.map((dag) => getWeekdayDOW(dag)) : [];
+    const disabledDaysOfWeekDayNumber = utilgjengeligeUkedager
+        ? utilgjengeligeUkedager.map((dag) => getWeekdayDOW(dag))
+        : [];
 
     return (
         <div>
@@ -123,7 +125,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 fullscreenOverlay: true,
                                                 dayPickerProps: {
                                                     initialMonth: periode.from,
-                                                    disabledDays: { daysOfWeek: disabledDaysOfWeek },
+                                                    disabledDays: { daysOfWeek: disabledDaysOfWeekDayNumber },
                                                 },
                                                 minDate: periode.from,
                                                 maxDate: to || periode.to,
@@ -146,7 +148,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 maxDate: periode.to,
                                                 dayPickerProps: {
                                                     initialMonth: from || periode.from,
-                                                    disabledDays: { daysOfWeek: disabledDaysOfWeek },
+                                                    disabledDays: { daysOfWeek: disabledDaysOfWeekDayNumber },
                                                 },
                                                 validate: getDateRangeValidator({
                                                     required: true,
@@ -245,7 +247,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                             name={'fasteDager.gruppe' as any}>
                                             <TidFasteUkedagerInput
                                                 name={FormFields.tidFasteDager}
-                                                disabledDays={[Weekday.monday, Weekday.thursday]}
+                                                disabledDays={utilgjengeligeUkedager}
                                                 hideDisabledDays={true}
                                                 validateDag={(dag, value) => {
                                                     const error = getArbeidstimerFastDagValidator()(value);
