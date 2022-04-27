@@ -43,7 +43,7 @@ const TidFasteUkedagerInput = ({
                     direction: 'vertical',
                     compact: true,
                 }}
-                data-testkey={dataTestKey ? `${dataTestKey}__weekday` : undefined}
+                data-testkey={dataTestKey ? `${dataTestKey}__${weekday}` : undefined}
                 validate={validateDag ? (value) => validateDag(validationDayName, value) : undefined}
             />
         );
