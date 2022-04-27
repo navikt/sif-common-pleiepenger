@@ -7,20 +7,29 @@ import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib
 import { Weekday } from '@navikt/sif-common-utils/lib';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 import './tidFasteUkedagerInput.less';
+import { TestProps } from '../../types';
 
-interface Props {
+interface OwnProps {
     name: string;
     disabledDays?: Weekday[];
     hideDisabledDays?: boolean;
     validateDag?: (dagNavn: string, value: any) => ValidationResult<ValidationError>;
 }
 
+type Props = OwnProps & TestProps;
+
 const bem = bemUtils('tidFasteUkedagerInput');
 
 const isWeekdayDisabled = (disabledDays: Weekday[] | undefined, dag: Weekday): boolean =>
     disabledDays ? disabledDays.some((d) => d === dag) : false;
 
-const TidFasteUkedagerInput = ({ name, validateDag, disabledDays, hideDisabledDays }: Props) => {
+const TidFasteUkedagerInput = ({
+    name,
+    validateDag,
+    disabledDays,
+    hideDisabledDays,
+    'data-testkey': dataTestKey,
+}: Props) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
 
     const renderWeekdayTimeInput = (weekday: Weekday, weekdayLabel: string, validationDayName: string) => {
@@ -34,6 +43,7 @@ const TidFasteUkedagerInput = ({ name, validateDag, disabledDays, hideDisabledDa
                     direction: 'vertical',
                     compact: true,
                 }}
+                data-testkey={dataTestKey ? `${dataTestKey}__weekday` : undefined}
                 validate={validateDag ? (value) => validateDag(validationDayName, value) : undefined}
             />
         );

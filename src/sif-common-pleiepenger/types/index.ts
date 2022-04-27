@@ -4,6 +4,10 @@ import { Duration, DurationWeekdays, ISODate, ISODuration } from '@navikt/sif-co
 export * from './Daginfo';
 export * from './Ukeinfo';
 
+export interface TestProps {
+    'data-testkey'?: string;
+}
+
 export enum ArbeidsforholdType {
     ANSATT = 'ANSATT',
     FRILANSER = 'FRILANSER',
