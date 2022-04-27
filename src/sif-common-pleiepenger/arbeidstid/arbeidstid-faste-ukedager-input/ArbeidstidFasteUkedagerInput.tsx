@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { FormikInputGroup, FormikTimeInput } from '@navikt/sif-common-formik';
+import { FormikInputGroup, FormikTimeInput, TestProps } from '@navikt/sif-common-formik';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
 import { Weekday } from '@navikt/sif-common-utils';
 import { LabelInputInfoLayout } from '../../common';
@@ -13,13 +13,15 @@ export interface ArbeidstidUkeTekster {
     jobber: React.ReactNode;
     ariaLabelTidInput: (dagNavn: string) => React.ReactNode;
 }
-interface Props {
+interface OwnProps {
     fieldName: string;
     utilgjengeligeUkedager?: Weekday[];
     skjulUtilgjengeligeUkedager?: boolean;
     tidPerDagValidator?: (weekday: Weekday, value: any) => ValidationResult<ValidationError>;
     tekst: ArbeidstidUkeTekster;
 }
+
+type Props = OwnProps & TestProps;
 
 const bem = bemUtils('arbeidstidFasteUkedagerInput');
 
@@ -29,6 +31,7 @@ const ArbeidstidFasteUkedagerInput: React.FunctionComponent<Props> = ({
     utilgjengeligeUkedager,
     skjulUtilgjengeligeUkedager,
     tekst,
+    'data-testkey': testKey,
 }: Props) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
 
@@ -56,6 +59,7 @@ const ArbeidstidFasteUkedagerInput: React.FunctionComponent<Props> = ({
                             timeInputLayout={{
                                 direction: 'horizontal',
                             }}
+                            data-testkey={testKey ? `${testKey}__${weekday}` : undefined}
                             validate={tidPerDagValidator ? (value) => tidPerDagValidator(weekday, value) : undefined}
                         />
                     }

@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { DateRange } from '@navikt/sif-common-formik';
+import { DateRange, TestProps } from '@navikt/sif-common-formik';
 import { DurationWeekdays, InputDateDurationMap, isDateInDates, Weekday } from '@navikt/sif-common-utils/lib';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { tidUkerInputUtils } from '../../tid/tid-uker-input/tidUkerUtils';
@@ -15,7 +15,7 @@ import './arbeidstidUkerInput.less';
 
 const getTidKalenderFieldName = (fieldName: string, dag: Daginfo): string => `${fieldName}.${dag.isoDate}`;
 
-interface Props {
+interface OwnProps {
     fieldName: string;
     arbeidstid: InputDateDurationMap;
     periode: DateRange;
@@ -28,6 +28,8 @@ interface Props {
     ukeTittelRenderer?: (uke: Ukeinfo) => React.ReactNode;
     enkeltdagValidator?: ArbeidstidUkeInputEnkeltdagValidator;
 }
+
+type Props = OwnProps & TestProps;
 
 const bem = bemUtils('arbeidstidUkerInput');
 
@@ -42,6 +44,7 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
     beregnFravær,
     useExpandablePanel,
     enkeltdagValidator,
+    'data-testkey': testKey,
 }) => {
     const dager = tidUkerInputUtils.getDagInfoForPeriode(periode);
     const uker = tidUkerInputUtils
@@ -62,6 +65,7 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
                         minutes: dur?.minutes || '0',
                     };
                 }}
+                data-testkey={testKey}
                 beregnFravær={beregnFravær}
                 visUkeTittel={visUkeTittel}
                 ukeinfo={uke}

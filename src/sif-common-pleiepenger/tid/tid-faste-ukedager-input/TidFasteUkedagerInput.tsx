@@ -2,12 +2,11 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { FormikTimeInput } from '@navikt/sif-common-formik/lib';
+import { FormikTimeInput, TestProps } from '@navikt/sif-common-formik/lib';
 import { ValidationError, ValidationResult } from '@navikt/sif-common-formik/lib/validation/types';
 import { Weekday } from '@navikt/sif-common-utils/lib';
 import { getTidFasteUkerdagerInputMessages } from './tidFasteUkerdagerInputMessages';
 import './tidFasteUkedagerInput.less';
-import { TestProps } from '../../types';
 
 interface OwnProps {
     name: string;

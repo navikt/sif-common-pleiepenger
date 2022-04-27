@@ -2,7 +2,7 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
-import { FormikInputGroup, FormikTimeInput } from '@navikt/sif-common-formik';
+import { FormikInputGroup, FormikTimeInput, TestProps } from '@navikt/sif-common-formik';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
 import {
     dateFormatter,
@@ -29,7 +29,7 @@ export interface ArbeidstidUkeTekster {
     fravær: React.ReactNode;
     ariaLabelTidInput: (dato: string) => React.ReactNode;
 }
-interface Props {
+interface OwnProps {
     ukeinfo: Ukeinfo;
     visUkeTittel?: boolean;
     getFieldName: (dag: Daginfo) => string;
@@ -41,6 +41,8 @@ interface Props {
     normalarbeidstidUkedager?: DurationWeekdays;
     enkeltdagValidator?: ArbeidstidUkeInputEnkeltdagValidator;
 }
+
+type Props = OwnProps & TestProps;
 
 const bem = bemUtils('arbeidstidUkeInput');
 
@@ -103,6 +105,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     enkeltdagValidator,
     tekst,
     beregnFravær,
+    'data-testkey': testKey,
 }) => {
     const { dager } = ukeinfo;
 
@@ -168,6 +171,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                         timeInputLayout={{
                                             direction: 'horizontal',
                                         }}
+                                        data-testkey={`${testKey}__dag.isoDate`}
                                         validate={enkeltdagValidator ? enkeltdagValidator(dag.dato) : undefined}
                                     />
                                 }
