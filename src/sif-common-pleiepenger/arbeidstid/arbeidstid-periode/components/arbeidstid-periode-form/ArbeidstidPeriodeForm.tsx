@@ -125,7 +125,6 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 fullscreenOverlay: true,
                                                 dayPickerProps: {
                                                     initialMonth: periode.from,
-                                                    disabledDays: { daysOfWeek: disabledDaysOfWeekDayNumber },
                                                 },
                                                 minDate: periode.from,
                                                 maxDate: to || periode.to,

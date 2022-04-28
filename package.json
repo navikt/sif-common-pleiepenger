@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-pleiepenger",
-    "version": "4.0.0-beta.7",
+    "version": "4.0.0-beta.8",
     "private": false,
     "main": "lib/index.js",
     "types": "lib/index.d.js",
@@ -89,7 +89,7 @@
         "web-vitals": "^2.1.4"
     },
     "peerDependencies": {
-        "@navikt/sif-common-formik": "22.x",
+        "@navikt/sif-common-formik": ">= 22.2.0",
         "@navikt/sif-common-utils": "^3.4.0",
         "dayjs": "1.x",
         "lodash.groupby": "4.x",
@@ -113,6 +113,6 @@
     },
     "snyk": true,
     "dependencies": {
-        "@navikt/sif-common-forms": "^16.7.0"
+        "@navikt/sif-common-forms": "^17.0.0"
     }
 }
