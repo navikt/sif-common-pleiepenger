@@ -26,6 +26,7 @@ export interface ArbeidstidPeriodeFormProps {
     /** Brukes kun i søknad hvor bruker har oppgitt jobberNormaltTimer for hele tilgjengelige periode */
     jobberNormaltTimer?: number;
     utilgjengeligeUkedager?: Weekday[];
+    skjulUtilgjengeligeUkedager?: boolean;
     onSubmit: (data: ArbeidstidPeriodeData) => void;
     onCancel: () => void;
 }
@@ -61,6 +62,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
     intlValues,
     jobberNormaltTimer,
     utilgjengeligeUkedager,
+    skjulUtilgjengeligeUkedager,
     onSubmit,
     onCancel,
 }) => {
@@ -123,6 +125,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
                                                 fullscreenOverlay: true,
+                                                disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
                                                 dayPickerProps: {
                                                     initialMonth: periode.from,
                                                 },
@@ -141,13 +144,13 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.tilOgMed.label'),
                                                 name: FormFields.tom,
                                                 disableWeekend: true,
+                                                disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
                                                 fullScreenOnMobile: true,
                                                 fullscreenOverlay: true,
                                                 minDate: from || periode.from,
                                                 maxDate: periode.to,
                                                 dayPickerProps: {
                                                     initialMonth: from || periode.from,
-                                                    disabledDays: { daysOfWeek: disabledDaysOfWeekDayNumber },
                                                 },
                                                 validate: getDateRangeValidator({
                                                     required: true,
@@ -247,7 +250,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                             <TidFasteUkedagerInput
                                                 name={FormFields.tidFasteDager}
                                                 disabledDays={utilgjengeligeUkedager}
-                                                hideDisabledDays={true}
+                                                hideDisabledDays={skjulUtilgjengeligeUkedager}
                                                 validateDag={(dag, value) => {
                                                     const error = getArbeidstimerFastDagValidator()(value);
                                                     return error
