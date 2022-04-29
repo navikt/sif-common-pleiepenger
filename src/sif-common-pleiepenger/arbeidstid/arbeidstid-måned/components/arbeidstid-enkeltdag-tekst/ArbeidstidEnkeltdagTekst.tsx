@@ -1,14 +1,15 @@
 import React from 'react';
-import { Duration } from '@navikt/sif-common-utils/lib';
+import { Duration, durationToDecimalDuration } from '@navikt/sif-common-utils/lib';
 import DurationText from '../../../../common/duration-text/DurationText';
 import './arbeidstidEnkeltdagTekst.less';
 
 interface Props {
     tid: Duration;
     prosent?: number;
+    skjulIngenTid?: boolean;
 }
 
-const ArbeidstidEnkeltdagTekst: React.FunctionComponent<Props> = ({ prosent, tid }) => {
+const ArbeidstidEnkeltdagTekst: React.FunctionComponent<Props> = ({ prosent, tid, skjulIngenTid }) => {
     if (prosent !== undefined && prosent > 0) {
         return (
             <span className="arbeidstidEnkeltdagTekst">
@@ -19,7 +20,8 @@ const ArbeidstidEnkeltdagTekst: React.FunctionComponent<Props> = ({ prosent, tid
             </span>
         );
     }
-    return <DurationText duration={tid} />;
+    const desimaltid = durationToDecimalDuration(tid);
+    return skjulIngenTid && desimaltid === 0 ? null : <DurationText duration={tid} />;
 };
 
 export default ArbeidstidEnkeltdagTekst;

@@ -1,8 +1,9 @@
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { Duration, DurationWeekdays, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
+import { Duration, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
 
 export * from './Daginfo';
 export * from './Ukeinfo';
+export * from '../arbeidstid/arbeidstid-periode/types';
 
 export enum ArbeidsforholdType {
     ANSATT = 'ANSATT',
@@ -11,13 +12,6 @@ export enum ArbeidsforholdType {
 }
 
 export type TidPerDagValidator = (dag: string) => (tid: Duration) => ValidationError | undefined;
-
-export type ArbeidstidPeriodeData = {
-    fom: Date;
-    tom: Date;
-    prosent?: string;
-    tidFasteDager?: DurationWeekdays;
-};
 
 export type ArbeidIPeriodeIntlValues = {
     hvor: string;

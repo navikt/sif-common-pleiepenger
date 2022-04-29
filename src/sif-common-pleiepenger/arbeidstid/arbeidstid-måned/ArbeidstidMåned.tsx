@@ -25,6 +25,7 @@ interface Props {
     utilgjengeligeDatoer?: Date[];
     månedTittelHeadingLevel?: number;
     periode: DateRange;
+    skjulIngenTidEnkeltdag?: boolean;
     åpentEkspanderbartPanel?: boolean;
     arbeiderNormaltTimerFasteUkedager?: DurationWeekdays;
     onEnkeltdagChange?: (evt: TidEnkeltdagEndring) => void;
@@ -41,6 +42,7 @@ const ArbeidstidMåned: React.FunctionComponent<Props> = ({
     periode,
     åpentEkspanderbartPanel,
     arbeiderNormaltTimerFasteUkedager,
+    skjulIngenTidEnkeltdag,
     onEnkeltdagChange,
 }) => {
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
@@ -74,7 +76,9 @@ const ArbeidstidMåned: React.FunctionComponent<Props> = ({
                 utilgjengeligeDatoer={utilgjengeligeDatoer}
                 skjulTommeDagerIListe={true}
                 visOpprinneligTid={false}
-                tidRenderer={({ tid, prosent }) => <ArbeidstidEnkeltdagTekst tid={tid} prosent={prosent} />}
+                tidRenderer={({ tid, prosent }) => (
+                    <ArbeidstidEnkeltdagTekst tid={tid} prosent={prosent} skjulIngenTid={skjulIngenTidEnkeltdag} />
+                )}
                 onDateClick={onEnkeltdagChange ? handleKalenderDatoClick : undefined}
             />
             {editDate && onEnkeltdagChange && (
