@@ -28,6 +28,7 @@ const ArbeidstidMånedDoc = () => {
                     arbeidsstedNavn="Snekkeriet tykk tommel"
                     periode={periode}
                     skjulIngenTidEnkeltdag={true}
+                    månedTittelRenderer={() => <div>ahows</div>}
                     tidArbeidstid={tid}
                     onEnkeltdagChange={handleOnEnkeltdagChange}
                 />

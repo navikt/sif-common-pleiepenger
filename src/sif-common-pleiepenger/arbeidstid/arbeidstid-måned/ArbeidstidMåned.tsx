@@ -28,6 +28,7 @@ interface Props {
     skjulIngenTidEnkeltdag?: boolean;
     åpentEkspanderbartPanel?: boolean;
     arbeiderNormaltTimerFasteUkedager?: DurationWeekdays;
+    månedTittelRenderer?: (måned: DateRange) => React.ReactNode;
     onEnkeltdagChange?: (evt: TidEnkeltdagEndring) => void;
     onRequestEdit?: (tid: DateDurationMap) => void;
 }
@@ -43,6 +44,7 @@ const ArbeidstidMåned: React.FunctionComponent<Props> = ({
     åpentEkspanderbartPanel,
     arbeiderNormaltTimerFasteUkedager,
     skjulIngenTidEnkeltdag,
+    månedTittelRenderer,
     onEnkeltdagChange,
 }) => {
     const [editDate, setEditDate] = useState<{ dato: Date; tid: Partial<InputTime> } | undefined>();
@@ -64,11 +66,15 @@ const ArbeidstidMåned: React.FunctionComponent<Props> = ({
             renderContentWhenClosed={false}
             apen={åpentEkspanderbartPanel}
             tittel={
-                <ArbeidstidMånedTittel
-                    måned={måned}
-                    headingLevel={månedTittelHeadingLevel}
-                    antallDagerMedTid={dagerMedTid.length}
-                />
+                månedTittelRenderer ? (
+                    månedTittelRenderer(måned)
+                ) : (
+                    <ArbeidstidMånedTittel
+                        måned={måned}
+                        headingLevel={månedTittelHeadingLevel}
+                        antallDagerMedTid={dagerMedTid.length}
+                    />
+                )
             }>
             <TidsbrukKalender
                 periode={måned}
