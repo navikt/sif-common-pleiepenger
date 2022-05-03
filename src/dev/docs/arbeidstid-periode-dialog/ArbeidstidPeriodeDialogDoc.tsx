@@ -66,7 +66,6 @@ const ArbeidstidPeriodeDialogDoc = () => {
                         </Knapp>
                         <ArbeidstidPeriodeDialog
                             formProps={{
-                                jobberNormaltTimer,
                                 periode,
                                 arbeidsstedNavn,
                                 utilgjengeligeUkedager: [Weekday.monday],

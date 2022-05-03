@@ -9,12 +9,8 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.fraOgMed.label': 'Fra og med',
         'arbeidstidPeriodeForm.tilOgMed.label': 'Til og med',
         'arbeidstidPeriodeForm.velgHelePerioden': 'Velg hele søknadsperioden',
-        'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': `Hvordan vil du oppgi hvor mye du jobber i perioden?`,
-        'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.prosent': 'I prosent',
-        'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.timer': 'I timer',
-        'arbeidstidPeriodeForm.prosent.label': `Hvor mange prosent av din normale arbeidstid jobber du i perioden?`,
         'arbeidstidPeriodeForm.tidFasteDager.label': `Fyll ut hvor mye du jobber i uken i perioden:`,
-        'arbeidstidPeriodeForm.tidFasteUkedager.label': `Fyll ut hvor mye du jobber de ulike ukedagene perioden::`,
+        'arbeidstidPeriodeForm.tidFasteUkedager.label': `Fyll ut hvor mye du jobber de ulike ukedagene perioden:`,
         'arbeidstidPeriodeForm.arbeiderIPerioden.spm': 'Hvordan jobber du {hvor} i denne perioden?',
         'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberIkke': 'Jeg er helt borte fra jobb på grunn av pleiepenger',
         'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
@@ -41,16 +37,6 @@ const arbeidstidPeriodeFormFormMessages = {
             'Til-datoen kan ikke være etter perioden du har søkt for.',
         'arbeidstidPeriodeForm.validation.tom.dateIsNotWeekday':
             'Til-dato må være en ukedag, det kan ikke være en lørdag eller søndag. Skriv inn eller velg dato fra kalenderen.',
-        'arbeidstidPeriodeForm.validation.tidFasteDagerEllerProsent.noValue':
-            'Du må velge hvordan du ønsker å oppgi hvor mye du jobber',
-        'arbeidstidPeriodeForm.validation.prosent.numberHasNoValue':
-            'Du må oppgi hvor mange prosent du jobber i perioden.',
-        'arbeidstidPeriodeForm.validation.prosent.numberHasInvalidFormat':
-            'Antall prosent du jobber kan kun bestå av tall.',
-        'arbeidstidPeriodeForm.validation.prosent.numberIsTooSmall':
-            'Antall prosent du jobber kan ikke være mindre enn {min}.',
-        'arbeidstidPeriodeForm.validation.prosent.numberIsTooLarge':
-            'Antall prosent du jobber kan ikke være mer enn {max}.',
         'arbeidstidPeriodeForm.validation.fasteDager.gruppe.ingenTidRegistrert':
             'Du må oppgi hvor mange timer du jobber i uken.',
         'arbeidstidPeriodeForm.validation.fasteDager.gruppe.forMangeTimer':
@@ -94,7 +80,6 @@ export const arbeidstidPeriodeMessages = {
     nb: {
         ...arbeidstidPeriodeFormFormMessages.nb,
         ...arbeidIPeriodeIntlValuesMessages.nb,
-        'arbeidstidPeriode.redusertArbeidstidPerUke': 'prosent av {timerNormalt} ({timerRedusert} per dag)',
         'arbeidstidPeriodeDialog.contentLabel': 'Registrer jobb for en periode',
         'arbeidstidPeriode.timer': '{timer, plural, one {# time} other {# timer}}',
         'arbeidstidPeriode.timer.ikkeTall': `{timer} timer`,

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
-import ExpandableInfo from '@navikt/sif-common-core/lib/components/expandable-content/ExpandableInfo';
 import FormBlock from '@navikt/sif-common-core/lib/components/form-block/FormBlock';
 import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { DateRange, getTypedFormComponents } from '@navikt/sif-common-formik';
@@ -9,36 +8,23 @@ import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-dat
 import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { dateToISODate, Duration, DurationWeekdays, getWeekdayDOW, Weekday } from '@navikt/sif-common-utils';
+import { dateToISODate, DurationWeekdays, getWeekdayDOW, Weekday } from '@navikt/sif-common-utils';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import { TidFasteUkedagerInput } from '../../../../tid';
 import { ArbeiderIPeriodenSvar, ArbeidIPeriodeIntlValues } from '../../../../types';
 import { getArbeidstidPeriodeIntl } from '../../i18n/arbeidstidPeriodeMessages';
 import { ArbeidstidPeriodeData } from '../../types';
-import { getRedusertArbeidstidPerUkeInfo } from '../../utils/arbeidstidPeriodeUtils';
-import {
-    getArbeidstidFastProsentValidator,
-    getArbeidstimerFastDagValidator,
-    validateFasteArbeidstimerIUke,
-} from './arbeidstidPeriodeFormValidation';
+import { getArbeidstimerFastDagValidator, validateFasteArbeidstimerIUke } from './arbeidstidPeriodeFormValidation';
 
 export interface ArbeidstidPeriodeFormProps {
     arbeidsstedNavn: string;
     periode: DateRange;
     intlValues: ArbeidIPeriodeIntlValues;
-    arbeiderNormaltTimerFasteUkedager?: DurationWeekdays;
-    /** Brukes kun i søknad hvor bruker har oppgitt jobberNormaltTimer for hele tilgjengelige periode */
-    jobberNormaltTimer?: number;
     utilgjengeligeUkedager?: Weekday[];
     skjulUtilgjengeligeUkedager?: boolean;
     onSubmit: (data: ArbeidstidPeriodeData) => void;
     onCancel: () => void;
-}
-
-enum TidFasteDagerEllerProsent {
-    prosent = 'prosent',
-    tidFasteDager = 'tidFasteDager',
 }
 
 enum FormFields {
@@ -46,27 +32,14 @@ enum FormFields {
     'tom' = 'tom',
     'heleSøknadsperioden' = 'heleSøknadsperioden',
     'arbeiderHvordan' = 'arbeiderHvordan',
-    'tidFasteDagerEllerProsent' = 'tidFasteDagerEllerProsent',
     'tidFasteDager' = 'tidFasteDager',
-    'prosent' = 'prosent',
 }
-
-const noDuration: Duration = { hours: '0', minutes: '0' };
-const emptyDurationWeekdays: DurationWeekdays = {
-    monday: noDuration,
-    tuesday: noDuration,
-    wednesday: noDuration,
-    thursday: noDuration,
-    friday: noDuration,
-};
 
 interface FormValues {
     [FormFields.fom]: InputDateString;
     [FormFields.tom]: InputDateString;
     [FormFields.heleSøknadsperioden]?: boolean;
     [FormFields.arbeiderHvordan]?: ArbeiderIPeriodenSvar;
-    [FormFields.tidFasteDagerEllerProsent]: TidFasteDagerEllerProsent;
-    [FormFields.prosent]: string;
     [FormFields.tidFasteDager]?: DurationWeekdays;
 }
 
@@ -78,9 +51,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
     arbeidsstedNavn,
     periode,
     intlValues,
-    jobberNormaltTimer,
     utilgjengeligeUkedager,
-    arbeiderNormaltTimerFasteUkedager,
     skjulUtilgjengeligeUkedager,
     onSubmit,
     onCancel,
@@ -98,30 +69,15 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
 
         switch (values.arbeiderHvordan) {
             case ArbeiderIPeriodenSvar.heltFravær:
-                onSubmit({ fom, tom, tidFasteDager: emptyDurationWeekdays, arbeiderHvordan: values.arbeiderHvordan });
-                break;
             case ArbeiderIPeriodenSvar.somVanlig:
-                onSubmit({
-                    fom,
-                    tom,
-                    tidFasteDager: arbeiderNormaltTimerFasteUkedager,
-                    arbeiderHvordan: values.arbeiderHvordan,
-                });
+                onSubmit({ fom, tom, arbeiderHvordan: values.arbeiderHvordan });
                 break;
             case ArbeiderIPeriodenSvar.redusert:
                 onSubmit({
                     fom,
                     tom,
                     arbeiderHvordan: values.arbeiderHvordan,
-                    prosent:
-                        SPØR_OM_PROSENT && values.tidFasteDagerEllerProsent === TidFasteDagerEllerProsent.prosent
-                            ? values.prosent
-                            : undefined,
-                    tidFasteDager:
-                        SPØR_OM_PROSENT === false ||
-                        values.tidFasteDagerEllerProsent === TidFasteDagerEllerProsent.tidFasteDager
-                            ? values.tidFasteDager
-                            : undefined,
+                    tidFasteDager: values.tidFasteDager,
                 });
         }
     };
@@ -129,9 +85,6 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
     const disabledDaysOfWeekDayNumber = utilgjengeligeUkedager
         ? utilgjengeligeUkedager.map((dag) => getWeekdayDOW(dag))
         : [];
-
-    const SPØR_OM_PROSENT = false;
-    const MÅ_VELGE_PERIODE_FØRST = 1 + 1 == 2;
 
     return (
         <div>
@@ -144,17 +97,8 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                     initialValues={initialFormValues}
                     onSubmit={onValidSubmit}
                     renderForm={({
-                        values: {
-                            fom,
-                            tom,
-                            tidFasteDagerEllerProsent,
-                            tidFasteDager,
-                            prosent,
-                            arbeiderHvordan,
-                            heleSøknadsperioden,
-                        },
+                        values: { fom, tom, tidFasteDager, arbeiderHvordan, heleSøknadsperioden },
                         setFieldValue,
-                        validateForm,
                     }) => {
                         const from = datepickerUtils.getDateFromDateString(fom);
                         const to = datepickerUtils.getDateFromDateString(tom);
@@ -232,7 +176,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                     </FormBlock>
                                 </div>
 
-                                {((fom && tom) || MÅ_VELGE_PERIODE_FØRST === false) && (
+                                {fom && tom && (
                                     <>
                                         <FormBlock>
                                             <FormComponents.RadioPanelGroup
@@ -276,91 +220,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                 }}
                                             />
                                         </FormBlock>
-
-                                        {arbeiderHvordan === ArbeiderIPeriodenSvar.redusert && SPØR_OM_PROSENT && (
-                                            <>
-                                                <FormBlock>
-                                                    <FormComponents.RadioPanelGroup
-                                                        name={FormFields.tidFasteDagerEllerProsent}
-                                                        legend={arbIntl.intlText(
-                                                            'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label',
-                                                            intlValues
-                                                        )}
-                                                        useTwoColumns={true}
-                                                        /** Usikker på hvorfor valideringen feiler her, men delay fikser det midlertidig */
-                                                        afterOnChange={() => setTimeout(validateForm, 10)}
-                                                        radios={[
-                                                            {
-                                                                label: 'Prosent av normalt per dag',
-                                                                value: TidFasteDagerEllerProsent.prosent,
-                                                            },
-                                                            {
-                                                                label: 'Timer per ukedag',
-                                                                value: TidFasteDagerEllerProsent.tidFasteDager,
-                                                            },
-                                                        ]}
-                                                        validate={(value) => {
-                                                            const error = getRequiredFieldValidator()(value);
-                                                            if (error) {
-                                                                return {
-                                                                    key: error,
-                                                                    values: intlValues,
-                                                                };
-                                                            }
-                                                            return undefined;
-                                                        }}
-                                                    />
-                                                </FormBlock>
-                                            </>
-                                        )}
-                                        {tidFasteDagerEllerProsent === TidFasteDagerEllerProsent.prosent && (
-                                            <FormBlock>
-                                                <FormComponents.NumberInput
-                                                    name={FormFields.prosent}
-                                                    bredde="XS"
-                                                    maxLength={4}
-                                                    label={arbIntl.intlText(
-                                                        'arbeidstidPeriodeForm.prosent.label',
-                                                        intlValues
-                                                    )}
-                                                    description={
-                                                        jobberNormaltTimer === undefined ? (
-                                                            <ExpandableInfo title="Vi reduserer likt hver dag du jobber">
-                                                                Dette vil si at dersom du jobber normalt 4 timer på
-                                                                mandag og 8 timer på onsdag, og du skal nå jobbe 50%,
-                                                                vil vi endre arbeidstiden din til 2 timer på mandag og 4
-                                                                timer på onsdag.
-                                                            </ExpandableInfo>
-                                                        ) : undefined
-                                                    }
-                                                    validate={(value) => {
-                                                        const error = getArbeidstidFastProsentValidator({
-                                                            min: 0,
-                                                            max: 100,
-                                                        })(value);
-                                                        return error
-                                                            ? {
-                                                                  key: error.key,
-                                                                  values: { ...intlValues, ...error.values },
-                                                              }
-                                                            : undefined;
-                                                    }}
-                                                    suffix={
-                                                        jobberNormaltTimer !== undefined
-                                                            ? getRedusertArbeidstidPerUkeInfo(
-                                                                  intl,
-                                                                  jobberNormaltTimer,
-                                                                  prosent
-                                                              )
-                                                            : undefined
-                                                    }
-                                                    suffixStyle="text"
-                                                />
-                                            </FormBlock>
-                                        )}
-                                        {(tidFasteDagerEllerProsent === TidFasteDagerEllerProsent.tidFasteDager ||
-                                            (!SPØR_OM_PROSENT &&
-                                                arbeiderHvordan === ArbeiderIPeriodenSvar.redusert)) && (
+                                        {arbeiderHvordan === ArbeiderIPeriodenSvar.redusert && (
                                             <FormBlock>
                                                 <FormComponents.InputGroup
                                                     legend={arbIntl.intlText(

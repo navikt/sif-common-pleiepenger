@@ -11,5 +11,4 @@ export { default as ArbeidstidUkeInput } from './arbeidstid-uke-input/Arbeidstid
 export type { ArbeidstidUkeInputEnkeltdagValidator } from './arbeidstid-uke-input/ArbeidstidUkeInput';
 export { default as ArbeidstidUkerInput } from './arbeidstid-uker-input/ArbeidstidUkerInput';
 
-export * from './arbeidstid-periode-dialog/utils/arbeidstidPeriodeUtils';
 export * from './arbeidstid-periode-dialog/components/arbeidstid-periode-form/arbeidstidPeriodeFormValidation';
