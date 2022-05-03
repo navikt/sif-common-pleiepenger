@@ -11,7 +11,7 @@ interface ArbeidstidPeriodeHeltFravær extends ArbeidstidPeriodeDataBase {
 }
 interface ArbeidstidPeriodeRedusert extends ArbeidstidPeriodeDataBase {
     arbeiderHvordan: ArbeiderIPeriodenSvar.redusert;
-    tidFasteDager?: DurationWeekdays;
+    tidFasteDager: DurationWeekdays;
 }
 interface ArbeidstidPeriodeSomVanlig extends ArbeidstidPeriodeDataBase {
     arbeiderHvordan: ArbeiderIPeriodenSvar.somVanlig;
