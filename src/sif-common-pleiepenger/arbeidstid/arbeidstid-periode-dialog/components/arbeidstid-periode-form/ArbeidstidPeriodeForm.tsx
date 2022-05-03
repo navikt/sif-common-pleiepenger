@@ -98,15 +98,21 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
 
         switch (values.arbeiderHvordan) {
             case ArbeiderIPeriodenSvar.heltFravær:
-                onSubmit({ fom, tom, tidFasteDager: emptyDurationWeekdays });
+                onSubmit({ fom, tom, tidFasteDager: emptyDurationWeekdays, arbeiderHvordan: values.arbeiderHvordan });
                 break;
             case ArbeiderIPeriodenSvar.somVanlig:
-                onSubmit({ fom, tom, tidFasteDager: arbeiderNormaltTimerFasteUkedager });
+                onSubmit({
+                    fom,
+                    tom,
+                    tidFasteDager: arbeiderNormaltTimerFasteUkedager,
+                    arbeiderHvordan: values.arbeiderHvordan,
+                });
                 break;
             case ArbeiderIPeriodenSvar.redusert:
                 onSubmit({
                     fom,
                     tom,
+                    arbeiderHvordan: values.arbeiderHvordan,
                     prosent:
                         SPØR_OM_PROSENT && values.tidFasteDagerEllerProsent === TidFasteDagerEllerProsent.prosent
                             ? values.prosent
