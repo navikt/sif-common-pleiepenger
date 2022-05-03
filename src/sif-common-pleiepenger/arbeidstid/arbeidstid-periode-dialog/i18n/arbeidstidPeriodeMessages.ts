@@ -8,12 +8,19 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.cancelButtonLabel': 'Avbryt',
         'arbeidstidPeriodeForm.fraOgMed.label': 'Fra og med',
         'arbeidstidPeriodeForm.tilOgMed.label': 'Til og med',
+        'arbeidstidPeriodeForm.velgHelePerioden': 'Velg hele søknadsperioden',
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.label': `Hvordan vil du oppgi hvor mye du jobber i perioden?`,
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.prosent': 'I prosent',
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.timer': 'I timer',
         'arbeidstidPeriodeForm.prosent.label': `Hvor mange prosent av din normale arbeidstid jobber du i perioden?`,
         'arbeidstidPeriodeForm.tidFasteDager.label': `Fyll ut hvor mye du jobber i uken i perioden:`,
         'arbeidstidPeriodeForm.tidFasteUkedager.label': `Fyll ut hvor mye du jobber de ulike ukedagene perioden::`,
+        'arbeidstidPeriodeForm.arbeiderIPerioden.spm': 'Hvordan jobber du {hvor} i denne perioden?',
+        'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberIkke': 'Jeg er helt borte fra jobb på grunn av pleiepenger',
+        'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
+        'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberVanlig':
+            'Jeg jobber som vanlig og har ikke fravær fra jobb på grunn av pleiepenger',
+
         'arbeidstidPeriodeForm.validation.fom.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
         'arbeidstidPeriodeForm.validation.fom.dateHasInvalidFormat':
             'Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
@@ -48,6 +55,8 @@ const arbeidstidPeriodeFormFormMessages = {
             'Du må oppgi hvor mange timer du jobber i uken.',
         'arbeidstidPeriodeForm.validation.fasteDager.gruppe.forMangeTimer':
             'Du kan ikke oppgi mer enn 24 timer for én dag.',
+        'arbeidstidPeriodeForm.validation.arbeiderHvordan.noValue':
+            'Du må svare på hvordan du jobber {hvor} i denne perioden.',
 
         'arbeidstidPeriodeForm.validation.tidFasteDager.tid.timeHasNoValue':
             'Du må fylle ut timer og minutter for {dag}.',

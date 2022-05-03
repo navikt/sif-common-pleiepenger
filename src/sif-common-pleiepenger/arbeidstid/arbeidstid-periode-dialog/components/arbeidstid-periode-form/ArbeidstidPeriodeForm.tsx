@@ -218,7 +218,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                         />
                                         <Box>
                                             <FormComponents.Checkbox
-                                                label="Velg hele søknadsperioden"
+                                                label={intlHelper(intl, 'arbeidstidPeriodeForm.velgHelePerioden')}
                                                 name={FormFields.heleSøknadsperioden}
                                                 afterOnChange={handleHeleSøknadsperiodenChange}
                                             />
@@ -231,30 +231,44 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                         <FormBlock>
                                             <FormComponents.RadioPanelGroup
                                                 name={FormFields.arbeiderHvordan}
-                                                legend="Hvordan jobber du her i denne perioden?"
+                                                legend={intlHelper(
+                                                    intl,
+                                                    'arbeidstidPeriodeForm.arbeiderIPerioden.spm',
+                                                    intlValues
+                                                )}
                                                 radios={[
                                                     {
                                                         label: intlHelper(
                                                             intl,
-                                                            'arbeidIPeriode.arbeiderIPerioden.svar.jobberIkke'
+                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberIkke'
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.heltFravær,
                                                     },
                                                     {
                                                         label: intlHelper(
                                                             intl,
-                                                            'arbeidIPeriode.arbeiderIPerioden.svar.jobberRedusert'
+                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberRedusert'
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.redusert,
                                                     },
                                                     {
                                                         label: intlHelper(
                                                             intl,
-                                                            'arbeidIPeriode.arbeiderIPerioden.svar.jobberVanlig'
+                                                            'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberVanlig'
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.somVanlig,
                                                     },
-                                                ]}></FormComponents.RadioPanelGroup>
+                                                ]}
+                                                validate={(value) => {
+                                                    const error = getRequiredFieldValidator()(value);
+                                                    return error
+                                                        ? {
+                                                              key: error,
+                                                              values: intlValues,
+                                                          }
+                                                        : undefined;
+                                                }}
+                                            />
                                         </FormBlock>
 
                                         {arbeiderHvordan === ArbeiderIPeriodenSvar.redusert && SPØR_OM_PROSENT && (
