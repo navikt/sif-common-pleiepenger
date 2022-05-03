@@ -73,12 +73,17 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                 onSubmit({ fom, tom, arbeiderHvordan: values.arbeiderHvordan });
                 break;
             case ArbeiderIPeriodenSvar.redusert:
-                onSubmit({
-                    fom,
-                    tom,
-                    arbeiderHvordan: values.arbeiderHvordan,
-                    tidFasteDager: values.tidFasteDager,
-                });
+                if (values.tidFasteDager) {
+                    onSubmit({
+                        fom,
+                        tom,
+                        arbeiderHvordan: values.arbeiderHvordan,
+                        tidFasteDager: values.tidFasteDager,
+                    });
+                } else {
+                    throw new Error('ArbeidstidPeriodeForm. Ugyldig tidFasteDager ');
+                }
+                break;
         }
     };
 
