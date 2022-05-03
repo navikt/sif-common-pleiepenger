@@ -1,4 +1,4 @@
-import { DurationWeekdays } from '@navikt/sif-common-utils/lib';
+import { DurationWeekdays } from '@navikt/sif-common-utils';
 
 export type ArbeidstidPeriodeData = {
     fom: Date;

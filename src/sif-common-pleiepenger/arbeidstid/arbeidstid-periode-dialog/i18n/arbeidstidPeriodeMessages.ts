@@ -13,6 +13,7 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.tidFasteDagerEllerProsent.timer': 'I timer',
         'arbeidstidPeriodeForm.prosent.label': `Hvor mange prosent av din normale arbeidstid jobber du i perioden?`,
         'arbeidstidPeriodeForm.tidFasteDager.label': `Fyll ut hvor mye du jobber i uken i perioden:`,
+        'arbeidstidPeriodeForm.tidFasteUkedager.label': `Fyll ut hvor mye du jobber de ulike ukedagene perioden::`,
         'arbeidstidPeriodeForm.validation.fom.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
         'arbeidstidPeriodeForm.validation.fom.dateHasInvalidFormat':
             'Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',

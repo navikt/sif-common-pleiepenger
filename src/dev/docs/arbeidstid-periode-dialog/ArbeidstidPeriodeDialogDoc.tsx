@@ -6,8 +6,8 @@ import { DateDurationMap, DateRange, ISODateToDate, Weekday } from '@navikt/sif-
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import { ArbeidsforholdType, ArbeidstidPeriodeData, ArbeidstidPeriodeDialog } from '../../../sif-common-pleiepenger';
-import { arbeidstidPeriodeMessages } from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-periode/i18n/arbeidstidPeriodeMessages';
-import { getArbeidstidIPeriodeIntlValues } from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-periode/utils/arbeidstidPeriodeIntlValuesUtils';
+import { arbeidstidPeriodeMessages } from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/i18n/arbeidstidPeriodeMessages';
+import { getArbeidstidIPeriodeIntlValues } from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/utils/arbeidstidPeriodeIntlValuesUtils';
 import PageIntro from '../../components/page-intro/PageIntro';
 
 enum FormFields {
@@ -24,7 +24,7 @@ const initialValues: FormValues = {
     tid: {},
 };
 
-const ArbeidstidPeriodeDoc = () => {
+const ArbeidstidPeriodeDialogDoc = () => {
     const intl = useIntl();
 
     const periode: DateRange = { from: ISODateToDate('2021-12-10'), to: ISODateToDate('2022-01-05') };
@@ -84,4 +84,4 @@ const ArbeidstidPeriodeDoc = () => {
     );
 };
 
-export default ArbeidstidPeriodeDoc;
+export default ArbeidstidPeriodeDialogDoc;

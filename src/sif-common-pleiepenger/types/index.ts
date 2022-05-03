@@ -3,7 +3,7 @@ import { Duration, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
 
 export * from './Daginfo';
 export * from './Ukeinfo';
-export * from '../arbeidstid/arbeidstid-periode/types';
+export * from '../arbeidstid/arbeidstid-periode-dialog/types';
 
 export enum ArbeidsforholdType {
     ANSATT = 'ANSATT',
@@ -12,6 +12,12 @@ export enum ArbeidsforholdType {
 }
 
 export type TidPerDagValidator = (dag: string) => (tid: Duration) => ValidationError | undefined;
+
+export enum ArbeiderIPeriodenSvar {
+    'somVanlig' = 'SOM_VANLIG',
+    'redusert' = 'REDUSERT',
+    'heltFravær' = 'HELT_FRAVÆR',
+}
 
 export type ArbeidIPeriodeIntlValues = {
     hvor: string;

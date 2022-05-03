@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 import { getNumberFromNumberInputValue } from '@navikt/sif-common-formik/lib';
 import { decimalDurationToDuration, Duration } from '@navikt/sif-common-utils/lib';
-import { formatTimerOgMinutter } from '../../../common/timer-og-minutter/TimerOgMinutter';
+import { formatTimerOgMinutter } from '../../../common';
 import { getArbeidstidPeriodeIntl } from '../i18n/arbeidstidPeriodeMessages';
 
 const getRedusertArbeidstidPerDagIUke = (

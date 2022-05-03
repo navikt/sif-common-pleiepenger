@@ -1,6 +1,6 @@
 import React from 'react';
 import ArbeidstidMånedDoc from '../docs/arbeidstid-måned/ArbeidstidMånedDoc';
-import ArbeidstidPeriodeDoc from '../docs/arbeidstid-periode/ArbeidstidPeriodeDoc';
+import ArbeidstidPeriodeDialogDoc from '../docs/arbeidstid-periode-dialog/ArbeidstidPeriodeDialogDoc';
 import ArbeidstidUkerInputDoc from '../docs/arbeidstid-uker-input/ArbeidstidUkerInputDoc';
 import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
 import OppsummeringDoc from '../docs/oppsummering/OppsummeringDoc';
@@ -23,7 +23,7 @@ export const routes: RouteConfig[] = [
     {
         path: '/arbeidstid-periode',
         title: 'Arbeidstid periode',
-        renderContent: () => <ArbeidstidPeriodeDoc />,
+        renderContent: () => <ArbeidstidPeriodeDialogDoc />,
     },
     {
         path: '/omsorgstilbud-periode',

@@ -4,7 +4,7 @@ import { timerOgMinutterMessages } from '../common/timer-og-minutter/timerOgMinu
 import { omsorgstilbudEnkeltdagFormMessages } from '../';
 import arbeidstidEnkeltdagFormMessages from '../arbeidstid/arbeidstid-enkeltdag-dialog/arbeidstidEnkeltdagMessages';
 import arbeidstidMånedMessages from '../arbeidstid/arbeidstid-måned/i18n/arbeidstidMånedMessages';
-import { arbeidstidPeriodeMessages } from '../arbeidstid/arbeidstid-periode/i18n/arbeidstidPeriodeMessages';
+import { arbeidstidPeriodeMessages } from '../arbeidstid/arbeidstid-periode-dialog/i18n/arbeidstidPeriodeMessages';
 import { omsorgstibudPeriodeMessages } from '../omsorgstilbud/omsorgstilbud-periode/i18n/omsorgstilbudPeriodeMessages';
 import tidEnkeltdagFormMessages from '../tid/tid-enkeltdag-dialog/tidEnkeltdagMessages';
 
