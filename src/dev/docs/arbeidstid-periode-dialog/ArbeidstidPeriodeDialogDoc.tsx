@@ -70,6 +70,14 @@ const ArbeidstidPeriodeDialogDoc = () => {
                                 arbeidsstedNavn,
                                 utilgjengeligeUkedager: [Weekday.monday],
                                 intlValues,
+                                tekst: {
+                                    introduksjon: (
+                                        <>
+                                            Timer du legger til her vil overskrive tid som allerede ligger registrert.
+                                            Dager som du ikke fyller ut vil bli regnet som 0 timer og 0 minutter.
+                                        </>
+                                    ),
+                                },
                                 onCancel: () => setVisPeriode(false),
                                 onSubmit: handleFormSubmit,
                             }}

@@ -23,6 +23,12 @@ export interface ArbeidstidPeriodeFormProps {
     intlValues: ArbeidIPeriodeIntlValues;
     utilgjengeligeUkedager?: Weekday[];
     skjulUtilgjengeligeUkedager?: boolean;
+    tekst?: {
+        tittel?: JSX.Element;
+        introduksjon?: JSX.Element;
+        okButton?: string;
+        cancelButton?: string;
+    };
     onSubmit: (data: ArbeidstidPeriodeData) => void;
     onCancel: () => void;
 }
@@ -53,6 +59,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
     intlValues,
     utilgjengeligeUkedager,
     skjulUtilgjengeligeUkedager,
+    tekst,
     onSubmit,
     onCancel,
 }) => {
@@ -94,9 +101,9 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
     return (
         <div>
             <Undertittel tag="h1" className="dialogFormTitle">
-                {arbIntl.intlText('arbeidstidPeriodeForm.tittel', { arbeidsstedNavn })}
+                {tekst?.tittel || arbIntl.intlText('arbeidstidPeriodeForm.tittel', { arbeidsstedNavn })}
             </Undertittel>
-            <p>Arbeidstid i perioden du velger her, vil overskrive det som evt. allerede ligger i kalenderen.</p>
+            {tekst?.introduksjon ? <Box margin="l">{tekst.introduksjon}</Box> : undefined}
             <FormBlock margin="xl">
                 <FormComponents.FormikWrapper
                     initialValues={initialFormValues}
@@ -121,8 +128,12 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                 formErrorHandler={getIntlFormErrorHandler(intl, 'arbeidstidPeriodeForm.validation')}
                                 includeValidationSummary={true}
                                 includeButtons={true}
-                                submitButtonLabel={arbIntl.intlText('arbeidstidPeriodeForm.submitButtonLabel')}
-                                cancelButtonLabel={arbIntl.intlText('arbeidstidPeriodeForm.cancelButtonLabel')}>
+                                submitButtonLabel={
+                                    tekst?.okButton || arbIntl.intlText('arbeidstidPeriodeForm.submitButtonLabel')
+                                }
+                                cancelButtonLabel={
+                                    tekst?.cancelButton || arbIntl.intlText('arbeidstidPeriodeForm.cancelButtonLabel')
+                                }>
                                 <div style={{ maxWidth: '20rem' }}>
                                     <FormBlock>
                                         <FormComponents.DateIntervalPicker
