@@ -70,6 +70,7 @@ const ArbeidstidPeriodeDialogDoc = () => {
                                 arbeidsstedNavn,
                                 utilgjengeligeUkedager: [Weekday.monday],
                                 intlValues,
+                                visAlleSpørsmål: true,
                                 tekst: {
                                     introduksjon: (
                                         <>

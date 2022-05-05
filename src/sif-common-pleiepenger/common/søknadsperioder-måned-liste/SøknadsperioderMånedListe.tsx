@@ -24,7 +24,7 @@ interface Props {
 const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
     periode,
     fieldset,
-    årstallHeadingLevel: headingLevel = 2,
+    årstallHeadingLevel = 2,
     årstallHeaderRenderer,
     månedContentRenderer,
 }) => {
@@ -43,7 +43,7 @@ const SøknadsperioderMånedListe: React.FunctionComponent<Props> = ({
             <FormBlock margin="none" paddingBottom="m" key={dayjs(måned.from).format('MM.YYYY')}>
                 {årstallHeaderRenderer && visÅrstallHeading(index) && (
                     <Box margin="l" padBottom="m">
-                        <Undertittel tag={`h${headingLevel}`} className={'yearHeader'}>
+                        <Undertittel tag={`h${årstallHeadingLevel}`} className={'yearHeader'}>
                             {årstallHeaderRenderer(måned.from.getFullYear())}:
                         </Undertittel>
                     </Box>

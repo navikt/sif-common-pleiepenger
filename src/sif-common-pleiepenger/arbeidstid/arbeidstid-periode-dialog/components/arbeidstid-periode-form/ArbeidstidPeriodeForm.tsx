@@ -23,6 +23,7 @@ export interface ArbeidstidPeriodeFormProps {
     intlValues: ArbeidIPeriodeIntlValues;
     utilgjengeligeUkedager?: Weekday[];
     skjulUtilgjengeligeUkedager?: boolean;
+    visAlleSpørsmål?: boolean;
     tekst?: {
         tittel?: JSX.Element;
         introduksjon?: JSX.Element;
@@ -60,6 +61,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
     utilgjengeligeUkedager,
     skjulUtilgjengeligeUkedager,
     tekst,
+    visAlleSpørsmål,
     onSubmit,
     onCancel,
 }) => {
@@ -192,7 +194,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                     </FormBlock>
                                 </div>
 
-                                {fom && tom && (
+                                {((fom && tom) || visAlleSpørsmål) && (
                                     <>
                                         <FormBlock>
                                             <FormComponents.RadioPanelGroup
