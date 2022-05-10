@@ -1,11 +1,13 @@
 module.exports = {
-    parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+    parser: '@typescript-eslint/parser',
+    // Specifies the ESLint parser
     extends: [
-        'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
+        'plugin:react/recommended',
         'plugin:@typescript-eslint/recommended',
         'prettier',
-        'plugin:prettier/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin,
+        'plugin:prettier/recommended',
         'plugin:jsx-a11y/recommended',
+        'plugin:storybook/recommended',
     ],
     parserOptions: {
         ecmaFeatures: {
