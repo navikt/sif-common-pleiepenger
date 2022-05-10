@@ -10,13 +10,12 @@ const arbeidstidPeriodeFormFormMessages = {
         'arbeidstidPeriodeForm.tilOgMed.label': 'Til og med',
         'arbeidstidPeriodeForm.velgHelePerioden': 'Velg hele søknadsperioden',
         'arbeidstidPeriodeForm.tidFasteDager.label': `Fyll ut hvor mye du jobber i uken i perioden:`,
-        'arbeidstidPeriodeForm.tidFasteUkedager.label': `Fyll ut hvor mye du jobber de ulike ukedagene perioden:`,
+        'arbeidstidPeriodeForm.tidFasteUkedager.label': `Fyll ut hvor mye du jobber de ulike ukedagene i perioden:`,
         'arbeidstidPeriodeForm.arbeiderIPerioden.spm': 'Hvordan jobber du {hvor} i denne perioden?',
         'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberIkke': 'Jeg er helt borte fra jobb på grunn av pleiepenger',
         'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberRedusert': 'Jeg kombinerer delvis jobb med pleiepenger',
         'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberVanlig':
             'Jeg jobber som vanlig og har ikke fravær fra jobb på grunn av pleiepenger',
-
         'arbeidstidPeriodeForm.validation.fom.dateHasNoValue': 'Du må fylle ut periodens fra-dato.',
         'arbeidstidPeriodeForm.validation.fom.dateHasInvalidFormat':
             'Du må oppgi periodens fra-dato i et gyldig datoformat. Gyldig format er dd.mm.åååå.',
