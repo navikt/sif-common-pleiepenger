@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 import MessagesPreview from '@navikt/sif-common-core/lib/dev-utils/intl/messages-preview/MessagesPreview';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
-import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import flat from 'flat';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
@@ -10,12 +10,10 @@ import { OmsorgstilbudPeriodeDialog } from '../../../sif-common-pleiepenger';
 import {
     OmsorgstilbudPeriodeData,
     OmsorgstilbudPeriodeFormErrors,
-} from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
-import { omsorgstibudPeriodeMessages } from '../../../sif-common-pleiepenger/omsorgstilbud-periode/omsorgstilbudPeriodeMessages';
+} from '../../../sif-common-pleiepenger/omsorgstilbud/omsorgstilbud-periode/components/omsorgstilbud-periode-form/OmsorgstilbudPeriodeForm';
+import { omsorgstibudPeriodeMessages } from '../../../sif-common-pleiepenger/omsorgstilbud/omsorgstilbud-periode/i18n/omsorgstilbudPeriodeMessages';
 import PageIntro from '../../components/page-intro/PageIntro';
 import FormValidationErrorMessages from '../../components/validation-error-messages/ValidationErrorMessages';
-
-import { DateDurationMap } from '@navikt/sif-common-utils/lib';
 
 export enum FormFields {
     'tid' = 'tid',

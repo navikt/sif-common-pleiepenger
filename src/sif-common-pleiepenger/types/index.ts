@@ -1,5 +1,9 @@
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { Duration, DurationWeekdays } from '@navikt/sif-common-utils/lib';
+import { Duration, ISODate, ISODuration } from '@navikt/sif-common-utils/lib';
+
+export * from './Daginfo';
+export * from './Ukeinfo';
+export * from '../arbeidstid/arbeidstid-periode-dialog/types';
 
 export enum ArbeidsforholdType {
     ANSATT = 'ANSATT',
@@ -9,12 +13,11 @@ export enum ArbeidsforholdType {
 
 export type TidPerDagValidator = (dag: string) => (tid: Duration) => ValidationError | undefined;
 
-export type ArbeidstidPeriodeData = {
-    fom: Date;
-    tom: Date;
-    prosent?: string;
-    tidFasteDager?: DurationWeekdays;
-};
+export enum ArbeiderIPeriodenSvar {
+    'somVanlig' = 'SOM_VANLIG',
+    'redusert' = 'REDUSERT',
+    'heltFravær' = 'HELT_FRAVÆR',
+}
 
 export type ArbeidIPeriodeIntlValues = {
     hvor: string;
@@ -28,4 +31,23 @@ export type ArbeidIPeriodeIntlValues = {
 export interface DagMedTid {
     dato: Date;
     tid: Duration;
+    normaltid?: Duration;
+}
+
+export interface ArbeidstimerApiData {
+    normalTimer: ISODuration;
+    faktiskTimer: ISODuration;
+}
+
+export interface ArbeidstimerFasteDagerApiData {
+    mandag?: ArbeidstimerApiData;
+    tirsdag?: ArbeidstimerApiData;
+    onsdag?: ArbeidstimerApiData;
+    torsdag?: ArbeidstimerApiData;
+    fredag?: ArbeidstimerApiData;
+}
+
+export interface ArbeidstidEnkeltdagApiData {
+    dato: ISODate;
+    arbeidstimer: ArbeidstimerApiData;
 }

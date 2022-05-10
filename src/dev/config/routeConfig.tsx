@@ -1,10 +1,12 @@
 import React from 'react';
-import ArbeidstidPeriodeDoc from '../docs/arbeidstid-periode/ArbeidstidPeriodeDoc';
-import TidsbrukKalenderDoc from '../docs/tidsbruk-kalender/TidsbrukKalenderDoc';
+import ArbeidstidMånedDoc from '../docs/arbeidstid-måned/ArbeidstidMånedDoc';
+import ArbeidstidPeriodeDialogDoc from '../docs/arbeidstid-periode-dialog/ArbeidstidPeriodeDialogDoc';
+import ArbeidstidUkerInputDoc from '../docs/arbeidstid-uker-input/ArbeidstidUkerInputDoc';
 import OmsorgstilbudPeriodeDoc from '../docs/omsorgstilbud-periode/OmsorgstilbudPeriodeDoc';
+import OppsummeringDoc from '../docs/oppsummering/OppsummeringDoc';
 import TidEnkeltdagDialogDoc from '../docs/tid-enkeltdag/TidEnkeltdagDialogDoc';
+import TidsbrukKalenderDoc from '../docs/tidsbruk-kalender/TidsbrukKalenderDoc';
 import Intro from '../Intro';
-import ArbeidstidMånedInfoDoc from '../docs/arbeidstid-måned-info/ArbeidstidMånedInfoDoc';
 
 export interface RouteConfig {
     path: string;
@@ -14,34 +16,44 @@ export interface RouteConfig {
 
 export const routes: RouteConfig[] = [
     {
-        path: 'frontpage',
+        path: '/frontpage',
         title: 'Forside',
         renderContent: () => <Intro />,
     },
     {
-        path: 'arbeidstid-periode',
+        path: '/arbeidstid-periode',
         title: 'Arbeidstid periode',
-        renderContent: () => <ArbeidstidPeriodeDoc />,
+        renderContent: () => <ArbeidstidPeriodeDialogDoc />,
     },
     {
-        path: 'omsorgstilbud-periode',
+        path: '/omsorgstilbud-periode',
         title: 'Omsorgstilbud periode',
         renderContent: () => <OmsorgstilbudPeriodeDoc />,
     },
     {
-        path: 'tid-enkeltdag',
+        path: '/tid-enkeltdag',
         title: 'Tid enkeltdag',
         renderContent: () => <TidEnkeltdagDialogDoc />,
     },
     {
-        path: 'arbeidstid-måned-info',
+        path: '/arbeidstid-måned-info',
         title: 'Arbeidstid i en måned',
-        renderContent: () => <ArbeidstidMånedInfoDoc />,
+        renderContent: () => <ArbeidstidMånedDoc />,
     },
     {
-        path: 'tidsbruk-kalender',
+        path: '/tidsbruk-kalender',
         title: 'TidsbrukKalender',
         renderContent: () => <TidsbrukKalenderDoc />,
+    },
+    {
+        path: '/arbeidstid-uker-input',
+        title: 'ArbeidstidUkerInput',
+        renderContent: () => <ArbeidstidUkerInputDoc />,
+    },
+    {
+        path: '/oppsummering',
+        title: 'Oppsummering',
+        renderContent: () => <OppsummeringDoc />,
     },
 ];
 
@@ -50,5 +62,5 @@ export const getRouteConfig = (pathname: string): RouteConfig | undefined => {
 };
 
 export const isActiveRoute = (path: string, pathname: string): boolean => {
-    return pathname.indexOf(path) >= 0;
+    return pathname.indexOf(path) === 0;
 };

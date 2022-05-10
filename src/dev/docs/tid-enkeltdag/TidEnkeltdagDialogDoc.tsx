@@ -3,8 +3,8 @@ import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
 import { DateDurationMap, DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
-import TidEnkeltdagDialog from '../../../sif-common-pleiepenger/tid-enkeltdag-dialog/TidEnkeltdagDialog';
-import { TidEnkeltdagEndring } from '../../../sif-common-pleiepenger/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import TidEnkeltdagDialog from '../../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/TidEnkeltdagDialog';
+import { TidEnkeltdagEndring } from '../../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/TidEnkeltdagForm';
 import PageIntro from '../../components/page-intro/PageIntro';
 
 export enum FormFields {
