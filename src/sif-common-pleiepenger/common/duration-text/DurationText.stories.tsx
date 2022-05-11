@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import DurationText from './DurationText';
-import StoriesFormikWrapper from '../../../stories/StoriesFormikWrapper';
+import StoriesFormikWrapper from '../../../storybook/decorators/StoriesFormikWrapper';
 
 export default {
     title: 'Example/DurationText',

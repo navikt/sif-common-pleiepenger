@@ -27,7 +27,7 @@ const TidFasteUkedagerInput = ({
     validateDag,
     disabledDays,
     hideDisabledDays,
-    'data-testkey': dataTestKey,
+    'data-testid': dataTestKey,
 }: Props) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
 
@@ -42,7 +42,7 @@ const TidFasteUkedagerInput = ({
                     direction: 'vertical',
                     compact: true,
                 }}
-                data-testkey={dataTestKey ? `${dataTestKey}__${weekday}` : undefined}
+                data-testid={dataTestKey ? `${dataTestKey}__${weekday}` : undefined}
                 validate={validateDag ? (value) => validateDag(validationDayName, value) : undefined}
             />
         );

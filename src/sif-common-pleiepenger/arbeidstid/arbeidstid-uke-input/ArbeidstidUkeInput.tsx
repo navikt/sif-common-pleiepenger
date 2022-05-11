@@ -105,7 +105,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
     enkeltdagValidator,
     tekst,
     beregnFravær,
-    'data-testkey': testKey,
+    'data-testid': testKey,
 }) => {
     const { dager } = ukeinfo;
 
@@ -171,7 +171,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                                         timeInputLayout={{
                                             direction: 'horizontal',
                                         }}
-                                        data-testkey={`${testKey}__dag.isoDate`}
+                                        data-testid={`${testKey}__dag.isoDate`}
                                         validate={enkeltdagValidator ? enkeltdagValidator(dag.dato) : undefined}
                                     />
                                 }

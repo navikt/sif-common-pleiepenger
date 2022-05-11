@@ -44,7 +44,7 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
     beregnFravær,
     useExpandablePanel,
     enkeltdagValidator,
-    'data-testkey': testKey,
+    'data-testid': testKey,
 }) => {
     const dager = tidUkerInputUtils.getDagInfoForPeriode(periode);
     const uker = tidUkerInputUtils
@@ -65,7 +65,7 @@ export const ArbeidstidUkerInput: React.FunctionComponent<Props> = ({
                         minutes: dur?.minutes || '0',
                     };
                 }}
-                data-testkey={testKey}
+                data-testid={testKey}
                 beregnFravær={beregnFravær}
                 visUkeTittel={visUkeTittel}
                 ukeinfo={uke}

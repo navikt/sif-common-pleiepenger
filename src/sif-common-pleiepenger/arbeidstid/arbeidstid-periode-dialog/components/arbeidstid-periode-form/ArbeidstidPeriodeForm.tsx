@@ -141,6 +141,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                         <FormComponents.DateIntervalPicker
                                             fromDatepickerProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.fraOgMed.label'),
+                                                'data-testid': 'fra-dato',
                                                 name: FormFields.fom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
@@ -164,6 +165,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                             toDatepickerProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.tilOgMed.label'),
                                                 name: FormFields.tom,
+                                                'data-testid': 'til-dato',
                                                 disableWeekend: true,
                                                 disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
                                                 fullScreenOnMobile: true,
@@ -211,6 +213,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                             'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberIkke'
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.heltFravær,
+                                                        'data-testid': 'helt-fravær',
                                                     },
                                                     {
                                                         label: intlHelper(
