@@ -131,7 +131,7 @@
     },
     "peerDependencies": {
         "@navikt/sif-common-formik": ">= 23.1",
-        "@navikt/sif-common-utils": "^3.4.0",
+        "@navikt/sif-common-utils": "^3.9.0",
         "dayjs": "1.x",
         "lodash.groupby": "4.x",
         "lodash.uniq": "4.x",

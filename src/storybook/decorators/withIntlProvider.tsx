@@ -29,13 +29,12 @@ const allMessages: MessageFileFormat = {
     },
 };
 
-const StoriesIntlProvider: React.FunctionComponent<IntlProviderProps> = ({ locale, onError, children }) => {
-    const messages = locale === 'nb' ? allMessages.nb : allMessages.nn;
+const withIntlProvider = (Story: any) => {
     return (
-        <IntlProvider locale={locale} messages={messages} onError={onError}>
-            {children}
+        <IntlProvider locale={'nb'} messages={allMessages.nb}>
+            <Story />
         </IntlProvider>
     );
 };
 
-export default StoriesIntlProvider;
+export default withIntlProvider;

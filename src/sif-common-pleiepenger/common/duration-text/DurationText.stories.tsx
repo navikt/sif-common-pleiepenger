@@ -1,12 +1,12 @@
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import withIntlProvider from '../../../storybook/decorators/withIntlProvider';
 import DurationText from './DurationText';
-import StoriesFormikWrapper from '../../../storybook/decorators/StoriesFormikWrapper';
 
 export default {
     title: 'Example/DurationText',
     component: DurationText,
-    decorators: [(Story, args) => <StoriesFormikWrapper Story={Story} {...args} />],
+    decorators: [withIntlProvider],
 } as ComponentMeta<typeof DurationText>;
 
 const Template: ComponentStory<typeof DurationText> = (args) => <DurationText {...args} />;

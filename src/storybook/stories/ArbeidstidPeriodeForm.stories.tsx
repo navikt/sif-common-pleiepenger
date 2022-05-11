@@ -1,23 +1,13 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { fireEvent, userEvent, waitFor, within } from '@storybook/testing-library';
 import { ArbeidstidPeriodeForm, ArbeidstidPeriodeFormProps } from '../../sif-common-pleiepenger';
-import StoriesWrapper from '../decorators/StoriesWrapper';
+import withIntlProvider from '../decorators/withIntlProvider';
 
 export default {
     title: 'ArbeidstidPeriodeForm',
     component: ArbeidstidPeriodeForm,
-    decorators: [
-        (Story, args) => (
-            <StoriesWrapper {...args}>
-                <Story />
-            </StoriesWrapper>
-        ),
-    ],
-    parameters: {
-        actions: { argTypesRegex: '^on.*' },
-    },
+    decorators: [withIntlProvider],
 } as ComponentMeta<typeof ArbeidstidPeriodeForm>;
 
 const Template: ComponentStory<typeof ArbeidstidPeriodeForm> = (args) => <ArbeidstidPeriodeForm {...args} />;
@@ -43,15 +33,4 @@ const defaultFormProps: Partial<ArbeidstidPeriodeFormProps> = {
 export const Default = Template.bind({});
 Default.args = {
     ...defaultFormProps,
-};
-Default.parameters = {
-    argTypes: { onSubmit: { action: 'onSubmit' } },
-};
-Default.play = async ({ canvasElement }) => {
-    const canvas = within(canvasElement);
-    await waitFor(async () => {
-        await userEvent.type(canvas.getByTestId('fra-dato'), '02.02.2022', { delay: 20 });
-        await userEvent.type(canvas.getByTestId('til-dato'), '15.02.2022', { delay: 20 });
-        await fireEvent.click(canvas.getByTestId('helt-fravær'), { delay: 10 });
-    });
 };
