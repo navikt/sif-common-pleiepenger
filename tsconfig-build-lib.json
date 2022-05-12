@@ -27,5 +27,5 @@
         "baseUrl": "./src/sif-common-pleiepenger"
     },
     "include": ["src/sif-common-pleiepenger"],
-    "exclude": ["node_modules", "src/dev", "src/test-utils", "**.spec.*"]
+    "exclude": ["node_modules", "src/**/*.spec.*", "src/storybook", "src/**/*.test.*", "src/**/*.stories.*"]
 }
