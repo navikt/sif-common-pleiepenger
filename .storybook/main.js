@@ -3,7 +3,7 @@ const path = require('path');
 
 module.exports = {
     stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-    addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-interactions'],
+    addons: ['@storybook/addon-links', '@storybook/addon-essentials', '@storybook/addon-a11y'],
     framework: '@storybook/react',
     core: {
         builder: '@storybook/builder-webpack5',
@@ -21,24 +21,6 @@ module.exports = {
 
         // Make whatever fine-grained changes you need
         config.module.rules = config.module.rules.concat(
-            //     {
-            //         test: /\.(tsx?|ts?)$/,
-            //         enforce: 'pre',
-            //         loader: 'eslint-loader',
-            //         options: {
-            //             failOnWarning: false,
-            //             failOnError: false,
-            //             configFile: path.resolve(__dirname, '../.eslintrc.js'),
-            //             fix: true,
-            //             cache: true,
-            //         },
-            //         include: [path.resolve(__dirname, '../src')],
-            //     },
-            // {
-            //     test: /\.(ts|tsx|js)$/,
-            //     use: [{ loader: 'babel-loader' }],
-            //     exclude: /node_modules/,
-            // },
             {
                 test: /\.less$/,
                 use: [

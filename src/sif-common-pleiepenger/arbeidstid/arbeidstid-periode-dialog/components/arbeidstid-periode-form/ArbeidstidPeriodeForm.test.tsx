@@ -58,6 +58,7 @@ describe('<ArbeidstidPeriodeForm>', () => {
 
         await waitFor(() => expect(onSubmit).toHaveBeenCalledWith(submitData));
     });
+
     it('Jobber redusert perioden', async () => {
         const onSubmit = jest.fn();
 
@@ -80,5 +81,16 @@ describe('<ArbeidstidPeriodeForm>', () => {
         };
 
         await waitFor(() => expect(onSubmit).toHaveBeenCalledWith(submitData));
+    });
+
+    it('Stoppes dersom arbeidstid er under 0', async () => {
+        render(<Default />);
+
+        await fyllUtPeriode();
+        await userEvent.click(screen.getByTestId('jobber-redusert'));
+        await userEvent.click(screen.getByText('Ok'));
+
+        expect(await screen.findByText('Feil i skjema')).toBeInTheDocument();
+        expect(await screen.findAllByText('Du må oppgi hvor mange timer du jobber i uken.')).toHaveLength(2);
     });
 });

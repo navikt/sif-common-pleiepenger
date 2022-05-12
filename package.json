@@ -48,6 +48,7 @@
         "@navikt/sif-common-core": "^11.3.0",
         "@navikt/sif-common-formik": "^23.1.0",
         "@navikt/sif-common-question-config": "0.0.7",
+        "@storybook/addon-a11y": "^6.4.22",
         "@storybook/addon-actions": "^6.4.22",
         "@storybook/addon-essentials": "^6.4.22",
         "@storybook/addon-interactions": "^6.4.22",
