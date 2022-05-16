@@ -10,7 +10,7 @@
 /coverage
 
 # storybook
-/storybook-staic
+/storybook-static
 
 # production
 /build

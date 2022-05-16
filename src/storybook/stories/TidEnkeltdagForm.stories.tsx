@@ -19,12 +19,11 @@ const testSøknadsperiode: DateRange = {
     to: ISODateToDate('2022-04-01'),
 };
 
-const defaultFormProps: TidEnkeltdagFormProps = {
+const defaultFormProps: Partial<TidEnkeltdagFormProps> = {
     periode: testSøknadsperiode,
     dato: testSøknadsperiode.from,
     hvorMyeSpørsmålRenderer: () => 'Hvor mye jobbet du hos Karis Gullfisker mandag 3. januar 2020?',
-    onSubmit: () => null,
-    onCancel: () => null,
+    // onSubmit: () => null, Tas ikke med pga actions-addon outputer submit-data i storybook ved commit
 };
 
 export const Default = Template.bind({});
