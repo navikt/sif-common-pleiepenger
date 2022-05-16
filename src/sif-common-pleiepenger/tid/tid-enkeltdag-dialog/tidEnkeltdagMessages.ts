@@ -1,12 +1,14 @@
 const tidEnkeltdagFormMessages = {
     nb: {
         'tidEnkeltdagForm.endretFra': 'Endret fra',
-        'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjelder flere dager',
-        'tidEnkeltdagForm.gjentagelse.helUke': 'Alle hverdager i uke {ukeNavn}.',
-        'tidEnkeltdagForm.gjentagelse.delAvUke': 'Hverdager i uke {ukeNavn}.',
-        'tidEnkeltdagForm.gjentagelse.helMåned': 'Alle hverdager i {månedNavn}.',
-        'tidEnkeltdagForm.gjentagelse.delAvMåned': 'Hverdager i {månedNavn}.',
-        'tidEnkeltdagForm.gjentagelse.dagerFremover': 'Hver {dagNavn} fra og med {fra}.',
+        'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjenta disse timene for flere dager',
+        'tidEnkeltdagForm.gjelderFlereDager.info':
+            'Velg hvilke andre dager i søknadsperioden du ønsker disse timene skal registreres på:',
+        'tidEnkeltdagForm.gjentagelse.helUke': 'Alle dager i uke {ukeNavn}',
+        'tidEnkeltdagForm.gjentagelse.delAvUke': 'Alle dager i uke {ukeNavn}',
+        'tidEnkeltdagForm.gjentagelse.helMåned': 'Alle dager i {månedNavn}',
+        'tidEnkeltdagForm.gjentagelse.delAvMåned': 'Alle dager i {månedNavn}',
+        'tidEnkeltdagForm.gjentagelse.dagerFremover': 'Alle {dagerNavn} fra og med {fra}',
         'tidEnkeltdagForm.gjentagelse.periode': '({fra} - {til})',
         'tidEnkeltdagForm.stoppGjentagelse.label': 'Velg en annen til og med dato',
         'tidEnkeltdagForm.stopDato.label': 'Velg til og med dato',

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TypedFormikWrapper } from '@navikt/sif-common-formik/lib';
-import { DateDurationMap, DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { DateDurationMap, dateFormatter, DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { Knapp } from 'nav-frontend-knapper';
 import Panel from 'nav-frontend-paneler';
 import TidEnkeltdagDialog from '../../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/TidEnkeltdagDialog';
@@ -56,11 +56,12 @@ const TidEnkeltdagDialogDoc = () => {
                                 periode,
                                 dato: periode.from,
                                 maksTid: { hours: 7, minutes: 30 },
-                                tidOpprinnelig: {
-                                    hours: '1',
-                                    minutes: '30',
-                                },
-                                hvorMyeSpørsmålRenderer: () => 'Hvor mye tid',
+                                // tidOpprinnelig: {
+                                //     hours: '1',
+                                //     minutes: '30',
+                                // },
+                                hvorMyeSpørsmålRenderer: (dato: Date) =>
+                                    `Hvor mye jobbet du hos Karis Gullfisker ${dateFormatter.dayDateMonthYear(dato)}?`,
                                 onCancel: () => setVisDialog(false),
                                 onSubmit: handleFormSubmit,
                             }}

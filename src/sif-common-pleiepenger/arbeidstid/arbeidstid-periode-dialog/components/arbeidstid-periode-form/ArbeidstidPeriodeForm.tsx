@@ -8,7 +8,13 @@ import datepickerUtils from '@navikt/sif-common-formik/lib/components/formik-dat
 import { getDateRangeValidator, getRequiredFieldValidator } from '@navikt/sif-common-formik/lib/validation';
 import getIntlFormErrorHandler from '@navikt/sif-common-formik/lib/validation/intlFormErrorHandler';
 import { ValidationError } from '@navikt/sif-common-formik/lib/validation/types';
-import { dateToISODate, DurationWeekdays, getWeekdayDOW, Weekday } from '@navikt/sif-common-utils';
+import {
+    dateToISODate,
+    DurationWeekdays,
+    ensureCompleteDurationWeekdays,
+    getWeekdayDOW,
+    Weekday,
+} from '@navikt/sif-common-utils';
 import { InputDateString } from 'nav-datovelger/lib/types';
 import { Undertittel } from 'nav-frontend-typografi';
 import { TidFasteUkedagerInput } from '../../../../tid';
@@ -87,7 +93,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                         fom,
                         tom,
                         arbeiderHvordan: values.arbeiderHvordan,
-                        tidFasteDager: values.tidFasteDager,
+                        tidFasteDager: ensureCompleteDurationWeekdays(values.tidFasteDager),
                     });
                 } else {
                     throw new Error('ArbeidstidPeriodeForm. Ugyldig tidFasteDager ');
@@ -141,6 +147,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                         <FormComponents.DateIntervalPicker
                                             fromDatepickerProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.fraOgMed.label'),
+                                                'data-testid': 'fra-dato',
                                                 name: FormFields.fom,
                                                 disableWeekend: true,
                                                 fullScreenOnMobile: true,
@@ -164,6 +171,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                             toDatepickerProps={{
                                                 label: arbIntl.intlText('arbeidstidPeriodeForm.tilOgMed.label'),
                                                 name: FormFields.tom,
+                                                'data-testid': 'til-dato',
                                                 disableWeekend: true,
                                                 disabledDaysOfWeek: disabledDaysOfWeekDayNumber,
                                                 fullScreenOnMobile: true,
@@ -211,6 +219,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                             'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberIkke'
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.heltFravær,
+                                                        'data-testid': 'helt-fravær',
                                                     },
                                                     {
                                                         label: intlHelper(
@@ -218,6 +227,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                             'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberRedusert'
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.redusert,
+                                                        'data-testid': 'jobber-redusert',
                                                     },
                                                     {
                                                         label: intlHelper(
@@ -225,6 +235,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                             'arbeidstidPeriodeForm.arbeiderIPerioden.svar.jobberVanlig'
                                                         ),
                                                         value: ArbeiderIPeriodenSvar.somVanlig,
+                                                        'data-testid': 'som-vanlig',
                                                     },
                                                 ]}
                                                 validate={(value) => {
@@ -259,6 +270,7 @@ const ArbeidstidPeriodeForm: React.FunctionComponent<ArbeidstidPeriodeFormProps>
                                                         name={FormFields.tidFasteDager}
                                                         disabledDays={utilgjengeligeUkedager}
                                                         hideDisabledDays={skjulUtilgjengeligeUkedager}
+                                                        data-testid="tid-ukedager"
                                                         validateDag={(dag, value) => {
                                                             const error = getArbeidstimerFastDagValidator()(value);
                                                             return error
