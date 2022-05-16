@@ -4,12 +4,12 @@ import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { TidEnkeltdagForm } from '../../sif-common-pleiepenger';
 import withIntlProvider from '../decorators/withIntlProvider';
 import { TidEnkeltdagFormProps } from '../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/TidEnkeltdagForm';
-import { withDialogWrapper } from '../decorators/withDialogWrapper';
+import { withDialogWrapperSmall } from '../decorators/withDialogWrapper';
 
 export default {
     title: 'TidEnkeltdagForm',
     component: TidEnkeltdagForm,
-    decorators: [withIntlProvider, withDialogWrapper],
+    decorators: [withIntlProvider, withDialogWrapperSmall],
 } as ComponentMeta<typeof TidEnkeltdagForm>;
 
 const Template: ComponentStory<typeof TidEnkeltdagForm> = (args) => <TidEnkeltdagForm {...args} />;

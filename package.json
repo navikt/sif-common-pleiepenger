@@ -36,6 +36,7 @@
         "snyk-protect": "snyk protect",
         "prepare": "npm run snyk-protect",
         "build-storybook": "build-storybook -s public",
+        "deploy-storybook": "gh-pages -d storybook-static",
         "storybook": "start-storybook -p 6006 -s public"
     },
     "devDependencies": {

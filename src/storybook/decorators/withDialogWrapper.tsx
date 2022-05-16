@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/navFrontendOverride.css';
 
-export const withDialogWrapper = (Story) => {
+export const withDialogWrapperSmall = (Story) => {
     return (
         <DialogWrapper>
             <Story />
@@ -9,10 +9,30 @@ export const withDialogWrapper = (Story) => {
     );
 };
 
-const DialogWrapper: React.FunctionComponent = ({ children }) => (
+export const withDialogWrapperMedium = (Story) => {
+    return (
+        <DialogWrapper width="640px">
+            <Story />
+        </DialogWrapper>
+    );
+};
+
+export const withDialogWrapperWide = (Story) => {
+    return (
+        <DialogWrapper width="800px">
+            <Story />
+        </DialogWrapper>
+    );
+};
+
+interface Props {
+    width?: string;
+}
+
+const DialogWrapper: React.FunctionComponent<Props> = ({ children, width }) => (
     <div
         style={{
-            maxWidth: '480px',
+            maxWidth: width || '480px',
             border: '2px solid #ccc',
             borderRadius: '.25rem',
             padding: '1.5rem',
