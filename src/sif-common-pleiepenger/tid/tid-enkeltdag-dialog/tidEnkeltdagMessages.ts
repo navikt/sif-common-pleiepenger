@@ -3,7 +3,7 @@ const tidEnkeltdagFormMessages = {
         'tidEnkeltdagForm.endretFra': 'Endret fra',
         'tidEnkeltdagForm.gjelderFlereDager.label': 'Gjenta disse timene for flere dager',
         'tidEnkeltdagForm.gjelderFlereDager.info':
-            'Velg hvilke andre dager i søknadsperioden du ønsker disse timene skal registreres på:',
+            'Velg hvilke andre dager i søknadsperioden du ønsker at disse timene skal registreres på:',
         'tidEnkeltdagForm.gjentagelse.helUke': 'Alle dager i uke {ukeNavn}',
         'tidEnkeltdagForm.gjentagelse.delAvUke': 'Alle dager i uke {ukeNavn}',
         'tidEnkeltdagForm.gjentagelse.helMåned': 'Alle dager i {månedNavn}',
