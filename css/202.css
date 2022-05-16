@@ -1,200 +1,3 @@
-.box--s {
-  margin-top: 0.25rem;
-}
-.box--m {
-  margin-top: 0.5rem;
-}
-.box--l {
-  margin-top: 1rem;
-}
-.box--xl {
-  margin-top: 2rem;
-}
-.box--xxl {
-  margin-top: 3rem;
-}
-.box--xxxl {
-  margin-top: 4rem;
-}
-.box--bottom-s {
-  padding-bottom: 0.25rem;
-}
-.box--bottom-m {
-  padding-bottom: 0.5rem;
-}
-.box--bottom-l {
-  padding-bottom: 1rem;
-}
-.box--bottom-xl {
-  padding-bottom: 2rem;
-}
-.box--bottom-xxl {
-  padding-bottom: 3rem;
-}
-.box--bottom-xxxl {
-  padding-bottom: 4rem;
-}
-.box--textAlignCenter {
-  text-align: center;
-}
-
-.ReactCollapse--collapse {
-  transition: height 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.ekspanderbartPanel {
-  position: relative;
-  background: white;
-  border-radius: 0.25rem;
-}
-.ekspanderbartPanel:hover,
-.ekspanderbartPanel--hover {
-  box-shadow: #a0a0a0 0 2px 1px 0;
-}
-.ekspanderbartPanel:focus,
-.ekspanderbartPanel--focus {
-  box-shadow: 0 0 0 3px #00347d;
-  outline: none;
-}
-.ekspanderbartPanel__hode {
-  background-color: #fff;
-  display: block;
-  padding: 1rem 1rem 1rem 1rem;
-  border-radius: 4px;
-  background: transparent;
-  border: 0;
-  text-align: left;
-  width: 100%;
-  margin-bottom: 0;
-}
-.ekspanderbartPanel__hode .ekspanderbartPanel__tittel {
-  font-family: "Source Sans Pro", Arial, sans-serif;
-  font-size: 1.25rem;
-  line-height: 1.5625rem;
-  font-weight: 600;
-  color: #262626;
-}
-.ekspanderbartPanel__hode:hover,
-.ekspanderbartPanel__hode--hover {
-  cursor: pointer;
-}
-.ekspanderbartPanel__hode:hover .ekspanderbartPanel__tittel,
-.ekspanderbartPanel__hode--hover .ekspanderbartPanel__tittel {
-  text-decoration: underline;
-  color: #0067c5;
-}
-.ekspanderbartPanel__hode:focus,
-.ekspanderbartPanel__hode--focus {
-  box-shadow: 0 0 0 3px #00347d;
-  outline: none;
-}
-.ekspanderbartPanel__flex-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.ekspanderbartPanel__innhold {
-  padding: 1rem;
-  padding-top: 0.5rem;
-}
-.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator {
-  display: inline-block;
-  flex-shrink: 0;
-  height: 2px;
-  line-height: 2px;
-  width: 20px;
-  position: relative;
-  text-align: center;
-  transition: 200ms transform;
-  vertical-align: middle;
-}
-.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::before,
-.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::after {
-  transition: 200ms transform;
-  border-radius: 10px;
-}
-.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50%;
-  background: currentColor;
-}
-.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 50%;
-  background: currentColor;
-}
-.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::before {
-  transform: translateX(2px) rotate(45deg);
-}
-.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::after {
-  transform: translateX(-2px) rotate(-45deg);
-}
-.ekspanderbartPanel--border {
-  border: 1px solid #6a6a6a;
-}
-.ekspanderbartPanel--border:hover,
-.ekspanderbartPanel--border.panel-interaktiv-mixin--hover {
-  border: 1px solid #0067c5;
-}
-.ekspanderbartPanel--border.ekspanderbartPanel--apen {
-  border: 1px solid #6a6a6a;
-}
-.ekspanderbartPanel--apen > .ekspanderbartPanel__hode {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.ekspanderbartPanel--apen .ekspanderbartPanel__innhold {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator {
-  display: inline-block;
-  flex-shrink: 0;
-  height: 2px;
-  line-height: 2px;
-  width: 20px;
-  position: relative;
-  text-align: center;
-  transition: 200ms transform;
-  vertical-align: middle;
-}
-.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::before,
-.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::after {
-  transition: 200ms transform;
-  border-radius: 10px;
-}
-.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 50%;
-  background: currentColor;
-}
-.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 50%;
-  background: currentColor;
-}
-.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::before {
-  transform: translateX(2px) rotate(-45deg);
-}
-.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::after {
-  transform: translateX(-2px) rotate(45deg);
-}
-
 @font-face {
   font-family: "Source Sans Pro";
   font-weight: 400;
@@ -321,113 +124,6 @@
   line-height: 1.25rem;
   font-family: "Source Sans Pro", Arial, sans-serif;
   font-weight: 400;
-}
-
-.lukknapp {
-  font: 0/0 a;
-  color: transparent;
-  text-shadow: none;
-  border: 0;
-  position: relative;
-  width: 2rem;
-  height: 2rem;
-  cursor: pointer;
-  color: #6a6a6a;
-  border: 2px solid currentColor;
-  background-color: transparent;
-  border-radius: 2px;
-}
-.lukknapp::before,
-.lukknapp::after {
-  content: "";
-  position: absolute;
-  width: 1.25rem;
-  height: 3px;
-  top: calc(50% - 0.175rem);
-  left: 50%;
-  background-color: currentColor;
-}
-.lukknapp::before {
-  transform: translate(-50%, 50%) rotate(-45deg);
-}
-.lukknapp::after {
-  transform: translate(-50%, 50%) rotate(45deg);
-}
-.lukknapp:hover {
-  background-color: currentColor;
-}
-.lukknapp:hover::before,
-.lukknapp:hover::after {
-  background-color: #fff;
-}
-.lukknapp:active {
-  color: #00459c;
-}
-.lukknapp:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px #00347d;
-}
-.lukknapp--bla {
-  color: #0067c5;
-}
-.lukknapp--hvit {
-  color: #fff;
-}
-.lukknapp--hvit:hover {
-  background-color: #66cbec;
-  border-color: #66cbec;
-  color: #6a6a6a;
-}
-.lukknapp--hvit:hover::before,
-.lukknapp--hvit:hover::after {
-  background-color: #262626;
-}
-.lukknapp--overstHjorne {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-}
-
-.ReactModal__Body--open {
-  overflow: hidden;
-}
-.modal {
-  background-color: #fff;
-  display: block;
-  padding: 1rem 1rem 1rem 1rem;
-  border-radius: 4px;
-  position: relative;
-  flex-grow: 0;
-  overflow: auto;
-  max-height: 100%;
-  margin-bottom: 0;
-  z-index: 1010;
-}
-.modal:focus,
-.modal--focus {
-  box-shadow: 0 0 0 3px #00347d;
-  outline: none;
-}
-.modal__overlay {
-  position: fixed;
-  z-index: 1000;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(61, 56, 49, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-}
-.modal__overlay:active .modal:not(:active) .modal__lukkknapp--shake {
-  transform: rotate(10deg);
-  transition: transform 100ms cubic-bezier(0.82, -2, 1, 0.3);
-}
-.modal__lukkknapp--shake {
-  transform: rotate(0deg);
-  transition: transform 100ms cubic-bezier(0.82, 2, 1, 0.3);
 }
 
 .checkboks,
@@ -4817,6 +4513,113 @@ body .blokk-xl {
   white-space: nowrap;
 }
 
+.lukknapp {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  border: 0;
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  color: #6a6a6a;
+  border: 2px solid currentColor;
+  background-color: transparent;
+  border-radius: 2px;
+}
+.lukknapp::before,
+.lukknapp::after {
+  content: "";
+  position: absolute;
+  width: 1.25rem;
+  height: 3px;
+  top: calc(50% - 0.175rem);
+  left: 50%;
+  background-color: currentColor;
+}
+.lukknapp::before {
+  transform: translate(-50%, 50%) rotate(-45deg);
+}
+.lukknapp::after {
+  transform: translate(-50%, 50%) rotate(45deg);
+}
+.lukknapp:hover {
+  background-color: currentColor;
+}
+.lukknapp:hover::before,
+.lukknapp:hover::after {
+  background-color: #fff;
+}
+.lukknapp:active {
+  color: #00459c;
+}
+.lukknapp:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px #00347d;
+}
+.lukknapp--bla {
+  color: #0067c5;
+}
+.lukknapp--hvit {
+  color: #fff;
+}
+.lukknapp--hvit:hover {
+  background-color: #66cbec;
+  border-color: #66cbec;
+  color: #6a6a6a;
+}
+.lukknapp--hvit:hover::before,
+.lukknapp--hvit:hover::after {
+  background-color: #262626;
+}
+.lukknapp--overstHjorne {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.ReactModal__Body--open {
+  overflow: hidden;
+}
+.modal {
+  background-color: #fff;
+  display: block;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 4px;
+  position: relative;
+  flex-grow: 0;
+  overflow: auto;
+  max-height: 100%;
+  margin-bottom: 0;
+  z-index: 1010;
+}
+.modal:focus,
+.modal--focus {
+  box-shadow: 0 0 0 3px #00347d;
+  outline: none;
+}
+.modal__overlay {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(61, 56, 49, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.modal__overlay:active .modal:not(:active) .modal__lukkknapp--shake {
+  transform: rotate(10deg);
+  transition: transform 100ms cubic-bezier(0.82, -2, 1, 0.3);
+}
+.modal__lukkknapp--shake {
+  transform: rotate(0deg);
+  transition: transform 100ms cubic-bezier(0.82, 2, 1, 0.3);
+}
+
 .dialogFormWrapper {
   width: 32rem;
   padding-top: 2rem;
@@ -5845,6 +5648,203 @@ body .blokk-xl {
 }
 .dateRangePicker__flexContainer .skjemagruppe .nav-datovelger__inputContainer {
   width: 100%;
+}
+
+.box--s {
+  margin-top: 0.25rem;
+}
+.box--m {
+  margin-top: 0.5rem;
+}
+.box--l {
+  margin-top: 1rem;
+}
+.box--xl {
+  margin-top: 2rem;
+}
+.box--xxl {
+  margin-top: 3rem;
+}
+.box--xxxl {
+  margin-top: 4rem;
+}
+.box--bottom-s {
+  padding-bottom: 0.25rem;
+}
+.box--bottom-m {
+  padding-bottom: 0.5rem;
+}
+.box--bottom-l {
+  padding-bottom: 1rem;
+}
+.box--bottom-xl {
+  padding-bottom: 2rem;
+}
+.box--bottom-xxl {
+  padding-bottom: 3rem;
+}
+.box--bottom-xxxl {
+  padding-bottom: 4rem;
+}
+.box--textAlignCenter {
+  text-align: center;
+}
+
+.ReactCollapse--collapse {
+  transition: height 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ekspanderbartPanel {
+  position: relative;
+  background: white;
+  border-radius: 0.25rem;
+}
+.ekspanderbartPanel:hover,
+.ekspanderbartPanel--hover {
+  box-shadow: #a0a0a0 0 2px 1px 0;
+}
+.ekspanderbartPanel:focus,
+.ekspanderbartPanel--focus {
+  box-shadow: 0 0 0 3px #00347d;
+  outline: none;
+}
+.ekspanderbartPanel__hode {
+  background-color: #fff;
+  display: block;
+  padding: 1rem 1rem 1rem 1rem;
+  border-radius: 4px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 0;
+}
+.ekspanderbartPanel__hode .ekspanderbartPanel__tittel {
+  font-family: "Source Sans Pro", Arial, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5625rem;
+  font-weight: 600;
+  color: #262626;
+}
+.ekspanderbartPanel__hode:hover,
+.ekspanderbartPanel__hode--hover {
+  cursor: pointer;
+}
+.ekspanderbartPanel__hode:hover .ekspanderbartPanel__tittel,
+.ekspanderbartPanel__hode--hover .ekspanderbartPanel__tittel {
+  text-decoration: underline;
+  color: #0067c5;
+}
+.ekspanderbartPanel__hode:focus,
+.ekspanderbartPanel__hode--focus {
+  box-shadow: 0 0 0 3px #00347d;
+  outline: none;
+}
+.ekspanderbartPanel__flex-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ekspanderbartPanel__innhold {
+  padding: 1rem;
+  padding-top: 0.5rem;
+}
+.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator {
+  display: inline-block;
+  flex-shrink: 0;
+  height: 2px;
+  line-height: 2px;
+  width: 20px;
+  position: relative;
+  text-align: center;
+  transition: 200ms transform;
+  vertical-align: middle;
+}
+.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::before,
+.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::after {
+  transition: 200ms transform;
+  border-radius: 10px;
+}
+.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: currentColor;
+}
+.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  background: currentColor;
+}
+.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::before {
+  transform: translateX(2px) rotate(45deg);
+}
+.ekspanderbartPanel--lukket .ekspanderbartPanel__indikator::after {
+  transform: translateX(-2px) rotate(-45deg);
+}
+.ekspanderbartPanel--border {
+  border: 1px solid #6a6a6a;
+}
+.ekspanderbartPanel--border:hover,
+.ekspanderbartPanel--border.panel-interaktiv-mixin--hover {
+  border: 1px solid #0067c5;
+}
+.ekspanderbartPanel--border.ekspanderbartPanel--apen {
+  border: 1px solid #6a6a6a;
+}
+.ekspanderbartPanel--apen > .ekspanderbartPanel__hode {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.ekspanderbartPanel--apen .ekspanderbartPanel__innhold {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator {
+  display: inline-block;
+  flex-shrink: 0;
+  height: 2px;
+  line-height: 2px;
+  width: 20px;
+  position: relative;
+  text-align: center;
+  transition: 200ms transform;
+  vertical-align: middle;
+}
+.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::before,
+.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::after {
+  transition: 200ms transform;
+  border-radius: 10px;
+}
+.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  background: currentColor;
+}
+.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  background: currentColor;
+}
+.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::before {
+  transform: translateX(2px) rotate(-45deg);
+}
+.ekspanderbartPanel--apen > .ekspanderbartPanel__hode .ekspanderbartPanel__indikator::after {
+  transform: translateX(-2px) rotate(45deg);
 }
 
 @media screen and (max-width: 576px) {
