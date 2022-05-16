@@ -1,0 +1,625 @@
+.dagerMedTidListe ol.dagerMedTidListe__dager {
+  margin: 0;
+  list-style: disc;
+}
+.dagerMedTidListe ol.dagerMedTidListe__dager li {
+  margin: 0;
+  padding: 0;
+}
+.dagerMedTidListe ol.dagerMedTidListe__dager li:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+.dagerMedTidListe__dag {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+.dagerMedTidListe__dag__dato {
+  margin-right: 1rem;
+  flex: 1 1 8rem;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+.dagerMedTidListe__dag__tid {
+  flex: 2 1 10rem;
+}
+.dagerMedTidListe__uketittel {
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+.dagerMedTidListe__uke + .dagerMedTidListe__uke .omsorgsdagerListe__uketittel {
+  margin-top: 1.5rem;
+}
+.dagerMedTidListe__tidTotalt {
+  margin-bottom: 2rem;
+}
+
+.modal.tidEnkeltdagDialog {
+  min-width: 15rem;
+}
+@media (min-width: 576px) {
+  .modal.tidEnkeltdagDialog {
+    min-width: 22rem;
+    max-width: 28rem;
+    padding: 2rem;
+  }
+}
+.modal.tidEnkeltdagDialog .m-caps {
+  text-transform: capitalize;
+}
+.tidEnkeltdagForm__gjentagelseOptions > .skjemaelement {
+  margin-bottom: 0.5rem;
+}
+
+.calendarGrid__allWeekDisabledContent {
+  display: none;
+  font-weight: normal;
+}
+.calendarGrid__day {
+  display: block;
+  min-height: 5rem;
+  position: relative;
+  margin: 2px;
+  border-radius: 0.125rem;
+  border: 1px solid #c6c2bf;
+}
+.calendarGrid__day--outsideMonth {
+  border: none;
+  background-color: transparent;
+}
+.calendarGrid__day--disabled {
+  background-color: #f1f2f2;
+  border-color: #f1f2f2;
+}
+.calendarGrid__day--disabled .calendarGrid__date__short,
+.calendarGrid__day--disabled .calendarGrid__date__full {
+  text-decoration: line-through;
+}
+.calendarGrid__day--button {
+  color: #0067c5;
+  border: 2px solid transparent;
+  background: transparent;
+  background-color: white;
+  padding: 0;
+  color: inherit;
+  border: 1px solid #c6c2bf;
+  border-width: 1px !important;
+  cursor: pointer;
+}
+.calendarGrid__day--button:hover:not(:disabled),
+.calendarGrid__day--button:focus:not(:disabled) {
+  background-color: transparent;
+  border: 2px solid #0067c5;
+  color: #0067c5;
+}
+.calendarGrid__day--button.calendarGrid__day--button:active {
+  background-color: #005b82;
+  border: 2px solid transparent;
+  color: #fff;
+}
+.calendarGrid__day--button:hover {
+  outline: 2px solid #005b82;
+}
+.calendarGrid__date {
+  font-size: 0.8rem;
+  opacity: 1;
+  position: absolute;
+  top: 0rem;
+  right: 0.25rem;
+  text-align: right;
+  opacity: 0.75;
+}
+.calendarGrid__week {
+  padding: 0.5rem 0.5rem;
+  margin-top: 1rem;
+}
+.calendarGrid__weekNum {
+  font-weight: bold;
+}
+.calendarGrid__dayHeader {
+  padding: 0.5rem 0.5rem;
+  margin-right: 1px;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+.calendarGrid__dayHeader--week {
+  padding-left: 0;
+}
+.calendarGrid--grid {
+  display: grid;
+  grid-template-columns: 2rem repeat(5, 1fr);
+  width: 100%;
+  padding-bottom: 0.5rem;
+}
+.calendarGrid--grid > * {
+  align-items: flex-start;
+  display: flex;
+  justify-content: left;
+  padding: 0.5rem 0.5rem;
+}
+.calendarGrid--grid > *::before:not(:first-child) {
+  content: '';
+  display: inline-block;
+  height: 0;
+  padding-bottom: 100%;
+}
+.calendarGrid--grid > *.today {
+  color: white;
+  border: 0.1em solid white;
+  border-radius: 100%;
+}
+.calendarGrid--grid .calendarGrid__allWeekDisabledContent {
+  display: none;
+}
+.calendarGrid--grid .calendarGrid__day__content {
+  align-self: center;
+  width: 100%;
+}
+.calendarGrid--grid .calendarGrid__weekNum_label {
+  display: none;
+  padding-right: 0.25rem;
+}
+.calendarGrid--grid .calendarGrid__week {
+  padding: 0.5rem 0.5rem;
+  margin-right: 1px;
+  margin-top: 1rem;
+}
+.calendarGrid--grid .calendarGrid__weekNum {
+  align-self: flex-start;
+  justify-self: center;
+  font-weight: normal;
+  padding: 0;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+}
+.calendarGrid--grid .calendarGrid__dayHeader {
+  padding: 0 0.5rem 0.5rem 0.5rem;
+  margin-bottom: 0.5rem;
+  justify-self: center;
+}
+.calendarGrid--grid .calendarGrid__dayHeader--week {
+  padding-left: 0;
+}
+.calendarGrid--grid .calendarGrid__date_label {
+  display: none;
+}
+.calendarGrid--grid .calendarGrid__date__full {
+  display: none;
+}
+.calendarGrid--list {
+  grid-template-columns: repeat(1, 1fr);
+}
+.calendarGrid--list .calendarGrid__allWeekDisabledContent {
+  display: initial;
+}
+.calendarGrid--list .calendarGrid__dayHeader {
+  display: none;
+}
+.calendarGrid--list .calendarGrid__day {
+  padding: 0.25rem 0.5rem;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+}
+.calendarGrid--list .calendarGrid__day--disabled {
+  display: none;
+}
+.calendarGrid--list .calendarGrid__day + .calendarGrid--list .calendarGrid__weekNum {
+  margin-top: 1rem;
+}
+.calendarGrid--list .calendarGrid__weekNum_label {
+  display: inline;
+}
+.calendarGrid--list .calendarGrid__weekNum {
+  display: block;
+  align-self: flex-start;
+  justify-self: flex-start;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1rem;
+}
+.calendarGrid--list .calendarGrid__date {
+  left: initial;
+  top: initial;
+  right: initial;
+  text-align: left;
+  font-size: 1rem;
+  position: relative;
+  flex: 1 1 80%;
+  padding: 0.5rem 0;
+}
+.calendarGrid--list .calendarGrid__date__full {
+  display: block;
+}
+.calendarGrid--list .calendarGrid__date__full::first-letter {
+  text-transform: uppercase;
+}
+.calendarGrid--list .calendarGrid__date__short {
+  display: none;
+}
+.calendarGrid--list .calendarGrid__day--outsideMonth {
+  display: none;
+}
+.calendarGrid--list .calendarGrid--hideEmptyContentInListMode .calendarGrid__weekNum--empty {
+  display: none;
+}
+@media screen and (max-width: 700px) {
+  .calendarGrid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .calendarGrid .calendarGrid__allWeekDisabledContent {
+    display: initial;
+  }
+  .calendarGrid .calendarGrid__dayHeader {
+    display: none;
+  }
+  .calendarGrid .calendarGrid__day {
+    padding: 0.25rem 0.5rem;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+  }
+  .calendarGrid .calendarGrid__day--disabled {
+    display: none;
+  }
+  .calendarGrid .calendarGrid__day + .calendarGrid .calendarGrid__weekNum {
+    margin-top: 1rem;
+  }
+  .calendarGrid .calendarGrid__weekNum_label {
+    display: inline;
+  }
+  .calendarGrid .calendarGrid__weekNum {
+    display: block;
+    align-self: flex-start;
+    justify-self: flex-start;
+    font-weight: bold;
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1rem;
+  }
+  .calendarGrid .calendarGrid__date {
+    left: initial;
+    top: initial;
+    right: initial;
+    text-align: left;
+    font-size: 1rem;
+    position: relative;
+    flex: 1 1 80%;
+    padding: 0.5rem 0;
+  }
+  .calendarGrid .calendarGrid__date__full {
+    display: block;
+  }
+  .calendarGrid .calendarGrid__date__full::first-letter {
+    text-transform: uppercase;
+  }
+  .calendarGrid .calendarGrid__date__short {
+    display: none;
+  }
+  .calendarGrid .calendarGrid__day--outsideMonth {
+    display: none;
+  }
+  .calendarGrid .calendarGrid--hideEmptyContentInListMode .calendarGrid__weekNum--empty {
+    display: none;
+  }
+  .calendarGrid--grid {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+.calendarGrid .dagContent {
+  font-weight: bold;
+}
+
+.labelInputInfoLayout {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.labelInputInfoLayout__labelHeader,
+.labelInputInfoLayout__inputHeader,
+.labelInputInfoLayout__infoHeader {
+  font-weight: bold;
+  min-width: 8rem;
+}
+.labelInputInfoLayout__labelWrapper {
+  min-width: 8rem;
+  padding-top: 0.5rem;
+}
+.labelInputInfoLayout__inputWrapper {
+  min-width: 8rem;
+}
+.labelInputInfoLayout__inputWrapper legend {
+  position: absolute;
+}
+.labelInputInfoLayout__infoWrapper {
+  min-width: 8rem;
+  padding-top: 0.5rem;
+}
+.labelInputInfoLayout--narrow {
+  flex-wrap: wrap;
+}
+.labelInputInfoLayout--narrow .labelInputInfoLayout__labelWrapper {
+  min-width: 100%;
+  padding-bottom: 0.5rem;
+  padding-top: 0;
+}
+
+.arbeidstidFasteUkedagerInput legend .typo-element {
+  font-weight: normal;
+}
+.arbeidstidFasteUkedagerInput .arbeidstidFasteUkedagerInput__dag {
+  background-color: white;
+  border-top: 1px solid #a0a0a0;
+  padding: 0.25rem 0.5rem 0.5rem 0.5rem;
+}
+.arbeidstidFasteUkedagerInput .arbeidstidFasteUkedagerInput__dag:nth-child(2n + 1) {
+  background-color: #f7f7f7;
+}
+.arbeidstidFasteUkedagerInput .arbeidstidFasteUkedagerInput__dag:last-child {
+  border-bottom: 1px solid #a0a0a0;
+}
+.arbeidstidFasteUkedagerInput .arbeidstidFasteUkedagerInput__dag--utenforPeriode {
+  display: none;
+}
+.arbeidstidUkerInput__uke__ukedager--liste .arbeidstidFasteUkedagerInput .arbeidstidFasteUkedagerInput__dag--utenforPeriode {
+  display: none;
+}
+.arbeidstidFasteUkedagerInput .skjemaelement__feilmelding {
+  margin-bottom: 1rem;
+}
+
+.arbeidstidEnkeltdagTekst__prosent {
+  display: block;
+}
+.arbeidstidEnkeltdagTekst__timer {
+  display: block;
+  margin-top: -0.25rem;
+  font-size: 14px;
+}
+
+.tidFasteUkedagerInput {
+  display: flex;
+  align-items: stretch;
+}
+.tidFasteUkedagerInput > * {
+  padding: 0;
+  min-width: 6.5rem;
+  flex: 1;
+  margin: 0 0.25rem 0 0;
+}
+.tidFasteUkedagerInput > *:first-child {
+  margin-left: 0;
+}
+.tidFasteUkedagerInput > *:last-child {
+  margin-right: 0;
+}
+.tidFasteUkedagerInput--withHiddenDays > * {
+  flex: inherit;
+}
+@media (min-width: 601px) and (max-width: 736px) {
+  .tidFasteUkedagerInput {
+    flex-wrap: wrap;
+    justify-content: left;
+  }
+  .tidFasteUkedagerInput > * {
+    margin: 0.25rem;
+    min-width: 31%;
+    max-width: 31%;
+  }
+  .tidFasteUkedagerInput > *:nth-child(4) {
+    margin-left: 0;
+  }
+}
+@media (max-width: 600px) {
+  .tidFasteUkedagerInput {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .tidFasteUkedagerInput > * {
+    margin: 0.25rem;
+    min-width: 48%;
+    max-width: 48%;
+  }
+  .tidFasteUkedagerInput > *:nth-child(2n-1) {
+    margin-left: 0;
+  }
+}
+.tidFasteUkedagerInput .skjemaelement.timeInput__hours {
+  margin-bottom: 0;
+}
+.tidFasteUkedagerInput .skjemaelement.timeInput__minutes {
+  margin-bottom: 0;
+}
+
+.tidUkerInput legend .typo-element {
+  font-weight: normal;
+}
+@media (min-width: 1050px) {
+  .tidUkerInput__ukeWrapper {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    padding-bottom: 1rem;
+  }
+  .tidUkerInput__ukeWrapper:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .tidUkerInput__ukeWrapper:not(:first-child) {
+    padding-top: 1rem;
+  }
+}
+@media (max-width: 1050px) {
+  .tidUkerInput__ukeWrapper {
+    border-bottom: none;
+    padding-bottom: none;
+  }
+  .tidUkerInput__ukeWrapper:not(:first-child) {
+    padding-top: 1rem;
+  }
+}
+.tidUkerInput__uke--medBakgrunn {
+  background-color: #ccc;
+}
+.tidUkerInput__uke__ukedager--grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+.tidUkerInput__uke__ukedager--liste {
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  padding-top: 0.5rem;
+  margin-top: 1rem;
+}
+.tidUkerInput__uke__ukedager--liste .timeinput > div {
+  width: 100%;
+}
+.tidUkerInput__uke--wide .skjemagruppe__legend {
+  min-width: 10rem;
+  text-align: left;
+  display: block;
+}
+.tidUkerInput .formikTimeInput--horizontal {
+  flex-wrap: wrap;
+}
+.tidUkerInput__dag--utenforPeriode {
+  visibility: hidden;
+}
+@media (max-width: 1050px) {
+  .tidUkerInput__dag {
+    padding: 0.25rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  }
+}
+@media (min-width: 1051px) {
+  .tidUkerInput__dag__label__dagnavn {
+    display: block;
+    font-size: 0.8rem;
+  }
+}
+.tidUkerInput__dag__label {
+  text-transform: capitalize;
+  font-weight: normal;
+}
+.tidUkerInput__dag__label__dagnavn:after {
+  content: ' ';
+}
+.tidUkerInput__dag__utenforPeriodeTekst {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+.tidUkerInput__dag__utenforPeriodeIkon {
+  text-align: center;
+  padding-top: 1rem;
+  width: 4rem;
+  line-height: 1rem;
+  font-size: 2rem;
+}
+.tidUkerInput__uke__ukedager--liste .tidUkerInput__dag--utenforPeriode {
+  display: none;
+}
+.tidUkerInput .skjemaelement__feilmelding {
+  margin-bottom: 1rem;
+}
+
+.tidsbrukKalenderDag {
+  font-size: 1.125rem;
+}
+.tidsbrukKalenderDag__opprinneligTidWrapper {
+  white-space: nowrap;
+}
+.tidsbrukKalenderDag__opprinneligTid {
+  text-decoration: line-through;
+}
+
+.modal.arbeidstidPeriodeDialog {
+  min-width: 20rem;
+}
+@media (min-width: 576px) {
+  .modal.arbeidstidPeriodeDialog {
+    max-width: 40rem;
+    min-width: 30rem;
+    padding: 2rem;
+  }
+}
+.modal.arbeidstidPeriodeDialog .radiogruppe .skjemaelement {
+  margin-bottom: 0.5rem !important;
+}
+
+.arbeidstidUkeInput__tittel {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.arbeidstidUkeInput legend .typo-element {
+  font-weight: normal;
+}
+.arbeidstidUkeInput__dagnavn::first-letter {
+  text-transform: capitalize;
+}
+.arbeidstidUkeInput .arbeidstidUkeInput__dag {
+  background-color: white;
+  border-top: 1px solid #a0a0a0;
+  padding: 0.25rem 0.5rem 0.5rem 0.5rem;
+}
+.arbeidstidUkeInput .arbeidstidUkeInput__dag:nth-child(2n + 1) {
+  background-color: #f7f7f7;
+}
+.arbeidstidUkeInput .arbeidstidUkeInput__dag:last-child {
+  border-bottom: 1px solid #a0a0a0;
+}
+.arbeidstidUkeInput .arbeidstidUkeInput__dag--utenforPeriode {
+  display: none;
+}
+.arbeidstidUkeInput__uke__ukedager--liste .arbeidstidUkeInput .arbeidstidUkeInput__dag--utenforPeriode {
+  display: none;
+}
+.arbeidstidUkeInput .skjemaelement__feilmelding {
+  margin-bottom: 1rem;
+}
+
+.arbeidstidUkerInput__ukeWrapper {
+  margin-bottom: 1rem;
+}
+@media (min-width: 1050px) {
+  .arbeidstidUkerInput__ukeWrapper:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .arbeidstidUkerInput__ukeWrapper:not(:first-child) {
+    padding-top: 1rem;
+  }
+}
+@media (max-width: 1050px) {
+  .arbeidstidUkerInput__ukeWrapper {
+    border-bottom: none;
+    padding-bottom: none;
+  }
+  .arbeidstidUkerInput__ukeWrapper:not(:first-child) {
+    padding-top: 1rem;
+  }
+}
+.arbeidstidUkerInput__ukeWrapper--expandable {
+  margin-bottom: 0;
+}
+@media (min-width: 1050px) {
+  .arbeidstidUkerInput__ukeWrapper--expandable:not(:first-child) {
+    padding-top: 0.5rem;
+  }
+}
+
+.modal.omsorgstilbudPeriodeDialog {
+  min-width: 20rem;
+}
+@media (min-width: 576px) {
+  .modal.omsorgstilbudPeriodeDialog {
+    max-width: 40rem;
+    min-width: 30rem;
+    padding: 2rem;
+  }
+}
+.modal.omsorgstilbudPeriodeDialog .radiogruppe .skjemaelement {
+  margin-bottom: 0.5rem !important;
+}
+
+.dialogFormTitle {
+  margin-right: 4rem;
+}
+
