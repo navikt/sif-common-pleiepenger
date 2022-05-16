@@ -22,13 +22,7 @@ const bem = bemUtils('tidFasteUkedagerInput');
 const isWeekdayDisabled = (disabledDays: Weekday[] | undefined, dag: Weekday): boolean =>
     disabledDays ? disabledDays.some((d) => d === dag) : false;
 
-const TidFasteUkedagerInput = ({
-    name,
-    validateDag,
-    disabledDays,
-    hideDisabledDays,
-    'data-testid': dataTestKey,
-}: Props) => {
+const TidFasteUkedagerInput = ({ name, validateDag, disabledDays, hideDisabledDays, 'data-testid': testId }: Props) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
 
     const renderWeekdayTimeInput = (weekday: Weekday, weekdayLabel: string, validationDayName: string) => {
@@ -42,7 +36,7 @@ const TidFasteUkedagerInput = ({
                     direction: 'vertical',
                     compact: true,
                 }}
-                data-testid={dataTestKey ? `${dataTestKey}__${weekday}` : undefined}
+                data-testid={testId ? `${testId}__${weekday}` : undefined}
                 validate={validateDag ? (value) => validateDag(validationDayName, value) : undefined}
             />
         );

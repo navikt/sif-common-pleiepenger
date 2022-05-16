@@ -31,7 +31,7 @@ const ArbeidstidFasteUkedagerInput: React.FunctionComponent<Props> = ({
     utilgjengeligeUkedager,
     skjulUtilgjengeligeUkedager,
     tekst,
-    'data-testid': testKey,
+    'data-testid': testId,
 }: Props) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
 
@@ -59,7 +59,7 @@ const ArbeidstidFasteUkedagerInput: React.FunctionComponent<Props> = ({
                             timeInputLayout={{
                                 direction: 'horizontal',
                             }}
-                            data-testid={testKey ? `${testKey}__${weekday}` : undefined}
+                            data-testid={testId ? `${testId}__${weekday}` : undefined}
                             validate={tidPerDagValidator ? (value) => tidPerDagValidator(weekday, value) : undefined}
                         />
                     }
