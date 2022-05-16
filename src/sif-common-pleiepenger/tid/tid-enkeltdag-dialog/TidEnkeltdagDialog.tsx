@@ -2,7 +2,7 @@ import React from 'react';
 import { dateFormatter } from '@navikt/sif-common-utils/lib/dateFormatter';
 import Modal from 'nav-frontend-modal';
 import TidEnkeltdagForm, { TidEnkeltdagFormProps } from './TidEnkeltdagForm';
-import './tidEnkeltdagDialog.less';
+import './styles/tidEnkeltdagDialog.less';
 
 export interface TidEnkeltdagDialogProps {
     isOpen?: boolean;

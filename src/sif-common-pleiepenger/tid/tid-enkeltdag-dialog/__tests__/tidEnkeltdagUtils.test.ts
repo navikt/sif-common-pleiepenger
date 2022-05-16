@@ -1,7 +1,7 @@
-import { DateRange, } from '@navikt/sif-common-formik/lib';
-import { dateRangeToISODateRange, ISODateRangeToDateRange, ISODateToDate, } from '@navikt/sif-common-utils/lib';
-import { GjentagelseType, } from '../TidEnkeltdagForm';
-import { getDagerMedNyTid, getDateRangeWithinDateRange, trimDateRangeToWeekdays, } from '../tidEnkeltdagUtils';
+import { DateRange } from '@navikt/sif-common-formik/lib';
+import { dateRangeToISODateRange, ISODateRangeToDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
+import { GjentagelseType } from '../TidEnkeltdagForm';
+import { getDagerMedNyTid, getDateRangeWithinDateRange, trimDateRangeToWeekdays } from '../utils/tidEnkeltdagUtils';
 
 describe('tidEnkeltdagUtils', () => {
     describe('getDagerMedNyTid', () => {

@@ -6,7 +6,7 @@ import arbeidstidEnkeltdagFormMessages from '../arbeidstid/arbeidstid-enkeltdag-
 import arbeidstidMånedMessages from '../arbeidstid/arbeidstid-måned/i18n/arbeidstidMånedMessages';
 import { arbeidstidPeriodeMessages } from '../arbeidstid/arbeidstid-periode-dialog/i18n/arbeidstidPeriodeMessages';
 import { omsorgstibudPeriodeMessages } from '../omsorgstilbud/omsorgstilbud-periode/i18n/omsorgstilbudPeriodeMessages';
-import tidEnkeltdagFormMessages from '../tid/tid-enkeltdag-dialog/tidEnkeltdagMessages';
+import tidEnkeltdagFormMessages from '../tid/tid-enkeltdag-dialog/i18n/tidEnkeltdagMessages';
 
 export type ComponentMessages<Messages> = Record<string, Messages>;
 

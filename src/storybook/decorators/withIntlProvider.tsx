@@ -11,7 +11,7 @@ import { MessageFileFormat } from '@navikt/sif-common-core/lib/dev-utils/intl/de
 import { sifCommonPleiepengerMessages } from '../../sif-common-pleiepenger/i18n';
 import { arbeidstidPeriodeMessages } from '../../sif-common-pleiepenger/arbeidstid/arbeidstid-periode-dialog/i18n/arbeidstidPeriodeMessages';
 import { arbeidstidEnkeltdagMessage } from '../../sif-common-pleiepenger';
-import tidEnkeltdagFormMessages from '../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/tidEnkeltdagMessages';
+import tidEnkeltdagFormMessages from '../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/i18n/tidEnkeltdagMessages';
 import { timerOgMinutterMessages } from '../../sif-common-pleiepenger/common/timer-og-minutter/timerOgMinutterMessages';
 
 export interface IntlProviderProps {

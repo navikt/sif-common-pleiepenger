@@ -14,7 +14,7 @@ import {
     nthItemFilter,
 } from '@navikt/sif-common-utils';
 import dayjs from 'dayjs';
-import { GjentagelseEnkeltdag, GjentagelseType, TidEnkeltdagFormValues } from './TidEnkeltdagForm';
+import { GjentagelseEnkeltdag, GjentagelseType, TidEnkeltdagFormValues } from '../TidEnkeltdagForm';
 
 const getDagerMedInterval = (interval: number, periode: DateRange) => {
     const ukedag = dayjs(periode.from).isoWeekday();

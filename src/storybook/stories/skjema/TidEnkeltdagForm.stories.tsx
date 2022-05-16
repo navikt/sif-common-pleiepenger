@@ -1,13 +1,13 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { TidEnkeltdagForm } from '../../sif-common-pleiepenger';
-import withIntlProvider from '../decorators/withIntlProvider';
-import { TidEnkeltdagFormProps } from '../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/TidEnkeltdagForm';
-import { withDialogWrapperSmall } from '../decorators/withDialogWrapper';
+import { TidEnkeltdagForm } from '../../../sif-common-pleiepenger';
+import { TidEnkeltdagFormProps } from '../../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/TidEnkeltdagForm';
+import { withDialogWrapperSmall } from '../../decorators/withDialogWrapper';
+import withIntlProvider from '../../decorators/withIntlProvider';
 
 export default {
-    title: 'TidEnkeltdagForm',
+    title: 'Skjema/TidEnkeltdagForm',
     component: TidEnkeltdagForm,
     decorators: [withIntlProvider, withDialogWrapperSmall],
 } as ComponentMeta<typeof TidEnkeltdagForm>;

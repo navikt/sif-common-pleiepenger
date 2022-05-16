@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import withIntlProvider from '../../../storybook/decorators/withIntlProvider';
-import DurationText from './DurationText';
+import withIntlProvider from '../../decorators/withIntlProvider';
+import DurationText from '../../../sif-common-pleiepenger/common/duration-text/DurationText';
 
 export default {
-    title: 'Example/DurationText',
+    title: 'Komponenter/DurationText',
     component: DurationText,
     decorators: [withIntlProvider],
 } as ComponentMeta<typeof DurationText>;

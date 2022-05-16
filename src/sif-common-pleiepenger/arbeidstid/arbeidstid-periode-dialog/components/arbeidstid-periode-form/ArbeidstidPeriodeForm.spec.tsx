@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import dayjs from 'dayjs';
-import * as stories from '../../../../../storybook/stories/ArbeidstidPeriodeForm.stories';
+import * as stories from '../../../../../storybook/stories/skjema/ArbeidstidPeriodeForm.stories';
 import { ArbeidstidPeriodeData } from '../../types';
 import { ArbeiderIPeriodenSvar } from '../../../../types';
 import { ensureCompleteDurationWeekdays, Weekday } from '@navikt/sif-common-utils/lib';
