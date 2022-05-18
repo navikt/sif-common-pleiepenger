@@ -17,7 +17,7 @@ import ArbeidstidEnkeltdagDialog from '../arbeidstid-enkeltdag-dialog/Arbeidstid
 import ArbeidstidEnkeltdagTekst from './components/arbeidstid-enkeltdag-tekst/ArbeidstidEnkeltdagTekst';
 import ArbeidstidMånedTittel from './components/arbeidstid-måned-tittel/ArbeidstidMånedTittel';
 
-interface Props {
+export interface ArbeidstidKalenderProps {
     måned: DateRange;
     arbeidsstedNavn: string;
     arbeidsforholdType: ArbeidsforholdType;
@@ -33,7 +33,7 @@ interface Props {
     onRequestEdit?: (tid: DateDurationMap) => void;
 }
 
-const ArbeidstidMåned: React.FunctionComponent<Props> = ({
+const ArbeidstidKalender: React.FunctionComponent<ArbeidstidKalenderProps> = ({
     måned,
     arbeidsstedNavn,
     arbeidsforholdType,
@@ -118,4 +118,4 @@ const ArbeidstidMåned: React.FunctionComponent<Props> = ({
     );
 };
 
-export default ArbeidstidMåned;
+export default ArbeidstidKalender;

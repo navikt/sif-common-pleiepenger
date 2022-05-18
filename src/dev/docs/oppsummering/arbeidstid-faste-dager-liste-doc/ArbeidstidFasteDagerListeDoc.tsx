@@ -1,14 +1,14 @@
 import React from 'react';
 import Panel from 'nav-frontend-paneler';
 import { Undertittel } from 'nav-frontend-typografi';
-import ArbeidstidFasteDagerListe from '../../../../sif-common-pleiepenger/arbeidstid/arbeidstid-faste-dager-liste/ArbeidstidFasteDagerListe';
+import ArbeidstidFasteDagerOppsummering from '../../../../sif-common-pleiepenger/arbeidstid/arbeidstid-faste-dager-liste/ArbeidstidFasteDagerListe';
 import Box from '../../../components/box/Box';
 
 const ArbeidstidFasteDagerListeDoc = () => (
     <Panel>
         <Undertittel>Arbeidstid faste dager</Undertittel>
         <Box margin="l">
-            <ArbeidstidFasteDagerListe
+            <ArbeidstidFasteDagerOppsummering
                 visNormaltid={true}
                 fasteDager={{
                     mandag: {

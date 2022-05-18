@@ -15,8 +15,9 @@ export default {
 
 const Template: ComponentStory<typeof TidFasteUkedagerInput> = (args) => <TidFasteUkedagerInput {...args} />;
 
-const defaultFormProps: Partial<TidFasteUkedagerInputProps> & any = {
+const defaultFormProps: TidFasteUkedagerInputProps = {
     name: 'tid',
+    validateDag: (dag) => `Feil på ${dag}`,
 };
 
 const defaultInitialValues: DateDurationMap = {
@@ -40,7 +41,7 @@ const renderStoryWrapper = (Story: any, intialValues: FormValues) => (
         initialValues={intialValues}
         onSubmit={(values) => console.log(values)}
         renderForm={() => (
-            <Form includeButtons={false}>
+            <Form includeButtons={true}>
                 <Story />
             </Form>
         )}

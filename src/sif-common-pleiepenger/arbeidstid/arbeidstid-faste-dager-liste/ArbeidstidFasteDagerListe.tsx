@@ -5,7 +5,7 @@ import intlHelper from '@navikt/sif-common-core/lib/utils/intlUtils';
 import { ISODurationToDuration } from '@navikt/sif-common-utils';
 import { ArbeidstimerApiData, ArbeidstimerFasteDagerApiData } from '../../types';
 
-interface Props {
+export interface ArbeidstidFasteDagerOppsummeringProps {
     fasteDager?: ArbeidstimerFasteDagerApiData;
     visNormaltid?: boolean;
 }
@@ -16,7 +16,10 @@ const formatTime = (intl: IntlShape, time: Partial<Time>): string => {
     return intlHelper(intl, 'timerOgMinutter', { timer, minutter });
 };
 
-const ArbeidstidFasteDagerListe: React.FunctionComponent<Props> = ({ fasteDager, visNormaltid }) => {
+const ArbeidstidFasteDagerOppsummering: React.FunctionComponent<ArbeidstidFasteDagerOppsummeringProps> = ({
+    fasteDager,
+    visNormaltid,
+}) => {
     const intl = useIntl();
 
     if (fasteDager) {
@@ -53,4 +56,4 @@ const ArbeidstidFasteDagerListe: React.FunctionComponent<Props> = ({ fasteDager,
     return <>{intlHelper(intl, 'dagerMedTid.ingenDagerRegistrert')}</>;
 };
 
-export default ArbeidstidFasteDagerListe;
+export default ArbeidstidFasteDagerOppsummering;
