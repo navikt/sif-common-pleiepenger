@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { DateDurationMap, DateRange, ISODateRangeToDateRange } from '@navikt/sif-common-utils/lib';
-import ArbeidstidMåned from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-måned/ArbeidstidMåned';
+import ArbeidstidKalender from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-kalender/ArbeidstidKalender';
 import PageIntro from '../../components/page-intro/PageIntro';
 import { ArbeidsforholdType } from '../../../sif-common-pleiepenger';
 import { TidEnkeltdagEndring } from '../../../sif-common-pleiepenger/tid/tid-enkeltdag-dialog/TidEnkeltdagForm';
@@ -22,7 +22,7 @@ const ArbeidstidMånedDoc = () => {
         <>
             <PageIntro title="@navikt/sif-common-pleiepenger">
                 <h2>ArbeidstidMåned</h2>
-                <ArbeidstidMåned
+                <ArbeidstidKalender
                     arbeidsforholdType={ArbeidsforholdType.ANSATT}
                     måned={måned}
                     arbeidsstedNavn="Snekkeriet tykk tommel"

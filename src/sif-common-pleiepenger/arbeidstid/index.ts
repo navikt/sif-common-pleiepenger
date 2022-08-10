@@ -1,9 +1,9 @@
-export { default as ArbeidstidEnkeltdagerListe } from './arbeidstid-enkeltdager-liste/ArbeidstidEnkeltdagerListe';
+export { default as ArbeidstidEnkeltdagerOppsummering } from './arbeidstid-enkeltdager-oppsummering-liste/ArbeidstidEnkeltdagerOppsummeringListe';
 export { default as ArbeidstidEnkeltdagDialog } from './arbeidstid-enkeltdag-dialog/ArbeidstidEnkeltdagDialog';
 export { default as arbeidstidEnkeltdagMessage } from './arbeidstid-enkeltdag-dialog/arbeidstidEnkeltdagMessages';
-export { default as ArbeidstidFasteDagerListe } from './arbeidstid-faste-dager-liste/ArbeidstidFasteDagerListe';
+export { default as ArbeidstidFasteDagerOppsummering } from './arbeidstid-faste-dager-liste/ArbeidstidFasteDagerListe';
 export { default as ArbeidstidFasteUkedagerInput } from './arbeidstid-faste-ukedager-input/ArbeidstidFasteUkedagerInput';
-export { default as ArbeidstidMåned } from './arbeidstid-måned/ArbeidstidMåned';
+export { default as ArbeidstidKalender } from './arbeidstid-kalender/ArbeidstidKalender';
 export { default as ArbeidstidPeriodeDialog } from './arbeidstid-periode-dialog/components/arbeidstid-periode-dialog/ArbeidstidPeriodeDialog';
 export { default as ArbeidstidPeriodeForm } from './arbeidstid-periode-dialog/components/arbeidstid-periode-form/ArbeidstidPeriodeForm';
 export type { ArbeidstidPeriodeFormProps } from './arbeidstid-periode-dialog/components/arbeidstid-periode-form/ArbeidstidPeriodeForm';

@@ -29,8 +29,8 @@ import {
     getDateRangeWithinDateRange,
     getGjentagelseEnkeltdagFraFormValues,
     trimDateRangeToWeekdays,
-} from './tidEnkeltdagUtils';
-import { getTidEnkeltdagFormTidValidator } from './tidEnkeltdagValidation';
+} from './utils/tidEnkeltdagUtils';
+import { getTidEnkeltdagFormTidValidator } from './utils/tidEnkeltdagValidation';
 import ResponsivePanel from '@navikt/sif-common-core/lib/components/responsive-panel/ResponsivePanel';
 import Box from '@navikt/sif-common-core/lib/components/box/Box';
 

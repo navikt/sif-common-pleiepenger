@@ -1,6 +1,6 @@
 {
     "name": "@navikt/sif-common-pleiepenger",
-    "version": "4.1.1",
+    "version": "4.2.0-beta.0",
     "private": false,
     "main": "lib/index.js",
     "types": "lib/index.d.js",
@@ -36,6 +36,7 @@
         "snyk-protect": "snyk protect",
         "prepare": "npm run snyk-protect",
         "build-storybook": "build-storybook -s public",
+        "deploy-storybook": "gh-pages -d storybook-static",
         "storybook": "start-storybook -p 6006 -s public"
     },
     "devDependencies": {

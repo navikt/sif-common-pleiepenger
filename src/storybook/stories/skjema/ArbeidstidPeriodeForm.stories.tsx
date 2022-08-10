@@ -1,13 +1,14 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
 import { DateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
-import { ArbeidstidPeriodeForm, ArbeidstidPeriodeFormProps } from '../../sif-common-pleiepenger';
-import withIntlProvider from '../decorators/withIntlProvider';
+import { ArbeidstidPeriodeForm, ArbeidstidPeriodeFormProps } from '../../../sif-common-pleiepenger';
+import withIntlProvider from '../../decorators/withIntlProvider';
+import { withDialogWrapperMedium } from '../../decorators/withDialogWrapper';
 
 export default {
-    title: 'ArbeidstidPeriodeForm',
+    title: 'Skjema/ArbeidstidPeriodeForm',
     component: ArbeidstidPeriodeForm,
-    decorators: [withIntlProvider],
+    decorators: [withIntlProvider, withDialogWrapperMedium],
 } as ComponentMeta<typeof ArbeidstidPeriodeForm>;
 
 const Template: ComponentStory<typeof ArbeidstidPeriodeForm> = (args) => <ArbeidstidPeriodeForm {...args} />;

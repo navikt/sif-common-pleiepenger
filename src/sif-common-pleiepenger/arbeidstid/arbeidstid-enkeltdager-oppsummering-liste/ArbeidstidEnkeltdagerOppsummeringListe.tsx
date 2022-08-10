@@ -8,30 +8,30 @@ import EkspanderbartPanel from 'nav-frontend-ekspanderbartpanel';
 import DagerMedTidListe from '../../common/dager-med-tid-liste/DagerMedTidListe';
 import { ArbeidstidEnkeltdagApiData, DagMedTid } from '../../types';
 
-interface Props {
+export interface ArbeidstidEnkeltdagerOppsummeringProps {
     dager: ArbeidstidEnkeltdagApiData[];
     visNormaltid?: boolean;
 }
 
-const ArbeidstidEnkeltdagerListe: React.FunctionComponent<Props> = ({ dager, visNormaltid }) => {
-    const arbeidsdager: DagMedTid[] = [];
-    dager.forEach((dag) => {
-        const dato = ISODateToDate(dag.dato);
-        const tid = ISODurationToDuration(dag.arbeidstimer.faktiskTimer);
-        const normaltid = ISODurationToDuration(dag.arbeidstimer.normalTimer);
-        if (dato !== undefined && tid !== undefined) {
-            arbeidsdager.push({ dato, tid, normaltid });
-        }
-    });
+export const mapArbeidstidEnkeltdagApiDataToDagMedTid = (dag: ArbeidstidEnkeltdagApiData): DagMedTid => {
+    const dato = ISODateToDate(dag.dato);
+    const tid = ISODurationToDuration(dag.arbeidstimer.faktiskTimer);
+    const normaltid = ISODurationToDuration(dag.arbeidstimer.normalTimer);
+    return { dato, tid, normaltid };
+};
 
+const ArbeidstidEnkeltdagerOppsummering: React.FunctionComponent<ArbeidstidEnkeltdagerOppsummeringProps> = ({
+    dager,
+    visNormaltid,
+}) => {
     const ingenDagerRegistrertMelding = <FormattedMessage id="dagerMedTid.ingenDagerRegistrert" />;
     if (dager.length === 0) {
         return ingenDagerRegistrertMelding;
     }
-
-    const months = groupBy(arbeidsdager, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
+    const dagerMedTid = dager.map(mapArbeidstidEnkeltdagApiDataToDagMedTid);
+    const months = groupBy(dagerMedTid, ({ dato }) => `${dato.getFullYear()}.${dato.getMonth()}`);
     return (
-        <div>
+        <>
             {Object.keys(months).map((key) => {
                 const dagerMedTid = months[key];
                 if (dagerMedTid.length === 0) {
@@ -50,8 +50,8 @@ const ArbeidstidEnkeltdagerListe: React.FunctionComponent<Props> = ({ dager, vis
                     </Box>
                 );
             })}
-        </div>
+        </>
     );
 };
 
-export default ArbeidstidEnkeltdagerListe;
+export default ArbeidstidEnkeltdagerOppsummering;

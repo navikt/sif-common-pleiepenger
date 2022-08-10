@@ -15,14 +15,20 @@ interface OwnProps {
     validateDag?: (dagNavn: string, value: any) => ValidationResult<ValidationError>;
 }
 
-type Props = OwnProps & TestProps;
+export type TidFasteUkedagerInputProps = OwnProps & TestProps;
 
 const bem = bemUtils('tidFasteUkedagerInput');
 
 const isWeekdayDisabled = (disabledDays: Weekday[] | undefined, dag: Weekday): boolean =>
     disabledDays ? disabledDays.some((d) => d === dag) : false;
 
-const TidFasteUkedagerInput = ({ name, validateDag, disabledDays, hideDisabledDays, 'data-testid': testId }: Props) => {
+const TidFasteUkedagerInput = ({
+    name,
+    validateDag,
+    disabledDays,
+    hideDisabledDays,
+    'data-testid': testId,
+}: TidFasteUkedagerInputProps) => {
     const txt = getTidFasteUkerdagerInputMessages(useIntl().locale);
 
     const renderWeekdayTimeInput = (weekday: Weekday, weekdayLabel: string, validationDayName: string) => {

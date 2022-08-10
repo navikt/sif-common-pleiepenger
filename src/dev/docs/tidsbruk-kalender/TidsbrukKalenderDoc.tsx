@@ -1,7 +1,7 @@
 import React from 'react';
 import { DateRange, getDatesInMonthOutsideDateRange, ISODateToDate } from '@navikt/sif-common-utils/lib';
 import { TidsbrukKalender } from '../../../sif-common-pleiepenger';
-import ArbeidstidEnkeltdagTekst from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-måned/components/arbeidstid-enkeltdag-tekst/ArbeidstidEnkeltdagTekst';
+import ArbeidstidEnkeltdagTekst from '../../../sif-common-pleiepenger/arbeidstid/arbeidstid-kalender/components/arbeidstid-enkeltdag-tekst/ArbeidstidEnkeltdagTekst';
 import PageIntro from '../../components/page-intro/PageIntro';
 
 const måned: DateRange = {
