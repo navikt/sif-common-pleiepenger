@@ -6,14 +6,11 @@
     align-items: flex-start;
     justify-content: left;
     > * {
-        padding: 0;
+        padding: 0.25rem 0.5rem;
         max-width: 6.5rem;
-        margin: 0 0.25rem 0 0;
-        &:first-child {
-            margin-left: 0;
-        }
+        margin-bottom: 1rem;
         &:last-child {
-            margin-right: 0;
+            margin-bottom: 0;
         }
     }
     &--withHiddenDays {
@@ -22,18 +19,6 @@
         }
     }
 
-    @media (max-width: 600px) {
-        flex-wrap: wrap;
-        align-items: flex-start;
-        > * {
-            margin: 0.25rem;
-            &:nth-child(2n-1) {
-                margin-left: 0;
-            }
-            min-width: 48%;
-            max-width: 48%;
-        }
-    }
     .skjemaelement.timeInput__hours {
         margin-bottom: 0;
     }
