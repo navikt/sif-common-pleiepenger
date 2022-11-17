@@ -54,6 +54,7 @@
             padding: 0 0.5rem 0.5rem 0.5rem;
             margin-bottom: 0.5rem;
             justify-self: center;
+            text-overflow: ellipsis;
             &--week {
                 padding-left: 0;
             }
@@ -80,6 +81,7 @@
             padding: 0.25rem 0.5rem;
             min-height: 0;
             display: flex;
+            width: 100%;
             align-items: center;
             &--disabled {
                 display: none;
@@ -204,13 +206,13 @@
         .calendarListLayout();
     }
 
-    @media screen and (max-width: 32rem) {
-        .calendarListLayout();
-        &--grid {
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-    }
+    // @media screen and (max-width: 500px) {
+    //     .calendarListLayout();
+    //     &--grid {
+    //         padding-bottom: 0;
+    //         border-bottom: none;
+    //     }
+    // }
 
     .dagContent {
         font-weight: bold;

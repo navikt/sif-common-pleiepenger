@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FormattedMessage } from 'react-intl';
 import bemUtils from '@navikt/sif-common-core/lib/utils/bemUtils';
 import { DateRange } from '@navikt/sif-common-formik/lib';
@@ -13,6 +13,8 @@ import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import utc from 'dayjs/plugin/utc';
 import { groupBy } from 'lodash';
+import { useElementWidthIsWithinRange } from '../../hooks/useElementWidthIsWithinRange';
+import { hasIncreasedFontSize } from '../../utils/hasIncreasedFontSize';
 import CalendarGridDate from './CalendarGridDate';
 import './calendarGrid.less';
 
@@ -67,6 +69,10 @@ const getWeeks = (dates: Date[], month: Date): WeekToRender[] => {
     return weeks;
 };
 
+const getMinWidthForGridView = () => {
+    return hasIncreasedFontSize() ? 600 : 500;
+};
+
 const bem = bemUtils('calendarGrid');
 
 const CalendarGrid: React.FunctionComponent<Props> = ({
@@ -84,6 +90,14 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
 }) => {
     const weekdatesInMonth = getDatesInMonth(month.from, true);
     const weeks = getWeeks(weekdatesInMonth, month.from);
+    const calendarGridRef = useRef(null);
+
+    const isTooNarrowForGridLayout = useElementWidthIsWithinRange(calendarGridRef, {
+        min: 0,
+        max: getMinWidthForGridView(),
+    });
+
+    const doRenderAsList = isTooNarrowForGridLayout || renderAsList;
 
     const renderDate = (date: Date) => {
         const dateKey = date.toDateString();
@@ -160,10 +174,11 @@ const CalendarGrid: React.FunctionComponent<Props> = ({
     };
     return (
         <div
+            ref={calendarGridRef}
             className={bem.classNames(
                 bem.block,
                 bem.modifierConditional('hideEmptyContentInListMode', hideEmptyContentInListMode),
-                bem.modifier(renderAsList ? 'list' : 'grid')
+                bem.modifier(doRenderAsList ? 'list' : 'grid')
             )}>
             <span aria-hidden={true} className={bem.element('dayHeader', 'week')}>
                 <FormattedMessage id="calendarGrid.Uke" />
