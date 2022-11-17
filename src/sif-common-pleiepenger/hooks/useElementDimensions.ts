@@ -1,14 +1,5 @@
 import { useEffect, useLayoutEffect, useState } from 'react';
-
-const debounce = (func, timeout = 50) => {
-    let timer;
-    return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            func.apply(this, args);
-        }, timeout);
-    };
-};
+import debounce from 'lodash.debounce';
 
 export const useElementDimensions = (
     ref: React.RefObject<HTMLElement>,
@@ -32,6 +23,7 @@ export const useElementDimensions = (
                 window.removeEventListener('resize', handleScreenResize);
             };
         }
+        return;
     }, [handleScreenResize, ref, listenToResize]);
 
     useLayoutEffect(() => {
