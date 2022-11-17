@@ -37,7 +37,7 @@ const DurationText = ({
     }
 
     return (
-        <span style={{ whiteSpace: 'nowrap' }}>
+        <span>
             {hideEmptyValues && timer === '0' && minutter !== '0' ? null : (
                 <span style={{ whiteSpace: 'nowrap' }}>
                     {fullText ? (
