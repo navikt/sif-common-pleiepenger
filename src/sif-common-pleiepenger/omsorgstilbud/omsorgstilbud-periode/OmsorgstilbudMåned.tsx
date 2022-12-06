@@ -70,11 +70,9 @@ const OmsorgstilbudMåned: React.FunctionComponent<Props> = ({
                         return (
                             <>
                                 <div>{prosent} %</div>
-                                {1 + 1 === 2 && (
-                                    <div className="beregnetTid">
-                                        (<DurationText duration={tid} />)
-                                    </div>
-                                )}
+                                <div className="beregnetTid">
+                                    (<DurationText duration={tid} />)
+                                </div>
                             </>
                         );
                     }

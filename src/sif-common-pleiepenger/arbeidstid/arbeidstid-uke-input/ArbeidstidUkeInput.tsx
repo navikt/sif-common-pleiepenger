@@ -181,6 +181,7 @@ const ArbeidstidUkeInput: React.FunctionComponent<Props> = ({
                     );
                 })}
             </div>
+            {/* Avventer om denne skal inn - "disabled" enn så lenge*/}
             {1 + 1 === 3 && timerNormaltPerUke !== undefined && timerRegistrertIUke !== undefined && (
                 <Box margin="s" padBottom="s">
                     <ArbeidOgFraværOppsummering

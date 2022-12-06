@@ -44,10 +44,7 @@ const DurationText = ({
                         intlHelper(intl, 'timer', { timer })
                     ) : (
                         <>
-                            {timer}{' '}
-                            <span aria-label="timer" style={{ marginLeft: '-.125rem' }}>
-                                t.{' '}
-                            </span>
+                            {timer} <span style={{ marginLeft: '-.125rem' }}>t. </span>
                         </>
                     )}
                 </span>
@@ -59,10 +56,7 @@ const DurationText = ({
                         intlHelper(intl, 'minutter', { minutter })
                     ) : (
                         <>
-                            {minutter}{' '}
-                            <span aria-label="minutter" style={{ marginLeft: '-.125rem' }}>
-                                m.
-                            </span>
+                            {minutter} <span style={{ marginLeft: '-.125rem' }}>m.</span>
                         </>
                     )}
                 </span>

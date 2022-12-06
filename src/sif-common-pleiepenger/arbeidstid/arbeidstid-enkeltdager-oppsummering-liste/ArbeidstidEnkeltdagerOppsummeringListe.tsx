@@ -11,6 +11,7 @@ import { ArbeidstidEnkeltdagApiData, DagMedTid } from '../../types';
 export interface ArbeidstidEnkeltdagerOppsummeringProps {
     dager: ArbeidstidEnkeltdagApiData[];
     visNormaltid?: boolean;
+    ukeHeadingLevel?: number;
 }
 
 export const mapArbeidstidEnkeltdagApiDataToDagMedTid = (dag: ArbeidstidEnkeltdagApiData): DagMedTid => {
@@ -23,6 +24,7 @@ export const mapArbeidstidEnkeltdagApiDataToDagMedTid = (dag: ArbeidstidEnkeltda
 const ArbeidstidEnkeltdagerOppsummering: React.FunctionComponent<ArbeidstidEnkeltdagerOppsummeringProps> = ({
     dager,
     visNormaltid,
+    ukeHeadingLevel,
 }) => {
     const ingenDagerRegistrertMelding = <FormattedMessage id="dagerMedTid.ingenDagerRegistrert" />;
     if (dager.length === 0) {
@@ -45,7 +47,12 @@ const ArbeidstidEnkeltdagerOppsummering: React.FunctionComponent<ArbeidstidEnkel
                                     {dayjs(dagerMedTid[0].dato).format('MMMM YYYY')}
                                 </span>
                             }>
-                            <DagerMedTidListe dagerMedTid={dagerMedTid} viseUke={true} visNormaltid={visNormaltid} />
+                            <DagerMedTidListe
+                                dagerMedTid={dagerMedTid}
+                                viseUke={true}
+                                visNormaltid={visNormaltid}
+                                ukeHeadingLevel={ukeHeadingLevel}
+                            />
                         </EkspanderbartPanel>
                     </Box>
                 );
