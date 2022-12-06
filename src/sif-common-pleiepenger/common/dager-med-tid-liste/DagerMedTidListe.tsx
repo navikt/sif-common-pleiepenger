@@ -13,24 +13,37 @@ interface Props {
     visMåned?: boolean;
     viseUke?: boolean;
     visNormaltid?: boolean;
+    månedHeadingLevel?: number;
+    ukeHeadingLevel?: number;
 }
 
 const sortDays = (d1: DagMedTid, d2: DagMedTid): number => (dayjs(d1.dato).isSameOrBefore(d2.dato, 'day') ? -1 : 1);
 
 const bem = bemUtils('dagerMedTidListe');
 
-export const DagerMedTidListe = ({ dagerMedTid, viseUke, visMåned, visNormaltid }: Props) => {
+export const DagerMedTidListe = ({
+    dagerMedTid,
+    viseUke,
+    visMåned,
+    visNormaltid,
+    månedHeadingLevel = 2,
+    ukeHeadingLevel = 3,
+}: Props) => {
     const weeksWithDays = groupBy(dagerMedTid, (dag) => `${dag.dato.getFullYear()}-${dayjs(dag.dato).isoWeek()}`);
     return (
         <div className={bem.block}>
-            {visMåned && <Undertittel className="m-caps">{dayjs(dagerMedTid[0].dato).format('MMM YYYY')}</Undertittel>}
+            {visMåned && (
+                <Undertittel tag={`h${månedHeadingLevel}`} className="m-caps">
+                    {dayjs(dagerMedTid[0].dato).format('MMM YYYY')}
+                </Undertittel>
+            )}
             <div className={bem.element('uker')}>
                 {Object.keys(weeksWithDays).map((key) => {
                     const days = weeksWithDays[key];
                     return (
                         <div key={key} className={bem.element('uke')}>
                             {viseUke && (
-                                <Element tag="h4" className={bem.element('uketittel')}>
+                                <Element tag={`h${ukeHeadingLevel}`} className={bem.element('uketittel')}>
                                     <FormattedMessage
                                         id="dagerMedTid.uke"
                                         values={{ uke: dayjs(days[0].dato).isoWeek() }}
